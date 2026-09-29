@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -14,11 +13,6 @@ import {
   ConversionCursor,
 } from "@/components/ui/InteractiveHeroCursors";
 import InteractiveDotGrid from "@/components/ui/InteractiveDotGrid";
-
-const AstronautCanvas = dynamic(
-  () => import("@/components/ui/AstronautCanvas"),
-  { ssr: false, loading: () => null }
-);
 
 export default function Hero() {
   const [hoveredTag, setHoveredTag] = useState<string | null>(null);
@@ -221,9 +215,6 @@ export default function Hero() {
           />
         </svg>
       </div>
-
-      {/* ================= 3D ASTRONAUT STANDING ON GOLDEN HORIZON ================= */}
-      <AstronautCanvas />
 
       {/* ================= HERO MAIN CONTENT (ELEVATED & PROPERLY ALIGNED) ================= */}
       <div className="relative z-20 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-3 sm:px-6 text-center -translate-y-6 sm:-translate-y-14 md:-translate-y-20 lg:-translate-y-26">
