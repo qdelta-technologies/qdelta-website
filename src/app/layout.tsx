@@ -3,18 +3,18 @@ import localFont from "next/font/local";
 import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
 
-const plusJakartaSans = localFont({
+const epilogue = localFont({
   src: [
     {
-      path: "../../public/fonts/PlusJakartaSans-Variable.woff2",
+      path: "../../public/fonts/Epilogue-Variable.woff2",
       style: "normal",
     },
     {
-      path: "../../public/fonts/PlusJakartaSans-VariableItalic.woff2",
+      path: "../../public/fonts/Epilogue-VariableItalic.woff2",
       style: "italic",
     },
   ],
-  variable: "--font-plus-jakarta",
+  variable: "--font-epilogue",
   display: "swap",
 });
 
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={plusJakartaSans.variable}>
+    <html lang="en" className={epilogue.variable}>
       <body className="font-sans bg-[#040406] text-[#f4f4f5] antialiased selection:bg-[#FAB406] selection:text-black">
         <CustomCursor />
         {children}

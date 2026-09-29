@@ -1,0 +1,249 @@
+/**
+* @license
+*
+* Font Family: Epilogue
+* Designed by: Tyler Finck, Etcetera Type Co
+* URL: https://www.fontshare.com/fonts/epilogue
+* © 2026 Indian Type Foundry
+*
+* Epilogue Thin 
+* Epilogue ThinItalic 
+* Epilogue ExtraLight 
+* Epilogue ExtraLightItalic 
+* Epilogue Light 
+* Epilogue LightItalic 
+* Epilogue Regular 
+* Epilogue Italic 
+* Epilogue Medium 
+* Epilogue MediumItalic 
+* Epilogue SemiBold 
+* Epilogue SemiBoldItalic 
+* Epilogue Bold 
+* Epilogue BoldItalic 
+* Epilogue ExtraBold 
+* Epilogue ExtraBoldItalic 
+* Epilogue Black 
+* Epilogue BlackItalic 
+* Epilogue Variable (Variable font)
+* Epilogue VariableItalic (Variable font)
+*/
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-Variable.woff2') format('woff2'),
+       url('./Epilogue-Variable.woff') format('woff'),
+       url('./Epilogue-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-VariableItalic.woff2') format('woff2'),
+       url('./Epilogue-VariableItalic.woff') format('woff'),
+       url('./Epilogue-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue-Thin';
+  src: url('./Epilogue-Thin.woff2') format('woff2'),
+       url('./Epilogue-Thin.woff') format('woff'),
+       url('./Epilogue-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue-ThinItalic';
+  src: url('./Epilogue-ThinItalic.woff2') format('woff2'),
+       url('./Epilogue-ThinItalic.woff') format('woff'),
+       url('./Epilogue-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue-ExtraLight';
+  src: url('./Epilogue-ExtraLight.woff2') format('woff2'),
+       url('./Epilogue-ExtraLight.woff') format('woff'),
+       url('./Epilogue-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue-ExtraLightItalic';
+  src: url('./Epilogue-ExtraLightItalic.woff2') format('woff2'),
+       url('./Epilogue-ExtraLightItalic.woff') format('woff'),
+       url('./Epilogue-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue-Light';
+  src: url('./Epilogue-Light.woff2') format('woff2'),
+       url('./Epilogue-Light.woff') format('woff'),
+       url('./Epilogue-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue-LightItalic';
+  src: url('./Epilogue-LightItalic.woff2') format('woff2'),
+       url('./Epilogue-LightItalic.woff') format('woff'),
+       url('./Epilogue-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-Regular.woff2') format('woff2'),
+       url('./Epilogue-Regular.woff') format('woff'),
+       url('./Epilogue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-Italic.woff2') format('woff2'),
+       url('./Epilogue-Italic.woff') format('woff'),
+       url('./Epilogue-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-Medium.woff2') format('woff2'),
+       url('./Epilogue-Medium.woff') format('woff'),
+       url('./Epilogue-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-MediumItalic.woff2') format('woff2'),
+       url('./Epilogue-MediumItalic.woff') format('woff'),
+       url('./Epilogue-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-SemiBold.woff2') format('woff2'),
+       url('./Epilogue-SemiBold.woff') format('woff'),
+       url('./Epilogue-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-SemiBoldItalic.woff2') format('woff2'),
+       url('./Epilogue-SemiBoldItalic.woff') format('woff'),
+       url('./Epilogue-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-Bold.woff2') format('woff2'),
+       url('./Epilogue-Bold.woff') format('woff'),
+       url('./Epilogue-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-BoldItalic.woff2') format('woff2'),
+       url('./Epilogue-BoldItalic.woff') format('woff'),
+       url('./Epilogue-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-ExtraBold.woff2') format('woff2'),
+       url('./Epilogue-ExtraBold.woff') format('woff'),
+       url('./Epilogue-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-ExtraBoldItalic.woff2') format('woff2'),
+       url('./Epilogue-ExtraBoldItalic.woff') format('woff'),
+       url('./Epilogue-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-Black.woff2') format('woff2'),
+       url('./Epilogue-Black.woff') format('woff'),
+       url('./Epilogue-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue';
+  src: url('./Epilogue-BlackItalic.woff2') format('woff2'),
+       url('./Epilogue-BlackItalic.woff') format('woff'),
+       url('./Epilogue-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Epilogue-Variable';
+  src: url('./Epilogue-Variable.woff2') format('woff2'),
+       url('./Epilogue-Variable.woff') format('woff'),
+       url('./Epilogue-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue-VariableItalic';
+  src: url('./Epilogue-VariableItalic.woff2') format('woff2'),
+       url('./Epilogue-VariableItalic.woff') format('woff'),
+       url('./Epilogue-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}

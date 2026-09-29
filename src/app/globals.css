@@ -1,84 +1,109 @@
 @import "tailwindcss";
 
-/* ================= PLUS JAKARTA SANS FONTS ================= */
+/* ================= EPILOGUE FONTS ================= */
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Variable.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-Variable.woff') format('woff'),
-       url('/fonts/PlusJakartaSans-Variable.ttf') format('truetype');
-  font-weight: 200 800;
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-Variable.woff2') format('woff2'),
+       url('/fonts/Epilogue-Variable.woff') format('woff'),
+       url('/fonts/Epilogue-Variable.ttf') format('truetype');
+  font-weight: 100 900;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-VariableItalic.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-VariableItalic.woff') format('woff'),
-       url('/fonts/PlusJakartaSans-VariableItalic.ttf') format('truetype');
-  font-weight: 200 800;
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-VariableItalic.woff2') format('woff2'),
+       url('/fonts/Epilogue-VariableItalic.woff') format('woff'),
+       url('/fonts/Epilogue-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
   font-display: swap;
   font-style: italic;
 }
 
-/* Static weights for rock-solid cross-browser fallback */
+/* Static weights for cross-browser reliability */
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Regular.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-Regular.woff2') format('woff2'),
+       url('/fonts/Epilogue-Regular.woff') format('woff'),
+       url('/fonts/Epilogue-Regular.ttf') format('truetype');
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Medium.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-Medium.woff2') format('woff2'),
+       url('/fonts/Epilogue-Medium.woff') format('woff'),
+       url('/fonts/Epilogue-Medium.ttf') format('truetype');
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-SemiBold.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-SemiBold.ttf') format('truetype');
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-SemiBold.woff2') format('woff2'),
+       url('/fonts/Epilogue-SemiBold.woff') format('woff'),
+       url('/fonts/Epilogue-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Bold.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-Bold.woff2') format('woff2'),
+       url('/fonts/Epilogue-Bold.woff') format('woff'),
+       url('/fonts/Epilogue-Bold.ttf') format('truetype');
   font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-ExtraBold.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-ExtraBold.ttf') format('truetype');
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-ExtraBold.woff2') format('woff2'),
+       url('/fonts/Epilogue-ExtraBold.woff') format('woff'),
+       url('/fonts/Epilogue-ExtraBold.ttf') format('truetype');
   font-weight: 800;
   font-display: swap;
   font-style: normal;
 }
 
-/* Specific weights by family name as provided in Fontshare package */
 @font-face {
-  font-family: 'PlusJakartaSans-Variable';
-  src: url('/fonts/PlusJakartaSans-Variable.woff2') format('woff2'),
-       url('/fonts/PlusJakartaSans-Variable.ttf') format('truetype');
-  font-weight: 200 800;
+  font-family: 'Epilogue';
+  src: url('/fonts/Epilogue-Black.woff2') format('woff2'),
+       url('/fonts/Epilogue-Black.woff') format('woff'),
+       url('/fonts/Epilogue-Black.ttf') format('truetype');
+  font-weight: 900;
   font-display: swap;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Epilogue-Variable';
+  src: url('/fonts/Epilogue-Variable.woff2') format('woff2'),
+       url('/fonts/Epilogue-Variable.woff') format('woff'),
+       url('/fonts/Epilogue-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Epilogue-VariableItalic';
+  src: url('/fonts/Epilogue-VariableItalic.woff2') format('woff2'),
+       url('/fonts/Epilogue-VariableItalic.woff') format('woff'),
+       url('/fonts/Epilogue-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
 @theme {
-  --font-sans: 'Plus Jakarta Sans', 'PlusJakartaSans-Variable', sans-serif;
+  --font-sans: 'Epilogue', 'Epilogue-Variable', var(--font-epilogue), sans-serif;
   --color-gold: #FAB406;
   --color-gold-hover: #F6A803;
   --color-obsidian: #040406;
@@ -87,10 +112,10 @@
 }
 
 :root {
-  --font-plus-jakarta: 'Plus Jakarta Sans', sans-serif;
+  --font-epilogue: 'Epilogue', 'Epilogue-Variable', sans-serif;
 }
 
-/* Force Plus Jakarta Sans across the entire site */
+/* Force Epilogue across the entire site */
 html,
 body,
 button,
@@ -106,7 +131,7 @@ h6,
 p,
 span,
 a {
-  font-family: 'Plus Jakarta Sans', 'PlusJakartaSans-Variable', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-family: 'Epilogue', 'Epilogue-Variable', var(--font-epilogue), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
 /* ================= MARQUEE TICKER ANIMATION ================= */
