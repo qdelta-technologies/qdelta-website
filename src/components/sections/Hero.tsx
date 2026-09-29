@@ -17,7 +17,7 @@ import InteractiveDotGrid from "@/components/ui/InteractiveDotGrid";
 
 const AstronautCanvas = dynamic(
   () => import("@/components/ui/AstronautCanvas"),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 
 export default function Hero() {

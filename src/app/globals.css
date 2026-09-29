@@ -134,6 +134,11 @@ a {
   font-family: 'Epilogue', 'Epilogue-Variable', var(--font-epilogue), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
+/* Ensure all WebGL and 2D canvases are strictly transparent */
+canvas {
+  background-color: transparent !important;
+}
+
 /* ================= MARQUEE TICKER ANIMATION ================= */
 @keyframes marquee {
   0% {
