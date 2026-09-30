@@ -10,8 +10,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#040406] text-white border-t border-white/[0.08] relative z-20">
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-10 sm:px-10 md:px-14 sm:pt-20">
+    <footer className="w-full bg-[#040406] text-white relative z-20 overflow-hidden">
+      {/* Cinematic Golden Horizon Flare (Seamless transition from previous section) */}
+      <div className="relative w-full flex items-center justify-center pointer-events-none">
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute w-3/4 max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/40 to-transparent" />
+        <div className="absolute -top-12 w-96 h-24 rounded-full bg-[#FAB406]/10 blur-3xl pointer-events-none" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 pt-16 pb-12 sm:px-10 md:px-14 sm:pt-20">
         {/* Main Footer Row */}
         <div className="flex flex-col md:flex-row items-start justify-between gap-10 sm:gap-12">
           {/* Left Brand Identity */}

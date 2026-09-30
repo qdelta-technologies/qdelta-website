@@ -13,6 +13,7 @@ import {
   ConversionCursor,
 } from "@/components/ui/InteractiveHeroCursors";
 import InteractiveDotGrid from "@/components/ui/InteractiveDotGrid";
+import PlanetSurfaceRevolution from "@/components/ui/PlanetSurfaceRevolution";
 
 export default function Hero() {
   const [hoveredTag, setHoveredTag] = useState<string | null>(null);
@@ -164,6 +165,11 @@ export default function Hero() {
               <stop offset="68%" stopColor="#E07A00" stopOpacity="0.38" />
               <stop offset="100%" stopColor="#B45309" stopOpacity="0.22" />
             </linearGradient>
+
+            {/* Strict clipping mask ensuring the rotating surface lines never leak outside the arc */}
+            <clipPath id="horizon-surface-clip">
+              <path d="M -15 1000 Q 500 520 1015 1000 L 1015 1005 L -15 1005 Z" />
+            </clipPath>
           </defs>
 
           {/* Filled Layer: Radiant, bright atmospheric underglow inside the arc */}
@@ -173,6 +179,9 @@ export default function Hero() {
             className="transition-opacity duration-500 ease-out"
             style={{ opacity: hoveredTag ? 1 : 0.92 }}
           />
+
+          {/* Planet Surface Revolution: Rotating spherical longitude/latitude lines and contours clipped strictly inside the surface */}
+          <PlanetSurfaceRevolution />
 
           {/* Reactive Surge Aura when any tag is hovered */}
           <path
@@ -220,7 +229,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-3 sm:px-6 text-center -translate-y-6 sm:-translate-y-14 md:-translate-y-20 lg:-translate-y-26">
         {/* Main Headline with Interactive Figma Collaboration Cursors and subtle micro-tilt/drift */}
         <h1
-          className="relative z-10 text-balance font-extrabold italic tracking-[-0.03em] text-white text-[1.75rem] min-[380px]:text-[1.95rem] sm:text-[2.85rem] md:text-[3.75rem] lg:text-[4.5rem] leading-[1.12] sm:leading-[1.06] transition-transform duration-500 ease-out will-change-transform"
+          className="relative z-10 text-balance font-sans font-extrabold italic tracking-[-0.03em] text-white text-[1.75rem] min-[380px]:text-[1.95rem] sm:text-[2.85rem] md:text-[3.75rem] lg:text-[4.5rem] leading-[1.12] sm:leading-[1.06] transition-transform duration-500 ease-out will-change-transform"
           style={{
             transform: `translate3d(${mousePos.x * 5.5}px, ${mousePos.y * 3.8}px, 0) perspective(1000px) rotateX(${-mousePos.y * 1.2}deg) rotateY(${mousePos.x * 1.5}deg)`,
             transformStyle: "preserve-3d",
@@ -243,7 +252,7 @@ export default function Hero() {
 
         {/* Subtitle Paragraph */}
         <p
-          className="mt-3 sm:mt-5 max-w-xs sm:max-w-md md:max-w-xl mx-auto text-pretty text-[11px] sm:text-xs md:text-sm lg:text-[15px] leading-relaxed text-zinc-300 font-normal px-2 sm:px-0 transition-transform duration-500 ease-out will-change-transform"
+          className="mt-3 sm:mt-5 max-w-xs sm:max-w-md md:max-w-xl mx-auto text-pretty text-[11px] sm:text-xs md:text-sm lg:text-[15px] leading-relaxed text-zinc-300 font-sans font-normal px-2 sm:px-0 transition-transform duration-500 ease-out will-change-transform"
           style={{
             transform: `translate3d(${mousePos.x * 3.2}px, ${mousePos.y * 2.2}px, 0)`,
           }}

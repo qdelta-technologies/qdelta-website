@@ -122,25 +122,51 @@ export default function InteractiveDotGrid() {
         });
       }
 
-      // 3. LAYER 3 (NEAR): Atmospheric floating golden motes (ultra-minimal, 12-16 total)
+      // 3. LAYER 3 (NEAR): Atmospheric floating golden motes emerging from the horizon line
       nearMotes = [];
-      const nearCount = Math.floor(Math.max(8, Math.min(16, W / 90)));
+      // Substantially increased count: 80 to 150 motes for a rich, celestial field
+      const nearCount = Math.floor(Math.max(80, Math.min(150, W / 11)));
       for (let i = 0; i < nearCount; i++) {
         const x = Math.random() * W;
         const sunLineY = getSunLineY(x, W, H);
-        const y = 30 + Math.random() * (sunLineY - 45);
+        // Distribute initial positions smoothly across the height on load,
+        // with ongoing particles continuously emerging from the horizon line
+        const y = 25 + Math.random() * (sunLineY - 35);
+
+        // Multi-depth tiers: small background sparks, medium motes, prominent foreground embers
+        const tier = Math.random();
+        let radius = 1.2;
+        let baseOpacity = 0.35;
+        let vy = -0.14;
+
+        if (tier < 0.45) {
+          // Delicate ambient embers (far layer)
+          radius = 0.75 + Math.random() * 0.4;
+          baseOpacity = 0.22 + Math.random() * 0.25;
+          vy = -0.09 - Math.random() * 0.12;
+        } else if (tier < 0.82) {
+          // Mid-ground warm golden motes
+          radius = 1.25 + Math.random() * 0.45;
+          baseOpacity = 0.35 + Math.random() * 0.3;
+          vy = -0.14 - Math.random() * 0.18;
+        } else {
+          // Prominent luminous foreground embers
+          radius = 1.75 + Math.random() * 0.65;
+          baseOpacity = 0.5 + Math.random() * 0.35;
+          vy = -0.18 - Math.random() * 0.22;
+        }
 
         nearMotes.push({
           x,
           y,
           baseX: x,
           baseY: y,
-          radius: 1.3 + Math.random() * 0.6, // 1.3 - 1.9px
-          vx: (Math.random() - 0.5) * 0.16,
-          vy: -0.1 - Math.random() * 0.18, // Gentle floating upward
-          baseOpacity: 0.22 + Math.random() * 0.2, // Subtle warm golden
+          radius,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy,
+          baseOpacity,
           phase: Math.random() * Math.PI * 2,
-          swaySpeed: 0.008 + Math.random() * 0.012,
+          swaySpeed: 0.007 + Math.random() * 0.015,
         });
       }
     };
@@ -318,7 +344,7 @@ export default function InteractiveDotGrid() {
       }
 
       // ==========================================
-      // LAYER 3: NEAR FOREGROUND MOTES (Highest parallax, organic warm drift)
+      // LAYER 3: NEAR FOREGROUND MOTES (Emerging from horizon line with organic drift)
       // ==========================================
       const nearShiftX = parallax.currentX * 24;
       const nearShiftY = parallax.currentY * 14;
@@ -327,20 +353,52 @@ export default function InteractiveDotGrid() {
         const m = nearMotes[i];
 
         // Horizontal sinusoidal sway
-        const sway = Math.sin(time * m.swaySpeed + m.phase) * 0.35;
+        const sway = Math.sin(time * m.swaySpeed + m.phase) * 0.38;
         m.baseX += m.vx + sway;
-        m.baseY += m.vy;
+        m.baseY += m.vy; // Constant gentle upward float
 
         const sunLineY = getSunLineY(m.baseX, W, H);
 
-        // Wrap gently at top/bottom
-        if (m.baseY < 20) m.baseY = sunLineY - 18;
-        if (m.baseY > sunLineY - 12) m.baseY = 25;
+        // Respawn logic: When particle floats off top or drifts below horizon
+        if (m.baseY < 15 || m.baseY > sunLineY + 2) {
+          // Emerge directly from the golden horizon arc!
+          m.baseX = Math.random() * W;
+          const newSunY = getSunLineY(m.baseX, W, H);
+          m.baseY = newSunY - (1 + Math.random() * 5); // Right at the glowing horizon edge
+          m.vx = (Math.random() - 0.5) * 0.18;
+
+          const tier = Math.random();
+          if (tier < 0.45) {
+            m.radius = 0.75 + Math.random() * 0.4;
+            m.baseOpacity = 0.22 + Math.random() * 0.25;
+            m.vy = -0.09 - Math.random() * 0.12;
+          } else if (tier < 0.82) {
+            m.radius = 1.25 + Math.random() * 0.45;
+            m.baseOpacity = 0.35 + Math.random() * 0.3;
+            m.vy = -0.14 - Math.random() * 0.18;
+          } else {
+            m.radius = 1.75 + Math.random() * 0.65;
+            m.baseOpacity = 0.5 + Math.random() * 0.35;
+            m.vy = -0.18 - Math.random() * 0.22;
+          }
+        }
+
+        // Horizontal canvas wrapping
         if (m.baseX < 0) m.baseX = W;
         if (m.baseX > W) m.baseX = 0;
 
         let renderX = m.baseX + nearShiftX;
         let renderY = m.baseY + nearShiftY;
+
+        // Emerge & Dissolve Opacity Fade:
+        // 1. Fade in smoothly as particle emerges from the horizon curve (over 45px of upward travel)
+        const distFromHorizon = Math.max(0, sunLineY - m.baseY);
+        const fadeIn = Math.min(1, distFromHorizon / 45);
+
+        // 2. Fade out gently as it reaches the top of the hero
+        const fadeOut = Math.max(0, Math.min(1, (m.baseY - 15) / 55));
+
+        const lifeFade = fadeIn * fadeOut;
 
         // Subtle soft repulsion if cursor passes near floating motes
         if (mouse.active) {
@@ -357,19 +415,21 @@ export default function InteractiveDotGrid() {
 
         // Breathing golden pulse
         const pulse = Math.sin(time * 0.025 + m.phase) * 0.08;
-        const moteOpacity = Math.max(0.12, m.baseOpacity + pulse);
+        const moteOpacity = Math.max(0, (m.baseOpacity + pulse) * lifeFade);
 
-        // Soft halo glow around foreground mote
-        ctx.beginPath();
-        ctx.arc(renderX, renderY, m.radius + 1.2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(250, 180, 6, ${moteOpacity * 0.25})`;
-        ctx.fill();
+        if (moteOpacity > 0.01) {
+          // Soft golden halo glow around foreground mote
+          ctx.beginPath();
+          ctx.arc(renderX, renderY, m.radius + 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(250, 180, 6, ${moteOpacity * 0.32})`;
+          ctx.fill();
 
-        // Core bright warm mote
-        ctx.beginPath();
-        ctx.arc(renderX, renderY, m.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(250, 180, 6, ${moteOpacity})`;
-        ctx.fill();
+          // Core radiant warm mote
+          ctx.beginPath();
+          ctx.arc(renderX, renderY, m.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 225, 130, ${moteOpacity * 0.95})`;
+          ctx.fill();
+        }
       }
 
       animationFrameId = requestAnimationFrame(render);

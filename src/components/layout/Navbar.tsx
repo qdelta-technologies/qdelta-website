@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 export default function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 w-full transition-all">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-10 md:px-14">
+      <div className="flex w-full items-center justify-between px-4 py-3 sm:px-8 md:px-10 lg:px-12 xl:px-14">
         {/* Brand Logo */}
         <Link href="/" className="group flex items-center gap-2 focus:outline-none shrink-0">
           <Image
