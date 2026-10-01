@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 const epilogue = localFont({
   src: [
@@ -97,7 +106,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={epilogue.variable}>
+    <html lang="en" className={`${epilogue.variable} ${playfair.variable}`}>
       <body className="font-sans bg-[#040406] text-[#f4f4f5] antialiased selection:bg-[#FAB406] selection:text-black">
         <CustomCursor />
         {children}
@@ -105,3 +114,4 @@ export default function RootLayout({
     </html>
   );
 }
+

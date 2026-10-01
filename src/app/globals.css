@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-epilogue), ui-sans-serif, system-ui, sans-serif;
+}
+
+
 /* ================= EPILOGUE FONTS ================= */
 @font-face {
   font-family: 'Epilogue';

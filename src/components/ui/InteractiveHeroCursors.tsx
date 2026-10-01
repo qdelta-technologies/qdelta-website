@@ -84,7 +84,7 @@ function CursorItem({
         }`}
         style={{ animationDelay: floatDelay }}
       >
-        {/* Subtle Ethereal Signal Line connecting to the Golden Horizon */}
+        {/* Subtle Ethereal Signal Line connecting to the Horizon */}
         <div
           className={`pointer-events-none absolute top-full left-1/2 -translate-x-1/2 w-[1.5px] h-32 sm:h-52 md:h-64 transition-all duration-500 ease-out overflow-hidden ${
             isHovered ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 origin-top"
@@ -92,37 +92,37 @@ function CursorItem({
           aria-hidden="true"
         >
           {/* Ambient soft glow halo around the filament */}
-          <div className="absolute inset-y-0 -left-1.5 w-4 bg-gradient-to-b from-[#FAB406]/20 via-[#FAB406]/5 to-transparent blur-[2px]" />
+          <div className="absolute inset-y-0 -left-1.5 w-4 bg-gradient-to-b from-[#433bff]/25 via-[#2f27ce]/10 to-transparent blur-[2px]" />
           {/* Subtle gradient filament */}
-          <div className="w-full h-full bg-gradient-to-b from-[#FAB406]/85 via-[#FAB406]/25 to-transparent blur-[0.4px]" />
+          <div className="w-full h-full bg-gradient-to-b from-[#dedcff]/90 via-[#433bff]/40 to-transparent blur-[0.4px]" />
           {/* Animated pulse traveling downward toward the horizon */}
-          <div className="absolute inset-x-0 h-12 w-full bg-gradient-to-b from-transparent via-[#FFFDEB] to-transparent animate-signal-down" />
+          <div className="absolute inset-x-0 h-12 w-full bg-gradient-to-b from-transparent via-[#fbfbfe] to-transparent animate-signal-down" />
         </div>
 
-        {/* Refined Name Tag with Golden Horizon Glow on Hover */}
+        {/* Refined Name Tag with Electric Glow on Hover */}
         <div
           className={`relative flex items-center gap-2 rounded-[6px] border px-3 py-1 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md transition-all duration-300 ${
             isHovered
-              ? "border-[#FAB406]/80 bg-[#101016]/95 text-[#FAB406] shadow-[0_0_24px_rgba(250,180,6,0.38),inset_0_0_12px_rgba(250,180,6,0.12)] scale-[1.03]"
-              : "border-white/15 bg-[#0d0d12]/85 text-white group-hover:border-white/30"
+              ? "border-[#433bff]/80 bg-[#0e0c24]/95 text-[#dedcff] shadow-[0_0_24px_rgba(67,59,255,0.45),inset_0_0_12px_rgba(67,59,255,0.2)] scale-[1.03]"
+              : "border-white/15 bg-[#0a081a]/85 text-white group-hover:border-white/30"
           }`}
         >
           <span
             className={`h-2 w-2 rounded-full transition-all duration-300 ${
               isHovered
-                ? "bg-[#FAB406] shadow-[0_0_12px_rgba(250,180,6,1)] scale-125"
+                ? "bg-[#433bff] shadow-[0_0_12px_rgba(67,59,255,1)] scale-125"
                 : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] animate-pulse"
             }`}
           />
           <span className="whitespace-nowrap font-medium">{name}</span>
           {isHovered && (
-            <span className="whitespace-nowrap text-[11px] font-normal text-zinc-300 border-l border-[#FAB406]/35 pl-2 animate-in fade-in duration-200">
+            <span className="whitespace-nowrap text-[11px] font-normal text-zinc-300 border-l border-[#433bff]/40 pl-2 animate-in fade-in duration-200">
               {role}
             </span>
           )}
         </div>
 
-        {/* Crisp Cursor Arrow with Golden Glint on Hover */}
+        {/* Crisp Cursor Arrow with Electric Glint on Hover */}
         <svg
           width="27"
           height="27"
@@ -131,7 +131,7 @@ function CursorItem({
           xmlns="http://www.w3.org/2000/svg"
           className={`shrink-0 transition-all duration-300 ${
             isHovered
-              ? "text-[#FAB406] drop-shadow-[0_0_12px_rgba(250,180,6,0.85)] scale-105"
+              ? "text-[#dedcff] drop-shadow-[0_0_12px_rgba(67,59,255,0.9)] scale-105"
               : "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
           }`}
           style={{
@@ -141,7 +141,7 @@ function CursorItem({
           <path
             d="M4 4L11.5 21L14 13.5L21.5 11L4 4Z"
             fill="currentColor"
-            stroke="#040406"
+            stroke="#050315"
             strokeWidth="1.6"
             strokeLinejoin="round"
           />
