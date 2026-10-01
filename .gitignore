@@ -42,3 +42,8 @@ next-env.d.ts
 
 # backups
 *.bak
+
+# scratch and local scripts
+/scratch/
+write_section.ps1
+

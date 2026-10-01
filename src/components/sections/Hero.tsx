@@ -14,24 +14,10 @@ import {
 } from "@/components/ui/InteractiveHeroCursors";
 import InteractiveDotGrid from "@/components/ui/InteractiveDotGrid";
 import PlanetSurfaceRevolution from "@/components/ui/PlanetSurfaceRevolution";
+import SaffronButton from "@/components/ui/SaffronButton";
 
 export default function Hero() {
-  const [hoveredTag, setHoveredTag] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleCursorHover = (e: Event) => {
-      const customEvent = e as CustomEvent<{ active: boolean; name: string }>;
-      if (customEvent.detail?.active) {
-        setHoveredTag(customEvent.detail.name);
-      } else {
-        setHoveredTag(null);
-      }
-    };
-
-    window.addEventListener("qdelta-cursor-hover", handleCursorHover);
-    return () => window.removeEventListener("qdelta-cursor-hover", handleCursorHover);
-  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -94,9 +80,7 @@ export default function Hero() {
 
         {/* Ambient glow under the arc, gently softened at the outer corners only */}
         <div
-          className={`absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-[#FAB406]/35 via-[#FAB406]/12 to-transparent pointer-events-none transition-opacity duration-500 ease-out ${
-            hoveredTag ? "opacity-100" : "opacity-80"
-          }`}
+          className="absolute inset-x-0 bottom-0 h-48 sm:h-56 bg-gradient-to-t from-[#FAB406]/35 via-[#FAB406]/12 to-transparent pointer-events-none opacity-85 transition-opacity duration-500 ease-out"
           style={{
             maskImage:
               "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 8%, black 16%, black 84%, rgba(0,0,0,0.6) 92%, transparent 100%)",
@@ -132,38 +116,38 @@ export default function Hero() {
 
             {/* Radiant gradient along the laser beam */}
             <linearGradient id="horizon-beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.25" />
-              <stop offset="10%" stopColor="#FAB406" stopOpacity="0.85" />
-              <stop offset="50%" stopColor="#FFFDEB" stopOpacity="1" />
-              <stop offset="90%" stopColor="#FAB406" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.25" />
+              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.45" />
+              <stop offset="10%" stopColor="#FAB406" stopOpacity="0.95" />
+              <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
+              <stop offset="90%" stopColor="#FAB406" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.45" />
             </linearGradient>
 
             {/* Wide aura gradient with softened corners */}
             <linearGradient id="horizon-aura-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.1" />
-              <stop offset="10%" stopColor="#FAB406" stopOpacity="0.45" />
-              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.45" />
-              <stop offset="90%" stopColor="#FAB406" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.1" />
+              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.18" />
+              <stop offset="10%" stopColor="#FAB406" stopOpacity="0.65" />
+              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.65" />
+              <stop offset="90%" stopColor="#FAB406" stopOpacity="0.65" />
+              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.18" />
             </linearGradient>
 
             {/* Tight halo gradient with slightly softened corners */}
             <linearGradient id="horizon-halo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.35" />
-              <stop offset="8%" stopColor="#FAB406" stopOpacity="0.95" />
-              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.95" />
-              <stop offset="92%" stopColor="#FAB406" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.35" />
+              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.5" />
+              <stop offset="8%" stopColor="#FAB406" stopOpacity="1" />
+              <stop offset="50%" stopColor="#FFF2B2" stopOpacity="1" />
+              <stop offset="92%" stopColor="#FAB406" stopOpacity="1" />
+              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.5" />
             </linearGradient>
 
             {/* Bright, luminous vertical underglow inside the line */}
             <linearGradient id="horizon-underglow" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FFF8D6" stopOpacity="0.88" />
-              <stop offset="8%" stopColor="#FAB406" stopOpacity="0.75" />
-              <stop offset="32%" stopColor="#F59E0B" stopOpacity="0.55" />
-              <stop offset="68%" stopColor="#E07A00" stopOpacity="0.38" />
-              <stop offset="100%" stopColor="#B45309" stopOpacity="0.22" />
+              <stop offset="0%" stopColor="#FFFCE6" stopOpacity="0.95" />
+              <stop offset="8%" stopColor="#FAB406" stopOpacity="0.85" />
+              <stop offset="32%" stopColor="#F59E0B" stopOpacity="0.68" />
+              <stop offset="68%" stopColor="#E07A00" stopOpacity="0.48" />
+              <stop offset="100%" stopColor="#B45309" stopOpacity="0.28" />
             </linearGradient>
 
             {/* Strict clipping mask ensuring the rotating surface lines never leak outside the arc */}
@@ -176,29 +160,17 @@ export default function Hero() {
           <path
             d="M -15 1000 Q 500 520 1015 1000 L 1015 1005 L -15 1005 Z"
             fill="url(#horizon-underglow)"
-            className="transition-opacity duration-500 ease-out"
-            style={{ opacity: hoveredTag ? 1 : 0.92 }}
+            className="transition-opacity duration-500 ease-out opacity-95"
           />
 
           {/* Planet Surface Revolution: Rotating spherical longitude/latitude lines and contours clipped strictly inside the surface */}
           <PlanetSurfaceRevolution />
 
-          {/* Reactive Surge Aura when any tag is hovered */}
-          <path
-            d="M -15 1000 Q 500 520 1015 1000"
-            stroke="url(#horizon-halo-gradient)"
-            strokeWidth="30"
-            filter="url(#horizon-glow-wide)"
-            vectorEffect="non-scaling-stroke"
-            className="transition-opacity duration-500 ease-out"
-            style={{ opacity: hoveredTag ? 0.95 : 0 }}
-          />
-
           {/* Layer 1: Wide Golden Aura (softened at corners) */}
           <path
             d="M -15 1000 Q 500 520 1015 1000"
             stroke="url(#horizon-aura-gradient)"
-            strokeWidth="22"
+            strokeWidth="26"
             filter="url(#horizon-glow-wide)"
             vectorEffect="non-scaling-stroke"
           />
@@ -207,7 +179,7 @@ export default function Hero() {
           <path
             d="M -15 1000 Q 500 520 1015 1000"
             stroke="url(#horizon-halo-gradient)"
-            strokeWidth={hoveredTag ? "9" : "7"}
+            strokeWidth="8"
             filter="url(#horizon-glow-tight)"
             vectorEffect="non-scaling-stroke"
             className="transition-all duration-300 ease-out"
@@ -217,7 +189,7 @@ export default function Hero() {
           <path
             d="M -15 1000 Q 500 520 1015 1000"
             stroke="url(#horizon-beam-gradient)"
-            strokeWidth={hoveredTag ? "3.2" : "2.5"}
+            strokeWidth="2.8"
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
             className="transition-all duration-300 ease-out"
@@ -277,14 +249,10 @@ export default function Hero() {
             <span>Explore our work</span>
           </Link>
 
-          {/* Primary Button (Yellow fill with white hover state) */}
-          <Link
-            href="#contact"
-            className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-[#FAB406] px-3.5 py-1.5 sm:px-5 sm:py-2 text-[11px] sm:text-[13px] font-semibold text-black shadow-[0_0_20px_rgba(250,180,6,0.4)] transition-all duration-300 hover:bg-white hover:shadow-[0_0_24px_rgba(255,255,255,0.45)] hover:scale-[1.02]"
-          >
-            <span>Start a project</span>
-            <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+          {/* Primary Saffron / Golden Pill Button (UIVerse with rotating star mark) */}
+          <SaffronButton href="#contact" variant="primary" size="md">
+            Start a project
+          </SaffronButton>
         </div>
       </div>
     </section>

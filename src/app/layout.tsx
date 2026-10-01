@@ -89,6 +89,38 @@ const epilogue = localFont({
   display: "swap",
 });
 
+const excon = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Excon-Variable.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Excon-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Excon-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Excon-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Excon-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-excon",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "QDelta Technologies | Built to Speak. Designed to Work.",
   description:
@@ -106,7 +138,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${epilogue.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${epilogue.variable} ${excon.variable} ${playfair.variable}`}>
       <body className="font-sans bg-[#040406] text-[#f4f4f5] antialiased selection:bg-[#FAB406] selection:text-black">
         <CustomCursor />
         {children}

@@ -168,8 +168,45 @@
   font-style: italic;
 }
 
+/* ================= EXCON FONTS ================= */
+@font-face {
+  font-family: 'Excon';
+  src: url('/fonts/Excon-Variable.woff2') format('woff2'),
+       url('/fonts/Excon-Variable.woff') format('woff'),
+       url('/fonts/Excon-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Excon-Bold';
+  src: url('/fonts/Excon-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Excon-Medium';
+  src: url('/fonts/Excon-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Excon-Regular';
+  src: url('/fonts/Excon-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
 @theme {
   --font-sans: var(--font-epilogue), 'Epilogue', sans-serif;
+  --font-epilogue: var(--font-epilogue), 'Epilogue', sans-serif;
+  --font-excon: var(--font-excon), 'Excon', sans-serif;
   --color-gold: #FAB406;
   --color-gold-hover: #F6A803;
   --color-obsidian: #040406;
@@ -177,23 +214,18 @@
   --color-surface-card: #0e0e16;
 }
 
-/* Force Epilogue across the entire site */
+/* Default font is Epilogue, allowing Excon to be applied wherever desired */
 html,
-body,
-button,
-input,
-select,
-textarea,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-a {
-  font-family: var(--font-epilogue), 'Epilogue', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+body {
+  font-family: var(--font-epilogue), 'Epilogue', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-excon {
+  font-family: var(--font-excon), 'Excon', sans-serif !important;
+}
+
+.font-epilogue {
+  font-family: var(--font-epilogue), 'Epilogue', sans-serif !important;
 }
 
 /* Ensure all WebGL and 2D canvases are strictly transparent */
@@ -220,6 +252,28 @@ canvas {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* ================= CONTINUOUS NON-STOP MARQUEE ================= */
+@keyframes marqueeContinuous {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-continuous {
+  display: flex;
+  width: max-content;
+  animation: marqueeContinuous 32s linear infinite !important;
+  animation-play-state: running !important;
+  will-change: transform;
+}
+
+.animate-marquee-continuous:hover {
+  animation-play-state: running !important;
 }
 
 /* ================= INTERACTIVE CURSOR FLOATING ANIMATION ================= */

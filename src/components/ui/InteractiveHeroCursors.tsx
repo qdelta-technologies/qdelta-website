@@ -25,7 +25,7 @@ function useMouseParallax() {
 
 interface CursorProps {
   name: string;
-  role: string;
+  role?: string;
   arrowRotation: number;
   isRightSide?: boolean;
   className?: string;
@@ -35,7 +35,6 @@ interface CursorProps {
 
 function CursorItem({
   name,
-  role,
   arrowRotation,
   isRightSide = false,
   className = "",
@@ -43,97 +42,40 @@ function CursorItem({
   floatDelay = "0s",
 }: CursorProps) {
   const mouseOffset = useMouseParallax();
-  const [isHovered, setIsHovered] = useState(false);
 
   const translateX = mouseOffset.x * parallax.x;
   const translateY = mouseOffset.y * parallax.y;
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("qdelta-cursor-hover", { detail: { active: true, name } })
-      );
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("qdelta-cursor-hover", { detail: { active: false, name } })
-      );
-    }
-  };
-
   return (
     <div
-      className={`pointer-events-auto absolute flex items-center transition-transform duration-300 ease-out group cursor-pointer z-30 ${
+      className={`pointer-events-none select-none absolute flex items-center transition-transform duration-300 ease-out z-30 ${
         isRightSide ? "origin-left" : "origin-right"
       } scale-[0.62] sm:scale-[0.8] md:scale-100 ${className}`}
       style={{
         transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
       }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       aria-hidden="true"
     >
       <div
-        className={`relative flex items-center gap-2 animate-float-gentle transition-transform duration-200 group-hover:scale-105 select-none ${
+        className={`relative flex items-center gap-2 animate-float-gentle select-none ${
           isRightSide ? "flex-row-reverse" : "flex-row"
         }`}
         style={{ animationDelay: floatDelay }}
       >
-        {/* Subtle Ethereal Signal Line connecting to the Horizon */}
-        <div
-          className={`pointer-events-none absolute top-full left-1/2 -translate-x-1/2 w-[1.5px] h-32 sm:h-52 md:h-64 transition-all duration-500 ease-out overflow-hidden ${
-            isHovered ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 origin-top"
-          }`}
-          aria-hidden="true"
-        >
-          {/* Ambient soft glow halo around the filament */}
-          <div className="absolute inset-y-0 -left-1.5 w-4 bg-gradient-to-b from-[#433bff]/25 via-[#2f27ce]/10 to-transparent blur-[2px]" />
-          {/* Subtle gradient filament */}
-          <div className="w-full h-full bg-gradient-to-b from-[#dedcff]/90 via-[#433bff]/40 to-transparent blur-[0.4px]" />
-          {/* Animated pulse traveling downward toward the horizon */}
-          <div className="absolute inset-x-0 h-12 w-full bg-gradient-to-b from-transparent via-[#fbfbfe] to-transparent animate-signal-down" />
-        </div>
-
-        {/* Refined Name Tag with Electric Glow on Hover */}
-        <div
-          className={`relative flex items-center gap-2 rounded-[6px] border px-3 py-1 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md transition-all duration-300 ${
-            isHovered
-              ? "border-[#433bff]/80 bg-[#0e0c24]/95 text-[#dedcff] shadow-[0_0_24px_rgba(67,59,255,0.45),inset_0_0_12px_rgba(67,59,255,0.2)] scale-[1.03]"
-              : "border-white/15 bg-[#0a081a]/85 text-white group-hover:border-white/30"
-          }`}
-        >
-          <span
-            className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              isHovered
-                ? "bg-[#433bff] shadow-[0_0_12px_rgba(67,59,255,1)] scale-125"
-                : "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] animate-pulse"
-            }`}
-          />
+        {/* Clean, Non-glowing Figma Name Tag */}
+        <div className="relative flex items-center gap-2 rounded-[6px] border border-white/15 bg-[#0a081a]/85 px-3 py-1 text-xs sm:text-[13px] font-medium tracking-wide text-white shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
+          <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] animate-pulse" />
           <span className="whitespace-nowrap font-medium">{name}</span>
-          {isHovered && (
-            <span className="whitespace-nowrap text-[11px] font-normal text-zinc-300 border-l border-[#433bff]/40 pl-2 animate-in fade-in duration-200">
-              {role}
-            </span>
-          )}
         </div>
 
-        {/* Crisp Cursor Arrow with Electric Glint on Hover */}
+        {/* Crisp Cursor Arrow */}
         <svg
           width="27"
           height="27"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={`shrink-0 transition-all duration-300 ${
-            isHovered
-              ? "text-[#dedcff] drop-shadow-[0_0_12px_rgba(67,59,255,0.9)] scale-105"
-              : "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
-          }`}
+          className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
           style={{
             transform: `rotate(${arrowRotation}deg)`,
           }}

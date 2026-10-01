@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import SaffronButton from "@/components/ui/SaffronButton";
 
 export default function Navbar() {
   return (
@@ -27,12 +28,7 @@ export default function Navbar() {
             >
               Services
             </Link>
-            <Link
-              href="#packages"
-              className="rounded-full px-3.5 py-1.5 text-xs lg:text-[13px] font-medium text-zinc-300 transition-colors duration-200 hover:text-white hover:bg-white/5"
-            >
-              Packages
-            </Link>
+
             <Link
               href="#process"
               className="rounded-full px-3.5 py-1.5 text-xs lg:text-[13px] font-medium text-zinc-300 transition-colors duration-200 hover:text-white hover:bg-white/5"
@@ -60,24 +56,16 @@ export default function Navbar() {
           </nav>
 
           {/* Integrated Start a Project Button */}
-          <Link
-            href="#contact"
-            className="group ml-1.5 inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2 text-xs lg:text-[13px] font-semibold text-black shadow-sm transition-all duration-300 hover:bg-[#FAB406] hover:shadow-[0_0_24px_rgba(250,180,6,0.45)] hover:scale-[1.02]"
-          >
-            <span>Start a Project</span>
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+          <SaffronButton href="#contact" size="sm" variant="white" className="ml-1.5 !h-8 text-xs px-4">
+            Start a Project
+          </SaffronButton>
         </div>
 
         {/* Mobile Action Button */}
         <div className="flex md:hidden">
-          <Link
-            href="#contact"
-            className="inline-flex items-center gap-1 rounded-full bg-[#FAB406] px-3.5 py-1.5 text-[11px] sm:px-4 sm:py-2 sm:text-xs font-semibold text-black shadow-[0_0_15px_rgba(250,180,6,0.35)]"
-          >
-            <span>Start a Project</span>
-            <ArrowUpRight className="h-3 w-3" />
-          </Link>
+          <SaffronButton href="#contact" size="sm" variant="primary" className="!h-8 text-[11px] px-3.5">
+            Start a Project
+          </SaffronButton>
         </div>
       </div>
     </header>

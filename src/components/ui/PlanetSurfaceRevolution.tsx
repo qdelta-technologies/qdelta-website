@@ -19,8 +19,8 @@ export default function PlanetSurfaceRevolution() {
     ).matches;
 
     let animId: number;
-    // Slow, meditative planetary rotation: ~90 seconds per full 360° revolution
-    const ROTATION_SPEED = 0.05; // degrees per frame at 60fps
+    // Fluid, majestic planetary rotation: ~54 seconds per full 360° revolution
+    const ROTATION_SPEED = 0.11; // degrees per frame at 60fps (elevated speed)
 
     const animate = () => {
       if (!prefersReducedMotion) {
@@ -68,19 +68,15 @@ export default function PlanetSurfaceRevolution() {
             const d = `M ${x0.toFixed(1)} ${y0.toFixed(1)} C ${x1.toFixed(1)} ${y1.toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}, ${x3.toFixed(1)} ${y3.toFixed(1)}`;
             pathEl.setAttribute("d", d);
 
-            // Natural limb foreshortening fade:
-            // Every 6th line is a major meridian (every 30°), others are fine subdivision lines
-            const isMajor = i % 6 === 0;
-            const baseFactor = isMajor ? 0.17 : 0.12;
+            // Uniform limb foreshortening fade across all lines
+            const baseFactor = 0.30;
             const op = Math.max(0, cosLon) * baseFactor;
 
             pathEl.setAttribute(
               "stroke",
-              isMajor
-                ? `rgba(255, 238, 170, ${op.toFixed(3)})`
-                : `rgba(250, 180, 6, ${op.toFixed(3)})`
+              `rgba(250, 180, 6, ${op.toFixed(3)})`
             );
-            pathEl.setAttribute("stroke-width", isMajor ? "0.95" : "0.7");
+            pathEl.setAttribute("stroke-width", "1.0");
             pathEl.style.display = "block";
           } else {
             pathEl.style.display = "none";
@@ -118,62 +114,62 @@ export default function PlanetSurfaceRevolution() {
           fx="50%"
           fy="25%"
         >
-          <stop offset="0%" stopColor="#FFF2B2" stopOpacity="0.08" />
-          <stop offset="45%" stopColor="#FAB406" stopOpacity="0.03" />
+          <stop offset="0%" stopColor="#FFF8D6" stopOpacity="0.18" />
+          <stop offset="45%" stopColor="#FAB406" stopOpacity="0.08" />
           <stop offset="100%" stopColor="#FAB406" stopOpacity="0" />
         </radialGradient>
       </defs>
 
       {/* ================= 1. FIXED SPHERICAL LATITUDE PARALLELS ================= */}
       {/*
-        Concentric spherical latitude rings spaced ~40px apart to form square grid quads
+        Concentric spherical latitude rings with uniform thickness of 1.0px
       */}
-      <g opacity="0.9">
+      <g opacity="1">
         {/* Latitude 1: Close to Crest */}
         <path
           d="M -50 821 Q 500 795 1050 821"
-          stroke="rgba(255, 235, 160, 0.12)"
-          strokeWidth="0.8"
+          stroke="rgba(250, 180, 6, 0.28)"
+          strokeWidth="1.0"
           fill="none"
           vectorEffect="non-scaling-stroke"
         />
         {/* Latitude 2: Sub-polar */}
         <path
           d="M -50 867 Q 500 835 1050 867"
-          stroke="rgba(255, 230, 140, 0.13)"
-          strokeWidth="0.85"
+          stroke="rgba(250, 180, 6, 0.28)"
+          strokeWidth="1.0"
           fill="none"
           vectorEffect="non-scaling-stroke"
         />
         {/* Latitude 3: Upper-Mid */}
         <path
           d="M -50 913 Q 500 875 1050 913"
-          stroke="rgba(250, 180, 6, 0.13)"
-          strokeWidth="0.85"
+          stroke="rgba(250, 180, 6, 0.26)"
+          strokeWidth="1.0"
           fill="none"
           vectorEffect="non-scaling-stroke"
         />
         {/* Latitude 4: Mid-Lower */}
         <path
           d="M -50 959 Q 500 915 1050 959"
-          stroke="rgba(255, 220, 120, 0.12)"
-          strokeWidth="0.8"
+          stroke="rgba(250, 180, 6, 0.24)"
+          strokeWidth="1.0"
           fill="none"
           vectorEffect="non-scaling-stroke"
         />
         {/* Latitude 5: Sub-equatorial */}
         <path
           d="M -50 1005 Q 500 955 1050 1005"
-          stroke="rgba(250, 180, 6, 0.11)"
-          strokeWidth="0.8"
+          stroke="rgba(250, 180, 6, 0.22)"
+          strokeWidth="1.0"
           fill="none"
           vectorEffect="non-scaling-stroke"
         />
         {/* Latitude 6: Base Baseline */}
         <path
           d="M -50 1051 Q 500 995 1050 1051"
-          stroke="rgba(250, 180, 6, 0.09)"
-          strokeWidth="0.8"
+          stroke="rgba(250, 180, 6, 0.20)"
+          strokeWidth="1.0"
           fill="none"
           vectorEffect="non-scaling-stroke"
         />

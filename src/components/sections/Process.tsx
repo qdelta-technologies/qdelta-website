@@ -1,231 +1,354 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import Link from "next/link";
+import {
+  Compass,
+  Layers,
+  Sparkles,
+  Rocket,
+  TrendingUp,
+  ArrowUpRight,
+  ShieldCheck,
+} from "lucide-react";
+import { motion } from "motion/react";
 
 interface ProcessStep {
   number: string;
-  index: number;
   title: string;
-  tagline: string;
   description: string;
-  deliverables: string[];
+  icon: React.ComponentType<{ className?: string }>;
+  accentColor: string;
 }
 
 const STEPS: ProcessStep[] = [
   {
     number: "01",
-    index: 1,
-    title: "Plan",
-    tagline: "Strategy, Architecture & Scope",
+    title: "Discover",
     description:
-      "We dissect your business goals, target audience, and competitive landscape to build a complete architectural blueprint and delivery roadmap before writing a single line of code.",
-    deliverables: ["Strategy Blueprint", "Information Architecture", "Technical Roadmap"],
+      "We understand your business, audience, goals and project requirements before anything begins.",
+    icon: Compass,
+    accentColor: "#FAB406",
   },
   {
     number: "02",
-    index: 2,
-    title: "Design",
-    tagline: "Visual Identity & Bespoke UI/UX",
+    title: "Plan",
     description:
-      "We craft tailored design systems, bespoke typography hierarchies, and luxury art direction that establish immediate authority and brand prestige.",
-    deliverables: ["Figma Design System", "Art Direction", "Responsive UI Suite"],
+      "We define the structure, scope, content direction and the right approach for the project.",
+    icon: Layers,
+    accentColor: "#FAB406",
   },
   {
     number: "03",
-    index: 3,
-    title: "Prototype",
-    tagline: "Interactive Motion & Tactile Physics",
+    title: "Design & Build",
     description:
-      "High-fidelity clickable prototypes allow you to experience the exact feel, transitions, and micro-interactions of your future product on desktop and mobile.",
-    deliverables: ["Clickable Prototypes", "Motion Choreography", "Interaction Previews"],
+      "We turn the strategy into a polished digital experience through thoughtful design, development and interactions.",
+    icon: Sparkles,
+    accentColor: "#FAB406",
   },
   {
     number: "04",
-    index: 4,
-    title: "Approval",
-    tagline: "Collaborative Review & Milestone Sign-Off",
+    title: "Refine & Launch",
     description:
-      "Transparent milestone walkthroughs ensure every interface detail, animation curve, and user flow aligns seamlessly with your vision before engineering begins.",
-    deliverables: ["Design Walkthrough", "Feedback Revisions", "Milestone Sign-Off"],
+      "We review, test and improve the project before preparing everything for a smooth launch.",
+    icon: Rocket,
+    accentColor: "#38BDF8",
   },
   {
     number: "05",
-    index: 5,
-    title: "Development",
-    tagline: "Next.js 16 & High-Performance Engineering",
+    title: "Support & Grow",
     description:
-      "Designs are translated into clean, modular TypeScript with Next.js 16 Server Components, custom GPU shaders, and fluid GSAP/Motion micro-interactions.",
-    deliverables: ["Next.js 16 & React 19", "Edge API Pipelines", "Custom Integrations"],
-  },
-  {
-    number: "06",
-    index: 6,
-    title: "Testing",
-    tagline: "QA, Cross-Device & Core Web Vitals",
-    description:
-      "Rigorous cross-browser verification, accessibility audits, and performance tuning guarantee a locked 60fps framerate and 100/100 Lighthouse score.",
-    deliverables: ["Core Web Vitals 100/100", "Cross-Device QA", "Security Verification"],
-  },
-  {
-    number: "07",
-    index: 7,
-    title: "Deployment",
-    tagline: "Global Edge CDN & Instant DNS Launch",
-    description:
-      "We orchestrate a seamless worldwide edge rollout with automated SSL certificates, instant DNS propagation, and structured SEO schema indexing.",
-    deliverables: ["Edge CDN Deployment", "DNS & SSL Provisioning", "Search Indexing"],
-  },
-  {
-    number: "08",
-    index: 8,
-    title: "Support",
-    tagline: "Continuous Telemetry & Scaling",
-    description:
-      "Our partnership continues post-launch with proactive performance monitoring, uptime telemetry, iterative feature scaling, and dedicated SLA support.",
-    deliverables: ["Real-Time Telemetry", "Feature Iteration", "Dedicated Agency SLA"],
+      "After launch, we provide agreed support and can continue with maintenance and improvements as needed.",
+    icon: TrendingUp,
+    accentColor: "#FAB406",
   },
 ];
 
 export default function Process() {
-  const [activeStep, setActiveStep] = useState(0);
-  const currentStep = STEPS[activeStep];
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <section
       id="process"
-      className="relative z-20 w-full bg-[#040406] text-white selection:bg-[#FAB406] selection:text-black border-t border-white/10 py-20 sm:py-24 md:py-32 overflow-hidden"
+      className="relative z-20 w-full bg-[#07080e] text-white selection:bg-[#FAB406] selection:text-black py-20 sm:py-28 border-t border-white/[0.08] overflow-hidden"
     >
-      {/* Ambient Lighting */}
-      <div className="pointer-events-none absolute top-1/2 right-1/4 h-[35rem] w-[35rem] rounded-full bg-gradient-to-b from-[#FAB406]/[0.06] to-transparent blur-[140px]" />
+      {/* Ambient Lighting Background Halos */}
+      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[42rem] w-[65rem] rounded-full bg-gradient-to-b from-[#FAB406]/[0.035] via-sky-500/[0.02] to-transparent blur-[160px]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-4 sm:px-6 lg:px-10">
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="mb-3.5 inline-flex items-center gap-2 rounded-full border border-[#FAB406]/20 bg-[#FAB406]/[0.06] px-4 py-1.5 backdrop-blur-xl">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FAB406] shadow-[0_0_8px_rgba(250,180,6,0.9)]" />
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#FAB406] font-semibold">
-              Our Process
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        {/* ======================================================= */}
+        {/* SECTION HEADER                                          */}
+        {/* ======================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-14 sm:mb-18 max-w-3xl"
+        >
+          {/* Editorial Section Identifier (No container/capsule) */}
+          <div className="flex items-center gap-3.5 mb-5 sm:mb-6 select-none justify-center">
+            <span className="font-excon text-xs sm:text-[13px] tracking-[0.24em] uppercase text-zinc-400 font-medium">
+              03 / HOW WE WORK
             </span>
+            <div className="w-12 sm:w-16 h-[1px] bg-[#FAB406]/60" />
+            <svg
+              className="w-2.5 h-2.5 text-[#FAB406] fill-current"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+            </svg>
           </div>
 
-          <h2 className="font-sans text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
-            From Blueprint to <span className="italic text-[#FAB406]">Launch</span>
+          {/* Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-epilogue font-bold tracking-tight text-white leading-[1.12] text-balance">
+            A structured path from concept to launch.
           </h2>
 
-          <p className="mt-3 max-w-xl text-xs sm:text-sm md:text-base text-zinc-300 font-normal leading-relaxed">
-            An 8-stage precision engineering workflow ensuring clarity, speed, and zero surprises.
+          {/* Supporting Text */}
+          <p className="mt-4 text-sm sm:text-base md:text-lg font-excon text-zinc-400 font-normal leading-relaxed text-balance max-w-2xl">
+            A transparent, milestone-driven workflow that eliminates friction and turns complex requirements into high-performing websites.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Process Interactive Stepper Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full items-start">
-          {/* Left Column: Step Navigation List */}
-          <div className="lg:col-span-5 flex flex-col space-y-2">
-            {STEPS.map((step, idx) => {
-              const isActive = activeStep === idx;
-              return (
-                <button
-                  key={step.number}
-                  type="button"
-                  onClick={() => setActiveStep(idx)}
-                  className={`group relative flex items-center justify-between rounded-2xl p-4 sm:p-5 text-left transition-all duration-300 cursor-pointer ${
-                    isActive
-                      ? "border border-[#FAB406]/50 bg-[#0e0e14] shadow-[0_0_30px_rgba(250,180,6,0.12)]"
-                      : "border border-white/5 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]"
-                  }`}
-                >
-                  <div className="flex items-center gap-3.5">
-                    <span
-                      className={`text-xs font-mono font-bold transition-colors ${
-                        isActive ? "text-[#FAB406]" : "text-zinc-500 group-hover:text-zinc-300"
-                      }`}
-                    >
-                      {step.number}
-                    </span>
-                    <div>
-                      <h4
-                        className={`font-sans text-sm sm:text-base font-bold transition-colors ${
-                          isActive ? "text-white" : "text-zinc-400 group-hover:text-zinc-200"
+        {/* ======================================================= */}
+        {/* DESKTOP VIEW: HORIZONTAL ALTERNATING PROCESS RAIL       */}
+        {/* ======================================================= */}
+        <div className="hidden lg:block relative w-full mb-16 select-none">
+          {/* Main Container with generous vertical height for alternating cards */}
+          <div className="relative w-full min-h-[520px] flex flex-col justify-between">
+            {/* The Central Glowing Horizon Process Rail */}
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] z-0 pointer-events-none">
+              {/* Subtle background rail line */}
+              <div className="w-full h-full bg-white/[0.08]" />
+
+              {/* Glowing progressive horizon highlight */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FAB406]/40 via-sky-400/30 to-transparent" />
+            </div>
+
+            {/* 5-Column Grid spanning the container */}
+            <div className="relative z-10 grid grid-cols-5 gap-4 w-full h-full items-center">
+              {STEPS.map((step, idx) => {
+                const IconComponent = step.icon;
+                const isOdd = idx % 2 === 0; // Steps 1, 3, 5 sit ABOVE; Steps 2, 4 sit BELOW
+                const isHovered = hoveredIndex === idx;
+
+                return (
+                  <div
+                    key={step.number}
+                    className="relative flex flex-col items-center justify-center h-full group"
+                    onMouseEnter={() => setHoveredIndex(idx)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    {/* ----------------- TOP POSITION (Steps 01, 03, 05) ----------------- */}
+                    {isOdd ? (
+                      <div className="flex flex-col items-center mb-auto pt-2">
+                        {/* Floating Card */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 16 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.2 }}
+                          transition={{ duration: 0.5, delay: idx * 0.1 }}
+                          className={`w-full max-w-[245px] rounded-2xl sm:rounded-[24px] border p-5 sm:p-6 transition-all duration-300 ${
+                            isHovered
+                              ? "border-[#FAB406]/50 bg-[#0d1018] shadow-[0_16px_40px_rgba(250,180,6,0.12)] -translate-y-1.5"
+                              : "border-white/[0.09] bg-[#090b11]/90 shadow-[0_12px_32px_rgba(0,0,0,0.65)] hover:border-white/20"
+                          }`}
+                        >
+                          {/* Card Top: Step number & Icon */}
+                          <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                            <span className="font-excon text-xs uppercase tracking-[0.2em] font-bold text-[#FAB406]">
+                              STEP {step.number}
+                            </span>
+                            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/[0.04] text-zinc-300 transition-colors group-hover:text-[#FAB406] group-hover:bg-[#FAB406]/10">
+                              <IconComponent className="h-4 w-4" />
+                            </div>
+                          </div>
+
+                          {/* Step Title */}
+                          <h3 className="mt-3.5 font-epilogue text-lg font-bold text-white tracking-tight leading-snug">
+                            {step.title}
+                          </h3>
+
+                          {/* Short Description */}
+                          <p className="mt-2 font-excon text-xs text-zinc-300 leading-relaxed font-normal">
+                            {step.description}
+                          </p>
+                        </motion.div>
+
+                        {/* Vertical Connector Line to Rail */}
+                        <div
+                          className={`w-[1.5px] h-8 transition-colors duration-300 ${
+                            isHovered
+                              ? "bg-gradient-to-b from-[#FAB406] to-[#FAB406]/40"
+                              : "bg-white/15"
+                          }`}
+                        />
+                      </div>
+                    ) : (
+                      // Spacer for the top half when card is below
+                      <div className="h-[210px] w-full pointer-events-none" />
+                    )}
+
+                    {/* ----------------- TIMELINE NODE (ON THE RAIL) ----------------- */}
+                    <div className="relative my-auto flex items-center justify-center z-20">
+                      {/* Node Outer Pulsing Aura */}
+                      <div
+                        className={`absolute w-10 h-10 rounded-full transition-all duration-300 ${
+                          isHovered
+                            ? "bg-[#FAB406]/20 scale-125 blur-sm"
+                            : "bg-transparent scale-100"
+                        }`}
+                      />
+
+                      {/* Node Core Circle */}
+                      <div
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center bg-[#080a10] transition-all duration-300 cursor-pointer ${
+                          isHovered
+                            ? "border-[#FAB406] shadow-[0_0_14px_#FAB406] scale-110"
+                            : "border-white/30 group-hover:border-[#FAB406]"
                         }`}
                       >
-                        {step.title}
-                      </h4>
-                      <p className="text-[11px] sm:text-xs text-zinc-500 mt-0.5 line-clamp-1">
-                        {step.tagline}
-                      </p>
+                        <div
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                            isHovered
+                              ? "bg-[#FAB406]"
+                              : "bg-white/60 group-hover:bg-[#FAB406]"
+                          }`}
+                        />
+                      </div>
                     </div>
+
+                    {/* ----------------- BOTTOM POSITION (Steps 02, 04) ----------------- */}
+                    {!isOdd ? (
+                      <div className="flex flex-col items-center mt-auto pb-2">
+                        {/* Vertical Connector Line from Rail */}
+                        <div
+                          className={`w-[1.5px] h-8 transition-colors duration-300 ${
+                            isHovered
+                              ? "bg-gradient-to-b from-[#FAB406]/40 to-[#FAB406]"
+                              : "bg-white/15"
+                          }`}
+                        />
+
+                        {/* Floating Card */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 16 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.2 }}
+                          transition={{ duration: 0.5, delay: idx * 0.1 }}
+                          className={`w-full max-w-[245px] rounded-2xl sm:rounded-[24px] border p-5 sm:p-6 transition-all duration-300 ${
+                            isHovered
+                              ? "border-[#FAB406]/50 bg-[#0d1018] shadow-[0_16px_40px_rgba(250,180,6,0.12)] translate-y-1.5"
+                              : "border-white/[0.09] bg-[#090b11]/90 shadow-[0_12px_32px_rgba(0,0,0,0.65)] hover:border-white/20"
+                          }`}
+                        >
+                          {/* Card Top: Step number & Icon */}
+                          <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                            <span className="font-excon text-xs uppercase tracking-[0.2em] font-bold text-[#FAB406]">
+                              STEP {step.number}
+                            </span>
+                            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/[0.04] text-zinc-300 transition-colors group-hover:text-[#FAB406] group-hover:bg-[#FAB406]/10">
+                              <IconComponent className="h-4 w-4" />
+                            </div>
+                          </div>
+
+                          {/* Step Title */}
+                          <h3 className="mt-3.5 font-epilogue text-lg font-bold text-white tracking-tight leading-snug">
+                            {step.title}
+                          </h3>
+
+                          {/* Short Description */}
+                          <p className="mt-2 font-excon text-xs text-zinc-300 leading-relaxed font-normal">
+                            {step.description}
+                          </p>
+                        </motion.div>
+                      </div>
+                    ) : (
+                      // Spacer for the bottom half when card is above
+                      <div className="h-[210px] w-full pointer-events-none" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* ======================================================= */}
+        {/* MOBILE / TABLET VIEW: REFINED VERTICAL TIMELINE         */}
+        {/* ======================================================= */}
+        <div className="lg:hidden relative w-full max-w-xl mx-auto pl-4 sm:pl-6 mb-12">
+          {/* Vertical Timeline Guide Rail */}
+          <div className="absolute left-[27px] sm:left-[35px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-[#FAB406] via-white/20 to-sky-400/30" />
+
+          <div className="space-y-6 sm:space-y-8 relative">
+            {STEPS.map((step, idx) => {
+              const IconComponent = step.icon;
+
+              return (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, x: -12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.45, delay: idx * 0.08 }}
+                  className="flex items-start gap-4 sm:gap-6 group"
+                >
+                  {/* Glowing Timeline Node */}
+                  <div className="relative z-10 flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#FAB406] bg-[#080a10] shadow-[0_0_12px_rgba(250,180,6,0.5)] mt-1">
+                    <span className="h-2 w-2 rounded-full bg-[#FAB406]" />
                   </div>
 
-                  <ArrowRight
-                    className={`h-4 w-4 transition-all duration-300 ${
-                      isActive
-                        ? "text-[#FAB406] translate-x-1"
-                        : "text-zinc-600 opacity-0 group-hover:opacity-100 group-hover:text-zinc-300"
-                    }`}
-                  />
-                </button>
+                  {/* Step Card Content */}
+                  <div className="flex-1 rounded-2xl border border-white/[0.09] bg-[#090b11] p-5 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-[#FAB406]/35">
+                    <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                      <span className="font-excon text-xs uppercase tracking-[0.2em] font-bold text-[#FAB406]">
+                        STEP {step.number}
+                      </span>
+                      <div className="flex h-6 w-6 items-center justify-center rounded bg-white/[0.04] text-zinc-300">
+                        <IconComponent className="h-3.5 w-3.5" />
+                      </div>
+                    </div>
+
+                    <h3 className="mt-3 font-epilogue text-base sm:text-lg font-bold text-white tracking-tight">
+                      {step.title}
+                    </h3>
+
+                    <p className="mt-2 font-excon text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
               );
             })}
           </div>
-
-          {/* Right Column: Active Step Detail Card */}
-          <div className="lg:col-span-7 lg:sticky lg:top-28">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentStep.number}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.35 }}
-                className="relative rounded-3xl border border-white/10 bg-[#0e0e14]/95 p-7 sm:p-10 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
-              >
-                {/* Active Step Number & Tag */}
-                <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FAB406]/10 border border-[#FAB406]/30 text-sm font-mono font-bold text-[#FAB406]">
-                      {currentStep.number}
-                    </span>
-                    <div>
-                      <span className="text-[11px] font-mono uppercase tracking-widest text-[#FAB406]">
-                        STAGE {currentStep.index} OF 8
-                      </span>
-                      <h3 className="text-2xl sm:text-3xl font-bold font-sans text-white mt-0.5">
-                        {currentStep.title}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Subtitle / Tagline */}
-                <h4 className="mt-6 text-base sm:text-lg font-semibold text-zinc-200">
-                  {currentStep.tagline}
-                </h4>
-
-                {/* Description */}
-                <p className="mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-zinc-300 font-normal">
-                  {currentStep.description}
-                </p>
-
-                {/* Deliverables Checklist Box */}
-                <div className="mt-8 rounded-2xl border border-white/5 bg-white/[0.02] p-5">
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#FAB406] font-semibold block mb-3">
-                    Key Deliverables:
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {currentStep.deliverables.map((item) => (
-                      <div key={item} className="flex items-center gap-2.5 text-xs sm:text-sm text-zinc-300">
-                        <CheckCircle2 className="h-4 w-4 text-[#FAB406] shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
         </div>
+
+        {/* ======================================================= */}
+        {/* REASSURANCE FOOTNOTE & DIRECT ENGAGEMENT BAR            */}
+        {/* ======================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-4xl rounded-2xl sm:rounded-full border border-white/[0.08] bg-[#090b10] px-6 py-4 sm:px-8 sm:py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left shadow-lg"
+        >
+          <div className="flex items-center gap-2.5 text-xs text-zinc-400 font-excon">
+            <ShieldCheck className="w-4 h-4 text-[#FAB406] shrink-0" />
+            <span>Structured milestones • Transparent communication • Zero unexpected hurdles</span>
+          </div>
+
+          <Link
+            href="#contact"
+            className="group/cta inline-flex items-center gap-1.5 text-xs font-excon uppercase tracking-wider font-bold text-[#FAB406] hover:text-white transition-colors cursor-pointer shrink-0"
+          >
+            <span>Ready to start? Let&apos;s discuss your project</span>
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

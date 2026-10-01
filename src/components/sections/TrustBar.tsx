@@ -18,7 +18,7 @@ export default function TrustBar() {
   return (
     <section
       aria-label="Core Capabilities and Technologies"
-      className="relative z-30 w-full h-11 sm:h-12 overflow-hidden border-y border-white/10 bg-[#040406] flex items-center select-none"
+      className="relative z-30 w-full h-11 sm:h-12 overflow-hidden border-t border-white/10 bg-[#040406] flex items-center select-none"
     >
       {/* Edge gradient fades for premium look */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 bg-gradient-to-r from-[#040406] to-transparent" />
@@ -30,7 +30,7 @@ export default function TrustBar() {
         <div className="flex shrink-0 items-center">
           {TRACK_ITEMS.map((item, index) => (
             <div key={`t1-${index}`} className="flex items-center gap-6 pr-6 whitespace-nowrap">
-              <span className="text-xs sm:text-[13px] md:text-sm font-medium tracking-wide text-zinc-300 transition-colors hover:text-white">
+              <span className="text-xs sm:text-[13px] md:text-sm font-excon font-medium tracking-wide text-zinc-300 transition-colors hover:text-white">
                 {item}
               </span>
               <span
@@ -45,7 +45,7 @@ export default function TrustBar() {
         <div className="flex shrink-0 items-center" aria-hidden="true">
           {TRACK_ITEMS.map((item, index) => (
             <div key={`t2-${index}`} className="flex items-center gap-6 pr-6 whitespace-nowrap">
-              <span className="text-xs sm:text-[13px] md:text-sm font-medium tracking-wide text-zinc-300 transition-colors hover:text-white">
+              <span className="text-xs sm:text-[13px] md:text-sm font-excon font-medium tracking-wide text-zinc-300 transition-colors hover:text-white">
                 {item}
               </span>
               <span

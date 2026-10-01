@@ -46,6 +46,38 @@ export const BrandTransformationComposition: React.FC<BrandTransformationProps> 
 
   return (
     <AbsoluteFill className="bg-[#030305] text-white flex items-center justify-center overflow-hidden">
+      {/* Explicit Epilogue Font-Face Injection for Remotion Environment */}
+      <style>{`
+        @font-face {
+          font-family: 'Epilogue';
+          src: url('/fonts/Epilogue-Variable.woff2') format('woff2');
+          font-weight: 100 900;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'Epilogue';
+          src: url('/fonts/Epilogue-VariableItalic.woff2') format('woff2');
+          font-weight: 100 900;
+          font-style: italic;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'Epilogue';
+          src: url('/fonts/Epilogue-ExtraBold.woff2') format('woff2');
+          font-weight: 800;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'Epilogue';
+          src: url('/fonts/Epilogue-ExtraBoldItalic.woff2') format('woff2');
+          font-weight: 800;
+          font-style: italic;
+          font-display: swap;
+        }
+      `}</style>
+
       {/* Main Stage Container — Full 1920x1080, perfectly flat, no 3D rotation */}
       <div
         className="w-full h-full relative will-change-transform"
