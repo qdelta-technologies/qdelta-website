@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import TrustBar from "@/components/sections/TrustBar";
+import BrandTransformationSection from "@/components/sections/BrandTransformationSection";
 import Manifesto from "@/components/sections/Manifesto";
 import Services from "@/components/sections/Services";
 import Packages from "@/components/sections/Packages";
@@ -19,6 +20,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TrustBar />
+        <BrandTransformationSection />
         <Manifesto />
         <Services />
         <Packages />
