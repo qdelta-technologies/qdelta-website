@@ -57,19 +57,19 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       { label: "Checkout", value: "Frictionless purchase UX" },
     ],
     theme: {
-      folderBg: "#0e1017",
-      borderColor: "rgba(255, 255, 255, 0.14)",
+      folderBg: "#0B0E12",
+      borderColor: "rgba(255, 255, 255, 0.12)",
       textPrimary: "text-white",
       textSecondary: "text-zinc-300",
       textMuted: "text-zinc-400",
       tabTextColor: "text-zinc-200",
-      frameBg: "bg-[#07090e]",
+      frameBg: "bg-[#07090E]",
       frameBorder: "border-white/[0.12]",
       tagBg: "bg-white/[0.05]",
       tagBorder: "border-white/10",
       tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#FAB406]",
-      dotColor: "#FAB406",
+      ctaUnderline: "bg-[#F5B800]",
+      dotColor: "#F5B800",
     },
   },
   {
@@ -90,19 +90,19 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       { label: "Launch", value: "Turnkey digital sales platform" },
     ],
     theme: {
-      folderBg: "#FAB406",
-      borderColor: "rgba(0, 0, 0, 0.22)",
-      textPrimary: "text-black",
-      textSecondary: "text-black/80",
-      textMuted: "text-black/65",
-      tabTextColor: "text-black",
+      folderBg: "#E7B72A",
+      borderColor: "rgba(0, 0, 0, 0.18)",
+      textPrimary: "text-[#06070A]",
+      textSecondary: "text-[#06070A]/85",
+      textMuted: "text-[#06070A]/70",
+      tabTextColor: "text-[#06070A]",
       frameBg: "bg-black/90",
-      frameBorder: "border-black/25",
-      tagBg: "bg-black/8",
+      frameBorder: "border-black/20",
+      tagBg: "bg-black/10",
       tagBorder: "border-black/15",
-      tagText: "text-black font-semibold",
-      ctaUnderline: "bg-black",
-      dotColor: "#000000",
+      tagText: "text-[#06070A] font-semibold",
+      ctaUnderline: "bg-[#06070A]",
+      dotColor: "#06070A",
     },
   },
   {
@@ -123,8 +123,8 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       { label: "Enquiries", value: "Optimised booking funnel" },
     ],
     theme: {
-      folderBg: "#F4F2EC",
-      borderColor: "rgba(0, 0, 0, 0.16)",
+      folderBg: "#F5F1E8",
+      borderColor: "rgba(0, 0, 0, 0.14)",
       textPrimary: "text-zinc-950",
       textSecondary: "text-zinc-700",
       textMuted: "text-zinc-500",
@@ -134,7 +134,7 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       tagBg: "bg-black/[0.05]",
       tagBorder: "border-black/12",
       tagText: "text-zinc-900 font-semibold",
-      ctaUnderline: "bg-[#FAB406]",
+      ctaUnderline: "bg-[#D9A51A]",
       dotColor: "#18181b",
     },
   },
@@ -156,19 +156,19 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       { label: "Enquiry", value: "Fast quote request experience" },
     ],
     theme: {
-      folderBg: "#07080c",
-      borderColor: "rgba(250, 180, 6, 0.35)",
+      folderBg: "#080A0F",
+      borderColor: "rgba(245, 184, 0, 0.3)",
       textPrimary: "text-white",
       textSecondary: "text-zinc-300",
       textMuted: "text-zinc-400",
-      tabTextColor: "text-[#FAB406]",
-      frameBg: "bg-[#050608]",
-      frameBorder: "border-[#FAB406]/20",
+      tabTextColor: "text-[#F5B800]",
+      frameBg: "bg-[#06070A]",
+      frameBorder: "border-[#F5B800]/25",
       tagBg: "bg-white/[0.05]",
       tagBorder: "border-white/10",
       tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#FAB406]",
-      dotColor: "#FAB406",
+      ctaUnderline: "bg-[#F5B800]",
+      dotColor: "#F5B800",
     },
   },
 ];
@@ -254,9 +254,9 @@ function ArchiveFolder({
               {/* Tab Typography */}
               <div className="absolute inset-0 flex items-center pl-4 sm:pl-6 pr-8 pointer-events-none">
                 <span
-                  className={`font-excon text-xs sm:text-[13px] font-black tracking-[0.2em] uppercase flex items-center gap-1.5 ${project.theme.tabTextColor}`}
+                  className={`font-epilogue text-xs sm:text-[13px] font-bold tracking-[0.18em] uppercase flex items-center gap-1.5 ${project.theme.tabTextColor}`}
                 >
-                  <Plus className="w-3 h-3 stroke-[3]" />
+                  <Plus className="w-3 h-3 stroke-[2.5]" />
                   <span>PROJECT {project.indexNumber}</span>
                 </span>
               </div>
@@ -287,9 +287,9 @@ function ArchiveFolder({
               {/* Tab Typography */}
               <div className="absolute inset-0 flex items-center justify-center px-6 pointer-events-none">
                 <span
-                  className={`font-excon text-xs sm:text-[13px] font-black tracking-[0.2em] uppercase flex items-center gap-1.5 ${project.theme.tabTextColor}`}
+                  className={`font-epilogue text-xs sm:text-[13px] font-bold tracking-[0.18em] uppercase flex items-center gap-1.5 ${project.theme.tabTextColor}`}
                 >
-                  <Plus className="w-3 h-3 stroke-[3]" />
+                  <Plus className="w-3 h-3 stroke-[2.5]" />
                   <span>PROJECT {project.indexNumber}</span>
                 </span>
               </div>
@@ -307,7 +307,7 @@ function ArchiveFolder({
         {/* MAIN FOLDER BODY (SEAMLESSLY FUSED UNDER TAB)                     */}
         {/* ================================================================= */}
         <div
-          className="relative w-full rounded-b-2xl sm:rounded-b-[28px] border-l border-r border-b p-6 sm:p-9 md:p-11 lg:p-12 overflow-hidden transition-colors"
+          className="relative w-full rounded-b-xl sm:rounded-b-2xl border-l border-r border-b p-6 sm:p-8 md:p-9 lg:p-10 overflow-hidden transition-colors"
           style={{
             backgroundColor: project.theme.folderBg,
             borderColor: project.theme.borderColor,
@@ -316,11 +316,11 @@ function ArchiveFolder({
           {/* Subtle Ambient Sheen */}
           <div className="pointer-events-none absolute -top-16 -right-16 w-72 h-72 rounded-full bg-white/[0.03] blur-3xl" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center relative z-10">
             {/* ==================================================== */}
             {/* LEFT COLUMN: PURE EDITORIAL CONTENT & TYPOGRAPHY     */}
             {/* ==================================================== */}
-            <div className="lg:col-span-6 flex flex-col justify-between space-y-5 sm:space-y-6">
+            <div className="lg:col-span-6 flex flex-col justify-between space-y-4 sm:space-y-5">
               {/* Category & Date Marker */}
               <div className="flex items-center gap-2.5">
                 <span
@@ -328,22 +328,22 @@ function ArchiveFolder({
                   style={{ backgroundColor: project.theme.dotColor }}
                 />
                 <span
-                  className={`font-excon text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${project.theme.textMuted}`}
+                  className={`font-epilogue text-xs font-semibold tracking-[0.18em] uppercase ${project.theme.textMuted}`}
                 >
                   {project.date} // {project.category}
                 </span>
               </div>
 
-              {/* Dominant Project Title (Epilogue, solid, NO text gradient) */}
+              {/* Dominant Project Title */}
               <h3
-                className={`text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-epilogue font-extrabold tracking-tight leading-[1.06] ${project.theme.textPrimary}`}
+                className={`text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-excon font-bold tracking-tight leading-[1.08] ${project.theme.textPrimary}`}
               >
                 {project.name}
               </h3>
 
               {/* One-Line Punchy Description */}
               <p
-                className={`text-sm sm:text-base md:text-[17px] font-excon font-normal leading-relaxed max-w-xl ${project.theme.textSecondary}`}
+                className={`text-sm sm:text-base font-epilogue font-normal leading-relaxed max-w-xl ${project.theme.textSecondary}`}
               >
                 {project.oneLiner}
               </p>
@@ -353,7 +353,7 @@ function ArchiveFolder({
                 {project.highlights.map((tag) => (
                   <span
                     key={tag}
-                    className={`inline-flex items-center px-3 py-1 rounded-md text-[11px] sm:text-xs font-excon border transition-colors ${project.theme.tagBg} ${project.theme.tagBorder} ${project.theme.tagText}`}
+                    className={`inline-flex items-center px-3 py-1 rounded-md text-[11px] sm:text-xs font-epilogue font-medium border transition-colors ${project.theme.tagBg} ${project.theme.tagBorder} ${project.theme.tagText}`}
                   >
                     {tag}
                   </span>
@@ -361,10 +361,10 @@ function ArchiveFolder({
               </div>
 
               {/* Action Button: VIEW PROJECT ↗ with animated underline & arrow */}
-              <div className="pt-2 sm:pt-4">
+              <div className="pt-2 sm:pt-3">
                 <button
                   onClick={() => onOpenModal(project)}
-                  className={`group/btn inline-flex items-center gap-2 font-excon text-xs sm:text-sm font-extrabold tracking-[0.22em] uppercase transition-all cursor-pointer ${project.theme.textPrimary}`}
+                  className={`group/btn inline-flex items-center gap-2 font-epilogue text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase transition-all cursor-pointer ${project.theme.textPrimary}`}
                 >
                   <span className="relative">
                     <span>VIEW PROJECT</span>
@@ -386,11 +386,11 @@ function ArchiveFolder({
             <div className="lg:col-span-6 relative flex items-center justify-center">
               <div
                 onClick={() => onOpenModal(project)}
-                className="group/mockup relative w-full aspect-[16/10] rounded-2xl sm:rounded-3xl cursor-pointer overflow-hidden p-1 sm:p-1.5 transition-transform duration-500 ease-out hover:scale-[1.01]"
+                className="group/mockup relative w-full aspect-[16/10] rounded-xl sm:rounded-2xl cursor-pointer overflow-hidden p-1 sm:p-1.5 transition-transform duration-500 ease-out hover:scale-[1.01]"
               >
                 {/* Smooth Outer Frame with Soft Shadow */}
                 <div
-                  className={`relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden border shadow-[0_20px_50px_rgba(0,0,0,0.45)] ${project.theme.frameBg} ${project.theme.frameBorder}`}
+                  className={`relative w-full h-full rounded-lg sm:rounded-xl overflow-hidden border shadow-[0_20px_50px_rgba(0,0,0,0.45)] ${project.theme.frameBg} ${project.theme.frameBorder}`}
                 >
                   <Image
                     src={project.image}
@@ -404,9 +404,9 @@ function ArchiveFolder({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-50 pointer-events-none" />
 
                   {/* Corner View Hover Action Badge */}
-                  <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover/mockup:opacity-100 transition-opacity duration-300 shadow-md">
-                    <ExternalLink className="w-3.5 h-3.5 text-[#FAB406]" />
-                    <span className="font-excon text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
+                  <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover/mockup:opacity-100 transition-opacity duration-300 shadow-md">
+                    <ExternalLink className="w-3 h-3 text-[#F5B800]" />
+                    <span className="font-epilogue text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                       View Project
                     </span>
                   </div>
@@ -434,43 +434,39 @@ export default function Portfolio() {
     <section
       id="projects"
       ref={containerRef}
-      className="relative z-20 w-full bg-[#05060a] text-white py-20 sm:py-28 scroll-mt-12 overflow-visible"
+      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
     >
+      {/* Subtle Warm Gold Technical Grid */}
+      <div className="pointer-events-none absolute inset-0 bg-qdelta-grid [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
+
       {/* Ambient Horizon Atmosphere */}
-      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[45rem] w-[72rem] rounded-full bg-[#FAB406]/[0.035] blur-[160px]" />
+      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[36rem] w-[60rem] rounded-full bg-[#F5B800]/[0.03] blur-[150px]" />
 
       {/* ======================================================= */}
       {/* SECTION INTRO HEADER                                    */}
       {/* ======================================================= */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mb-14 sm:mb-20">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10">
         {/* Editorial Section Identifier */}
-        <div className="flex items-center gap-3.5 mb-5 sm:mb-6 select-none">
-          <span className="font-excon text-xs sm:text-[13px] tracking-[0.24em] uppercase text-zinc-400 font-medium">
-            04 / SELECTED WORK
+        <div className="flex items-center gap-3 mb-4 select-none">
+          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
+            04 / Selected Work
           </span>
-          <div className="w-12 sm:w-16 h-[1px] bg-[#FAB406]/60" />
-          <svg
-            className="w-2.5 h-2.5 text-[#FAB406] fill-current"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-          </svg>
+          <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
         </div>
 
         {/* Headline & Subtitle Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
           <div className="lg:col-span-7">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-epilogue font-bold tracking-tight text-white leading-[1.12]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12]">
               Curated builds. Engineered to convert.
             </h2>
           </div>
 
           <div className="lg:col-span-5 space-y-2">
-            <p className="text-sm sm:text-base md:text-lg font-excon text-zinc-400 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg font-epilogue text-zinc-400 font-normal leading-relaxed">
               Explore our project archive. Each build is custom-engineered to solve specific business problems, present clear offers, and elevate digital authority.
             </p>
-            <p className="text-[11px] sm:text-xs font-excon text-zinc-500 font-medium tracking-wide">
+            <p className="text-[11px] sm:text-xs font-epilogue text-zinc-500 font-normal tracking-wide">
               Concept builds demonstrated to showcase QDelta’s design, engineering and motion capabilities.
             </p>
           </div>
@@ -480,7 +476,7 @@ export default function Portfolio() {
       {/* ======================================================= */}
       {/* STACKED FOLDER ARCHIVE TRACK                            */}
       {/* ======================================================= */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative space-y-16 sm:space-y-24 md:space-y-28 pb-16 sm:pb-24">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 relative space-y-12 sm:space-y-16 md:space-y-20 pb-12 sm:pb-16">
         {ARCHIVE_PROJECTS.map((project, index) => (
           <ArchiveFolder
             key={project.id}
@@ -496,19 +492,19 @@ export default function Portfolio() {
       {/* ======================================================= */}
       {/* SECTION CTA                                             */}
       {/* ======================================================= */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-white/[0.08]">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 sm:pt-10 border-t border-white/[0.08] relative z-10">
         <div>
           <h4 className="font-epilogue text-lg sm:text-xl font-bold text-white">
             Have a project in mind?
           </h4>
-          <p className="font-excon text-xs sm:text-sm text-zinc-400 mt-1">
+          <p className="font-epilogue text-xs sm:text-sm text-zinc-400 mt-1">
             Let’s discuss your goals, architecture and conversion strategy.
           </p>
         </div>
 
         <Link
           href="#contact"
-          className="group/cta inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#FAB406] text-black font-epilogue font-bold text-xs sm:text-sm shadow-[0_0_24px_rgba(250,180,6,0.28)] hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all duration-300 hover:scale-[1.02]"
+          className="group/cta inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#F5B800] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(245,184,0,0.25)] hover:bg-[#D9A51A] hover:shadow-[0_0_24px_rgba(245,184,0,0.35)] transition-all duration-300 hover:scale-[1.02]"
         >
           <span>Initiate a Project</span>
           <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
@@ -526,7 +522,7 @@ export default function Portfolio() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 15 }}
               transition={{ duration: 0.25 }}
-              className="relative w-full max-w-3xl rounded-3xl border border-white/15 bg-[#0b0e16] p-6 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.95)] overflow-hidden max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-3xl rounded-2xl border border-white/12 bg-[#0B0E12] p-6 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.95)] overflow-hidden max-h-[90vh] overflow-y-auto"
             >
               {/* Close Button */}
               <button
@@ -540,20 +536,20 @@ export default function Portfolio() {
               {/* Modal Body */}
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-excon text-xs uppercase tracking-widest text-[#FAB406] font-bold">
+                  <span className="font-epilogue text-xs uppercase tracking-widest text-[#F5B800] font-semibold">
                     PROJECT {activeModalProject.indexNumber} // {activeModalProject.category}
                   </span>
                 </div>
 
-                <h3 className="font-epilogue text-2xl sm:text-3xl font-extrabold text-white">
+                <h3 className="font-excon text-2xl sm:text-3xl font-bold text-white">
                   {activeModalProject.name}
                 </h3>
-                <p className="mt-1 font-excon text-sm sm:text-base text-zinc-300">
+                <p className="mt-1 font-epilogue text-sm sm:text-base text-zinc-300">
                   {activeModalProject.oneLiner}
                 </p>
 
                 {/* High-res showcase visual */}
-                <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden mt-6 border border-white/10 shadow-lg">
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mt-6 border border-white/10 shadow-lg">
                   <Image
                     src={activeModalProject.image}
                     alt={activeModalProject.name}
@@ -565,24 +561,24 @@ export default function Portfolio() {
 
                 {/* Overview narrative */}
                 <div className="mt-6">
-                  <h4 className="text-xs font-excon uppercase tracking-widest text-zinc-400 font-bold mb-2">
+                  <h4 className="text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-semibold mb-2">
                     Project Architecture & Strategy
                   </h4>
-                  <p className="font-excon text-sm text-zinc-300 leading-relaxed">
+                  <p className="font-epilogue text-sm text-zinc-300 leading-relaxed">
                     {activeModalProject.description}
                   </p>
                 </div>
 
                 {/* Capabilities included */}
                 <div className="mt-6 pt-5 border-t border-white/10">
-                  <h4 className="text-xs font-excon uppercase tracking-widest text-zinc-400 font-bold mb-3">
+                  <h4 className="text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-semibold mb-3">
                     Capabilities Implemented
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {activeModalProject.highlights.map((h) => (
                       <span
                         key={h}
-                        className="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-xs font-excon text-zinc-200"
+                        className="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-xs font-epilogue text-zinc-200"
                       >
                         {h}
                       </span>
@@ -597,7 +593,7 @@ export default function Portfolio() {
                       key={o.label}
                       className="p-3.5 rounded-xl bg-white/[0.025] border border-white/10"
                     >
-                      <span className="text-[10px] font-excon uppercase tracking-wider text-[#FAB406] font-bold">
+                      <span className="text-[10px] font-epilogue uppercase tracking-wider text-[#F5B800] font-semibold">
                         {o.label}
                       </span>
                       <p className="mt-1 font-epilogue text-xs font-bold text-white">
@@ -612,7 +608,7 @@ export default function Portfolio() {
                   <Link
                     href="#contact"
                     onClick={() => setActiveModalProject(null)}
-                    className="px-7 py-3 rounded-full bg-[#FAB406] text-black font-epilogue font-bold text-xs sm:text-sm hover:bg-white transition-colors shadow-md"
+                    className="px-7 py-3 rounded-full bg-[#F5B800] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#D9A51A] transition-colors shadow-md"
                   >
                     Discuss a Similar Build
                   </Link>

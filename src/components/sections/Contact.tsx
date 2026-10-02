@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, Check } from "lucide-react";
 import SaffronButton from "@/components/ui/SaffronButton";
+
+import OpenBoxServicePills from "@/components/ui/OpenBoxServicePills";
 
 const SERVICES = [
   "Landing Page",
@@ -46,18 +49,18 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative z-20 w-full overflow-hidden bg-[#040406] py-20 sm:py-28 text-white selection:bg-black selection:text-[#FAB406]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#F5B800] selection:text-[#06070A]"
     >
       <div className="relative z-10 mx-auto w-full max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ======================================================= */}
         {/* ART-DIRECTED SPLIT SHOWCASE CONTAINER                   */}
         {/* ======================================================= */}
-        <div className="relative w-full rounded-3xl sm:rounded-[36px] md:rounded-[40px] overflow-hidden border border-white/[0.1] shadow-[0_30px_90px_rgba(0,0,0,0.9)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <div className="relative w-full rounded-xl sm:rounded-2xl md:rounded-[20px] overflow-hidden border border-white/[0.08] shadow-[0_24px_80px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           {/* ===================================================== */}
-          {/* LEFT SIDE: RICH TEXTURED YELLOW BRAND PANEL (45%)     */}
+          {/* LEFT SIDE: SOFT REFINED GOLD BRAND PANEL (45%)        */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-5 bg-gradient-to-br from-[#FFC72C] via-[#FAB406] to-[#E89E00] text-black p-8 sm:p-12 md:p-14 lg:p-16 flex flex-col justify-between overflow-hidden select-none min-h-[360px] sm:min-h-[420px] lg:min-h-[540px]">
+          <div className="relative lg:col-span-5 bg-gradient-to-br from-[#F3C742] via-[#E7B72A] to-[#D9A51A] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px]">
             {/* Tactile Fine Film Grain / Noise Texture Overlay */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.09] mix-blend-multiply"
@@ -69,47 +72,90 @@ export default function Contact() {
             {/* Soft Ambient Inner Vignette */}
             <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_20%_20%] from-white/20 via-transparent to-black/10" />
 
-            {/* Top Eyebrow — Editorial Style in Black */}
+            {/* Top Eyebrow — Editorial Style in Dark Charcoal */}
             <div className="relative z-10">
               <div className="flex items-center gap-3 select-none">
-                <span className="font-excon text-xs sm:text-[13px] tracking-[0.24em] uppercase text-black/80 font-bold">
-                  07 / GET IN TOUCH
+                <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-[#06070A]/80 font-bold">
+                  07 / Get In Touch
                 </span>
-                <div className="w-10 sm:w-12 h-[1px] bg-black/40" />
-                <svg
-                  className="w-2.5 h-2.5 text-black fill-current"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-                </svg>
+                <div className="w-10 sm:w-12 h-[1px] bg-black/25" />
               </div>
             </div>
 
-            {/* Middle / Center Editorial Statement */}
-            <div className="relative z-10 my-auto py-8">
-              <h2 className="font-epilogue font-black text-4xl sm:text-5xl lg:text-[3.25rem] text-black leading-[1.05] tracking-tight text-balance">
+            {/* Upper / Center Editorial Statement */}
+            <div className="relative z-10 pt-4 sm:pt-5">
+              <h2 className="font-excon font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#06070A] leading-[1.08] tracking-tight text-balance">
                 Have a project in mind?
               </h2>
 
-              <p className="mt-3.5 sm:mt-4 text-base sm:text-lg font-excon font-medium text-black/80 leading-snug">
+              <p className="mt-2 text-sm sm:text-base font-epilogue font-normal text-[#06070A]/85 leading-snug">
                 Tell us what you’re building.
               </p>
+
+              {/* Compact Black Booking Callout Pill */}
+              <div className="mt-4 sm:mt-5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const nameInput = document.getElementById("name");
+                    if (nameInput) {
+                      nameInput.focus();
+                      nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
+                    }
+                  }}
+                  className="group inline-flex items-center gap-2.5 sm:gap-3 rounded-full bg-[#06070A] text-white pl-2 pr-4 sm:pr-5 py-1.5 sm:py-2 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-white/20 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 text-left cursor-pointer select-none"
+                  aria-label="Book a 15-min call with QDelta"
+                >
+                  {/* Left Avatar */}
+                  <div className="w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-full overflow-hidden ring-1 ring-white/25 shrink-0 bg-zinc-800">
+                    <Image
+                      src="/team/md-qais-portrait.jpg"
+                      alt="QDelta Team"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Plus Symbol */}
+                  <span className="text-[11px] font-epilogue text-zinc-400 font-medium select-none">
+                    +
+                  </span>
+
+                  {/* Secondary 'You' Badge */}
+                  <span className="flex items-center justify-center w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-zinc-800/90 border border-zinc-700/70 text-[10px] sm:text-[11px] font-epilogue font-semibold text-zinc-200 select-none">
+                    You
+                  </span>
+
+                  {/* Main Text */}
+                  <span className="font-epilogue text-xs sm:text-[13px] font-semibold text-white tracking-tight whitespace-nowrap pl-0.5 sm:pl-1">
+                    Book a 15-min call
+                  </span>
+
+                  {/* Subtle Accent Arrow */}
+                  <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#F5B800] transition-colors shrink-0 -ml-0.5 sm:-ml-1" />
+                </button>
+              </div>
+            </div>
+
+            {/* Lower-Middle Area: Open Box Graphic with Floating Service Pills */}
+            <div className="relative z-10 w-full my-auto py-2 flex items-center justify-center">
+              <OpenBoxServicePills />
             </div>
 
             {/* Subtle Editorial Baseline Mark */}
-            <div className="relative z-10 pt-4 border-t border-black/10 flex items-center justify-between text-[11px] font-excon uppercase tracking-widest text-black/60 font-semibold">
+            <div className="relative z-10 pt-4 mt-auto border-t border-black/10 flex items-center justify-between text-[11px] font-epilogue uppercase tracking-widest text-[#06070A]/60 font-semibold">
               <span>QDelta Technologies</span>
               <span>Available 2026</span>
             </div>
           </div>
 
           {/* ===================================================== */}
-          {/* RIGHT SIDE: PREMIUM DARK CONTACT FORM (55%)          */}
+          {/* RIGHT SIDE: TRANSPARENT-BLACK GRAPHITE FORM (55%)     */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-7 bg-[#08090E] p-8 sm:p-12 md:p-14 lg:p-16 flex flex-col justify-center">
+          <div className="relative lg:col-span-7 bg-[#0B0E12]/95 backdrop-blur-md p-7 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center">
             {/* Subtle Horizon Glow Line */}
-            <div className="absolute top-0 inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/20 to-transparent pointer-events-none" />
 
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -119,27 +165,27 @@ export default function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.3 }}
-                  className="py-12 sm:py-16 flex flex-col items-center justify-center text-center"
+                  className="py-10 sm:py-14 flex flex-col items-center justify-center text-center"
                 >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#FAB406]/15 border border-[#FAB406]/40 text-[#FAB406] shadow-[0_0_24px_rgba(250,180,6,0.25)]">
-                    <Check className="h-8 w-8 stroke-[2.5]" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F5B800]/15 border border-[#F5B800]/40 text-[#F5B800] shadow-[0_0_24px_rgba(245,184,0,0.25)]">
+                    <Check className="h-7 w-7 stroke-[2.5]" />
                   </div>
 
-                  <h3 className="mt-6 font-epilogue text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  <h3 className="mt-5 font-excon text-2xl sm:text-3xl font-bold text-white tracking-tight">
                     Inquiry Received
                   </h3>
 
-                  <p className="mt-2.5 text-sm font-epilogue text-zinc-300 max-w-sm leading-relaxed">
+                  <p className="mt-2 text-sm font-epilogue text-zinc-300 max-w-sm leading-relaxed">
                     Thank you, <strong className="text-white">{name}</strong>.
                     We’ve received your project brief and will follow up at{" "}
-                    <span className="text-[#FAB406] font-medium">{email}</span>{" "}
+                    <span className="text-[#F5B800] font-medium">{email}</span>{" "}
                     shortly.
                   </p>
 
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="mt-8 rounded-full bg-[#FAB406] px-6 py-2.5 text-xs font-epilogue font-bold text-black transition-all hover:bg-white hover:scale-105 cursor-pointer shadow-md"
+                    className="mt-7 rounded-full bg-[#F5B800] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#D9A51A] hover:scale-105 cursor-pointer shadow-md"
                   >
                     Send Another Inquiry
                   </button>
@@ -152,23 +198,23 @@ export default function Contact() {
                   exit={{ opacity: 0 }}
                 >
                   {/* Form Header */}
-                  <div className="mb-8 sm:mb-10">
-                    <h3 className="font-epilogue text-2xl sm:text-3xl md:text-[2.1rem] font-bold text-white tracking-tight">
+                  <div className="mb-7 sm:mb-8">
+                    <h3 className="font-excon text-2xl sm:text-3xl md:text-[2rem] font-bold text-white tracking-tight">
                       Start Your Project
                     </h3>
-                    <p className="mt-1 text-xs sm:text-sm font-excon text-zinc-400">
+                    <p className="mt-1 text-xs sm:text-sm font-epilogue text-zinc-400">
                       A few details are enough.
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-7 sm:space-y-8">
+                  <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7">
                     {/* Name & Email (Underline Minimal Inputs) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
                       {/* Name */}
                       <div className="relative group">
                         <label
                           htmlFor="name"
-                          className="block text-xs font-excon uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#FAB406]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#F5B800]"
                         >
                           Name
                         </label>
@@ -179,7 +225,7 @@ export default function Contact() {
                           placeholder="Your name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2.5 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#FAB406]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#F5B800]"
                         />
                       </div>
 
@@ -187,7 +233,7 @@ export default function Contact() {
                       <div className="relative group">
                         <label
                           htmlFor="email"
-                          className="block text-xs font-excon uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#FAB406]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#F5B800]"
                         >
                           Email
                         </label>
@@ -198,17 +244,17 @@ export default function Contact() {
                           placeholder="name@company.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2.5 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#FAB406]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#F5B800]"
                         />
                       </div>
                     </div>
 
                     {/* What do you need? (Chips) */}
                     <div>
-                      <label className="block text-xs font-excon uppercase tracking-widest text-zinc-400 font-medium mb-3">
+                      <label className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-2.5">
                         What do you need?
                       </label>
-                      <div className="flex flex-wrap gap-2 sm:gap-2.5">
+                      <div className="flex flex-wrap gap-2">
                         {SERVICES.map((service) => {
                           const isSelected = selectedServices.includes(service);
                           return (
@@ -216,10 +262,10 @@ export default function Contact() {
                               key={service}
                               type="button"
                               onClick={() => toggleService(service)}
-                              className={`px-4 py-2 rounded-full text-xs font-excon tracking-wide transition-all duration-200 cursor-pointer ${
+                              className={`px-3.5 py-1.5 rounded-full text-xs font-epilogue tracking-wide transition-all duration-200 cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#FAB406] text-black font-semibold shadow-[0_0_12px_rgba(250,180,6,0.3)] border border-[#FAB406]"
-                                  : "bg-white/[0.03] text-zinc-300 border border-white/10 hover:border-white/25 hover:text-white"
+                                  ? "bg-[#F5B800] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(245,184,0,0.3)] border border-[#F5B800]"
+                                  : "bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-white/25 hover:text-white"
                               }`}
                             >
                               {service}
@@ -233,7 +279,7 @@ export default function Contact() {
                     <div className="relative group">
                       <label
                         htmlFor="brief"
-                        className="block text-xs font-excon uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#FAB406]"
+                        className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#F5B800]"
                       >
                         Project brief
                       </label>
@@ -244,17 +290,17 @@ export default function Contact() {
                         placeholder="Tell us briefly about your project..."
                         value={brief}
                         onChange={(e) => setBrief(e.target.value)}
-                        className="w-full bg-transparent border-b border-white/15 pb-2.5 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#FAB406] resize-none"
+                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#F5B800] resize-none"
                       />
                     </div>
 
-                    {/* Submit CTA (UIVerse Saffron Pill with rotating star mark) */}
-                    <div className="pt-3">
+                    {/* Submit CTA */}
+                    <div className="pt-2">
                       <SaffronButton
                         type="submit"
                         size="lg"
                         variant="primary"
-                        className="w-full h-13 sm:h-14 text-sm font-bold tracking-wide"
+                        className="w-full h-12 sm:h-13 text-sm font-bold tracking-wide"
                       >
                         Send Inquiry
                       </SaffronButton>

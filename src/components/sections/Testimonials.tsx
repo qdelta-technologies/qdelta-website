@@ -93,42 +93,35 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative z-20 w-full bg-[#FAB406] text-black selection:bg-black selection:text-[#FAB406] py-20 sm:py-24 md:py-28 overflow-hidden border-y border-black/15"
+      className="relative z-20 w-full bg-[#F5F1E8] text-zinc-950 selection:bg-[#06070A] selection:text-[#F5B800] py-14 sm:py-18 md:py-20 overflow-hidden border-y border-black/[0.08]"
     >
       {/* Subtle Warm Highlight Depth */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[55rem] h-[25rem] rounded-full bg-white/[0.08] blur-[120px]" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[55rem] h-[25rem] rounded-full bg-[#F5B800]/[0.05] blur-[120px]" />
 
       {/* ================= SECTION HEADER ================= */}
-      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center mb-12 sm:mb-14">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center mb-10 sm:mb-12">
         {/* Editorial Section Identifier */}
-        <div className="flex items-center gap-3.5 mb-3.5 select-none justify-center">
-          <span className="font-excon text-xs tracking-[0.24em] uppercase text-black/75 font-extrabold">
-            05 / TESTIMONIALS
+        <div className="flex items-center gap-3 mb-3 select-none justify-center">
+          <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-600 font-bold">
+            05 / Testimonials
           </span>
-          <div className="w-10 sm:w-12 h-[1.5px] bg-black/50" />
-          <svg
-            className="w-2 h-2 text-black fill-current"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-          </svg>
+          <div className="w-10 sm:w-12 h-[1px] bg-black/25" />
         </div>
 
         {/* Main Heading */}
-        <h2 className="font-excon font-black text-3xl sm:text-4xl md:text-[46px] text-black tracking-tight leading-[1.12]">
+        <h2 className="font-excon font-bold text-3xl sm:text-4xl md:text-[44px] text-zinc-950 tracking-tight leading-[1.12]">
           Inspiring Client Experiences
         </h2>
 
         {/* Supporting Line */}
-        <p className="mt-3 text-sm sm:text-base md:text-lg font-epilogue text-black/80 font-medium leading-relaxed max-w-lg mx-auto">
+        <p className="mt-2.5 text-sm sm:text-base font-epilogue text-zinc-600 font-medium leading-relaxed max-w-lg mx-auto">
           Trusted by businesses that wanted more than just a website.
         </p>
       </div>
 
       {/* ================= TESTIMONIAL CONTINUOUS INFINITE CAROUSEL ================= */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative py-3">
+      <div className="relative z-10 mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative py-2">
           {/* ---------------- 1. CONTINUOUS MOVING TRACK (UNDER & INTO ANCHORED BOX) ---------------- */}
           <div
             className="relative z-10 flex items-center overflow-hidden"
@@ -143,13 +136,13 @@ export default function Testimonials() {
               {MARQUEE_ITEMS.map((t, idx) => (
                 <div
                   key={`${t.id}-${idx}`}
-                  className="w-[270px] sm:w-[310px] md:w-[325px] h-[290px] sm:h-[300px] md:h-[310px] shrink-0 rounded-2xl bg-[#FAF8F5] border border-black/[0.08] p-5 sm:p-6 md:p-7 flex flex-col justify-between shadow-[0_10px_26px_-6px_rgba(0,0,0,0.12),0_2px_8px_-2px_rgba(0,0,0,0.05)] select-none transition-shadow hover:shadow-[0_14px_32px_-6px_rgba(0,0,0,0.16)]"
+                  className="w-[260px] sm:w-[290px] md:w-[310px] h-[270px] sm:h-[280px] md:h-[290px] shrink-0 rounded-xl sm:rounded-[18px] bg-white border border-black/[0.07] p-5 sm:p-6 flex flex-col justify-between shadow-[0_4px_16px_rgba(0,0,0,0.04)] select-none transition-shadow hover:shadow-[0_10px_28px_rgba(0,0,0,0.08)]"
                 >
-                  {/* Top: Amber / Golden Yellow Quote Mark + Testimonial Copy */}
+                  {/* Top: Warm Gold Quote Mark + Testimonial Copy */}
                   <div>
-                    <div className="mb-3 select-none flex items-center">
+                    <div className="mb-2.5 select-none flex items-center">
                       <svg
-                        className="w-5 h-5 fill-current text-[#FAB406]"
+                        className="w-4 h-4 fill-current text-[#F5B800]"
                         viewBox="0 0 24 24"
                         aria-hidden="true"
                       >
@@ -164,18 +157,18 @@ export default function Testimonials() {
                   </div>
 
                   {/* Bottom: Avatar + Name + Role */}
-                  <div className="pt-4 mt-4 border-t border-black/[0.08] flex items-center gap-3">
-                    <div className="relative w-9 h-9 rounded-full overflow-hidden border border-black/10 shrink-0">
+                  <div className="pt-3.5 mt-3 border-t border-black/[0.08] flex items-center gap-3">
+                    <div className="relative w-8 h-8 rounded-full overflow-hidden border border-black/10 shrink-0">
                       <Image
                         src={t.avatar}
                         alt={t.name}
                         fill
-                        sizes="36px"
+                        sizes="32px"
                         className="object-cover"
                       />
                     </div>
                     <div className="flex flex-col min-w-0">
-                      <span className="font-excon font-bold text-xs sm:text-sm text-zinc-950 truncate">
+                      <span className="font-epilogue font-bold text-xs sm:text-[13px] text-zinc-950 truncate">
                         {t.name}
                       </span>
                       <span className="font-epilogue text-[11px] text-zinc-500 font-medium truncate">
@@ -189,35 +182,34 @@ export default function Testimonials() {
           </div>
 
           {/* ---------------- 2. HIGHLIGHT RATING CARD (ANCHORED ON LEFT - DEEP OBSIDIAN CONTRAST) ---------------- */}
-          {/* Sits at z-20 directly over the incoming cards, casting a smooth, natural shadow rightward */}
-          <div className="absolute left-0 top-3 bottom-3 z-20 w-[240px] sm:w-[310px] md:w-[325px] rounded-2xl bg-[#07080c] border border-black/35 p-5 sm:p-6 md:p-7 flex flex-col justify-between shadow-[16px_0_36px_-6px_rgba(0,0,0,0.32),0_8px_24px_-4px_rgba(0,0,0,0.22)] select-none">
+          <div className="absolute left-0 top-2 bottom-2 z-20 w-[230px] sm:w-[290px] md:w-[310px] rounded-xl sm:rounded-[18px] bg-[#0B0E12] border border-black/35 p-5 sm:p-6 flex flex-col justify-between shadow-[14px_0_32px_-6px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.15)] select-none">
             {/* Top Stars & Rating */}
             <div>
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#FAB406] text-[#FAB406] stroke-none"
+                    className="w-3.5 h-3.5 fill-[#F5B800] text-[#F5B800] stroke-none"
                   />
                 ))}
               </div>
 
-              <h3 className="mt-3 sm:mt-4 font-excon font-black text-2xl sm:text-3xl md:text-[34px] text-white tracking-tight leading-none">
+              <h3 className="mt-3 font-excon font-bold text-2xl sm:text-3xl md:text-[32px] text-white tracking-tight leading-none">
                 4.9 Rating
               </h3>
 
-              <p className="mt-1.5 sm:mt-2 font-epilogue text-[11px] sm:text-xs md:text-[13px] text-zinc-400 font-medium">
+              <p className="mt-1.5 font-epilogue text-[11px] sm:text-xs text-zinc-400 font-medium">
                 From client feedback
               </p>
             </div>
 
             {/* Bottom Social Proof: Overlapping Avatars + 15k+ */}
-            <div className="pt-4 sm:pt-6 border-t border-white/[0.1] flex items-center gap-2.5 sm:gap-3 mt-4 sm:mt-6">
+            <div className="pt-3.5 border-t border-white/[0.1] flex items-center gap-2.5 sm:gap-3 mt-3">
               <div className="flex items-center">
                 {MINI_AVATARS.map((src, i) => (
                   <div
                     key={i}
-                    className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-[#07080c] ${
+                    className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-[#0B0E12] ${
                       i !== 0 ? "-ml-2 sm:-ml-2.5" : ""
                     } shadow-sm`}
                   >
@@ -233,7 +225,7 @@ export default function Testimonials() {
               </div>
 
               <div className="flex flex-col min-w-0">
-                <span className="font-excon font-black text-sm sm:text-base md:text-lg text-[#FAB406] leading-none">
+                <span className="font-excon font-bold text-sm sm:text-base md:text-lg text-[#F5B800] leading-none">
                   15k+
                 </span>
                 <span className="font-epilogue text-[10px] sm:text-[11px] text-zinc-400 font-medium leading-tight mt-0.5 truncate">
@@ -244,7 +236,7 @@ export default function Testimonials() {
           </div>
 
           {/* ---------------- 3. SUBTLE, NARROW RIGHT EDGE FEATHER FADE ---------------- */}
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-12 z-20 bg-gradient-to-l from-[#FAB406] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-12 z-20 bg-gradient-to-l from-[#F5F1E8] to-transparent" />
         </div>
       </div>
     </section>

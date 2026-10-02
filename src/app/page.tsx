@@ -15,7 +15,7 @@ import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#040406] text-white selection:bg-[#FAB406] selection:text-black flex flex-col justify-between">
+    <div className="relative min-h-screen bg-[#06070A] text-white selection:bg-[#F5B800] selection:text-[#06070A] flex flex-col justify-between">
       <Navbar />
       <main className="flex-1">
         <Hero />

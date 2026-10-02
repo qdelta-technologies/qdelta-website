@@ -129,7 +129,7 @@ export default function CustomCursor() {
               {/* Outer Perimeter Razor Hairline */}
               <polygon
                 points="12,1 14.5,9.5 23,12 14.5,14.5 12,23 9.5,14.5 1,12 9.5,9.5"
-                stroke="#FAB406"
+                stroke="#F5B800"
                 strokeWidth="0.8"
                 strokeLinejoin="round"
                 fill="none"
@@ -152,7 +152,7 @@ export default function CustomCursor() {
               {/* 3. East Blade — Lit Top Facet */}
               <polygon
                 points="12,12 14.5,9.5 23,12"
-                fill="#FAB406"
+                fill="#F5B800"
               />
 
               {/* 4. East Blade — Deep Shadow Bottom Facet */}
@@ -195,7 +195,7 @@ export default function CustomCursor() {
                 cy="12"
                 r="2.2"
                 fill="#0b0b10"
-                stroke="#FAB406"
+                stroke="#F5B800"
                 strokeWidth="0.8"
               />
               <circle

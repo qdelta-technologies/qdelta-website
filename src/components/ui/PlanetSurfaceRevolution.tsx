@@ -10,7 +10,6 @@ const MERIDIAN_STEP = 360 / MERIDIAN_COUNT; // 5 degrees per meridian
 export default function PlanetSurfaceRevolution() {
   const rotationAngleRef = useRef<number>(0);
   const meridiansGroupRef = useRef<SVGGElement>(null);
-  const shimmerRef = useRef<SVGEllipseElement>(null);
 
   useEffect(() => {
     // Respect user's motion preferences
@@ -84,12 +83,6 @@ export default function PlanetSurfaceRevolution() {
         }
       }
 
-      // Subtle atmospheric highlight / light reflection drift
-      if (shimmerRef.current) {
-        const shimmerX = 500 + Math.sin(rotRad * 0.6) * 75;
-        shimmerRef.current.setAttribute("cx", shimmerX.toFixed(1));
-      }
-
       animId = requestAnimationFrame(animate);
     };
 
@@ -104,22 +97,6 @@ export default function PlanetSurfaceRevolution() {
       clipPath="url(#horizon-surface-clip)"
       className="pointer-events-none select-none"
     >
-      <defs>
-        {/* Soft atmospheric shimmer wash across rotating surface */}
-        <radialGradient
-          id="planet-shimmer-glow"
-          cx="50%"
-          cy="30%"
-          r="65%"
-          fx="50%"
-          fy="25%"
-        >
-          <stop offset="0%" stopColor="#FFF8D6" stopOpacity="0.18" />
-          <stop offset="45%" stopColor="#FAB406" stopOpacity="0.08" />
-          <stop offset="100%" stopColor="#FAB406" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-
       {/* ================= 1. FIXED SPHERICAL LATITUDE PARALLELS ================= */}
       {/*
         Concentric spherical latitude rings with uniform thickness of 1.0px
@@ -191,16 +168,6 @@ export default function PlanetSurfaceRevolution() {
           />
         ))}
       </g>
-
-      {/* ================= 3. ROTATING SURFACE SHIMMER / LIGHT SWEEP ================= */}
-      <ellipse
-        ref={shimmerRef}
-        cx="500"
-        cy="845"
-        rx="340"
-        ry="110"
-        fill="url(#planet-shimmer-glow)"
-      />
     </g>
   );
 }

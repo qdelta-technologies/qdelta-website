@@ -73,55 +73,48 @@ export default function BrandTransformationSection() {
   return (
     <section
       id="transformation"
-      className="relative z-20 w-full bg-[#040406] text-white py-20 sm:py-28 md:py-32 scroll-mt-20 overflow-hidden selection:bg-[#FAB406] selection:text-black"
+      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-20 overflow-hidden selection:bg-[#F5B800] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ARCHITECTURAL GRID ================= */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* Ambient Warm Golden Halos */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[44rem] w-[75rem] rounded-full bg-gradient-to-b from-[#FAB406]/[0.10] via-[#FAB406]/[0.025] to-transparent blur-[140px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[38rem] w-[65rem] rounded-full bg-gradient-to-b from-[#F5B800]/[0.06] via-[#F5B800]/[0.015] to-transparent blur-[140px]" />
 
-        {/* Subtle Yellow-Themed Linear Architectural Grid */}
+        {/* Subtle Yellow-Themed Linear Architectural Grid (Faded at edges) */}
         <div
-          className="absolute inset-0 opacity-70"
+          className="absolute inset-0 opacity-75"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(250, 180, 6, 0.08) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(250, 180, 6, 0.08) 1px, transparent 1px)
+              linear-gradient(to right, rgba(245, 184, 0, 0.035) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(245, 184, 0, 0.035) 1px, transparent 1px)
             `,
-            backgroundSize: "48px 48px",
+            backgroundSize: "64px 64px",
             maskImage: "radial-gradient(ellipse 80% 70% at 50% 42%, black 20%, transparent 85%)",
             WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 42%, black 20%, transparent 85%)",
           }}
         />
 
         {/* Soft Edges Top & Bottom */}
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#040406] via-[#040406]/80 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#040406] via-[#040406]/80 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#06070A] via-[#06070A]/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#06070A] via-[#06070A]/80 to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+      <div className="relative z-10 mx-auto w-full max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* ================= SECTION HEADER ================= */}
         <div className="text-center max-w-3xl mb-10 sm:mb-12">
           {/* Editorial Section Identifier */}
           <div className="flex items-center gap-3.5 mb-4 select-none justify-center">
-            <span className="font-mono text-xs tracking-[0.24em] uppercase text-zinc-400 font-medium">
+            <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-400 font-semibold">
               THE TRANSFORMATION
             </span>
-            <div className="w-10 sm:w-12 h-[1px] bg-[#FAB406]/60" />
-            <svg
-              className="w-2.5 h-2.5 text-[#FAB406] fill-current"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-            </svg>
+            <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
           </div>
 
-          <h2 className="font-epilogue font-bold text-3xl sm:text-4xl md:text-[46px] text-white tracking-tight leading-[1.14]">
+          <h2 className="font-excon font-bold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.12]">
             Watch Ordinary Turn Into Authority.
           </h2>
 
-          <p className="mt-4 font-excon text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed font-normal max-w-2xl mx-auto">
+          <p className="mt-4 font-epilogue text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed font-normal max-w-2xl mx-auto">
             See how QDelta transforms fragmented, outdated digital touchpoints into
             high-performing brand flagships that command trust.
           </p>
@@ -130,19 +123,19 @@ export default function BrandTransformationSection() {
         {/* ================= CINEMATIC VIDEO PLAYER CHASSIS ================= */}
         <motion.div
           ref={containerRef}
-          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          initial={{ opacity: 0, y: 20, scale: 0.99 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="relative w-full rounded-2xl md:rounded-3xl border border-[#FAB406]/30 bg-[#07080d]/90 p-2 sm:p-3 md:p-4 shadow-[0_0_70px_rgba(250,180,6,0.14)] backdrop-blur-xl group"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative w-full rounded-2xl border border-white/[0.08] bg-[#0B0E12]/80 p-2 sm:p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] backdrop-blur-xl group"
         >
           {/* Subtle Outer Glow Accent */}
-          <div className="absolute -inset-0.5 rounded-2xl md:rounded-3xl bg-gradient-to-r from-[#FAB406]/20 via-transparent to-[#FAB406]/20 blur-xl opacity-40 pointer-events-none" />
+          <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-[#F5B800]/10 via-transparent to-[#F5B800]/10 blur-lg opacity-30 pointer-events-none" />
 
           {/* Video Container (16:9 Aspect Ratio) */}
           <div
             onClick={togglePlayPause}
-            className="relative w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden bg-[#030305] shadow-2xl border border-white/10 cursor-pointer"
+            className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#06070A] shadow-2xl border border-white/[0.07] cursor-pointer"
           >
             {/* Native Hardware-Accelerated Autoplaying Video */}
             <video
@@ -173,18 +166,18 @@ export default function BrandTransformationSection() {
                 type="button"
                 onClick={togglePlayPause}
                 aria-label={isPlaying ? "Pause video" : "Play video"}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 hover:border-[#FAB406]/60 text-white hover:text-[#FAB406] text-xs font-mono transition-all shadow-lg cursor-pointer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 hover:border-[#F5B800]/60 text-white hover:text-[#F5B800] text-xs font-mono transition-all shadow-lg cursor-pointer"
               >
                 {isPlaying ? (
                   <>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800] animate-pulse" />
                     <Pause className="w-3.5 h-3.5" />
                     <span className="hidden sm:inline">Playing</span>
                   </>
                 ) : (
                   <>
                     <span className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
-                    <Play className="w-3.5 h-3.5 text-[#FAB406]" />
+                    <Play className="w-3.5 h-3.5 text-[#F5B800]" />
                     <span className="hidden sm:inline">Paused</span>
                   </>
                 )}
@@ -194,7 +187,7 @@ export default function BrandTransformationSection() {
                 type="button"
                 onClick={handleRestart}
                 aria-label="Restart video"
-                className="p-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 hover:border-[#FAB406]/60 text-white hover:text-[#FAB406] transition-all shadow-lg cursor-pointer"
+                className="p-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 hover:border-[#F5B800]/60 text-white hover:text-[#F5B800] transition-all shadow-lg cursor-pointer"
                 title="Restart from beginning"
               >
                 <RotateCcw className="w-3.5 h-3.5" />

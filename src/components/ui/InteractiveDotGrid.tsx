@@ -335,7 +335,7 @@ export default function InteractiveDotGrid() {
 
         if (dot.glow > 0.05) {
           // Subtle golden warmth when spreading out under mouse
-          ctx.fillStyle = `rgba(250, 180, 6, ${0.16 + dot.glow * 0.45})`;
+          ctx.fillStyle = `rgba(245, 184, 0, ${0.16 + dot.glow * 0.45})`;
         } else {
           // Clean subtle white/silver dot at rest
           ctx.fillStyle = "rgba(255, 255, 255, 0.14)";
@@ -421,7 +421,7 @@ export default function InteractiveDotGrid() {
           // Soft golden halo glow around foreground mote
           ctx.beginPath();
           ctx.arc(renderX, renderY, m.radius + 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(250, 180, 6, ${moteOpacity * 0.32})`;
+          ctx.fillStyle = `rgba(245, 184, 0, ${moteOpacity * 0.32})`;
           ctx.fill();
 
           // Core radiant warm mote

@@ -83,20 +83,20 @@ const CONNECT_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#040406] pb-10 sm:pb-14 pt-4 px-4 sm:px-6 lg:px-8 relative z-20 overflow-hidden">
+    <footer className="w-full bg-[#06070A] pb-8 sm:pb-12 pt-2 px-4 sm:px-6 lg:px-8 relative z-20 overflow-hidden">
       {/* ======================================================= */}
-      {/* LARGE FLOATING ROUNDED FOOTER CONTAINER (BLACK & YELLOW) */}
+      {/* FLOATING ROUNDED FOOTER CONTAINER (GRAPHITE & GOLD)     */}
       {/* ======================================================= */}
-      <div className="relative w-full max-w-7xl mx-auto rounded-[32px] sm:rounded-[44px] md:rounded-[48px] bg-[#08090e] text-white border border-white/[0.09] shadow-[0_24px_80px_rgba(0,0,0,0.95)] px-6 py-10 sm:px-12 sm:py-14 md:px-16 md:py-16 overflow-hidden flex flex-col justify-between">
+      <div className="relative w-full max-w-6xl xl:max-w-7xl mx-auto rounded-xl sm:rounded-2xl md:rounded-[20px] bg-[#0B0E12]/90 backdrop-blur-md text-white border border-white/[0.08] shadow-[0_24px_80px_rgba(0,0,0,0.95)] px-6 py-9 sm:px-10 sm:py-12 md:px-12 md:py-14 overflow-hidden flex flex-col justify-between">
         
         {/* Top Glowing Golden Horizon Accent Hairline */}
-        <div className="absolute top-0 inset-x-12 sm:inset-x-20 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/45 to-transparent pointer-events-none" />
+        <div className="absolute top-0 inset-x-12 sm:inset-x-20 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/35 to-transparent pointer-events-none" />
 
         {/* Ambient Warm Golden Backlight */}
-        <div className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 w-[42rem] h-[18rem] rounded-full bg-[#FAB406]/[0.055] blur-[140px]" />
+        <div className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 w-[38rem] h-[16rem] rounded-full bg-[#F5B800]/[0.035] blur-[140px]" />
 
         {/* ================= UPPER SECTION: 4-COLUMN COMPOSITION ================= */}
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-12 sm:mb-16">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
           {/* LEFT SIDE: Brand & Socials */}
           <div className="lg:col-span-5 max-w-sm flex flex-col justify-between">
             <div>
@@ -112,19 +112,19 @@ export default function Footer() {
               </Link>
 
               {/* Short Description */}
-              <p className="mt-4 text-xs sm:text-sm font-excon text-zinc-400 leading-relaxed font-normal">
+              <p className="mt-3.5 text-xs sm:text-sm font-epilogue text-zinc-400 leading-relaxed font-normal">
                 Websites that speak for your brand and work for your business.
               </p>
             </div>
 
-            {/* Social Icons (Black & Yellow Interaction) */}
-            <div className="flex items-center gap-2.5 mt-6 sm:mt-8">
+            {/* Social Icons (Black & Gold Interaction) */}
+            <div className="flex items-center gap-2.5 mt-5 sm:mt-7">
               <a
                 href="https://www.linkedin.com/company/qdelta-technologies"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#FAB406] hover:text-black hover:border-[#FAB406] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#F5B800] hover:text-[#06070A] hover:border-[#F5B800] transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <LinkedInIcon className="w-4 h-4" />
               </a>
@@ -134,7 +134,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#FAB406] hover:text-black hover:border-[#FAB406] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#F5B800] hover:text-[#06070A] hover:border-[#F5B800] transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -144,7 +144,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X / Twitter"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#FAB406] hover:text-black hover:border-[#FAB406] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#F5B800] hover:text-[#06070A] hover:border-[#F5B800] transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <XTwitterIcon className="w-3.5 h-3.5" />
               </a>
@@ -154,7 +154,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#FAB406] hover:text-black hover:border-[#FAB406] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#F5B800] hover:text-[#06070A] hover:border-[#F5B800] transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <GitHubIcon className="w-4 h-4" />
               </a>
@@ -162,21 +162,21 @@ export default function Footer() {
           </div>
 
           {/* RIGHT SIDE: 3 Minimal Link Columns */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-10">
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-7 sm:gap-9">
             {/* COLUMN 1: Services */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
+              <div className="flex items-center gap-2 mb-3.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
                   Services
                 </h4>
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {SERVICES_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-excon text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-medium"
+                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#F5B800] transition-colors duration-150 inline-block font-normal"
                     >
                       {link.label}
                     </Link>
@@ -187,18 +187,18 @@ export default function Footer() {
 
             {/* COLUMN 2: Company */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
+              <div className="flex items-center gap-2 mb-3.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
                   Company
                 </h4>
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {COMPANY_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-excon text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-medium"
+                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#F5B800] transition-colors duration-150 inline-block font-normal"
                     >
                       {link.label}
                     </Link>
@@ -209,13 +209,13 @@ export default function Footer() {
 
             {/* COLUMN 3: Connect */}
             <div className="col-span-2 sm:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
+              <div className="flex items-center gap-2 mb-3.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
                   Connect
                 </h4>
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {CONNECT_LINKS.map((link) => (
                   <li key={link.label}>
                     {link.external ? (
@@ -223,17 +223,17 @@ export default function Footer() {
                         href={link.href}
                         target={link.href.startsWith("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
-                        className="font-excon text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-medium"
+                        className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#F5B800] transition-colors duration-150 inline-block font-normal"
                       >
                         {link.label}
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className={`font-excon text-xs sm:text-[13px] transition-colors duration-150 inline-flex items-center gap-1 font-bold ${
+                        className={`font-epilogue text-xs sm:text-[13px] transition-colors duration-150 inline-flex items-center gap-1 font-semibold ${
                           link.highlight
-                            ? "text-[#FAB406] hover:text-white"
-                            : "text-zinc-400 hover:text-[#FAB406]"
+                            ? "text-[#F5B800] hover:text-white"
+                            : "text-zinc-400 hover:text-[#F5B800]"
                         }`}
                       >
                         <span>{link.label}</span>
@@ -248,7 +248,7 @@ export default function Footer() {
         </div>
 
         {/* ================= LOWER SECTION: DIVIDER & LEGAL ================= */}
-        <div className="relative z-10 pt-6 sm:pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-excon text-zinc-500">
+        <div className="relative z-10 pt-5 sm:pt-7 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-epilogue text-zinc-500">
           <p className="text-center sm:text-left">
             © 2026 QDelta Technologies. All rights reserved.
           </p>
@@ -256,13 +256,13 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <Link
               href="#contact"
-              className="text-zinc-400 hover:text-[#FAB406] transition-colors duration-150"
+              className="text-zinc-400 hover:text-[#F5B800] transition-colors duration-150"
             >
               Privacy Policy
             </Link>
             <Link
               href="#contact"
-              className="text-zinc-400 hover:text-[#FAB406] transition-colors duration-150"
+              className="text-zinc-400 hover:text-[#F5B800] transition-colors duration-150"
             >
               Terms & Conditions
             </Link>
@@ -270,8 +270,8 @@ export default function Footer() {
         </div>
 
         {/* ================= LARGE BRAND ELEMENT: OVERSIZED QDelta ================= */}
-        <div className="relative w-full overflow-hidden pt-6 sm:pt-8 -mb-2 sm:-mb-3 pointer-events-none select-none">
-          <div className="font-epilogue font-black tracking-tighter text-[16vw] lg:text-[14vw] leading-[0.78] text-center text-[#FAB406]/[0.06] uppercase">
+        <div className="relative w-full overflow-hidden pt-5 sm:pt-6 -mb-2 pointer-events-none select-none">
+          <div className="font-excon font-bold tracking-tighter text-[15vw] lg:text-[13vw] leading-[0.78] text-center text-[#F5B800]/[0.035] uppercase">
             QDelta
           </div>
         </div>
@@ -283,3 +283,4 @@ export default function Footer() {
     </footer>
   );
 }
+

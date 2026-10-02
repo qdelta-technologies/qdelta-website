@@ -52,23 +52,23 @@ export default function SaffronButton({
   // Variant classes
   const variantClasses = {
     primary:
-      "bg-[#FAB406] text-[#040406] border-[1.5px] border-[#FAB406] hover:bg-[#e9b832] hover:border-[#e9b832] shadow-[0_0_20px_rgba(250,180,6,0.32)] hover:shadow-[0_0_28px_rgba(250,180,6,0.48)]",
+      "bg-[#F5B800] text-[#06070A] border-[1.5px] border-[#F5B800] hover:bg-[#D9A51A] hover:border-[#D9A51A] shadow-[0_0_18px_rgba(245,184,0,0.25)] hover:shadow-[0_0_26px_rgba(245,184,0,0.38)]",
     outline:
-      "bg-white/[0.04] text-white border-[1.5px] border-white/20 hover:border-[#FAB406] hover:text-[#FAB406] hover:bg-[#FAB406]/[0.06] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
+      "bg-white/[0.04] text-white border-[1.5px] border-white/15 hover:border-[#F5B800] hover:text-[#F5B800] hover:bg-[#F5B800]/[0.06] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
     white:
-      "bg-white text-black border-[1.5px] border-white hover:bg-[#FAB406] hover:border-[#FAB406] shadow-sm hover:shadow-[0_0_24px_rgba(250,180,6,0.45)]",
+      "bg-white text-black border-[1.5px] border-white hover:bg-[#F5B800] hover:border-[#F5B800] shadow-sm hover:shadow-[0_0_22px_rgba(245,184,0,0.35)]",
   }[variant];
 
   // Star mark color
   const markColorClass = {
-    primary: "text-[#040406]",
-    outline: "text-[#FAB406]",
+    primary: "text-[#06070A]",
+    outline: "text-[#F5B800]",
     white: "text-black group-hover:text-black",
   }[variant];
 
   const baseClasses = `
     group inline-flex items-center justify-center font-epilogue font-bold tracking-[-0.01em] rounded-full leading-none whitespace-nowrap cursor-pointer select-none
-    transition-all duration-200 ease-out active:translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FAB406]
+    transition-all duration-200 ease-out active:translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5B800]
     ${sizeClasses}
     ${variantClasses}
     ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}

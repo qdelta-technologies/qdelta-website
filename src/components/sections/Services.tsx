@@ -104,54 +104,54 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           scale,
           transformOrigin: "top center",
         }}
-        className="group relative w-full rounded-2xl sm:rounded-3xl border border-black/15 bg-[#FAB406] text-black p-6 sm:p-8 md:p-10 lg:p-11 shadow-[0_-16px_36px_rgba(0,0,0,0.45),0_24px_50px_rgba(0,0,0,0.6)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[380px] sm:min-h-[420px] md:min-h-[440px] md:max-h-[520px]"
+        className="group relative w-full rounded-xl sm:rounded-[18px] border border-black/15 bg-gradient-to-br from-[#F3C742] via-[#E7B72A] to-[#D9A51A] text-[#06070A] p-6 sm:p-8 md:p-9 shadow-[0_-12px_32px_rgba(0,0,0,0.35),0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[320px] sm:min-h-[360px] md:min-h-[380px]"
       >
         {/* Subtle Ambient Top Hairline Accent */}
-        <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1.5px] bg-gradient-to-r from-transparent via-black/25 to-transparent pointer-events-none" />
+        <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1.5px] bg-gradient-to-r from-transparent via-black/20 to-transparent pointer-events-none" />
 
         {/* Card Header: Service Number and Minimal Category / Inquire link */}
-        <div className="flex items-center justify-between border-b border-black/15 pb-4 sm:pb-5 relative z-10">
+        <div className="flex items-center justify-between border-b border-black/15 pb-3.5 sm:pb-4 relative z-10">
           <div className="flex items-center gap-3">
-            <span className="font-excon text-sm sm:text-base font-extrabold text-black tracking-wider">
+            <span className="font-epilogue text-sm sm:text-base font-bold text-[#06070A] tracking-wider">
               {service.number}
             </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-black/60" />
-            <span className="text-[11px] sm:text-xs font-excon uppercase tracking-[0.2em] text-black/75 font-bold">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#06070A]/60" />
+            <span className="text-[11px] sm:text-xs font-epilogue uppercase tracking-[0.2em] text-[#06070A]/75 font-semibold">
               Capability
             </span>
           </div>
 
           <Link
             href="#contact"
-            className="group/link inline-flex items-center gap-2 text-xs font-excon uppercase tracking-wider text-black font-bold transition-colors"
+            className="group/link inline-flex items-center gap-2 text-xs font-epilogue uppercase tracking-wider text-[#06070A] font-bold transition-colors"
           >
             <span className="hidden sm:inline">Inquire Service</span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black text-[#FAB406] group-hover/link:bg-zinc-900 group-hover/link:scale-105 flex items-center justify-center transition-all shadow-sm">
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#FAB406] transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#06070A] text-[#F5B800] group-hover/link:bg-zinc-900 group-hover/link:scale-105 flex items-center justify-center transition-all shadow-sm">
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#F5B800] transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
             </div>
           </Link>
         </div>
 
-        {/* Card Body: Dominant Editorial Headline (in Epilogue) */}
-        <div className="my-auto py-5 sm:py-7 relative z-10">
-          <h3 className="text-2xl min-[480px]:text-3xl sm:text-4xl md:text-[44px] font-epilogue font-extrabold tracking-tight leading-[1.1]">
-            <span className="block text-black">
+        {/* Card Body: Dominant Headline */}
+        <div className="my-auto py-4 sm:py-5 relative z-10">
+          <h3 className="text-2xl min-[480px]:text-3xl sm:text-4xl md:text-[40px] font-excon font-bold tracking-tight leading-[1.12]">
+            <span className="block text-[#06070A]">
               {service.titleLine1}
             </span>
-            <span className="block text-black/70 font-extrabold mt-1 sm:mt-1.5">
+            <span className="block text-[#06070A]/80 font-bold mt-0.5 sm:mt-1">
               {service.titleLine2}
             </span>
           </h3>
         </div>
 
         {/* Card Footer: Minimal Capability Tags + Tagline Hook & Description */}
-        <div className="space-y-4 sm:space-y-5 pt-4 sm:pt-5 border-t border-black/15 relative z-10">
+        <div className="space-y-3.5 sm:space-y-4 pt-3.5 sm:pt-4 border-t border-black/15 relative z-10">
           {/* Tags Row */}
           <div className="flex flex-wrap items-center gap-2">
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-excon font-semibold text-black bg-black/10 hover:bg-black/15 border border-black/15 transition-colors"
+                className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-epilogue font-medium text-[#06070A] bg-black/10 hover:bg-black/15 border border-black/15 transition-colors"
               >
                 {tag}
               </span>
@@ -159,16 +159,16 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           </div>
 
           {/* Tagline Hook + Description with Starburst */}
-          <div className="flex items-start gap-3 sm:gap-4 max-w-3xl">
+          <div className="flex items-start gap-3 sm:gap-3.5 max-w-3xl">
             <div className="mt-1 shrink-0">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-black fill-black" />
+              <Sparkles className="w-4 h-4 text-[#06070A] fill-[#06070A]" />
             </div>
 
-            <div className="space-y-1">
-              <p className="text-sm sm:text-base md:text-lg font-epilogue font-extrabold text-black tracking-tight">
+            <div className="space-y-0.5">
+              <p className="text-sm sm:text-base font-epilogue font-bold text-[#06070A] tracking-tight">
                 {service.tagline}
               </p>
-              <p className="text-xs sm:text-sm font-excon font-medium text-black/80 leading-relaxed max-w-2xl">
+              <p className="text-xs sm:text-sm font-epilogue font-normal text-[#06070A]/80 leading-relaxed max-w-2xl">
                 {service.description}
               </p>
             </div>
@@ -190,38 +190,34 @@ export default function Services() {
     <section
       id="services"
       ref={containerRef}
-      className="relative z-20 w-full bg-[#08090f] text-white py-20 sm:py-28 scroll-mt-12 overflow-visible"
+      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
     >
+      {/* Subtle Warm Gold Technical Grid */}
+      <div className="pointer-events-none absolute inset-0 bg-qdelta-grid [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
+
       {/* Background Lighting Elements */}
-      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[42rem] w-[70rem] rounded-full bg-[#FAB406]/[0.035] blur-[160px]" />
+      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[36rem] w-[60rem] rounded-full bg-[#F5B800]/[0.03] blur-[150px]" />
 
       {/* ================= SECTION INTRO ================= */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mb-14 sm:mb-20">
-        {/* Editorial Section Identifier (No container/capsule) */}
-        <div className="flex items-center gap-3.5 mb-5 sm:mb-6 select-none">
-          <span className="font-excon text-xs sm:text-[13px] tracking-[0.24em] uppercase text-zinc-400 font-medium">
-            02 / CAPABILITIES
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10">
+        {/* Editorial Section Identifier */}
+        <div className="flex items-center gap-3 mb-4 select-none">
+          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
+            02 / Capabilities
           </span>
-          <div className="w-12 sm:w-16 h-[1px] bg-[#FAB406]/60" />
-          <svg
-            className="w-2.5 h-2.5 text-[#FAB406] fill-current"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-          </svg>
+          <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
         </div>
 
         {/* Headline & Supporting Text in Editorial Two-Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
           <div className="lg:col-span-7">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-epilogue font-bold tracking-tight text-white leading-[1.12]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12]">
               Digital experiences built around your business.
             </h2>
           </div>
 
           <div className="lg:col-span-5">
-            <p className="text-sm sm:text-base md:text-lg font-excon text-zinc-400 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg font-epilogue text-zinc-400 font-normal leading-relaxed">
               From focused landing pages to flagship websites, we build digital experiences designed to communicate value, build trust and turn visitors into clients.
             </p>
           </div>
@@ -229,7 +225,7 @@ export default function Services() {
       </div>
 
       {/* ================= STACKED CARDS SCROLL TRACK ================= */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative space-y-12 sm:space-y-18 md:space-y-20 pb-12 sm:pb-18">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 relative space-y-10 sm:space-y-14 md:space-y-16 pb-10 sm:pb-14">
         {SERVICES.map((service, index) => (
           <StackCard
             key={service.number}
@@ -243,3 +239,4 @@ export default function Services() {
     </section>
   );
 }
+
