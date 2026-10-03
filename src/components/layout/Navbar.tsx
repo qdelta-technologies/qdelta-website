@@ -229,22 +229,6 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Mobile Menu Trigger Button */}
-            <div className="flex md:hidden items-center">
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="flex items-center justify-center w-8.5 h-8.5 rounded-[6px] bg-white/[0.04] border border-white/12 text-zinc-300 hover:text-white hover:border-[#FAB406]/40 transition-colors focus:outline-none cursor-pointer"
-                aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
-                aria-expanded={mobileMenuOpen}
-              >
-                {mobileMenuOpen ? (
-                  <X className="w-4 h-4 stroke-[2]" />
-                ) : (
-                  <Menu className="w-4 h-4 stroke-[2]" />
-                )}
-              </button>
-            </div>
           </div>
 
           {/* ----------------- ZONE 2: CENTER (QDELTA LOGO BLOCK) ----------------- */}
@@ -268,18 +252,36 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* ----------------- ZONE 3: RIGHT (MAIN CTA BUTTON) ----------------- */}
+          {/* ----------------- ZONE 3: RIGHT (MAIN CTA BUTTON & MOBILE MENU) ----------------- */}
           <div
             className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pr-12 lg:pr-16 pl-4"
             style={{ height: `${H1}px` }}
           >
+            {/* Desktop CTA */}
             <Link
               href="#contact"
-              className="group relative inline-flex items-center gap-2 h-9 sm:h-9.5 px-4.5 sm:px-5.5 rounded-[6px] border border-[#FAB406]/70 bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-[13px] tracking-tight shadow-[0_0_16px_rgba(250,180,6,0.25)] hover:shadow-[0_0_26px_rgba(250,180,6,0.48)] hover:bg-[#ffbe1a] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shrink-0"
+              className="group relative hidden md:inline-flex items-center gap-2 h-9 sm:h-9.5 px-4.5 sm:px-5.5 rounded-[6px] border border-[#FAB406]/70 bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-[13px] tracking-tight shadow-[0_0_16px_rgba(250,180,6,0.25)] hover:shadow-[0_0_26px_rgba(250,180,6,0.48)] hover:bg-[#ffbe1a] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shrink-0"
             >
               <span>Let’s Talk</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] text-[#06070A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
+
+            {/* Mobile Menu Trigger Button */}
+            <div className="flex md:hidden items-center">
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+                className="flex items-center justify-center w-8.5 h-8.5 rounded-[6px] bg-white/[0.04] border border-white/12 text-zinc-300 hover:text-white hover:border-[#FAB406]/40 transition-colors focus:outline-none cursor-pointer"
+                aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-4 h-4 stroke-[2]" />
+                ) : (
+                  <Menu className="w-4 h-4 stroke-[2]" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
