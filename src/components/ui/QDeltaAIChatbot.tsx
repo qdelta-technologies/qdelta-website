@@ -528,7 +528,7 @@ export default function QDeltaAIChatbot() {
                     ? `${rateLimitRemaining} message${rateLimitRemaining === 1 ? "" : "s"} left`
                     : "10 messages / hr"}
                 </span>
-                <span>QDelta Edge AI</span>
+                <span>QDelta AI</span>
               </div>
             </div>
           </motion.div>
