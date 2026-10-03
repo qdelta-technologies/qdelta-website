@@ -111,7 +111,7 @@ export default function Testimonials() {
         </div>
 
         {/* Main Heading */}
-        <h2 className="font-excon font-bold text-3xl sm:text-4xl md:text-[44px] text-white tracking-tight leading-[1.12]">
+        <h2 className="font-excon font-bold text-2xl sm:text-3xl md:text-[44px] text-white tracking-tight leading-[1.12]">
           Inspiring Client Experiences
         </h2>
 
@@ -202,7 +202,7 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <h3 className="mt-3 font-excon font-bold text-2xl sm:text-3xl md:text-[32px] text-white tracking-tight leading-none">
+              <h3 className="mt-3 font-excon font-bold text-xl sm:text-2xl md:text-[32px] text-white tracking-tight leading-none">
                 4.9 Rating
               </h3>
 

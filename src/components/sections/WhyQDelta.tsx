@@ -186,7 +186,7 @@ export default function WhyQDelta() {
           </div>
 
           {/* Main Headline */}
-          <h2 className="font-excon font-bold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.12]">
+          <h2 className="font-excon font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white tracking-tight leading-[1.12]">
             Your website shapes perception.
           </h2>
 
@@ -212,7 +212,7 @@ export default function WhyQDelta() {
               <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent" />
 
               <div className="flex items-baseline justify-between gap-3">
-                <span className="font-epilogue font-extrabold text-2xl sm:text-3xl text-[#F5B800] tracking-tight">
+                <span className="font-epilogue font-extrabold text-xl sm:text-2xl md:text-3xl text-[#F5B800] tracking-tight">
                   {counter.metric}
                 </span>
                 <span className="font-epilogue font-bold text-xs sm:text-[13px] text-zinc-200 tracking-tight text-right">
@@ -312,7 +312,7 @@ export default function WhyQDelta() {
 
               {/* 1. DIGITAL Offering */}
               <div className="space-y-1.5">
-                <h4 className="font-epilogue font-black text-2xl sm:text-3xl text-black tracking-tight uppercase">
+                <h4 className="font-epilogue font-black text-xl sm:text-2xl md:text-3xl text-black tracking-tight uppercase">
                   DIGITAL
                 </h4>
                 <p className="font-epilogue text-xs sm:text-sm text-black/85 leading-relaxed font-medium">
@@ -325,7 +325,7 @@ export default function WhyQDelta() {
 
               {/* 2. SIGNATURE Offering */}
               <div className="space-y-1.5">
-                <h4 className="font-epilogue font-black text-2xl sm:text-3xl text-black tracking-tight uppercase">
+                <h4 className="font-epilogue font-black text-xl sm:text-2xl md:text-3xl text-black tracking-tight uppercase">
                   SIGNATURE
                 </h4>
                 <p className="font-epilogue text-xs sm:text-sm text-black/85 leading-relaxed font-medium">

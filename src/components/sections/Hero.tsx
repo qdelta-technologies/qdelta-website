@@ -214,7 +214,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-7 sm:-translate-y-12 md:-translate-y-16 lg:-translate-y-20">
         {/* Main Headline (Two Distinct Lines with Floating Diagonal Annotation Capsules) */}
         <h1
-          className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-3xl min-[400px]:text-[34px] sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14] transition-transform duration-500 ease-out will-change-transform"
+          className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14] transition-transform duration-500 ease-out will-change-transform"
           style={{
             transform: `translate3d(${mousePos.x * 2.5}px, ${mousePos.y * 1.5}px, 0)`,
           }}

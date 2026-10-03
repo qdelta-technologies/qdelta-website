@@ -484,7 +484,7 @@ export default function QDeltaSystem() {
           </div>
 
           {/* Main Headline */}
-          <h2 className="font-epilogue font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-white tracking-tight leading-[1.08]">
+          <h2 className="font-epilogue font-bold text-2xl sm:text-3xl md:text-5xl lg:text-[56px] text-white tracking-tight leading-[1.08]">
             Built to speak.{" "}
             <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FAB406] to-[#FAB406]">
               Designed to work.
@@ -611,7 +611,7 @@ export default function QDeltaSystem() {
             <p className="font-epilogue text-[11px] sm:text-xs uppercase tracking-[0.32em] text-[#FAB406] mb-3 sm:mb-4">
               THE INTEGRATED ADVANTAGE
             </p>
-            <h3 className="font-epilogue font-extrabold text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white tracking-tight leading-[1.12]">
+            <h3 className="font-epilogue font-extrabold text-2xl sm:text-3xl md:text-5xl lg:text-7xl text-white tracking-tight leading-[1.12]">
               “One clear system.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FAB406] to-[#FAB406]">
                 One stronger presence.”

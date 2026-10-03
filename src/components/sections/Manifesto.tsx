@@ -37,7 +37,7 @@ export default function Manifesto() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-serif text-3xl min-[480px]:text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight text-white leading-[1.2] text-balance max-w-3xl mx-auto"
+          className="font-serif text-2xl min-[480px]:text-3xl sm:text-4xl md:text-6xl font-normal tracking-tight text-white leading-[1.2] text-balance max-w-3xl mx-auto"
         >
           <span>A website that actually </span>
           <br className="hidden sm:inline" />

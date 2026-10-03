@@ -162,7 +162,7 @@ export default function BrandTransformationSection() {
           </div>
 
           {/* Headline (Single line on desktop/tablets, balanced on mobile) */}
-          <h2 className="font-excon font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.18] md:whitespace-nowrap">
+          <h2 className="font-excon font-bold text-xl sm:text-2xl md:text-4xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.18] md:whitespace-nowrap">
             <span className="inline-block">Websites that do more</span>{" "}
             <span className="inline-block text-[#FAB406]">than look good.</span>
           </h2>
@@ -453,7 +453,7 @@ export default function BrandTransformationSection() {
 
               {/* Top Row: Metric & Label */}
               <div className="flex items-baseline justify-between gap-3">
-                <span className="font-excon font-extrabold text-2xl sm:text-3xl text-[#FAB406] tracking-tight">
+                <span className="font-excon font-extrabold text-xl sm:text-2xl md:text-3xl text-[#FAB406] tracking-tight">
                   {stat.metric}
                 </span>
                 <span className="font-epilogue font-bold text-xs sm:text-[13px] text-white tracking-tight">

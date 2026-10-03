@@ -163,7 +163,7 @@ export default function Process() {
               <div className="w-8 sm:w-10 h-[1px] bg-[#FAB406]/60" />
             </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-excon font-bold tracking-tight text-white leading-[1.14] text-balance">
+            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[40px] font-excon font-bold tracking-tight text-white leading-[1.14] text-balance">
               A structured path from concept to launch.
             </h2>
 

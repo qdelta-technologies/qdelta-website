@@ -135,7 +135,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
 
         {/* Card Body: Dominant Headline */}
         <div className="my-auto py-4 sm:py-5 relative z-10">
-          <h3 className="text-2xl min-[480px]:text-3xl sm:text-4xl md:text-[40px] font-excon font-bold tracking-tight leading-[1.12]">
+          <h3 className="text-xl min-[480px]:text-2xl sm:text-3xl md:text-[40px] font-excon font-bold tracking-tight leading-[1.12]">
             <span className="block text-[#06070A]">
               {service.titleLine1}
             </span>
@@ -209,7 +209,7 @@ export default function Services() {
         {/* Headline & Supporting Text in Editorial Two-Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
           <div className="lg:col-span-7">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12]">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12]">
               Digital experiences built around your business.
             </h2>
           </div>

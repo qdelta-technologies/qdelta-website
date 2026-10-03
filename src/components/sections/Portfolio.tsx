@@ -337,7 +337,7 @@ function ArchiveFolder({
 
               {/* Dominant Project Title */}
               <h3
-                className={`text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-excon font-bold tracking-tight leading-[1.08] ${project.theme.textPrimary}`}
+                className={`text-2xl sm:text-3xl md:text-5xl lg:text-[48px] font-excon font-bold tracking-tight leading-[1.08] ${project.theme.textPrimary}`}
               >
                 {project.name}
               </h3>
@@ -455,7 +455,7 @@ export default function Portfolio() {
         {/* Headline & Subtitle Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
           <div className="lg:col-span-7">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12]">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12]">
               Curated builds. Engineered to convert.
             </h2>
           </div>
@@ -539,7 +539,7 @@ export default function Portfolio() {
                   </span>
                 </div>
 
-                <h3 className="font-excon text-2xl sm:text-3xl font-bold text-white">
+                <h3 className="font-excon text-xl sm:text-2xl font-bold text-white">
                   {activeModalProject.name}
                 </h3>
                 <p className="mt-1 font-epilogue text-sm sm:text-base text-zinc-300">

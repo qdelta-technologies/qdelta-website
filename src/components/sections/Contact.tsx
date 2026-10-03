@@ -86,7 +86,7 @@ export default function Contact() {
 
             {/* Upper / Center Editorial Statement */}
             <div className="relative z-10 pt-4 sm:pt-5">
-              <h2 className="font-excon font-bold text-3xl sm:text-4xl lg:text-[2.75rem] text-[#06070A] leading-[1.08] tracking-tight text-balance">
+              <h2 className="font-excon font-bold text-2xl sm:text-3xl lg:text-[2.75rem] text-[#06070A] leading-[1.08] tracking-tight text-balance">
                 Have a project in mind?
               </h2>
 
@@ -176,7 +176,7 @@ export default function Contact() {
                     <Check className="h-7 w-7 stroke-[2.5]" />
                   </div>
 
-                  <h3 className="mt-5 font-excon text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  <h3 className="mt-5 font-excon text-xl sm:text-2xl font-bold text-white tracking-tight">
                     Inquiry Received
                   </h3>
 
@@ -204,7 +204,7 @@ export default function Contact() {
                 >
                   {/* Form Header */}
                   <div className="mb-7 sm:mb-8">
-                    <h3 className="font-excon text-2xl sm:text-3xl md:text-[2rem] font-bold text-white tracking-tight">
+                    <h3 className="font-excon text-xl sm:text-2xl md:text-[2rem] font-bold text-white tracking-tight">
                       Start Your Project
                     </h3>
                     <p className="mt-1 text-xs sm:text-sm font-epilogue text-zinc-400">

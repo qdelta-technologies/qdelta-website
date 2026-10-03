@@ -120,7 +120,7 @@ export default function Team() {
           </div>
 
           {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12] text-balance">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12] text-balance">
             Meet the founders behind <span className="text-[#F5B800]">QDelta</span>
           </h2>
 
