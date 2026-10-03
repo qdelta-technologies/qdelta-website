@@ -59,12 +59,12 @@ export default function Navbar() {
     };
   }, []);
 
-  // Architectural frame dimensions (consistent, comfortable sizing - no compacting on scroll)
-  const H1 = 64; // Wing height (px) - slightly tailored
-  const H2 = 82; // Center notch height (px) - slightly tailored
   const cx = navWidth / 2;
-
   const isMobile = navWidth < 680;
+
+  // Architectural frame dimensions (sleeker sizing)
+  const H1 = isMobile ? 52 : 60; // Wing height (px)
+  const H2 = isMobile ? 68 : 78; // Center notch height (px)
   // Width parameters for center notch with comfortable, balanced proportions
   const notchFlatHalf = isMobile ? 80 : 102; // Half of flat bottom under logo
   const chamferWidth = isMobile ? 22 : 28; // Horizontal span of angled chamfer
