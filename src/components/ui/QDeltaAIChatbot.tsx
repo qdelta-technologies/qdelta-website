@@ -56,6 +56,8 @@ export default function QDeltaAIChatbot() {
   const [rateLimitRemaining, setRateLimitRemaining] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom of chat
   const scrollToBottom = () => {
@@ -68,6 +70,39 @@ export default function QDeltaAIChatbot() {
       setTimeout(() => textareaRef.current?.focus(), 250);
     }
   }, [isOpen, messages, isLoading]);
+
+  // Close chat when clicking anywhere outside the modal and trigger button, or on Escape
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node;
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(target) &&
+        triggerRef.current &&
+        !triggerRef.current.contains(target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside, { passive: true });
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   // Adjust textarea height automatically
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -251,8 +286,9 @@ export default function QDeltaAIChatbot() {
       {/* ======================================================= */}
       {/* FLOATING TRIGGER BUTTON (STACKED DIRECTLY ABOVE WHATSAPP)*/}
       {/* ======================================================= */}
-      <div className="fixed bottom-[74px] right-5 sm:bottom-[84px] sm:right-6 z-50">
-        <button
+      <div ref={triggerRef} className="fixed bottom-[74px] right-5 sm:bottom-[84px] sm:right-6 z-50">
+        <motion.button
+          whileTap={{ scale: 0.94 }}
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Close QDelta AI Assistant" : "Open QDelta AI Assistant"}
           className={`group flex h-10 sm:h-11 items-center rounded-full border px-2.5 sm:px-3 shadow-[0_8px_32px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 ease-out focus:outline-none cursor-pointer ${
@@ -286,7 +322,7 @@ export default function QDeltaAIChatbot() {
               <Sparkles className="w-3 h-3 text-[#F5B800]" />
             </span>
           )}
-        </button>
+        </motion.button>
       </div>
 
       {/* ======================================================= */}
@@ -295,11 +331,23 @@ export default function QDeltaAIChatbot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.96 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-[128px] right-4 sm:bottom-[142px] sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[64vh] sm:max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/95 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl flex flex-col overflow-hidden text-white font-sans selection:bg-[#F5B800] selection:text-black"
+            ref={modalRef}
+            initial={{ opacity: 0, scale: 0.82, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{
+              opacity: 0,
+              scale: 0.84,
+              y: 20,
+              transition: { duration: 0.2, ease: [0.32, 0, 0.67, 0] },
+            }}
+            transition={{
+              type: "spring",
+              damping: 24,
+              stiffness: 320,
+              mass: 0.75,
+            }}
+            style={{ transformOrigin: "bottom right" }}
+            className="fixed bottom-[128px] right-4 sm:bottom-[142px] sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[64vh] sm:max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/95 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl flex flex-col overflow-hidden text-white font-sans selection:bg-[#F5B800] selection:text-black origin-bottom-right"
           >
             {/* Top Amber Horizon Accent Line */}
             <div className="absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent pointer-events-none" />
