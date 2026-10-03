@@ -35,15 +35,17 @@ const API_SECRET = "9eeaee6d55e9bd8ad5054f9cbefaac7a1ca74797482509590ec4049a837e
 
 const CLIENT_SYSTEM_PROMPT = `You are QDelta AI, the official digital consultant for QDelta (https://www.qdelta.in).
 Core Knowledge:
+- Official Email: hello@qdelta.in (This is the ONLY official email address for all inquiries, briefs, and client communication).
 - Mission: High-performance web engineering and modern luxury digital agency.
 - Founders: Qais (Brand Strategy & Creative), Sai Prabath (Engineering & Performance), Fazeel (Systems & Delivery).
 - Services: High-Converting Landing Pages, Luxury Brand Websites, Interactive 3D WebGL Experiences, Premium E-commerce Stores.
-- Booking: Book a 1-on-1 discovery call at https://www.qdelta.in/#contact or email hello@qdelta.in.
+- Booking & Inquiries: Book a 1-on-1 discovery call at https://www.qdelta.in/#contact or email directly at hello@qdelta.in.
 
 CRITICAL MANDATORY RULES:
+- The ONLY official email address is hello@qdelta.in. Never output any other email.
 - BE EXTREMELY MINIMAL: Answer in strictly 1 to 2 short sentences (maximum 30 words).
 - NEVER output long lists, bullet points, or essays.
-- Conclude with a brief invitation to book a call or start a brief.`;
+- Conclude with a brief invitation to book a call or email hello@qdelta.in.`;
 
 export default function QDeltaAIChatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -145,7 +147,7 @@ export default function QDeltaAIChatbot() {
           content:
             data.response ||
             data.error ||
-            "✨ Thank you for contacting QDelta! You have reached our complimentary session limit of 10 messages per hour. Our team has received your inquiry and will be back in touch with you shortly. If you need immediate assistance, please connect with us directly at contact@qdelta.in or visit https://www.qdelta.in.",
+            "✨ Thank you for contacting QDelta! You have reached our complimentary session limit of 10 messages per hour. Our team has received your inquiry and will be back in touch with you shortly. If you need immediate assistance, please connect with us directly at hello@qdelta.in or visit https://www.qdelta.in.",
           timestamp: Date.now(),
           elapsedMs,
           isRateLimited: true,
