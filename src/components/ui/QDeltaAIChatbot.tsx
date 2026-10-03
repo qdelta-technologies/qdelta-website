@@ -7,7 +7,6 @@ import {
   Sparkles,
   X,
   Send,
-  RotateCcw,
   Copy,
   Check,
   User,
@@ -146,7 +145,7 @@ export default function QDeltaAIChatbot() {
           content:
             data.response ||
             data.error ||
-            "✨ Thank you for contacting QDelta! You have reached our complimentary session limit of 10 prompts per hour. Our team has received your inquiry and will be back in touch with you shortly. If you need immediate assistance, please connect with us directly at contact@qdelta.in or visit https://www.qdelta.in.",
+            "✨ Thank you for contacting QDelta! You have reached our complimentary session limit of 10 messages per hour. Our team has received your inquiry and will be back in touch with you shortly. If you need immediate assistance, please connect with us directly at contact@qdelta.in or visit https://www.qdelta.in.",
           timestamp: Date.now(),
           elapsedMs,
           isRateLimited: true,
@@ -331,27 +330,15 @@ export default function QDeltaAIChatbot() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-1">
-                {/* Clear Chat */}
-                <button
-                  onClick={handleClear}
-                  title="Clear conversation"
-                  aria-label="Clear conversation"
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-white/10 text-zinc-400 hover:border-white/20 hover:text-white hover:bg-white/[0.05] transition-colors cursor-pointer"
-                >
-                  <RotateCcw className="w-3 h-3" />
-                </button>
-
-                {/* Close Button */}
-                <button
-                  onClick={() => setIsOpen(false)}
-                  title="Close AI Assistant"
-                  aria-label="Close AI Assistant"
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-white/10 text-zinc-400 hover:border-white/20 hover:text-white hover:bg-white/[0.05] transition-colors cursor-pointer"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              </div>
+              {/* Close Button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                title="Close AI Assistant"
+                aria-label="Close AI Assistant"
+                className="flex h-7 w-7 items-center justify-center rounded-md border border-white/10 text-zinc-400 hover:border-white/20 hover:text-white hover:bg-white/[0.05] transition-colors cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Conversation Messages Container */}
@@ -542,8 +529,8 @@ export default function QDeltaAIChatbot() {
               <div className="mt-1.5 flex items-center justify-between px-0.5 text-[9px] text-zinc-500 font-mono">
                 <span>
                   {rateLimitRemaining !== null
-                    ? `${rateLimitRemaining} prompt${rateLimitRemaining === 1 ? "" : "s"} left`
-                    : "10 prompts / hr"}
+                    ? `${rateLimitRemaining} message${rateLimitRemaining === 1 ? "" : "s"} left`
+                    : "10 messages / hr"}
                 </span>
                 <span>QDelta Edge AI</span>
               </div>
