@@ -128,7 +128,7 @@ export default function Hero() {
       </div>
 
       {/* ================= CELESTIAL HORIZON ARC ================= */}
-      <div className="pointer-events-none absolute inset-0 z-10 w-full h-full overflow-hidden">
+      <div className="pointer-events-none absolute bottom-0 inset-x-0 z-10 w-full h-[55vh] sm:h-[70vh] md:h-full overflow-hidden">
         <svg
           viewBox="0 0 1000 1000"
           fill="none"
