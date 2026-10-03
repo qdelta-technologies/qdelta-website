@@ -520,7 +520,7 @@ export default function Portfolio() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 15 }}
               transition={{ duration: 0.25 }}
-              className="relative w-full max-w-3xl rounded-2xl border border-white/12 bg-[#0B0E12] p-6 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.95)] overflow-hidden max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-3xl rounded-2xl border border-white/12 bg-[#0B0E12] p-6 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.95)] overflow-hidden max-h-[90vh] overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
               {/* Close Button */}
               <button

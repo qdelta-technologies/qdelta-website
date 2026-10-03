@@ -355,7 +355,7 @@ export default function QDeltaAIChatbot() {
             </div>
 
             {/* Conversation Messages Container */}
-            <div className="flex-1 overflow-y-auto px-3.5 py-3 sm:px-4 sm:py-3.5 space-y-3 text-xs">
+            <div className="flex-1 overflow-y-auto px-3.5 py-3 sm:px-4 sm:py-3.5 space-y-3 text-xs no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
               {messages.length === 0 ? (
                 /* Welcome Greeting State */
                 <div className="flex flex-col items-center justify-center text-center py-4 px-1">
@@ -525,7 +525,7 @@ export default function QDeltaAIChatbot() {
                   rows={1}
                   placeholder="Ask QDelta AI a quick question..."
                   disabled={isLoading}
-                  className="w-full resize-none bg-transparent py-2 pl-3 pr-9 text-xs sm:text-[12.5px] text-white placeholder-zinc-500 focus:outline-none max-h-20"
+                  className="w-full resize-none bg-transparent py-2 pl-3 pr-9 text-xs sm:text-[12.5px] text-white placeholder-zinc-500 focus:outline-none max-h-20 no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
                 />
 
                 <button
