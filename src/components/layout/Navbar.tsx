@@ -204,7 +204,7 @@ export default function Navbar() {
             style={{ height: `${H1}px` }}
           >
             {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center gap-5 sm:gap-6 lg:gap-7" aria-label="Main Navigation">
+            <nav className="hidden lg:flex items-center gap-5 sm:gap-6 lg:gap-7" aria-label="Main Navigation">
               {NAV_LINKS.map((link, idx) => {
                 const isHovered = hoveredIndex === idx;
                 return (
@@ -260,14 +260,14 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <Link
               href="#contact"
-              className="group relative hidden md:inline-flex items-center gap-2 h-9 sm:h-9.5 px-4.5 sm:px-5.5 rounded-[6px] border border-[#FAB406]/70 bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-[13px] tracking-tight shadow-[0_0_16px_rgba(250,180,6,0.25)] hover:shadow-[0_0_26px_rgba(250,180,6,0.48)] hover:bg-[#ffbe1a] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shrink-0"
+              className="group relative hidden lg:inline-flex items-center gap-2 h-9 sm:h-9.5 px-4.5 sm:px-5.5 rounded-[6px] border border-[#FAB406]/70 bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-[13px] tracking-tight shadow-[0_0_16px_rgba(250,180,6,0.25)] hover:shadow-[0_0_26px_rgba(250,180,6,0.48)] hover:bg-[#ffbe1a] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shrink-0"
             >
               <span>Let’s Talk</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] text-[#06070A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
 
             {/* Mobile Menu Trigger Button */}
-            <div className="flex md:hidden items-center">
+            <div className="flex lg:hidden items-center">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -295,7 +295,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -6, scale: 0.98 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="pointer-events-auto absolute top-full left-0 right-0 mt-2 rounded-[8px] bg-[#080A0E]/96 border border-white/12 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-2xl md:hidden z-50"
+              className="pointer-events-auto absolute top-full left-0 right-0 mt-2 rounded-[8px] bg-[#080A0E]/96 border border-white/12 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-2xl lg:hidden z-50"
             >
               <nav className="flex flex-col gap-1 pb-3 border-b border-white/[0.08]">
                 {NAV_LINKS.map((link) => (

@@ -232,7 +232,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-7 sm:-translate-y-12 md:-translate-y-16 lg:-translate-y-20">
         {/* Main Headline (Two Distinct Lines with Floating Diagonal Annotation Capsules) */}
         <h1
-          className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14] transition-transform duration-500 ease-out will-change-transform"
+          className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14] transition-transform duration-500 ease-out will-change-transform"
           style={{
             transform: `translate3d(${mousePos.x * 2.5}px, ${mousePos.y * 1.5}px, 0)`,
           }}
@@ -267,7 +267,7 @@ export default function Hero() {
                       }
                     : { duration: 0.5, delay: 0.55 },
                 }}
-                className="pointer-events-none select-none z-20 absolute -top-8 sm:-top-9 md:-top-10 -left-2 min-[440px]:-left-5 sm:-left-10 md:-left-14 flex items-center gap-2 scale-[0.78] min-[420px]:scale-[0.88] sm:scale-100 origin-bottom-left"
+                className="pointer-events-none select-none z-20 absolute -top-8 sm:-top-9 md:-top-10 -left-2 min-[440px]:-left-5 sm:-left-10 md:-left-14 flex items-center gap-2 scale-[0.75] min-[420px]:scale-[0.85] sm:scale-[0.9] lg:scale-100 origin-bottom-left"
               >
                 {/* Round Pill Capsule with White Borders & Transparent Black Background */}
                 <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
@@ -366,7 +366,7 @@ export default function Hero() {
                       }
                     : { duration: 0.5, delay: 0.72 },
                 }}
-                className="pointer-events-none select-none z-20 absolute left-full ml-1.5 sm:ml-2.5 md:ml-3.5 bottom-0.5 sm:bottom-1 md:bottom-1.5 flex items-center gap-1.5 sm:gap-2 flex-row-reverse scale-[0.72] min-[440px]:scale-[0.82] sm:scale-100 origin-left"
+                className="pointer-events-none select-none z-20 absolute left-full ml-1.5 sm:ml-2.5 md:ml-3.5 bottom-0.5 sm:bottom-1 md:bottom-1.5 flex items-center gap-1.5 sm:gap-2 flex-row-reverse scale-[0.72] min-[440px]:scale-[0.82] sm:scale-[0.9] lg:scale-100 origin-left"
               >
                 {/* Round Pill Capsule with White Borders & Transparent Black Background */}
                 <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
