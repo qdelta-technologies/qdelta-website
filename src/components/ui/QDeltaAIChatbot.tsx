@@ -248,9 +248,9 @@ export default function QDeltaAIChatbot() {
   return (
     <>
       {/* ======================================================= */}
-      {/* FLOATING TRIGGER BUTTON (BOTTOM-LEFT DOCK)              */}
+      {/* FLOATING TRIGGER BUTTON (STACKED DIRECTLY ABOVE WHATSAPP)*/}
       {/* ======================================================= */}
-      <div className="fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-50">
+      <div className="fixed bottom-[74px] right-5 sm:bottom-[84px] sm:right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Close QDelta AI Assistant" : "Open QDelta AI Assistant"}
@@ -298,7 +298,7 @@ export default function QDeltaAIChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-17 left-4 sm:bottom-19 sm:left-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/95 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl flex flex-col overflow-hidden text-white font-sans selection:bg-[#F5B800] selection:text-black"
+            className="fixed bottom-[128px] right-4 sm:bottom-[142px] sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[64vh] sm:max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/95 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl flex flex-col overflow-hidden text-white font-sans selection:bg-[#F5B800] selection:text-black"
           >
             {/* Top Amber Horizon Accent Line */}
             <div className="absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent pointer-events-none" />
