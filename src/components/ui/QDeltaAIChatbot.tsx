@@ -317,16 +317,10 @@ export default function QDeltaAIChatbot() {
                   />
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-semibold text-xs sm:text-[13px] tracking-tight text-white">
-                      QDelta AI
-                    </span>
-                    <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.2 text-[9px] font-mono text-emerald-400">
-                      <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" />
-                      Live
-                    </span>
-                  </div>
-                  <p className="text-[10px] text-zinc-400 font-mono tracking-tight leading-none">
+                  <span className="font-semibold text-xs sm:text-[13px] tracking-tight text-white block">
+                    QDelta AI
+                  </span>
+                  <p className="text-[10px] text-zinc-400 font-mono tracking-tight leading-none mt-0.5">
                     Brand Intelligence
                   </p>
                 </div>
