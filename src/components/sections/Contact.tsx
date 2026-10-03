@@ -7,6 +7,7 @@ import { ArrowUpRight, Check } from "lucide-react";
 import SaffronButton from "@/components/ui/SaffronButton";
 
 import OpenBoxServicePills from "@/components/ui/OpenBoxServicePills";
+import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 const SERVICES = [
   "Landing Page",
@@ -51,6 +52,9 @@ export default function Contact() {
       id="contact"
       className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#F5B800] selection:text-[#06070A]"
     >
+      {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
+      <SectionAtmosphere variant="center" />
+
       <div className="relative z-10 mx-auto w-full max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ======================================================= */}
         {/* ART-DIRECTED SPLIT SHOWCASE CONTAINER                   */}
@@ -58,19 +62,17 @@ export default function Contact() {
         <div className="relative w-full rounded-xl sm:rounded-2xl md:rounded-[20px] overflow-hidden border border-white/[0.08] shadow-[0_24px_80px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           {/* ===================================================== */}
-          {/* LEFT SIDE: SOFT REFINED GOLD BRAND PANEL (45%)        */}
+          {/* LEFT SIDE: VIBRANT BRAND GOLD PANEL (45%)             */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-5 bg-gradient-to-br from-[#F3C742] via-[#E7B72A] to-[#D9A51A] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px]">
-            {/* Tactile Fine Film Grain / Noise Texture Overlay */}
+          <div className="relative lg:col-span-5 bg-[#FAB406] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+            {/* Subtle Texture Grain Over Clean Golden Background */}
             <div
-              className="pointer-events-none absolute inset-0 opacity-[0.09] mix-blend-multiply"
+              className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+                backgroundSize: "8px 8px",
               }}
             />
-
-            {/* Soft Ambient Inner Vignette */}
-            <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_20%_20%] from-white/20 via-transparent to-black/10" />
 
             {/* Top Eyebrow — Editorial Style in Dark Charcoal */}
             <div className="relative z-10">
@@ -109,7 +111,7 @@ export default function Contact() {
                   {/* Left Avatar */}
                   <div className="w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-full overflow-hidden ring-1 ring-white/25 shrink-0 bg-zinc-800">
                     <Image
-                      src="/team/md-qais-portrait.jpg"
+                      src="/team/qais-founder-latest.png"
                       alt="QDelta Team"
                       width={32}
                       height={32}
@@ -153,9 +155,12 @@ export default function Contact() {
           {/* ===================================================== */}
           {/* RIGHT SIDE: TRANSPARENT-BLACK GRAPHITE FORM (55%)     */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-7 bg-[#0B0E12]/95 backdrop-blur-md p-7 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center">
-            {/* Subtle Horizon Glow Line */}
-            <div className="absolute top-0 inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/20 to-transparent pointer-events-none" />
+          <div className="relative lg:col-span-7 bg-[#0B0E12]/92 backdrop-blur-xl p-7 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
+            {/* Crisp Golden Top Accent Hairline */}
+            <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent pointer-events-none" />
+
+            {/* Ambient Warm Golden Backlight */}
+            <div className="pointer-events-none absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#F5B800]/[0.035] blur-[100px]" />
 
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -185,7 +190,7 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="mt-7 rounded-full bg-[#F5B800] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#D9A51A] hover:scale-105 cursor-pointer shadow-md"
+                    className="mt-7 rounded-full bg-[#FAB406] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#ffbe1a] hover:scale-105 cursor-pointer shadow-md"
                   >
                     Send Another Inquiry
                   </button>

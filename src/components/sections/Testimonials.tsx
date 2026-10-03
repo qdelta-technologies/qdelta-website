@@ -4,6 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { Star } from "lucide-react";
 
+import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+
 interface TestimonialItem {
   id: string;
   quote: string;
@@ -93,28 +95,28 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative z-20 w-full bg-[#F5F1E8] text-zinc-950 selection:bg-[#06070A] selection:text-[#F5B800] py-14 sm:py-18 md:py-20 overflow-hidden border-y border-black/[0.08]"
+      className="relative z-20 w-full bg-[#06070A] text-white selection:bg-[#F5B800] selection:text-[#06070A] py-16 sm:py-20 md:py-24 overflow-hidden"
     >
-      {/* Subtle Warm Highlight Depth */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[55rem] h-[25rem] rounded-full bg-[#F5B800]/[0.05] blur-[120px]" />
+      {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
+      <SectionAtmosphere variant="center" />
 
       {/* ================= SECTION HEADER ================= */}
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center mb-10 sm:mb-12">
         {/* Editorial Section Identifier */}
         <div className="flex items-center gap-3 mb-3 select-none justify-center">
-          <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-600 font-bold">
+          <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-400 font-semibold">
             05 / Testimonials
           </span>
-          <div className="w-10 sm:w-12 h-[1px] bg-black/25" />
+          <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
         </div>
 
         {/* Main Heading */}
-        <h2 className="font-excon font-bold text-3xl sm:text-4xl md:text-[44px] text-zinc-950 tracking-tight leading-[1.12]">
+        <h2 className="font-excon font-bold text-3xl sm:text-4xl md:text-[44px] text-white tracking-tight leading-[1.12]">
           Inspiring Client Experiences
         </h2>
 
         {/* Supporting Line */}
-        <p className="mt-2.5 text-sm sm:text-base font-epilogue text-zinc-600 font-medium leading-relaxed max-w-lg mx-auto">
+        <p className="mt-2.5 text-sm sm:text-base font-epilogue text-zinc-400 font-normal leading-relaxed max-w-lg mx-auto">
           Trusted by businesses that wanted more than just a website.
         </p>
       </div>
@@ -136,8 +138,11 @@ export default function Testimonials() {
               {MARQUEE_ITEMS.map((t, idx) => (
                 <div
                   key={`${t.id}-${idx}`}
-                  className="w-[260px] sm:w-[290px] md:w-[310px] h-[270px] sm:h-[280px] md:h-[290px] shrink-0 rounded-xl sm:rounded-[18px] bg-white border border-black/[0.07] p-5 sm:p-6 flex flex-col justify-between shadow-[0_4px_16px_rgba(0,0,0,0.04)] select-none transition-shadow hover:shadow-[0_10px_28px_rgba(0,0,0,0.08)]"
+                  className="relative overflow-hidden w-[260px] sm:w-[290px] md:w-[310px] h-[270px] sm:h-[280px] md:h-[290px] shrink-0 rounded-xl sm:rounded-[18px] bg-[#0B0E12]/85 border border-white/[0.08] hover:border-[#F5B800]/30 p-5 sm:p-6 flex flex-col justify-between shadow-[0_12px_32px_rgba(0,0,0,0.65)] backdrop-blur-xl select-none transition-all duration-300"
                 >
+                  {/* Crisp Golden Top Accent Hairline */}
+                  <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent" />
+
                   {/* Top: Warm Gold Quote Mark + Testimonial Copy */}
                   <div>
                     <div className="mb-2.5 select-none flex items-center">
@@ -151,14 +156,14 @@ export default function Testimonials() {
                     </div>
 
                     {/* Quote Text */}
-                    <p className="font-epilogue text-xs sm:text-[13px] text-zinc-800 leading-relaxed font-normal">
+                    <p className="font-epilogue text-xs sm:text-[13px] text-zinc-300 leading-relaxed font-normal">
                       {t.quote}
                     </p>
                   </div>
 
                   {/* Bottom: Avatar + Name + Role */}
-                  <div className="pt-3.5 mt-3 border-t border-black/[0.08] flex items-center gap-3">
-                    <div className="relative w-8 h-8 rounded-full overflow-hidden border border-black/10 shrink-0">
+                  <div className="pt-3.5 mt-3 border-t border-white/[0.08] flex items-center gap-3">
+                    <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/15 shrink-0">
                       <Image
                         src={t.avatar}
                         alt={t.name}
@@ -168,10 +173,10 @@ export default function Testimonials() {
                       />
                     </div>
                     <div className="flex flex-col min-w-0">
-                      <span className="font-epilogue font-bold text-xs sm:text-[13px] text-zinc-950 truncate">
+                      <span className="font-epilogue font-bold text-xs sm:text-[13px] text-white truncate">
                         {t.name}
                       </span>
-                      <span className="font-epilogue text-[11px] text-zinc-500 font-medium truncate">
+                      <span className="font-epilogue text-[11px] text-zinc-400 font-medium truncate">
                         {t.role}
                       </span>
                     </div>
@@ -181,8 +186,11 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* ---------------- 2. HIGHLIGHT RATING CARD (ANCHORED ON LEFT - DEEP OBSIDIAN CONTRAST) ---------------- */}
-          <div className="absolute left-0 top-2 bottom-2 z-20 w-[230px] sm:w-[290px] md:w-[310px] rounded-xl sm:rounded-[18px] bg-[#0B0E12] border border-black/35 p-5 sm:p-6 flex flex-col justify-between shadow-[14px_0_32px_-6px_rgba(0,0,0,0.25),0_8px_20px_-4px_rgba(0,0,0,0.15)] select-none">
+          {/* ---------------- 2. HIGHLIGHT RATING CARD (ANCHORED ON LEFT - OBSIDIAN GLASS) ---------------- */}
+          <div className="relative overflow-hidden absolute left-0 top-2 bottom-2 z-20 w-[230px] sm:w-[290px] md:w-[310px] rounded-xl sm:rounded-[18px] bg-[#0B0E12]/95 border border-[#F5B800]/30 p-5 sm:p-6 flex flex-col justify-between shadow-[14px_0_36px_-6px_rgba(0,0,0,0.8),0_8px_24px_-4px_rgba(245,184,0,0.06)] backdrop-blur-xl select-none">
+            {/* Crisp Golden Top Accent Hairline */}
+            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/60 to-transparent" />
+
             {/* Top Stars & Rating */}
             <div>
               <div className="flex items-center gap-1">
@@ -235,8 +243,8 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* ---------------- 3. SUBTLE, NARROW RIGHT EDGE FEATHER FADE ---------------- */}
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-12 z-20 bg-gradient-to-l from-[#F5F1E8] to-transparent" />
+          {/* ---------------- 3. SUBTLE RIGHT EDGE FEATHER FADE ---------------- */}
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-12 z-20 bg-gradient-to-l from-[#06070A] to-transparent" />
         </div>
       </div>
     </section>

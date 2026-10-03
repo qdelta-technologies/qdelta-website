@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, X, ExternalLink, Plus } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence, type MotionValue } from "motion/react";
+import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface ProjectItem {
   id: string;
@@ -436,11 +437,8 @@ export default function Portfolio() {
       ref={containerRef}
       className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
     >
-      {/* Subtle Warm Gold Technical Grid */}
-      <div className="pointer-events-none absolute inset-0 bg-qdelta-grid [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-
-      {/* Ambient Horizon Atmosphere */}
-      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[36rem] w-[60rem] rounded-full bg-[#F5B800]/[0.03] blur-[150px]" />
+      {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
+      <SectionAtmosphere variant="right" />
 
       {/* ======================================================= */}
       {/* SECTION INTRO HEADER                                    */}
@@ -504,7 +502,7 @@ export default function Portfolio() {
 
         <Link
           href="#contact"
-          className="group/cta inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#F5B800] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(245,184,0,0.25)] hover:bg-[#D9A51A] hover:shadow-[0_0_24px_rgba(245,184,0,0.35)] transition-all duration-300 hover:scale-[1.02]"
+          className="group/cta inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(250,180,6,0.25)] hover:bg-[#ffbe1a] hover:shadow-[0_0_24px_rgba(250,180,6,0.35)] transition-all duration-300 hover:scale-[1.02]"
         >
           <span>Initiate a Project</span>
           <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
@@ -608,7 +606,7 @@ export default function Portfolio() {
                   <Link
                     href="#contact"
                     onClick={() => setActiveModalProject(null)}
-                    className="px-7 py-3 rounded-full bg-[#F5B800] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#D9A51A] transition-colors shadow-md"
+                    className="px-7 py-3 rounded-full bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#ffbe1a] transition-colors shadow-md"
                   >
                     Discuss a Similar Build
                   </Link>

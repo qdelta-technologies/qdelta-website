@@ -129,9 +129,19 @@ export default function WhyQDelta() {
     >
       {/* ================= BACKGROUND ATMOSPHERE (HERO CONTINUATION) ================= */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        {/* Direct Horizon Edge Radial Ambient Gradient (smooth top beam) */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-64 select-none transition-transform duration-700 ease-out will-change-transform"
+          style={{
+            background:
+              "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(245, 184, 0, 0.08) 0%, rgba(245, 184, 0, 0.02) 55%, transparent 85%)",
+            transform: `translate3d(${-mousePos.x * 8}px, 0, 0)`,
+          }}
+        />
+
         {/* Ambient Top & Center Warm Golden Halos with Micro-Parallax */}
         <div
-          className="absolute -top-32 left-1/2 h-[30rem] w-[52rem] rounded-full bg-radial from-[#F5B800]/[0.06] via-[#F5B800]/[0.012] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
+          className="absolute -top-32 left-1/2 h-[30rem] w-[52rem] rounded-full bg-radial from-[#F5B800]/[0.065] via-[#F5B800]/[0.015] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
           style={{
             transform: `translate3d(calc(-50% + ${-mousePos.x * 12}px), ${-mousePos.y * 8}px, 0)`,
           }}
@@ -273,7 +283,7 @@ export default function WhyQDelta() {
 
           {/* BENTO CARD 2 — Warm Refined Gold Contrast Card (5 Columns, Both Offerings Stacked) */}
           <div
-            className="lg:col-span-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#F3C742] via-[#E7B72A] to-[#D9A51A] text-[#06070A] p-6 sm:p-8 md:p-9 flex flex-col justify-between relative overflow-hidden shadow-[0_16px_45px_rgba(245,184,0,0.18)] border border-black/10 group transition-transform duration-300 hover:scale-[1.006]"
+            className="lg:col-span-5 rounded-xl sm:rounded-2xl bg-[#FAB406] text-[#06070A] p-6 sm:p-8 md:p-9 flex flex-col justify-between relative overflow-hidden shadow-[0_16px_45px_rgba(250,180,6,0.22)] border border-black/10 group transition-transform duration-300 hover:scale-[1.006]"
             style={{
               transform: `translate3d(${-mousePos.x * 2.2}px, ${
                 mousePos.y * 1.6
@@ -282,7 +292,7 @@ export default function WhyQDelta() {
           >
             {/* Subtle Texture Grain Over Golden Background */}
             <div
-              className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
+              className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay"
               style={{
                 backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
                 backgroundSize: "8px 8px",
@@ -295,7 +305,7 @@ export default function WhyQDelta() {
                 <span className="font-epilogue text-xs font-bold uppercase tracking-widest text-black/75">
                   CORE OFFERINGS
                 </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black group-hover:bg-[#06070A] group-hover:text-[#F5B800] transition-colors duration-200">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black group-hover:bg-[#06070A] group-hover:text-[#FAB406] transition-colors duration-200">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </div>

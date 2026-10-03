@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Sparkles, RefreshCw } from "lucide-react";
 import { motion } from "motion/react";
+import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 function LinkedInIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
   return (
@@ -45,7 +46,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     name: "Qais",
     role: "Founder",
     subtitle: "Brand & Creative Direction",
-    image: "/team/md-qais-portrait.jpg",
+    image: "/team/qais-founder-latest.png",
     bio: "Directing creative vision, brand positioning, and conversion architecture. Dedicated to building digital experiences that command attention and drive measurable business outcomes.",
     focus: ["Creative Direction", "Brand Strategy", "Conversion Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
@@ -58,7 +59,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     name: "Sai Prabath",
     role: "Co-Founder",
     subtitle: "Engineering & Performance",
-    image: "/team/sai-prabhath-custom.jpg",
+    image: "/team/sai-prabhath.png",
     bio: "Leading full-stack engineering, performance systems, and modern web architectures. Focused on delivering ultra-fast, scalable, and responsive digital flagships.",
     focus: ["Full-Stack Engineering", "Performance Optimization", "Technical Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
@@ -94,13 +95,10 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white border-t border-white/[0.06] selection:bg-[#F5B800] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#F5B800] selection:text-[#06070A]"
     >
-      {/* Subtle Warm Gold Technical Grid */}
-      <div className="pointer-events-none absolute inset-0 bg-qdelta-grid [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-
-      {/* Ambient Lighting & Horizon Lines */}
-      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[36rem] w-[60rem] rounded-full bg-gradient-to-b from-[#F5B800]/[0.025] via-sky-500/[0.015] to-transparent blur-[150px]" />
+      {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
+      <SectionAtmosphere variant="left" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* ======================================================= */}
@@ -165,7 +163,10 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] bg-[#0B0E12]/85 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                    {/* Crisp Golden Top Accent Hairline */}
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent z-20" />
+
                     {/* Top Ambient Glow behind portrait */}
                     <div
                       className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full blur-3xl opacity-25"
@@ -225,7 +226,10 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD BACK FACE                                      */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.09] bg-[#090C13]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.85)] p-5 sm:p-6 flex flex-col justify-between">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.09] hover:border-[#F5B800]/30 bg-[#090C13]/92 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.85)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
+                    {/* Crisp Golden Top Accent Hairline */}
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent z-20" />
+
                     {/* Subtle Dark Tech Grid Overlay */}
                     <div className="absolute inset-0 bg-[radial-gradient(rgba(245,184,0,0.06)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-30" />
 

@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface ServiceItem {
   number: string;
@@ -104,7 +105,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           scale,
           transformOrigin: "top center",
         }}
-        className="group relative w-full rounded-xl sm:rounded-[18px] border border-black/15 bg-gradient-to-br from-[#F3C742] via-[#E7B72A] to-[#D9A51A] text-[#06070A] p-6 sm:p-8 md:p-9 shadow-[0_-12px_32px_rgba(0,0,0,0.35),0_20px_40px_rgba(0,0,0,0.5)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[320px] sm:min-h-[360px] md:min-h-[380px]"
+        className="group relative w-full rounded-xl sm:rounded-[18px] border border-black/15 bg-[#FAB406] text-[#06070A] p-6 sm:p-8 md:p-9 shadow-[0_-12px_32px_rgba(0,0,0,0.35),0_20px_40px_rgba(0,0,0,0.5),0_0_36px_rgba(250,180,6,0.12)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[320px] sm:min-h-[360px] md:min-h-[380px]"
       >
         {/* Subtle Ambient Top Hairline Accent */}
         <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1.5px] bg-gradient-to-r from-transparent via-black/20 to-transparent pointer-events-none" />
@@ -126,8 +127,8 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
             className="group/link inline-flex items-center gap-2 text-xs font-epilogue uppercase tracking-wider text-[#06070A] font-bold transition-colors"
           >
             <span className="hidden sm:inline">Inquire Service</span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#06070A] text-[#F5B800] group-hover/link:bg-zinc-900 group-hover/link:scale-105 flex items-center justify-center transition-all shadow-sm">
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#F5B800] transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#06070A] text-[#FAB406] group-hover/link:bg-zinc-900 group-hover/link:scale-105 flex items-center justify-center transition-all shadow-sm">
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#FAB406] transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
             </div>
           </Link>
         </div>
@@ -192,11 +193,8 @@ export default function Services() {
       ref={containerRef}
       className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
     >
-      {/* Subtle Warm Gold Technical Grid */}
-      <div className="pointer-events-none absolute inset-0 bg-qdelta-grid [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
-
-      {/* Background Lighting Elements */}
-      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[36rem] w-[60rem] rounded-full bg-[#F5B800]/[0.03] blur-[150px]" />
+      {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
+      <SectionAtmosphere variant="left" />
 
       {/* ================= SECTION INTRO ================= */}
       <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10">

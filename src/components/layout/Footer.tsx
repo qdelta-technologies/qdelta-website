@@ -269,10 +269,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ================= LARGE BRAND ELEMENT: OVERSIZED QDelta ================= */}
-        <div className="relative w-full overflow-hidden pt-5 sm:pt-6 -mb-2 pointer-events-none select-none">
-          <div className="font-excon font-bold tracking-tighter text-[15vw] lg:text-[13vw] leading-[0.78] text-center text-[#F5B800]/[0.035] uppercase">
-            QDelta
+        {/* ================= LARGE BRAND ELEMENT: OVERSIZED QDELTA ================= */}
+        <div className="relative w-full pt-4 sm:pt-6 pb-6 sm:pb-10 pointer-events-none select-none flex items-center justify-center">
+          <div className="font-excon font-bold tracking-tight text-[15vw] lg:text-[13vw] leading-[1.05] text-center text-[#FAB406]/[0.05] uppercase">
+            QDELTA
           </div>
         </div>
 

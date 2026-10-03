@@ -160,14 +160,14 @@ export default function Hero() {
               <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
             </linearGradient>
 
-            {/* Balanced, continuous solar atmospheric underglow fill across the entire globe body */}
+            {/* Balanced solar atmospheric underglow with gentle warm amber depth (subtle, non-overpowering) */}
             <linearGradient id="horizon-underglow" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#FFF4C2" stopOpacity="0.92" />
-              <stop offset="8%" stopColor="#FAB406" stopOpacity="0.88" />
-              <stop offset="24%" stopColor="#F59E0B" stopOpacity="0.84" />
-              <stop offset="50%" stopColor="#D97706" stopOpacity="0.80" />
-              <stop offset="75%" stopColor="#B45309" stopOpacity="0.75" />
-              <stop offset="100%" stopColor="#8C3300" stopOpacity="0.70" />
+              <stop offset="10%" stopColor="#FAB406" stopOpacity="0.88" />
+              <stop offset="28%" stopColor="#F59E0B" stopOpacity="0.84" />
+              <stop offset="55%" stopColor="#D97706" stopOpacity="0.80" />
+              <stop offset="80%" stopColor="#C46000" stopOpacity="0.76" />
+              <stop offset="100%" stopColor="#A84800" stopOpacity="0.72" />
             </linearGradient>
 
             {/* Strict clipping mask ensuring the rotating surface lines never leak outside the arc */}
@@ -211,7 +211,7 @@ export default function Hero() {
       </div>
 
       {/* ================= HERO MAIN CONTENT (CENTERED & BALANCED) ================= */}
-      <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-4 sm:-translate-y-8 md:-translate-y-12">
+      <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-7 sm:-translate-y-12 md:-translate-y-16 lg:-translate-y-20">
         {/* Main Headline (Two Distinct Lines with Floating Diagonal Annotation Capsules) */}
         <h1
           className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-3xl min-[400px]:text-[34px] sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14] transition-transform duration-500 ease-out will-change-transform"
@@ -281,12 +281,12 @@ export default function Hero() {
 
               {/* Line 1 Content */}
               <span>
-                {Math.min(displayedCount, LINE_1.length) <= 15 ? (
+                {Math.min(displayedCount, LINE_1.length) <= 12 ? (
                   <span className="text-[#F5F5F7]">{LINE_1.slice(0, Math.min(displayedCount, LINE_1.length))}</span>
                 ) : (
                   <>
-                    <span className="text-[#F5F5F7]">{LINE_1.slice(0, 15)}</span>
-                    <span className="text-[#FAB406]">{LINE_1.slice(15, Math.min(displayedCount, LINE_1.length))}</span>
+                    <span className="text-[#F5F5F7]">{LINE_1.slice(0, 12)}</span>
+                    <span className="text-[#FAB406]">{LINE_1.slice(12, Math.min(displayedCount, LINE_1.length))}</span>
                   </>
                 )}
                 {displayedCount <= LINE_1.length && !isTypingDone && (
@@ -304,12 +304,12 @@ export default function Hero() {
               {/* Line 2 Content */}
               <span>
                 {Math.max(0, displayedCount - LINE_1.length) > 0 ? (
-                  Math.max(0, displayedCount - LINE_1.length) <= 5 ? (
+                  Math.max(0, displayedCount - LINE_1.length) <= 9 ? (
                     <span className="text-[#FAB406]">{LINE_2.slice(0, Math.max(0, displayedCount - LINE_1.length))}</span>
                   ) : (
                     <>
-                      <span className="text-[#FAB406]">{LINE_2.slice(0, 5)}</span>
-                      <span className="text-[#F5F5F7]">{LINE_2.slice(5, Math.max(0, displayedCount - LINE_1.length))}</span>
+                      <span className="text-[#FAB406]">{LINE_2.slice(0, 9)}</span>
+                      <span className="text-[#F5F5F7]">{LINE_2.slice(9, Math.max(0, displayedCount - LINE_1.length))}</span>
                     </>
                   )
                 ) : (

@@ -30,7 +30,9 @@ export default function Home() {
         <Process />
         <SectionDivider />
         <Portfolio />
+        <SectionDivider />
         <Testimonials />
+        <SectionDivider />
         <Team />
         <SectionDivider />
         <Contact />

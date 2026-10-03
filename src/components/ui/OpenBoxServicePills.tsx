@@ -1,134 +1,175 @@
 "use client";
 
-import React from "react";
-import { motion, useReducedMotion } from "motion/react";
+import React, { useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 
 interface ServicePillConfig {
   id: string;
   label: string;
   className: string;
   initialRotate: number;
-  yDrift: number[];
-  rotDrift: number[];
-  duration: number;
+  startX: number;
+  startY: number;
   delay: number;
+  floatDuration: number;
   scale?: number;
   isDark?: boolean;
-  isOccluded?: boolean;
 }
 
+// 8 Core capability pills unpacked from the QDelta Service Kit
 const PILLS: ServicePillConfig[] = [
-  // 1. Foreground Accent Pill (Closer to camera, matte black with white text)
-  {
-    id: "ui-ux",
-    label: "UI/UX",
-    className: "top-[6%] right-[4%] sm:right-[6%] z-30",
-    initialRotate: 11,
-    yDrift: [-4, 5, -4],
-    rotDrift: [11, 13, 11],
-    duration: 4.1,
-    delay: 0,
-    scale: 1.05,
-    isDark: true,
-  },
-  // 2. High Left (Floating outward)
-  {
-    id: "web-design",
-    label: "Web Design",
-    className: "top-[10%] left-[2%] sm:left-[4%] z-30",
-    initialRotate: -10,
-    yDrift: [-5, 4, -5],
-    rotDrift: [-10, -12, -10],
-    duration: 4.6,
-    delay: 0.3,
-    scale: 1.0,
-  },
-  // 3. Mid Left (Floating outward)
-  {
-    id: "landing-pages",
-    label: "Landing Pages",
-    className: "top-[32%] left-[0%] sm:-left-[1%] z-30",
-    initialRotate: -15,
-    yDrift: [4, -5, 4],
-    rotDrift: [-15, -13, -15],
-    duration: 4.3,
-    delay: 0.7,
-    scale: 0.98,
-  },
-  // 4. Sitting on the container's left folded edge
-  {
-    id: "development",
-    label: "Development",
-    className: "top-[54%] left-[6%] sm:left-[8%] z-30",
-    initialRotate: -18,
-    yDrift: [-2, 3, -2],
-    rotDrift: [-18, -17, -18],
-    duration: 5.2,
-    delay: 0.5,
-    scale: 0.94,
-  },
-  // 5. Emerging from cavity / hover above mouth
+  // 1. Motion - Rises upward from the center cavity mouth first
   {
     id: "motion",
     label: "Motion",
-    className: "top-[23%] left-[47%] -translate-x-1/2 z-30",
-    initialRotate: 5,
-    yDrift: [-4, 4, -4],
-    rotDrift: [5, 3, 5],
-    duration: 3.8,
-    delay: 0.2,
-    scale: 0.97,
+    className: "top-[14%] left-1/2 -translate-x-1/2 z-30",
+    initialRotate: 3,
+    startX: 0,
+    startY: 75,
+    delay: 0.85,
+    floatDuration: 4.4,
+    scale: 0.98,
   },
-  // 6. Mid Right (Floating outward)
+  // 2. Web Design - Unpacks outward toward upper-left
+  {
+    id: "web-design",
+    label: "Web Design",
+    className: "top-[6%] left-[2%] sm:left-[4%] z-30",
+    initialRotate: -8,
+    startX: 145,
+    startY: 85,
+    delay: 0.97,
+    floatDuration: 4.8,
+    scale: 1.0,
+  },
+  // 3. UI/UX - Hero matte-black credential, unpacks toward upper-right
+  {
+    id: "ui-ux",
+    label: "UI/UX",
+    className: "top-[6%] right-[2%] sm:right-[4%] z-30",
+    initialRotate: 10,
+    startX: -145,
+    startY: 85,
+    delay: 1.09,
+    floatDuration: 4.2,
+    scale: 1.05,
+    isDark: true,
+  },
+  // 4. Strategy - Emerges from inside the cavity, settles near the aperture
+  {
+    id: "strategy",
+    label: "Strategy",
+    className: "top-[34%] left-1/2 -translate-x-1/2 z-30",
+    initialRotate: -3,
+    startX: 0,
+    startY: 30,
+    delay: 1.21,
+    floatDuration: 5.1,
+    scale: 0.96,
+  },
+  // 5. Landing Pages - Unpacks laterally toward mid-left
+  {
+    id: "landing-pages",
+    label: "Landing Pages",
+    className: "top-[28%] left-[0%] sm:left-[1%] z-30",
+    initialRotate: -14,
+    startX: 160,
+    startY: 35,
+    delay: 1.33,
+    floatDuration: 4.6,
+    scale: 0.98,
+  },
+  // 6. Branding - Unpacks laterally toward mid-right
   {
     id: "branding",
     label: "Branding",
-    className: "top-[33%] right-[1%] sm:right-[0%] z-30",
-    initialRotate: 15,
-    yDrift: [5, -4, 5],
-    rotDrift: [15, 17, 15],
-    duration: 4.5,
-    delay: 0.8,
-    scale: 1.0,
+    className: "top-[28%] right-[0%] sm:right-[1%] z-30",
+    initialRotate: 14,
+    startX: -160,
+    startY: 35,
+    delay: 1.45,
+    floatDuration: 4.7,
+    scale: 0.98,
   },
-  // 7. Further back / smaller (Lower right)
+  // 7. Development - Unpacks downward-left alongside the lower flank
+  {
+    id: "development",
+    label: "Development",
+    className: "top-[53%] left-[3%] sm:left-[5%] z-30",
+    initialRotate: -17,
+    startX: 140,
+    startY: -30,
+    delay: 1.57,
+    floatDuration: 5.3,
+    scale: 0.95,
+  },
+  // 8. E-commerce - Unpacks downward-right alongside the lower flank
   {
     id: "e-commerce",
     label: "E-commerce",
-    className: "top-[56%] right-[5%] sm:right-[7%] z-30",
-    initialRotate: 21,
-    yDrift: [-3, 4, -3],
-    rotDrift: [21, 19, 21],
-    duration: 4.9,
-    delay: 1.1,
-    scale: 0.89,
+    className: "top-[53%] right-[3%] sm:right-[5%] z-30",
+    initialRotate: 18,
+    startX: -140,
+    startY: -30,
+    delay: 1.69,
+    floatDuration: 4.9,
+    scale: 0.92,
   },
 ];
 
-// 8. Tucked deeply inside the box cavity (partially occluded by the front panel)
-const CAVITY_PILL: ServicePillConfig = {
-  id: "strategy",
-  label: "Strategy",
-  className: "top-[43%] left-[37%] -translate-x-1/2 z-10",
-  initialRotate: -5,
-  yDrift: [-2, 3, -2],
-  rotDrift: [-5, -3, -5],
-  duration: 4.8,
-  delay: 0.4,
-  scale: 0.9,
-  isOccluded: true,
+// SVG Morphing Paths for the Box Flaps (Isometric packaging geometry)
+const PATHS = {
+  // Left flap: hinged along (104,136) to (142,102)
+  leftFlapClosed: "M 104 136 L 210 136 L 210 102 L 142 102 Z",
+  leftFlapOpen: "M 104 136 L 32 112 L 70 76 L 142 102 Z",
+  leftRidgeClosed: "M 210 102 L 210 136",
+  leftRidgeOpen: "M 70 76 L 32 112",
+
+  // Right flap: hinged along (316,136) to (278,102)
+  rightFlapClosed: "M 316 136 L 210 136 L 210 102 L 278 102 Z",
+  rightFlapOpen: "M 316 136 L 388 112 L 350 76 L 278 102 Z",
+  rightRidgeClosed: "M 210 102 L 210 136",
+  rightRidgeOpen: "M 350 76 L 388 112",
+
+  // Back flap: hinged along (142,102) to (278,102)
+  backFlapClosed: "M 142 102 L 154 102 L 266 102 L 278 102 Z",
+  backFlapOpen: "M 142 102 L 154 62 L 266 62 L 278 102 Z",
+  backRidgeClosed: "M 154 102 L 266 102",
+  backRidgeOpen: "M 154 62 L 266 62",
 };
 
 export default function OpenBoxServicePills() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+
+  // Trigger when meaningfully visible in viewport (plays once cleanly, does not restart on tiny scrolls)
+  const isInView = useInView(containerRef, {
+    amount: 0.3,
+    once: false,
+    margin: "-60px 0px -60px 0px",
+  });
+
+  const [isManuallyReplaying, setIsManuallyReplaying] = useState(false);
+
+  // When replaying manually, momentarily close then reopen
+  const isOpen = (isInView || shouldReduceMotion) && !isManuallyReplaying;
+
+  const handleReplay = () => {
+    if (isManuallyReplaying) return;
+    setIsManuallyReplaying(true);
+    setTimeout(() => {
+      setIsManuallyReplaying(false);
+    }, 150);
+  };
 
   return (
     <div
+      ref={containerRef}
       className="relative w-full max-w-[390px] sm:max-w-[430px] aspect-[16/11] mx-auto select-none mt-3 mb-1 pointer-events-auto"
       aria-label="QDelta Service Kit with emerging creative service credentials"
     >
       {/* ======================================================== */}
-      {/* LAYER 1: STUDIO BASE SHADOWS & INTERIOR CAVITY (BEHIND)  */}
+      {/* 3D SCULPTURAL BOX ILLUSTRATION                           */}
       {/* ======================================================== */}
       <svg
         viewBox="0 0 420 260"
@@ -200,122 +241,7 @@ export default function OpenBoxServicePills() {
             <stop offset="0%" stopColor="#3E434E" />
             <stop offset="100%" stopColor="#2F333C" />
           </linearGradient>
-        </defs>
 
-        {/* 1. Studio Shadows on Yellow Ground */}
-        {/* Soft Penumbra Ambient Spread */}
-        <ellipse
-          cx="212"
-          cy="224"
-          rx="140"
-          ry="20"
-          fill="url(#studio-diffuse-shadow)"
-        />
-        {/* Tight Umbra Contact Shadow */}
-        <ellipse
-          cx="210"
-          cy="216"
-          rx="102"
-          ry="10"
-          fill="url(#studio-contact-shadow)"
-        />
-
-        {/* 2. Sculptural Back Fold Facet */}
-        <polygon
-          points="142,102 154,62 266,62 278,102"
-          fill="url(#back-panel-matte)"
-          stroke="rgba(0,0,0,0.06)"
-          strokeWidth="0.8"
-        />
-        {/* Back panel top rim catchlight */}
-        <line
-          x1="154"
-          y1="62"
-          x2="266"
-          y2="62"
-          stroke="#FFFFFF"
-          strokeWidth="1.2"
-        />
-
-        {/* 3. Deep Interior Cavity */}
-        {/* Back Wall */}
-        <polygon
-          points="142,102 278,102 262,150 158,150"
-          fill="url(#cavity-depth-matte)"
-        />
-        {/* Tray Floor */}
-        <polygon
-          points="158,150 262,150 288,178 132,178"
-          fill="url(#tray-floor-matte)"
-        />
-        {/* Left Inner Chamfer */}
-        <polygon
-          points="104,136 142,102 158,150 132,178"
-          fill="#444955"
-        />
-        {/* Right Inner Chamfer */}
-        <polygon
-          points="316,136 278,102 262,150 288,178"
-          fill="#666C7A"
-        />
-      </svg>
-
-      {/* ======================================================== */}
-      {/* LAYER 2: TUCKED INTERIOR PILL (OCCLUDED BY FRONT PANEL)  */}
-      {/* ======================================================== */}
-      <motion.div
-        key={CAVITY_PILL.id}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={
-          shouldReduceMotion
-            ? { opacity: 1, scale: CAVITY_PILL.scale, rotate: CAVITY_PILL.initialRotate }
-            : {
-                opacity: 1,
-                scale: CAVITY_PILL.scale,
-                y: CAVITY_PILL.yDrift,
-                rotate: CAVITY_PILL.rotDrift,
-              }
-        }
-        transition={
-          shouldReduceMotion
-            ? { duration: 0.4 }
-            : {
-                opacity: { duration: 0.6, delay: CAVITY_PILL.delay },
-                y: {
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  duration: CAVITY_PILL.duration,
-                  ease: "easeInOut",
-                  delay: CAVITY_PILL.delay,
-                },
-                rotate: {
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  duration: CAVITY_PILL.duration * 1.15,
-                  ease: "easeInOut",
-                  delay: CAVITY_PILL.delay,
-                },
-              }
-        }
-        className={`absolute ${CAVITY_PILL.className}`}
-      >
-        <div className="relative inline-flex items-center justify-center rounded-full bg-[#EAECEF] px-3 py-1 shadow-[0_2px_8px_rgba(0,0,0,0.18)] border border-black/10 select-none">
-          <span className="font-epilogue font-bold text-[10.5px] sm:text-[11px] text-zinc-700 tracking-tight whitespace-nowrap">
-            {CAVITY_PILL.label}
-          </span>
-        </div>
-      </motion.div>
-
-      {/* ======================================================== */}
-      {/* LAYER 3: SCULPTURAL PRODUCT BODY & SIDE WINGS (FRONT)    */}
-      {/* ======================================================== */}
-      <svg
-        viewBox="0 0 420 260"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full pointer-events-none z-20"
-      >
-        <defs>
           {/* Left Wing Sculptural Facet */}
           <linearGradient
             id="left-wing-matte"
@@ -360,43 +286,179 @@ export default function OpenBoxServicePills() {
           </linearGradient>
         </defs>
 
-        {/* Left Folded Sculptural Wing */}
-        <polygon
-          points="104,136 32,112 70,76 142,102"
+        {/* 1. Studio Shadows on Ground (Always grounded and solid) */}
+        <ellipse
+          cx="212"
+          cy="224"
+          rx="140"
+          ry="20"
+          fill="url(#studio-diffuse-shadow)"
+        />
+        <ellipse
+          cx="210"
+          cy="216"
+          rx="102"
+          ry="10"
+          fill="url(#studio-contact-shadow)"
+        />
+
+        {/* 2. Sculptural Back Fold Facet (Rises smoothly when opening) */}
+        <motion.path
+          animate={
+            shouldReduceMotion
+              ? { d: PATHS.backFlapOpen, opacity: 1 }
+              : {
+                  d: isOpen ? PATHS.backFlapOpen : PATHS.backFlapClosed,
+                  opacity: isOpen ? 1 : 0,
+                }
+          }
+          transition={{
+            duration: 0.72,
+            delay: isOpen ? 0.22 : 0,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          fill="url(#back-panel-matte)"
+          stroke="rgba(0,0,0,0.06)"
+          strokeWidth="0.8"
+        />
+        {/* Back panel top rim catchlight */}
+        <motion.path
+          animate={
+            shouldReduceMotion
+              ? { d: PATHS.backRidgeOpen, opacity: 1 }
+              : {
+                  d: isOpen ? PATHS.backRidgeOpen : PATHS.backRidgeClosed,
+                  opacity: isOpen ? 1 : 0,
+                }
+          }
+          transition={{
+            duration: 0.72,
+            delay: isOpen ? 0.22 : 0,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          stroke="#FFFFFF"
+          strokeWidth="1.2"
+        />
+
+        {/* 3. Deep Interior Cavity (Concealed when closed, revealed when flaps open) */}
+        <motion.g
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          transition={{
+            duration: 0.55,
+            delay: isOpen ? 0.28 : 0,
+            ease: "easeOut",
+          }}
+        >
+          {/* Back Wall */}
+          <polygon
+            points="142,102 278,102 262,150 158,150"
+            fill="url(#cavity-depth-matte)"
+          />
+          {/* Tray Floor */}
+          <polygon
+            points="158,150 262,150 288,178 132,178"
+            fill="url(#tray-floor-matte)"
+          />
+          {/* Left Inner Chamfer */}
+          <polygon
+            points="104,136 142,102 158,150 132,178"
+            fill="#444955"
+          />
+          {/* Right Inner Chamfer */}
+          <polygon
+            points="316,136 278,102 262,150 288,178"
+            fill="#666C7A"
+          />
+        </motion.g>
+
+        {/* 4. Left Flap (Folds from closed center seam outward to open left wing) */}
+        <motion.path
+          animate={
+            shouldReduceMotion
+              ? { d: PATHS.leftFlapOpen }
+              : {
+                  d: isOpen ? PATHS.leftFlapOpen : PATHS.leftFlapClosed,
+                }
+          }
+          transition={{
+            duration: 0.75,
+            delay: isOpen ? 0.2 : 0,
+            ease: [0.16, 1, 0.3, 1],
+          }}
           fill="url(#left-wing-matte)"
           stroke="rgba(0,0,0,0.07)"
           strokeWidth="0.8"
         />
-        {/* Left Wing Top Ridge Highlight */}
-        <line
-          x1="70"
-          y1="76"
-          x2="32"
-          y2="112"
+        {/* Left Flap Top Ridge Highlight Line */}
+        <motion.path
+          animate={
+            shouldReduceMotion
+              ? { d: PATHS.leftRidgeOpen }
+              : {
+                  d: isOpen ? PATHS.leftRidgeOpen : PATHS.leftRidgeClosed,
+                }
+          }
+          transition={{
+            duration: 0.75,
+            delay: isOpen ? 0.2 : 0,
+            ease: [0.16, 1, 0.3, 1],
+          }}
           stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
 
-        {/* Right Folded Sculptural Wing */}
-        <polygon
-          points="316,136 278,102 350,76 388,112"
+        {/* 5. Right Flap (Folds from closed center seam outward to open right wing) */}
+        <motion.path
+          animate={
+            shouldReduceMotion
+              ? { d: PATHS.rightFlapOpen }
+              : {
+                  d: isOpen ? PATHS.rightFlapOpen : PATHS.rightFlapClosed,
+                }
+          }
+          transition={{
+            duration: 0.75,
+            delay: isOpen ? 0.2 : 0,
+            ease: [0.16, 1, 0.3, 1],
+          }}
           fill="url(#right-wing-matte)"
           stroke="rgba(0,0,0,0.07)"
           strokeWidth="0.8"
         />
-        {/* Right Wing Top Ridge Highlight */}
-        <line
-          x1="350"
-          y1="76"
-          x2="388"
-          y2="112"
+        {/* Right Flap Top Ridge Highlight Line */}
+        <motion.path
+          animate={
+            shouldReduceMotion
+              ? { d: PATHS.rightRidgeOpen }
+              : {
+                  d: isOpen ? PATHS.rightRidgeOpen : PATHS.rightRidgeClosed,
+                }
+          }
+          transition={{
+            duration: 0.75,
+            delay: isOpen ? 0.2 : 0,
+            ease: [0.16, 1, 0.3, 1],
+          }}
           stroke="#FFFFFF"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
 
-        {/* Front Sculptural Body Facet */}
+        {/* 6. Closed Center Seam Hairline (Visible only when closed) */}
+        <motion.line
+          x1="210"
+          y1="102"
+          x2="210"
+          y2="136"
+          stroke="rgba(0,0,0,0.2)"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          animate={{ opacity: isOpen ? 0 : 0.85 }}
+          transition={{ duration: 0.3, delay: isOpen ? 0.12 : 0 }}
+        />
+
+        {/* 7. Front Sculptural Body Facet (The anchored base of the box) */}
         <polygon
           points="104,136 316,136 294,214 126,214"
           fill="url(#front-body-matte)"
@@ -454,72 +516,142 @@ export default function OpenBoxServicePills() {
         </g>
       </svg>
 
+      {/* Invisible Click Target on the Box Body for manual replay */}
+      <button
+        type="button"
+        onClick={handleReplay}
+        className="absolute left-[24%] top-[48%] w-[52%] h-[38%] z-25 cursor-pointer opacity-0"
+        title="Click to replay capabilities reveal"
+        aria-label="Replay QDelta Capabilities Reveal Animation"
+      />
+
       {/* ======================================================== */}
-      {/* LAYER 4: FLOATING & EDGE SERVICE PILLS (ART-DIRECTED)    */}
+      {/* 8 EMERGING SERVICE CAPABILITY PILLS                      */}
       {/* ======================================================== */}
       {PILLS.map((pill) => {
         return (
           <motion.div
             key={pill.id}
-            initial={{ opacity: 0, scale: (pill.scale || 1) * 0.88, y: 12 }}
+            initial={false}
             animate={
               shouldReduceMotion
                 ? {
                     opacity: 1,
                     scale: pill.scale || 1,
+                    x: 0,
+                    y: 0,
+                    rotate: pill.initialRotate,
+                  }
+                : isOpen
+                ? {
+                    opacity: 1,
+                    scale: pill.scale || 1,
+                    x: 0,
                     y: 0,
                     rotate: pill.initialRotate,
                   }
                 : {
-                    opacity: 1,
-                    scale: pill.scale || 1,
-                    y: pill.yDrift,
-                    rotate: pill.rotDrift,
+                    opacity: 0,
+                    scale: 0.22,
+                    x: pill.startX,
+                    y: pill.startY,
+                    rotate: 0,
                   }
             }
             transition={
               shouldReduceMotion
-                ? { duration: 0.4, delay: pill.delay * 0.4 }
+                ? { duration: 0.2 }
                 : {
-                    opacity: { duration: 0.5, delay: pill.delay * 0.25 },
-                    scale: { duration: 0.5, delay: pill.delay * 0.25 },
+                    opacity: {
+                      duration: 0.45,
+                      delay: isOpen ? pill.delay : 0,
+                      ease: "easeOut",
+                    },
+                    scale: {
+                      duration: 0.75,
+                      delay: isOpen ? pill.delay : 0,
+                      ease: [0.16, 1, 0.3, 1],
+                    },
+                    x: {
+                      duration: 0.8,
+                      delay: isOpen ? pill.delay : 0,
+                      ease: [0.16, 1, 0.3, 1],
+                    },
                     y: {
-                      repeat: Infinity,
-                      repeatType: "mirror",
-                      duration: pill.duration,
-                      ease: "easeInOut",
-                      delay: pill.delay,
+                      duration: 0.8,
+                      delay: isOpen ? pill.delay : 0,
+                      ease: [0.16, 1, 0.3, 1],
                     },
                     rotate: {
-                      repeat: Infinity,
-                      repeatType: "mirror",
-                      duration: pill.duration * 1.15,
-                      ease: "easeInOut",
-                      delay: pill.delay,
+                      duration: 0.8,
+                      delay: isOpen ? pill.delay : 0,
+                      ease: [0.16, 1, 0.3, 1],
                     },
                   }
             }
-            whileHover={{
-              scale: (pill.scale || 1) * 1.07,
-              transition: { type: "spring", stiffness: 400, damping: 25 },
-            }}
-            className={`absolute ${pill.className}`}
+            className={`absolute ${pill.className} ${
+              !isOpen && !shouldReduceMotion ? "pointer-events-none" : "pointer-events-auto"
+            }`}
           >
-            {pill.isDark ? (
-              // Matte Black Contrast Pill (UI/UX Hero Credential)
-              <div className="group relative inline-flex items-center justify-center rounded-full bg-[#0D0E12] px-3.5 sm:px-4 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.28),0_2px_6px_rgba(0,0,0,0.14)] border border-white/20 cursor-default transition-all duration-200 hover:border-white/40 hover:shadow-[0_12px_30px_rgba(0,0,0,0.38)]">
-                <span className="font-epilogue font-bold text-xs sm:text-[13px] text-white tracking-tight whitespace-nowrap">
-                  {pill.label}
-                </span>
-              </div>
-            ) : (
-              // Editorial Solid Matte Off-White Pill
-              <div className="group relative inline-flex items-center justify-center rounded-full bg-[#FAFAFC] px-3 sm:px-3.5 py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]">
-                <span className="font-epilogue font-bold text-[11px] sm:text-xs text-zinc-900 tracking-tight whitespace-nowrap">
-                  {pill.label}
-                </span>
-              </div>
-            )}
+            {/* INNER MOTION WRAPPER: Restrained idle floating (2-3px max) once settled */}
+            <motion.div
+              animate={
+                isOpen && !shouldReduceMotion
+                  ? {
+                      y: [-2, 2.5, -2],
+                      rotate: [-0.6, 0.6, -0.6],
+                    }
+                  : { y: 0, rotate: 0 }
+              }
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : {
+                      y: {
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                        duration: pill.floatDuration,
+                        ease: "easeInOut",
+                        delay: pill.delay + 0.8,
+                      },
+                      rotate: {
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                        duration: pill.floatDuration * 1.15,
+                        ease: "easeInOut",
+                        delay: pill.delay + 0.8,
+                      },
+                    }
+              }
+            >
+              {pill.isDark ? (
+                // UI/UX Matte Black Hero Contrast Pill
+                <motion.div
+                  whileHover={{
+                    scale: 1.06,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  className="group relative inline-flex items-center justify-center rounded-full bg-[#0D0E12] px-3.5 sm:px-4 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.28),0_2px_6px_rgba(0,0,0,0.14)] border border-white/20 cursor-default transition-all duration-200 hover:border-white/40 hover:shadow-[0_12px_30px_rgba(0,0,0,0.38)]"
+                >
+                  <span className="font-epilogue font-bold text-xs sm:text-[13px] text-white tracking-tight whitespace-nowrap">
+                    {pill.label}
+                  </span>
+                </motion.div>
+              ) : (
+                // Editorial Solid Matte Off-White Pill
+                <motion.div
+                  whileHover={{
+                    scale: 1.06,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  className="group relative inline-flex items-center justify-center rounded-full bg-[#FAFAFC] px-3 sm:px-3.5 py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
+                >
+                  <span className="font-epilogue font-bold text-[11px] sm:text-xs text-zinc-900 tracking-tight whitespace-nowrap">
+                    {pill.label}
+                  </span>
+                </motion.div>
+              )}
+            </motion.div>
           </motion.div>
         );
       })}

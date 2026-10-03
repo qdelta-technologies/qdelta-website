@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * 3D Faceted Ninja Star (Shuriken) Cursor
- * - Sharp, aerodynamic 4-pointed Ninja Hattori style shuriken with 8 beveled 3D facets.
+ * - Sharp, aerodynamic 4-pointed golden shuriken with 8 beveled 3D facets.
  * - Directional metallic lighting (top-left lit, bottom-right shadowed).
- * - Zero blurry ambient fog to keep typography 100% readable and distraction-free.
  * - Central ninja hub rivet with 1:1 instantaneous zero-lag hardware tracking.
+ * - Complete cursor: none suppression so no default OS arrow leaks through on desktop.
  */
 export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
@@ -20,10 +20,10 @@ export default function CustomCursor() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Detect purely touch-only screen without mouse
-    const isTouchOnly =
-      window.matchMedia("(pointer: coarse)").matches &&
-      !window.matchMedia("(pointer: fine)").matches;
+    // Only skip custom cursor on pure touch-only devices with no mouse capability
+    const isTouchOnly = window.matchMedia(
+      "(hover: none) and (pointer: coarse)"
+    ).matches;
 
     if (isTouchOnly) return;
 
@@ -93,17 +93,17 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Hide native OS cursor on desktop */}
+      {/* Complete suppression of native OS cursor across all elements and pseudo-elements */}
       <style dynamic-cursor="true">{`
-        * {
+        html, body, *, *::before, *::after {
           cursor: none !important;
         }
       `}</style>
 
-      {/* 3D Faceted Ninja Star Cursor (Centered at 0, 0) */}
+      {/* 3D Faceted Ninja Star Cursor (Centered at clientX, clientY) */}
       <div
         ref={cursorRef}
-        className="pointer-events-none fixed top-0 left-0 z-[999999] select-none will-change-transform transition-opacity duration-150"
+        className="pointer-events-none fixed top-0 left-0 z-[9999999] select-none will-change-transform transition-opacity duration-150"
         style={{ opacity: 0 }}
         aria-hidden="true"
       >
@@ -113,11 +113,11 @@ export default function CustomCursor() {
               isClicking
                 ? "scale-85"
                 : isHovering
-                ? "scale-120 rotate-45 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_0_6px_rgba(250,180,6,0.6)]"
+                ? "scale-125 rotate-45 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] drop-shadow-[0_0_8px_rgba(250,180,6,0.75)]"
                 : "scale-100 drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] drop-shadow-[0_0_4px_rgba(250,180,6,0.35)]"
             }`}
           >
-            {/* Crisp 3D Faceted 4-Pointed Ninja Shuriken (No Blurry Halo) */}
+            {/* Crisp 3D Faceted 4-Pointed Golden Ninja Star */}
             <svg
               width="24"
               height="24"

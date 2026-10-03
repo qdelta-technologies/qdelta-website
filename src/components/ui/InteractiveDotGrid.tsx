@@ -7,6 +7,8 @@ interface GridDot {
   baseY: number;
   x: number;
   y: number;
+  vx: number;
+  vy: number;
   glow: number;
 }
 
@@ -52,9 +54,18 @@ export default function InteractiveDotGrid() {
     const mouse = { x: -9999, y: -9999, active: false };
     const parallax = { currentX: 0, currentY: 0, targetX: 0, targetY: 0 };
 
-    const SPACING = 30; // Clean even grid spacing
-    const REPEL_RADIUS = 130; // Radius of mouse interaction for grid
-    const REPEL_STRENGTH = 32; // Distance dots spread outward
+    // Denser 22px spacing — ~85% more dots, fully covers edges
+    const SPACING = 22;
+    // Tight repel radius — cursor void stays small and close
+    const REPEL_RADIUS = 50;
+    // Gentle push so dots barely part
+    const REPEL_STRENGTH = 9;
+    // Slow spring return — shape lingers ~3-4s after cursor moves away
+    const SPRING_K = 0.038;
+    // High damping keeps velocity oscillation smooth, not bouncy
+    const DAMPING = 0.82;
+    // Slow glow decay — golden linger effect
+    const GLOW_DECAY = 0.972;
 
     // Helper: Exact parabolic curve formula for horizon line
     const getSunLineY = (xPos: number, W: number, H: number): number => {
@@ -76,17 +87,19 @@ export default function InteractiveDotGrid() {
       const W = rect.width;
       const H = rect.height;
 
-      // 1. LAYER 2 (MID): Structured Grid Matrix
+      // ── LAYER 2 (MID): Dense Grid — full edge-to-edge coverage ──
+      // Two extra bleed columns left/right so no empty band at screen edges
       gridDots = [];
-      const cols = Math.floor(W / SPACING);
-      const rows = Math.floor(H / SPACING);
-      const startX = (W - cols * SPACING) / 2 + SPACING / 2;
-      const startY = SPACING / 2;
+      const extraCols = 2;
+      const colsNeeded = Math.ceil(W / SPACING) + extraCols * 2;
+      const halfCols = (colsNeeded - 1) / 2;
 
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const x = startX + c * SPACING;
-          const y = startY + r * SPACING;
+      for (let c = 0; c < colsNeeded; c++) {
+        const x = W / 2 + (c - halfCols) * SPACING;
+        const rowsNeeded = Math.ceil(H / SPACING) + 1;
+
+        for (let r = 0; r < rowsNeeded; r++) {
+          const y = SPACING / 2 + r * SPACING;
           const sunLineY = getSunLineY(x, W, H);
 
           if (y < sunLineY - 7) {
@@ -95,13 +108,15 @@ export default function InteractiveDotGrid() {
               baseY: y,
               x: x,
               y: y,
+              vx: 0,
+              vy: 0,
               glow: 0,
             });
           }
         }
       }
 
-      // 2. LAYER 1 (FAR): Sparse, tiny celestial background dust (subtle, slow drift)
+      // ── LAYER 1 (FAR): Sparse celestial dust ──
       farParticles = [];
       const farCount = Math.floor(Math.max(20, Math.min(45, (W * H) / 28000)));
       for (let i = 0; i < farCount; i++) {
@@ -114,43 +129,36 @@ export default function InteractiveDotGrid() {
           y,
           baseX: x,
           baseY: y,
-          radius: 0.65 + Math.random() * 0.35, // 0.65 - 1.0px
+          radius: 0.65 + Math.random() * 0.35,
           vx: (Math.random() - 0.5) * 0.08,
-          vy: -0.04 - Math.random() * 0.08, // Slow upward drift
-          opacity: 0.08 + Math.random() * 0.12, // Very low noise
+          vy: -0.04 - Math.random() * 0.08,
+          opacity: 0.08 + Math.random() * 0.12,
           phase: Math.random() * Math.PI * 2,
         });
       }
 
-      // 3. LAYER 3 (NEAR): Atmospheric floating golden motes emerging from the horizon line
+      // ── LAYER 3 (NEAR): Golden atmospheric motes ──
       nearMotes = [];
-      // Substantially increased count: 80 to 150 motes for a rich, celestial field
       const nearCount = Math.floor(Math.max(80, Math.min(150, W / 11)));
       for (let i = 0; i < nearCount; i++) {
         const x = Math.random() * W;
         const sunLineY = getSunLineY(x, W, H);
-        // Distribute initial positions smoothly across the height on load,
-        // with ongoing particles continuously emerging from the horizon line
         const y = 25 + Math.random() * (sunLineY - 35);
 
-        // Multi-depth tiers: small background sparks, medium motes, prominent foreground embers
         const tier = Math.random();
         let radius = 1.2;
         let baseOpacity = 0.35;
         let vy = -0.14;
 
         if (tier < 0.45) {
-          // Delicate ambient embers (far layer)
           radius = 0.75 + Math.random() * 0.4;
           baseOpacity = 0.22 + Math.random() * 0.25;
           vy = -0.09 - Math.random() * 0.12;
         } else if (tier < 0.82) {
-          // Mid-ground warm golden motes
           radius = 1.25 + Math.random() * 0.45;
           baseOpacity = 0.35 + Math.random() * 0.3;
           vy = -0.14 - Math.random() * 0.18;
         } else {
-          // Prominent luminous foreground embers
           radius = 1.75 + Math.random() * 0.65;
           baseOpacity = 0.5 + Math.random() * 0.35;
           vy = -0.18 - Math.random() * 0.22;
@@ -173,14 +181,13 @@ export default function InteractiveDotGrid() {
 
     initSystem();
 
-    // Mouse & Touch listeners
+    // ── Event listeners ──
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
       mouse.active = true;
 
-      // Parallax target (-1 to 1)
       const halfW = rect.width / 2;
       const halfH = rect.height / 2;
       parallax.targetX = (mouse.x - halfW) / halfW;
@@ -188,6 +195,7 @@ export default function InteractiveDotGrid() {
     };
 
     const handleMouseLeave = () => {
+      // Don't snap — let velocity spring slowly pull dots home
       mouse.active = false;
       mouse.x = -9999;
       mouse.y = -9999;
@@ -230,7 +238,6 @@ export default function InteractiveDotGrid() {
 
     let time = 0;
 
-    // Animation Loop (60fps Spring Physics & Multi-layer Parallax)
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       time += 1;
@@ -238,17 +245,14 @@ export default function InteractiveDotGrid() {
       const W = canvas.getBoundingClientRect().width || canvas.width;
       const H = canvas.getBoundingClientRect().height || canvas.height;
 
-      // Smooth parallax damping
       parallax.currentX += (parallax.targetX - parallax.currentX) * 0.04;
       parallax.currentY += (parallax.targetY - parallax.currentY) * 0.04;
 
       const isMobile = W < 640;
-      const repelRadius = isMobile ? 85 : REPEL_RADIUS;
-      const repelStrength = isMobile ? 20 : REPEL_STRENGTH;
+      const repelRadius = isMobile ? 35 : REPEL_RADIUS;
+      const repelStrength = isMobile ? 6 : REPEL_STRENGTH;
 
-      // ==========================================
-      // LAYER 1: FAR BACKGROUND (Lowest parallax, very subtle drift)
-      // ==========================================
+      // ── LAYER 1: FAR BACKGROUND ──
       const farShiftX = parallax.currentX * 5;
       const farShiftY = parallax.currentY * 3;
 
@@ -259,7 +263,6 @@ export default function InteractiveDotGrid() {
 
         const sunLineY = getSunLineY(p.baseX, W, H);
 
-        // Gentle wrap within boundaries
         if (p.baseY < 10) p.baseY = sunLineY - 14;
         if (p.baseY > sunLineY - 10) p.baseY = 12;
         if (p.baseX < 0) p.baseX = W;
@@ -268,7 +271,6 @@ export default function InteractiveDotGrid() {
         const renderX = p.baseX + farShiftX;
         const renderY = p.baseY + farShiftY;
 
-        // Subtle twinkling breathing
         const twinkle = Math.sin(time * 0.02 + p.phase) * 0.04;
         const currentOpacity = Math.max(0.04, p.opacity + twinkle);
 
@@ -278,93 +280,87 @@ export default function InteractiveDotGrid() {
         ctx.fill();
       }
 
-      // ==========================================
-      // LAYER 2: MID GRID (Geometric matrix with spring repel & medium parallax)
-      // ==========================================
-      const midShiftX = parallax.currentX * 12;
-      const midShiftY = parallax.currentY * 7;
+      // ── LAYER 2: MID GRID — velocity spring physics for slow return ──
+      // Drastically reduced parallax multipliers so the grid feels stable
+      const midShiftX = parallax.currentX * 6;
+      const midShiftY = parallax.currentY * 3;
 
       for (let i = 0; i < gridDots.length; i++) {
         const dot = gridDots[i];
 
-        let targetX = dot.baseX + midShiftX;
-        let targetY = dot.baseY + midShiftY;
+        const baseTargetX = dot.baseX + midShiftX;
+        const baseTargetY = dot.baseY + midShiftY;
 
         if (mouse.active) {
           const dx = dot.x - mouse.x;
           const dy = dot.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          // If within hover/touch radius, spread out radially
           if (dist < repelRadius && dist > 0) {
+            // Power curve: sharper void center, softer edges
             const factor = 1 - dist / repelRadius;
-            const push = factor * repelStrength;
+            const strength = Math.pow(factor, 1.5) * repelStrength;
             const angle = Math.atan2(dy, dx);
 
-            targetX = dot.baseX + midShiftX + Math.cos(angle) * push;
-            targetY = dot.baseY + midShiftY + Math.sin(angle) * push;
-
-            // Keep repelled dots from crossing into or below the sun line outline
-            const limitY = getSunLineY(targetX, W, H) - 7;
-            if (targetY > limitY) {
-              targetY = limitY;
-            }
+            // Apply velocity impulse outward
+            dot.vx += Math.cos(angle) * strength * 0.55;
+            dot.vy += Math.sin(angle) * strength * 0.55;
 
             dot.glow = Math.max(dot.glow, factor);
-          } else {
-            dot.glow *= 0.94;
           }
-        } else {
-          dot.glow *= 0.94;
         }
 
-        // Smooth spring physics return to base position
-        dot.x += (targetX - dot.x) * 0.16;
-        dot.y += (targetY - dot.y) * 0.16;
+        // Slow spring — pull toward base with low coefficient
+        dot.vx += (baseTargetX - dot.x) * SPRING_K;
+        dot.vy += (baseTargetY - dot.y) * SPRING_K;
 
-        // Hard boundary protection against sun line
+        // Dampen velocity each frame
+        dot.vx *= DAMPING;
+        dot.vy *= DAMPING;
+
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+
+        // Slow glow decay — golden shape stays visible for seconds
+        dot.glow *= GLOW_DECAY;
+
+        // Hard boundary: never cross horizon line
         const hardLimitY = getSunLineY(dot.x, W, H) - 6;
         if (dot.y > hardLimitY) {
           dot.y = hardLimitY;
+          dot.vy *= -0.25;
         }
 
-        // Render grid dot
+        // Render dot — crisp, sharp, subtle and transparent at rest
         ctx.beginPath();
-        const radius = dot.glow > 0.1 ? 1.35 : 1.05;
+        const radius = dot.glow > 0.08 ? 1.5 : 1.1;
         ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
 
-        if (dot.glow > 0.05) {
-          // Subtle golden warmth when spreading out under mouse
-          ctx.fillStyle = `rgba(245, 184, 0, ${0.16 + dot.glow * 0.45})`;
+        if (dot.glow > 0.04) {
+          ctx.fillStyle = `rgba(250, 180, 6, ${0.55 + dot.glow * 0.45})`;
         } else {
-          // Clean subtle white/silver dot at rest
-          ctx.fillStyle = "rgba(255, 255, 255, 0.14)";
+          ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
         }
         ctx.fill();
       }
 
-      // ==========================================
-      // LAYER 3: NEAR FOREGROUND MOTES (Emerging from horizon line with organic drift)
-      // ==========================================
+      // ── LAYER 3: NEAR FOREGROUND MOTES ──
       const nearShiftX = parallax.currentX * 24;
       const nearShiftY = parallax.currentY * 14;
 
       for (let i = 0; i < nearMotes.length; i++) {
         const m = nearMotes[i];
 
-        // Horizontal sinusoidal sway
         const sway = Math.sin(time * m.swaySpeed + m.phase) * 0.38;
         m.baseX += m.vx + sway;
-        m.baseY += m.vy; // Constant gentle upward float
+        m.baseY += m.vy;
 
         const sunLineY = getSunLineY(m.baseX, W, H);
 
-        // Respawn logic: When particle floats off top or drifts below horizon
         if (m.baseY < 15 || m.baseY > sunLineY + 2) {
-          // Emerge directly from the golden horizon arc!
           m.baseX = Math.random() * W;
           const newSunY = getSunLineY(m.baseX, W, H);
-          m.baseY = newSunY - (1 + Math.random() * 5); // Right at the glowing horizon edge
+          m.baseY = newSunY - (1 + Math.random() * 5);
           m.vx = (Math.random() - 0.5) * 0.18;
 
           const tier = Math.random();
@@ -383,24 +379,17 @@ export default function InteractiveDotGrid() {
           }
         }
 
-        // Horizontal canvas wrapping
         if (m.baseX < 0) m.baseX = W;
         if (m.baseX > W) m.baseX = 0;
 
         let renderX = m.baseX + nearShiftX;
         let renderY = m.baseY + nearShiftY;
 
-        // Emerge & Dissolve Opacity Fade:
-        // 1. Fade in smoothly as particle emerges from the horizon curve (over 45px of upward travel)
         const distFromHorizon = Math.max(0, sunLineY - m.baseY);
         const fadeIn = Math.min(1, distFromHorizon / 45);
-
-        // 2. Fade out gently as it reaches the top of the hero
         const fadeOut = Math.max(0, Math.min(1, (m.baseY - 15) / 55));
-
         const lifeFade = fadeIn * fadeOut;
 
-        // Subtle soft repulsion if cursor passes near floating motes
         if (mouse.active) {
           const dx = renderX - mouse.x;
           const dy = renderY - mouse.y;
@@ -413,21 +402,14 @@ export default function InteractiveDotGrid() {
           }
         }
 
-        // Breathing golden pulse
         const pulse = Math.sin(time * 0.025 + m.phase) * 0.08;
         const moteOpacity = Math.max(0, (m.baseOpacity + pulse) * lifeFade);
 
         if (moteOpacity > 0.01) {
-          // Soft golden halo glow around foreground mote
-          ctx.beginPath();
-          ctx.arc(renderX, renderY, m.radius + 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(245, 184, 0, ${moteOpacity * 0.32})`;
-          ctx.fill();
-
-          // Core radiant warm mote
+          // Sharp crisp core — no blurry halo ring
           ctx.beginPath();
           ctx.arc(renderX, renderY, m.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 225, 130, ${moteOpacity * 0.95})`;
+          ctx.fillStyle = `rgba(255, 210, 80, ${moteOpacity})`;
           ctx.fill();
         }
       }

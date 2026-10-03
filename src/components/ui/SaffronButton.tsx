@@ -52,7 +52,7 @@ export default function SaffronButton({
   // Variant classes
   const variantClasses = {
     primary:
-      "bg-[#F5B800] text-[#06070A] border-[1.5px] border-[#F5B800] hover:bg-[#D9A51A] hover:border-[#D9A51A] shadow-[0_0_18px_rgba(245,184,0,0.25)] hover:shadow-[0_0_26px_rgba(245,184,0,0.38)]",
+      "bg-[#FAB406] text-[#06070A] border-[1.5px] border-[#FAB406] hover:bg-[#ffbe1a] hover:border-[#ffd043] shadow-[0_0_18px_rgba(250,180,6,0.25)] hover:shadow-[0_0_26px_rgba(250,180,6,0.38)]",
     outline:
       "bg-white/[0.04] text-white border-[1.5px] border-white/15 hover:border-[#F5B800] hover:text-[#F5B800] hover:bg-[#F5B800]/[0.06] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
     white:
