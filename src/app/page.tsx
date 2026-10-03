@@ -11,6 +11,7 @@ import Team from "@/components/sections/Team";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import QDeltaAIChatbot from "@/components/ui/QDeltaAIChatbot";
 import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <QDeltaAIChatbot />
       <WhatsAppButton />
     </div>
   );
