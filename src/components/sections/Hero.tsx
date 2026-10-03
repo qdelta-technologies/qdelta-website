@@ -101,7 +101,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full h-[calc(100dvh-44px)] sm:h-[calc(100dvh-48px)] min-h-[560px] overflow-hidden bg-[#06070A] text-white flex flex-col justify-between pt-16 sm:pt-20"
+      className="relative w-full h-[clamp(620px,86svh,760px)] md:h-[calc(100dvh-48px)] min-h-[620px] overflow-hidden bg-[#06070A] text-white flex flex-col justify-between pt-12 md:pt-16 lg:pt-20"
     >
       {/* ================= BACKGROUND EFFECTS ================= */}
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -134,7 +134,7 @@ export default function Hero() {
           viewBox="0 0 1000 1000"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="hero-horizon absolute left-1/2 -translate-x-1/2 origin-bottom w-[220vw] h-[60vh] bottom-0 md:w-[160vw] md:h-[65vh] lg:w-full lg:h-full lg:bottom-0"
+          className="hero-horizon absolute left-1/2 -translate-x-1/2 origin-bottom w-[280vw] h-[140vw] bottom-[-37vw] sm:w-[220vw] sm:h-[110vw] sm:bottom-[-25vw] md:w-[160vw] md:h-[65vh] md:bottom-0 lg:w-full lg:h-full lg:bottom-0"
           preserveAspectRatio="none"
         >
           <defs>
@@ -212,7 +212,7 @@ export default function Hero() {
       </div>
 
       {/* ================= HERO MAIN CONTENT (CENTERED & BALANCED) ================= */}
-      <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-7 sm:-translate-y-12 md:-translate-y-16 lg:-translate-y-20">
+      <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-8 sm:-translate-y-10 md:-translate-y-16 lg:-translate-y-20">
         {/* Main Headline (Two Distinct Lines with Floating Diagonal Annotation Capsules) */}
         <h1
           className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14] transition-transform duration-500 ease-out will-change-transform"
