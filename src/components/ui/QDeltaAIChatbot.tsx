@@ -7,8 +7,6 @@ import {
   Sparkles,
   X,
   Send,
-  Copy,
-  Check,
   User,
   ArrowUpRight,
   ShieldAlert,
@@ -53,7 +51,6 @@ export default function QDeltaAIChatbot() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [rateLimitRemaining, setRateLimitRemaining] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -112,12 +109,6 @@ export default function QDeltaAIChatbot() {
       textareaRef.current.style.height = "auto";
       textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 100)}px`;
     }
-  };
-
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
   };
 
   const handleClear = () => {
@@ -459,9 +450,18 @@ export default function QDeltaAIChatbot() {
                       }`}
                     >
                       {msg.isRateLimited && (
-                        <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-mono text-[#F5B800]">
-                          <ShieldAlert className="w-3 h-3" />
-                          <span>Session Limit Reached (10/hr)</span>
+                        <div className="mb-1.5 flex items-center justify-between text-[10px] font-mono text-[#F5B800]">
+                          <div className="flex items-center gap-1.5">
+                            <ShieldAlert className="w-3 h-3 shrink-0" />
+                            <span>Session Limit (10/hr)</span>
+                          </div>
+                          <Link
+                            href="#contact"
+                            onClick={() => setIsOpen(false)}
+                            className="text-[#F5B800] hover:underline flex items-center gap-1 ml-2 font-semibold"
+                          >
+                            Book Call <ArrowUpRight className="w-2.5 h-2.5" />
+                          </Link>
                         </div>
                       )}
 
@@ -469,47 +469,6 @@ export default function QDeltaAIChatbot() {
                       <div className="space-y-0.5">
                         {renderFormattedText(msg.content, msg.role === "user")}
                       </div>
-
-                      {/* Action Bar for AI Responses */}
-                      {msg.role === "assistant" && (
-                        <div className="mt-1.5 pt-1 border-t border-white/[0.06] flex items-center justify-between text-[9px] font-mono text-zinc-500">
-                          <div className="flex items-center gap-1.5">
-                            {msg.elapsedMs && <span>⚡ {msg.elapsedMs}ms</span>}
-                            <span>•</span>
-                            <span className="text-zinc-500">QDelta AI</span>
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            {msg.isRateLimited && (
-                              <Link
-                                href="#contact"
-                                onClick={() => setIsOpen(false)}
-                                className="text-[#F5B800] hover:underline flex items-center gap-1"
-                              >
-                                Book Call <ArrowUpRight className="w-2.5 h-2.5" />
-                              </Link>
-                            )}
-
-                            <button
-                              onClick={() => handleCopy(msg.id, msg.content)}
-                              className="hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
-                              title="Copy response"
-                            >
-                              {copiedId === msg.id ? (
-                                <>
-                                  <Check className="w-2.5 h-2.5 text-emerald-400" />
-                                  <span className="text-emerald-400">Copied</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Copy className="w-2.5 h-2.5" />
-                                  <span>Copy</span>
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 ))
