@@ -18,7 +18,24 @@ export default function Hero() {
   const [displayedCount, setDisplayedCount] = useState(0);
   const [isTypingDone, setIsTypingDone] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [aspectRatio, setAspectRatio] = useState("none");
   const shouldReduceMotion = useReducedMotion();
+
+  // Responsive celestial globe scaling
+  useEffect(() => {
+    const handleResize = () => {
+      setAspectRatio(window.innerWidth < 768 ? "xMidYMax slice" : "none");
+    };
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize, { passive: true });
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, []);
 
   // Subtle Parallax depth for background and ambient lighting
   useEffect(() => {
@@ -128,13 +145,14 @@ export default function Hero() {
       </div>
 
       {/* ================= CELESTIAL HORIZON ARC ================= */}
-      <div className="pointer-events-none absolute bottom-0 inset-x-0 z-10 w-full h-[55vh] sm:h-[70vh] md:h-full overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-10 w-full h-full overflow-hidden">
         <svg
+          suppressHydrationWarning
           viewBox="0 0 1000 1000"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
-          preserveAspectRatio="none"
+          preserveAspectRatio={aspectRatio}
         >
           <defs>
             {/* Reduced, tight outer halo glow (clean space, no foggy blur) */}
