@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight, Sparkles, RefreshCw } from "lucide-react";
 import { motion } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
@@ -27,7 +26,6 @@ function LinkedInIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
 
 interface TeamMember {
   id: string;
-  number: string;
   name: string;
   role: string;
   subtitle: string;
@@ -42,39 +40,36 @@ interface TeamMember {
 const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "qais",
-    number: "01",
     name: "Qais",
     role: "Founder",
-    subtitle: "Brand & Creative Direction",
+    subtitle: "AI Generalist",
     image: "/team/qais-founder-latest.png",
-    bio: "Directing creative vision, brand positioning, and conversion architecture. Dedicated to building digital experiences that command attention and drive measurable business outcomes.",
-    focus: ["Creative Direction", "Brand Strategy", "Conversion Architecture"],
+    bio: "I work across AI, strategy, creative direction and business thinking — helping shape how QDelta approaches ideas, solves problems and builds digital experiences that create real value.",
+    focus: ["AI Strategy", "Creative Direction", "Business & Product Thinking"],
     linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
     accentColor: "#FAB406",
     glowColor: "rgba(250, 180, 6, 0.14)",
   },
   {
     id: "sai-prabath",
-    number: "02",
     name: "Sai Prabath",
     role: "Co-Founder",
-    subtitle: "Engineering & Performance",
+    subtitle: "Full-Stack Developer",
     image: "/team/sai-prabhath.png",
-    bio: "Leading full-stack engineering, performance systems, and modern web architectures. Focused on delivering ultra-fast, scalable, and responsive digital flagships.",
-    focus: ["Full-Stack Engineering", "Performance Optimization", "Technical Architecture"],
+    bio: "I build and manage the technical side of our projects, turning ideas and designs into fast, reliable and scalable websites and web applications.",
+    focus: ["Full-Stack Development", "Web Applications", "Performance & Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
     accentColor: "#FAB406",
     glowColor: "rgba(250, 180, 6, 0.14)",
   },
   {
     id: "fazeel",
-    number: "03",
     name: "Fazeel",
     role: "Co-Founder",
-    subtitle: "Systems & Client Delivery",
+    subtitle: "GenAI Developer & UX Designer",
     image: "/team/md-fazeel-portrait.jpg",
-    bio: "Overseeing system infrastructure, execution workflows, and client delivery standards. Ensuring every build achieves total operational reliability, security, and precision.",
-    focus: ["Systems Infrastructure", "Technical Operations", "Client Delivery"],
+    bio: "I work across generative AI and user experience, building smarter workflows and designing digital experiences that are clear, useful and easy to use.",
+    focus: ["GenAI Development", "UX Design", "AI Workflows"],
     linkedinUrl: "https://www.linkedin.com/in/md-fazeel-167816281/",
     accentColor: "#FAB406",
     glowColor: "rgba(250, 180, 6, 0.14)",
@@ -114,24 +109,20 @@ export default function Team() {
           {/* Editorial Section Identifier */}
           <div className="flex items-center gap-3 mb-4 select-none justify-center">
             <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
-              06 / Leadership
+              06 / TEAM
             </span>
             <div className="w-10 sm:w-12 h-[1px] bg-[#FAB406]/60" />
           </div>
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12] text-balance">
-            Meet the founders behind <span className="text-[#FAB406]">QDelta</span>
+            Meet the people behind <span className="text-[#FAB406]">QDelta</span>.
           </h2>
 
           {/* Supporting Text */}
-          <p className="mt-3.5 text-sm sm:text-base md:text-lg font-epilogue text-zinc-400 font-normal leading-relaxed text-balance max-w-xl">
-            Hands-on founders directing creative strategy, engineering and client delivery on every engagement.
+          <p className="mt-3.5 text-sm sm:text-base md:text-lg font-epilogue text-zinc-400 font-normal leading-relaxed text-balance max-w-2xl">
+            A small founding team bringing together AI, development and user experience to build better digital products and websites.
           </p>
-
-          <span className="mt-2.5 text-[11px] font-epilogue uppercase tracking-widest text-zinc-500 font-medium">
-            Hover or tap any card to view background & focus
-          </span>
         </motion.div>
 
         {/* ======================================================= */}
@@ -188,19 +179,11 @@ export default function Team() {
                     {/* Deep Cinematic Gradient Vignette */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#06070A] via-[#06070A]/60 via-45% to-transparent pointer-events-none" />
 
-                    {/* Top Status & Flip Indicator Badge */}
-                    <div className="absolute top-4 inset-x-4 flex items-center justify-between z-10">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B0E12]/80 backdrop-blur-md border border-white/10 text-[11px] font-epilogue uppercase tracking-widest text-zinc-300 font-semibold shadow-sm">
-                        <span
-                          className="w-1.5 h-1.5 rounded-full"
-                          style={{ backgroundColor: member.accentColor }}
-                        />
-                        <span>{member.number}</span>
-                      </span>
-
-                      <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#0B0E12]/80 backdrop-blur-md border border-white/10 text-[10px] font-epilogue text-zinc-400 opacity-80 group-hover:opacity-100 transition-opacity">
-                        <RefreshCw className="w-3 h-3" />
-                        <span className="hidden sm:inline">Flip</span>
+                    {/* Top Flip Indicator Badge (Clean, No Numbering) */}
+                    <div className="absolute top-4 right-4 z-10">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B0E12]/80 backdrop-blur-md border border-white/10 text-[10px] font-epilogue text-zinc-300 shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
+                        <RefreshCw className="w-3 h-3 text-[#FAB406]" />
+                        <span className="font-medium">Flip</span>
                       </div>
                     </div>
 
@@ -210,10 +193,7 @@ export default function Team() {
                         <h3 className="font-excon text-2xl sm:text-[1.6rem] font-bold text-white tracking-tight leading-tight">
                           {member.name}
                         </h3>
-                        <span
-                          className="font-epilogue text-xs uppercase tracking-[0.16em] font-semibold"
-                          style={{ color: member.accentColor }}
-                        >
+                        <span className="font-epilogue text-xs uppercase tracking-[0.16em] font-semibold text-[#FAB406]">
                           {member.role}
                         </span>
                       </div>
@@ -224,55 +204,43 @@ export default function Team() {
                   </div>
 
                   {/* =================================================== */}
-                  {/* CARD BACK FACE                                      */}
+                  {/* CARD BACK FACE (GOLDEN YELLOW & BLACK/WHITE TYPE)   */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.1] hover:border-[#FAB406]/40 bg-[#0A0D12]/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
-                    {/* Crisp Golden Top Accent Hairline */}
-                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/60 to-transparent z-20" />
-
-                    {/* Subtle Warm Grid Texture */}
-                    <div className="absolute inset-0 bg-[radial-gradient(rgba(250,180,6,0.06)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-30" />
-
-                    {/* Accent Corner Glow */}
-                    <div
-                      className="pointer-events-none absolute -bottom-16 -right-16 w-52 h-52 rounded-full blur-3xl opacity-20"
-                      style={{ backgroundColor: member.accentColor }}
-                    />
-
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-[#FAB406] bg-[#FAB406] shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
                     {/* Top Back Header */}
-                    <div className="relative z-10 border-b border-white/[0.08] pb-3.5">
+                    <div className="relative z-10 border-b border-[#06070A]/15 pb-3.5">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-epilogue text-[11px] uppercase tracking-[0.2em] font-semibold text-zinc-400">
-                          {member.number} • PROFILE
+                        <span className="font-epilogue text-[10px] uppercase tracking-[0.2em] font-bold text-[#06070A]/65">
+                          PROFILE
                         </span>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-[#FAB406]/35 bg-[#FAB406]/10 text-[10px] font-epilogue uppercase tracking-widest font-bold text-[#FAB406]">
+                        <span className="font-epilogue text-xs uppercase tracking-widest font-extrabold text-[#06070A]">
                           {member.role}
                         </span>
                       </div>
 
-                      <h3 className="font-excon text-2xl font-bold text-white tracking-tight leading-tight">
+                      <h3 className="font-excon text-2xl font-bold text-[#06070A] tracking-tight leading-tight">
                         {member.name}
                       </h3>
-                      <p className="text-xs font-epilogue text-[#FAB406]/85 font-medium mt-1">
+                      <p className="text-xs font-epilogue text-[#06070A]/80 font-medium mt-0.5">
                         {member.subtitle}
                       </p>
                     </div>
 
                     {/* Middle: Short Bio & Key Focus */}
                     <div className="relative z-10 my-auto py-2">
-                      <p className="font-epilogue text-xs sm:text-[13px] text-zinc-300 leading-relaxed font-normal">
+                      <p className="font-epilogue text-xs sm:text-[13px] text-[#06070A] leading-relaxed font-medium">
                         {member.bio}
                       </p>
 
                       <div className="mt-4">
-                        <div className="text-[10px] font-epilogue uppercase tracking-[0.2em] text-zinc-400 font-semibold mb-2">
+                        <div className="text-[10px] font-epilogue uppercase tracking-[0.18em] text-[#06070A]/70 font-bold mb-2">
                           Key Responsibilities & Focus
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {member.focus.map((item) => (
                             <span
                               key={item}
-                              className="px-2.5 py-1 rounded-md bg-[#FAB406]/[0.05] border border-[#FAB406]/20 text-[11px] font-epilogue text-zinc-200 font-medium hover:border-[#FAB406]/40 transition-colors shadow-sm"
+                              className="px-2.5 py-1 rounded-md bg-white text-[#06070A] font-epilogue text-[11px] font-semibold shadow-sm border border-black/5"
                             >
                               {item}
                             </span>
@@ -282,20 +250,20 @@ export default function Team() {
                     </div>
 
                     {/* Bottom: LinkedIn & Flip Back Action */}
-                    <div className="relative z-10 pt-3.5 border-t border-white/[0.08] flex items-center justify-between">
+                    <div className="relative z-10 pt-3 border-t border-[#06070A]/15 flex items-center justify-between">
                       <a
                         href={member.linkedinUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="group/link inline-flex items-center gap-1.5 text-xs font-epilogue uppercase tracking-wider font-semibold text-zinc-300 hover:text-[#FAB406] transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#06070A] text-white text-xs font-epilogue uppercase tracking-wider font-bold shadow-sm hover:bg-black/85 transition-colors"
                       >
                         <LinkedInIcon className="w-3.5 h-3.5 text-[#FAB406]" />
-                        <span>Connect on LinkedIn</span>
-                        <ArrowUpRight className="w-3 h-3 text-zinc-400 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-[#FAB406]" />
+                        <span>View LinkedIn</span>
+                        <ArrowUpRight className="w-3 h-3 text-white/70" />
                       </a>
 
-                      <span className="text-[10px] font-epilogue uppercase tracking-widest text-zinc-500">
+                      <span className="text-[10px] font-epilogue uppercase tracking-widest text-[#06070A]/60 font-bold">
                         Tap to return
                       </span>
                     </div>
