@@ -104,11 +104,12 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           scale,
           transformOrigin: "top center",
         }}
-        className="group relative w-full rounded-2xl sm:rounded-[22px] border border-black/15 bg-gradient-to-b from-[#F0C034] via-[#E7B72A] to-[#DCAB22] text-[#06070A] p-7 sm:p-9 md:p-10 shadow-[0_12px_28px_-4px_rgba(0,0,0,0.55),0_24px_50px_-10px_rgba(0,0,0,0.65),inset_0_1.5px_1px_rgba(255,255,255,0.45),inset_0_-2px_4px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
+        className="group relative w-full rounded-2xl sm:rounded-[22px] border border-black/18 bg-gradient-to-b from-[#EBBC30] via-[#E5B42C] to-[#D8A824] text-[#06070A] p-7 sm:p-9 md:p-10 shadow-[0_12px_26px_-4px_rgba(0,0,0,0.58),0_22px_46px_-10px_rgba(0,0,0,0.64),0_2px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-3px_8px_rgba(0,0,0,0.14)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
       >
-        {/* Crisp Top Specular Highlight for 3D depth */}
-        <div className="pointer-events-none absolute top-0 inset-x-6 sm:inset-x-10 h-[1.5px] bg-gradient-to-r from-transparent via-white/60 to-transparent" />
-        <div className="pointer-events-none absolute bottom-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-black/20 to-transparent" />
+        {/* Subtle edge depth */}
+        <div className="pointer-events-none absolute top-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-white/32 to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-black/22 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-[22px] bg-gradient-to-b from-transparent via-transparent to-black/[0.07]" />
 
         {/* Card Body: Dominant Headline */}
         <div className="relative z-10 pb-4 sm:pb-5">
@@ -129,7 +130,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-[#06070A] bg-black/[0.08] hover:bg-black/12 border border-black/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_1px_2px_rgba(0,0,0,0.06)] transition-all"
+                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-[#06070A] bg-black/[0.08] hover:bg-black/12 border border-black/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_1px_2px_rgba(0,0,0,0.08)] transition-all"
               >
                 {tag}
               </span>
@@ -180,7 +181,7 @@ export default function Services() {
           <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
             02 / Capabilities
           </span>
-          <div className="w-10 sm:w-12 h-[1px] bg-[#E7B72A]/60" />
+          <div className="w-10 sm:w-12 h-[1px] bg-[#E5B528]/60" />
         </div>
 
         {/* Headline & Supporting Text in Editorial Two-Column Grid */}

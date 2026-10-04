@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 
 export interface ChamferButtonProps {
@@ -39,6 +39,7 @@ export default function ChamferButton({
 }: ChamferButtonProps) {
   const containerRef = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
+  const gradientId = useId().replace(/:/g, "");
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -93,7 +94,12 @@ export default function ChamferButton({
     group relative inline-flex items-center justify-center select-none cursor-pointer
     font-epilogue text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap
     px-6 py-2.5 sm:px-7 sm:py-3 transition-all duration-300 ease-out
-    hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none
+    hover:scale-[1.02] active:scale-[0.99] active:translate-y-px focus-visible:outline-none
+    ${
+      isPrimary
+        ? "drop-shadow-[0_2px_0_rgba(0,0,0,0.22)] drop-shadow-[0_8px_16px_rgba(0,0,0,0.28)] group-active:drop-shadow-[0_1px_0_rgba(0,0,0,0.2)]"
+        : ""
+    }
     ${isPrimary ? "text-[#06070A]" : "text-[#F5F5F7] hover:text-white"}
     ${className}
   `.trim();
@@ -109,20 +115,58 @@ export default function ChamferButton({
         viewBox={`0 0 ${w} ${h}`}
         fill="none"
       >
+        {isPrimary && (
+          <defs>
+            <linearGradient
+              id={`${gradientId}-fill`}
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop offset="0%" stopColor="#EEC832" />
+              <stop offset="52%" stopColor="#E5B528" />
+              <stop offset="100%" stopColor="#D4A322" />
+            </linearGradient>
+            <linearGradient
+              id={`${gradientId}-fill-hover`}
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop offset="0%" stopColor="#F2D040" />
+              <stop offset="52%" stopColor="#F0C034" />
+              <stop offset="100%" stopColor="#E0B028" />
+            </linearGradient>
+          </defs>
+        )}
         <path
           d={pathD}
-          fill={isPrimary ? "#E7B72A" : "rgba(6, 7, 10, 0.65)"}
-          stroke="#E7B72A"
+          fill={
+            isPrimary
+              ? `url(#${gradientId}-fill)`
+              : "rgba(6, 7, 10, 0.65)"
+          }
+          stroke={isPrimary ? "#C9981E" : "#E5B528"}
           strokeWidth={strokeWidth}
           strokeLinejoin="miter"
           strokeMiterlimit={4}
           vectorEffect="non-scaling-stroke"
           className={`transition-all duration-300 ${
             isPrimary
-              ? "group-hover:fill-[#F0C034] group-hover:stroke-[#F0C034]"
-              : "group-hover:fill-[#E7B72A]/[0.08] group-hover:stroke-[#E7B72A]"
+              ? "group-hover:stroke-[#D4A322]"
+              : "group-hover:fill-[#E5B528]/[0.08] group-hover:stroke-[#E5B528]"
           }`}
         />
+        {isPrimary && (
+          <path
+            d={pathD}
+            fill={`url(#${gradientId}-fill-hover)`}
+            stroke="none"
+            className="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          />
+        )}
       </svg>
 
       {/* Ambient Glow */}
@@ -130,8 +174,8 @@ export default function ChamferButton({
         aria-hidden="true"
         className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${
           isPrimary
-            ? "shadow-[0_0_20px_rgba(231,183,42,0.3)] opacity-70 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(231,183,42,0.55)]"
-            : "shadow-[0_0_18px_rgba(231,183,42,0.15)] opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_24px_rgba(231,183,42,0.35)]"
+            ? "shadow-[0_0_20px_rgba(229, 181, 40,0.3)] opacity-70 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(229, 181, 40,0.55)]"
+            : "shadow-[0_0_18px_rgba(229, 181, 40,0.15)] opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_24px_rgba(229, 181, 40,0.35)]"
         }`}
       />
 

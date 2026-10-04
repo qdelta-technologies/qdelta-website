@@ -118,14 +118,14 @@ export default function Hero() {
           className="absolute -top-20 inset-x-0 h-64 pointer-events-none transition-transform duration-700 ease-out will-change-transform"
           style={{
             background:
-              "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(231,183,42,0.09) 0%, rgba(231,183,42,0.02) 50%, transparent 80%)",
+              "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(229, 181, 40,0.09) 0%, rgba(229, 181, 40,0.02) 50%, transparent 80%)",
             transform: "translate3d(var(--hero-mx, 0px), 0, 0)",
           }}
         />
 
         {/* Ambient Top Center Warm Halo (gentle depth parallax) */}
         <div
-          className="absolute -top-28 left-1/2 h-[20rem] w-[46rem] rounded-full bg-gradient-to-b from-[#E7B72A]/10 via-[#E7B72A]/[0.02] to-transparent blur-[110px] pointer-events-none transition-transform duration-700 ease-out will-change-transform"
+          className="absolute -top-28 left-1/2 h-[20rem] w-[46rem] rounded-full bg-gradient-to-b from-[#E5B528]/10 via-[#E5B528]/[0.02] to-transparent blur-[110px] pointer-events-none transition-transform duration-700 ease-out will-change-transform"
           style={{
             transform: "translate3d(calc(-50% + var(--hero-mx-halo, 0px)), var(--hero-my-halo, 0px), 0)",
           }}
@@ -157,9 +157,9 @@ export default function Hero() {
             <linearGradient id="horizon-beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FAB406" stopOpacity="0.4" />
               <stop offset="25%" stopColor="#FAB406" stopOpacity="0.95" />
-              <stop offset="46%" stopColor="#FFF8D6" stopOpacity="1" />
-              <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
-              <stop offset="54%" stopColor="#FFF8D6" stopOpacity="1" />
+              <stop offset="46%" stopColor="#FFF0C8" stopOpacity="0.95" />
+              <stop offset="50%" stopColor="#FFF6E0" stopOpacity="0.92" />
+              <stop offset="54%" stopColor="#FFF0C8" stopOpacity="0.95" />
               <stop offset="75%" stopColor="#FAB406" stopOpacity="0.95" />
               <stop offset="100%" stopColor="#FAB406" stopOpacity="0.4" />
             </linearGradient>
@@ -168,7 +168,7 @@ export default function Hero() {
             <linearGradient id="horizon-corona-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FAB406" stopOpacity="0" />
               <stop offset="20%" stopColor="#FAB406" stopOpacity="0.35" />
-              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.75" />
+              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.7" />
               <stop offset="80%" stopColor="#FAB406" stopOpacity="0.35" />
               <stop offset="100%" stopColor="#FAB406" stopOpacity="0" />
             </linearGradient>
@@ -177,7 +177,7 @@ export default function Hero() {
             <linearGradient id="horizon-halo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FAB406" stopOpacity="0.15" />
               <stop offset="25%" stopColor="#FAB406" stopOpacity="0.65" />
-              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.85" />
+              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.82" />
               <stop offset="75%" stopColor="#FAB406" stopOpacity="0.65" />
               <stop offset="100%" stopColor="#FAB406" stopOpacity="0.15" />
             </linearGradient>
@@ -316,6 +316,54 @@ export default function Hero() {
                 </svg>
               </motion.div>
 
+              {/* CURSOR 02 (mobile): Development & Conversion — top-right, opposite Strategy */}
+              <motion.div
+                initial={{ opacity: 0, y: -6, filter: "blur(4px)" }}
+                animate={
+                  isTypingDone
+                    ? shouldReduceMotion
+                      ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                      : { opacity: 1, y: [0, -3, 0], filter: "blur(0px)" }
+                    : { opacity: 0, y: -6, filter: "blur(4px)" }
+                }
+                transition={{
+                  opacity: { duration: 0.6, delay: 0.72 },
+                  filter: { duration: 0.6, delay: 0.72 },
+                  y: isTypingDone && !shouldReduceMotion
+                    ? {
+                        duration: 4.8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1.35,
+                      }
+                    : { duration: 0.5, delay: 0.72 },
+                }}
+                className="pointer-events-none select-none z-20 md:hidden absolute -top-8 sm:-top-9 -right-2 min-[440px]:-right-5 sm:-right-10 flex items-center gap-2 scale-[0.75] min-[420px]:scale-[0.85] sm:scale-[0.9] origin-bottom-right"
+              >
+                {/* Arrow first (toward headline), pill on the right — mirror of Strategy layout */}
+                <svg
+                  width="27"
+                  height="27"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+                  style={{ transform: "rotate(170deg) scaleX(-1)" }}
+                >
+                  <path
+                    d="M4 4L11.5 21L14 13.5L21.5 11L4 4Z"
+                    fill="currentColor"
+                    stroke="#050315"
+                    strokeWidth="1.6"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] shrink-0 animate-pulse" />
+                  <span className="whitespace-nowrap font-medium text-white">Development & Conversion</span>
+                </div>
+              </motion.div>
+
               {/* Line 1 Content */}
               <span>
                 {Math.min(displayedCount, LINE_1.length) <= 12 ? (
@@ -323,12 +371,12 @@ export default function Hero() {
                 ) : (
                   <>
                     <span className="text-[#F5F5F7]">{LINE_1.slice(0, 12)}</span>
-                    <span className="text-[#E7B72A]">{LINE_1.slice(12, Math.min(displayedCount, LINE_1.length))}</span>
+                    <span className="text-hero-gold">{LINE_1.slice(12, Math.min(displayedCount, LINE_1.length))}</span>
                   </>
                 )}
                 {displayedCount <= LINE_1.length && !isTypingDone && (
                   <span
-                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#E7B72A] ml-1.5 rounded-full shadow-[0_0_10px_rgba(231,183,42,0.6)] transition-opacity duration-300 ${
+                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#EBBF2E] ml-1.5 rounded-full transition-opacity duration-300 ${
                       cursorVisible ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -342,10 +390,10 @@ export default function Hero() {
               <span>
                 {Math.max(0, displayedCount - LINE_1.length) > 0 ? (
                   Math.max(0, displayedCount - LINE_1.length) <= 9 ? (
-                    <span className="text-[#E7B72A]">{LINE_2.slice(0, Math.max(0, displayedCount - LINE_1.length))}</span>
+                    <span className="text-hero-gold">{LINE_2.slice(0, Math.max(0, displayedCount - LINE_1.length))}</span>
                   ) : (
                     <>
-                      <span className="text-[#E7B72A]">{LINE_2.slice(0, 9)}</span>
+                      <span className="text-hero-gold">{LINE_2.slice(0, 9)}</span>
                       <span className="text-[#F5F5F7]">{LINE_2.slice(9, Math.max(0, displayedCount - LINE_1.length))}</span>
                     </>
                   )
@@ -356,14 +404,14 @@ export default function Hero() {
                 )}
                 {displayedCount > LINE_1.length && !isTypingDone && (
                   <span
-                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#E7B72A] ml-1.5 rounded-full shadow-[0_0_10px_rgba(231,183,42,0.6)] transition-opacity duration-300 ${
+                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#EBBF2E] ml-1.5 rounded-full transition-opacity duration-300 ${
                       cursorVisible ? "opacity-100" : "opacity-0"
                     }`}
                   />
                 )}
               </span>
 
-              {/* CURSOR 02: Development & Conversion (Placed cleanly on the right side of 'perform.' - Appears after subtagline) */}
+              {/* CURSOR 02 (md+): Development & Conversion — beside 'perform.' */}
               <motion.div
                 initial={{ opacity: 0, y: 6, filter: "blur(4px)" }}
                 animate={
@@ -385,7 +433,7 @@ export default function Hero() {
                       }
                     : { duration: 0.5, delay: 0.72 },
                 }}
-                className="pointer-events-none select-none z-20 absolute left-full ml-1.5 sm:ml-2.5 md:ml-3.5 bottom-0.5 sm:bottom-1 md:bottom-1.5 flex items-center gap-1.5 sm:gap-2 flex-row-reverse scale-[0.72] min-[440px]:scale-[0.82] sm:scale-[0.9] lg:scale-100 origin-left"
+                className="pointer-events-none select-none z-20 hidden md:flex absolute left-full ml-1.5 sm:ml-2.5 md:ml-3.5 bottom-0.5 sm:bottom-1 md:bottom-1.5 items-center gap-1.5 sm:gap-2 flex-row-reverse scale-[0.72] min-[440px]:scale-[0.82] sm:scale-[0.9] lg:scale-100 origin-left"
               >
                 {/* Round Pill Capsule with White Borders & Transparent Black Background */}
                 <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">

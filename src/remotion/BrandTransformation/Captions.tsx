@@ -77,14 +77,14 @@ export const Captions: React.FC<CaptionsProps> = ({ frame }) => {
       {/* Caption 2 */}
       {cap2Opacity > 0 && (
         <div
-          className="px-10 py-4 rounded-full bg-black/95 border border-[#E7B72A]/60 backdrop-blur-2xl shadow-[0_0_50px_rgba(245,184,0,0.4)] flex items-center justify-center text-center"
+          className="px-10 py-4 rounded-full bg-black/95 border border-[#E5B528]/60 backdrop-blur-2xl shadow-[0_0_50px_rgba(245,184,0,0.4)] flex items-center justify-center text-center"
           style={{
             opacity: cap2Opacity,
             transform: `translateY(${cap2Y}px)`,
           }}
         >
           <p className="text-2xl font-medium text-white tracking-wide">
-            Let your <span className="text-[#E7B72A] font-semibold italic drop-shadow-[0_0_20px_rgba(245,184,0,0.6)]">brand come through.</span>
+            Let your <span className="text-[#E5B528] font-semibold italic drop-shadow-[0_0_20px_rgba(245,184,0,0.6)]">brand come through.</span>
           </p>
         </div>
       )}
@@ -92,14 +92,14 @@ export const Captions: React.FC<CaptionsProps> = ({ frame }) => {
       {/* Caption 3 */}
       {cap3Opacity > 0 && (
         <div
-          className="px-10 py-4 rounded-full bg-black/95 border border-[#E7B72A]/70 backdrop-blur-2xl shadow-[0_0_50px_rgba(245,184,0,0.45)] flex items-center justify-center text-center"
+          className="px-10 py-4 rounded-full bg-black/95 border border-[#E5B528]/70 backdrop-blur-2xl shadow-[0_0_50px_rgba(245,184,0,0.45)] flex items-center justify-center text-center"
           style={{
             opacity: cap3Opacity,
             transform: `translateY(${cap3Y}px)`,
           }}
         >
           <p className="text-2xl font-semibold text-white tracking-wide">
-            Make the <span className="text-[#E7B72A] font-bold drop-shadow-[0_0_20px_rgba(245,184,0,0.6)]">next step clear.</span>
+            Make the <span className="text-[#E5B528] font-bold drop-shadow-[0_0_20px_rgba(245,184,0,0.6)]">next step clear.</span>
           </p>
         </div>
       )}

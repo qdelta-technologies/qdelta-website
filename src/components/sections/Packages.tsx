@@ -90,10 +90,10 @@ export default function Packages() {
   return (
     <section
       id="packages"
-      className="relative z-20 w-full bg-[#040406] text-white selection:bg-[#E7B72A] selection:text-black py-20 sm:py-28 md:py-32 border-t border-white/[0.08] overflow-hidden"
+      className="relative z-20 w-full bg-[#040406] text-white selection:bg-[#E5B528] selection:text-black py-20 sm:py-28 md:py-32 border-t border-white/[0.08] overflow-hidden"
     >
       {/* Ambient Lighting Accents */}
-      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[42rem] w-[65rem] rounded-full bg-gradient-to-b from-[#E7B72A]/[0.045] via-sky-500/[0.02] to-transparent blur-[160px]" />
+      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[42rem] w-[65rem] rounded-full bg-gradient-to-b from-[#E5B528]/[0.045] via-sky-500/[0.02] to-transparent blur-[160px]" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* ======================================================= */}
@@ -107,14 +107,14 @@ export default function Packages() {
           className="flex flex-col items-center text-center mb-10 sm:mb-12"
         >
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E7B72A]/10 border border-[#E7B72A]/25 text-xs font-excon uppercase tracking-[0.2em] text-[#E7B72A] mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E7B72A] shadow-[0_0_8px_#E7B72A]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E5B528]/10 border border-[#E5B528]/25 text-xs font-excon uppercase tracking-[0.2em] text-[#E5B528] mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528] shadow-[0_0_8px_#E5B528]" />
             <span>OUR PACKAGES</span>
           </div>
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[3.2rem] font-epilogue font-extrabold tracking-tight text-white leading-[1.08] text-balance max-w-3xl">
-            Two Ways to Work With <span className="text-[#E7B72A]">QDelta</span>
+            Two Ways to Work With <span className="text-[#E5B528]">QDelta</span>
           </h2>
 
           {/* Supporting Text */}
@@ -128,7 +128,7 @@ export default function Packages() {
               onClick={() => setMobileTab("digital")}
               className={`px-4 py-1.5 rounded-full text-xs font-excon uppercase tracking-wider font-semibold transition-all ${
                 mobileTab === "digital"
-                  ? "bg-[#E7B72A] text-black shadow-sm"
+                  ? "bg-[#E5B528] text-black shadow-sm"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -158,23 +158,23 @@ export default function Packages() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className={`group relative flex flex-col justify-between rounded-3xl border border-white/[0.09] bg-[#090b11] p-6 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-[#E7B72A]/40 hover:shadow-[0_20px_60px_rgba(231,183,42,0.1)] overflow-hidden ${
+            className={`group relative flex flex-col justify-between rounded-3xl border border-white/[0.09] bg-[#090b11] p-6 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-[#E5B528]/40 hover:shadow-[0_20px_60px_rgba(229, 181, 40,0.1)] overflow-hidden ${
               mobileTab === "signature" ? "hidden md:flex" : "flex"
             }`}
           >
             {/* Top Golden Hairline */}
-            <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/45 to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/45 to-transparent pointer-events-none" />
 
             <div>
               {/* Header Row: Label & Tagline */}
               <div className="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E7B72A] shadow-[0_0_8px_#E7B72A]" />
-                  <span className="font-excon text-xs uppercase tracking-[0.2em] font-bold text-[#E7B72A]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528] shadow-[0_0_8px_#E5B528]" />
+                  <span className="font-excon text-xs uppercase tracking-[0.2em] font-bold text-[#E5B528]">
                     PACKAGE 01
                   </span>
                 </div>
-                <span className="font-epilogue text-xs sm:text-[13px] font-bold italic text-[#E7B72A]">
+                <span className="font-epilogue text-xs sm:text-[13px] font-bold italic text-[#E5B528]">
                   Built to convert.
                 </span>
               </div>
@@ -206,7 +206,7 @@ export default function Packages() {
                       key={bullet}
                       className="flex items-center gap-2 text-xs text-zinc-200 py-0.5"
                     >
-                      <Check className="h-3.5 w-3.5 text-[#E7B72A] shrink-0" />
+                      <Check className="h-3.5 w-3.5 text-[#E5B528] shrink-0" />
                       <span className="font-epilogue text-[12px] font-medium leading-tight">
                         {bullet}
                       </span>
@@ -224,7 +224,7 @@ export default function Packages() {
 
               <Link
                 href="#contact"
-                className="group/btn inline-flex items-center gap-1.5 rounded-full bg-[#E7B72A] py-2.5 px-4 sm:px-5 text-xs font-epilogue font-bold text-black shadow-[0_0_16px_rgba(231,183,42,0.25)] transition-all duration-200 hover:bg-white hover:scale-[1.02]"
+                className="group/btn inline-flex items-center gap-1.5 rounded-full bg-[#E5B528] py-2.5 px-4 sm:px-5 text-xs font-epilogue font-bold text-black shadow-[0_0_16px_rgba(229, 181, 40,0.25)] transition-all duration-200 hover:bg-white hover:scale-[1.02]"
               >
                 <span>Explore QDelta Digital</span>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
@@ -325,13 +325,13 @@ export default function Packages() {
           className="w-full rounded-3xl sm:rounded-[32px] border border-white/[0.09] bg-[#090b10] shadow-[0_20px_60px_rgba(0,0,0,0.85)] relative overflow-hidden"
         >
           {/* Top Subtle Dual Accent Hairline */}
-          <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/35 via-sky-400/25 to-transparent pointer-events-none" />
+          <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/35 via-sky-400/25 to-transparent pointer-events-none" />
 
           {/* Integrated Header Row */}
           <div className="p-6 sm:p-8 md:p-10 border-b border-white/[0.08] flex flex-col md:flex-row md:items-center justify-between gap-5">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-excon uppercase tracking-[0.2em] text-zinc-300 mb-2.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#E7B72A]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#E5B528]" />
                 <span>STANDARD QUALITY COMMITMENTS</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-epilogue font-extrabold text-white tracking-tight">
@@ -352,7 +352,7 @@ export default function Packages() {
                     onClick={() => setActiveIndex(idx)}
                     className={`px-3.5 py-1.5 rounded-full text-xs font-excon font-medium transition-all duration-200 cursor-pointer ${
                       isSelected
-                        ? "bg-[#E7B72A] text-black shadow-[0_0_16px_rgba(231,183,42,0.35)] font-bold scale-[1.03]"
+                        ? "bg-[#E5B528] text-black shadow-[0_0_16px_rgba(229, 181, 40,0.35)] font-bold scale-[1.03]"
                         : "bg-white/[0.04] text-zinc-400 border border-white/[0.08] hover:text-white hover:border-white/20"
                     }`}
                   >
@@ -399,7 +399,7 @@ export default function Packages() {
                   y1="210"
                   x2="225"
                   y2="210"
-                  stroke="#E7B72A"
+                  stroke="#E5B528"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                 />
@@ -410,7 +410,7 @@ export default function Packages() {
                   y1="210"
                   x2="340"
                   y2="210"
-                  stroke="rgba(231,183,42,0.25)"
+                  stroke="rgba(229, 181, 40,0.25)"
                   strokeWidth="1"
                   strokeDasharray="2 3"
                 />
@@ -455,14 +455,14 @@ export default function Packages() {
                       {isActive && (
                         <motion.span
                           layoutId="activeArcDot"
-                          className="w-2 h-2 rounded-full bg-[#E7B72A] shadow-[0_0_12px_#E7B72A]"
+                          className="w-2 h-2 rounded-full bg-[#E5B528] shadow-[0_0_12px_#E5B528]"
                         />
                       )}
 
                       <span
                         className={`font-excon font-extrabold tracking-tight transition-colors duration-200 ${
                           isActive
-                            ? "text-2xl sm:text-3xl md:text-4xl text-white drop-shadow-[0_0_16px_rgba(231,183,42,0.3)]"
+                            ? "text-2xl sm:text-3xl md:text-4xl text-white drop-shadow-[0_0_16px_rgba(229, 181, 40,0.3)]"
                             : "text-xl text-zinc-500 hover:text-zinc-300"
                         }`}
                       >
@@ -506,7 +506,7 @@ export default function Packages() {
                   <div>
                     {/* Header with Number & Category Tag */}
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="font-excon text-xs uppercase tracking-[0.2em] font-bold text-[#E7B72A] px-2.5 py-1 rounded bg-[#E7B72A]/10 border border-[#E7B72A]/20">
+                      <span className="font-excon text-xs uppercase tracking-[0.2em] font-bold text-[#E5B528] px-2.5 py-1 rounded bg-[#E5B528]/10 border border-[#E5B528]/20">
                         {activeGroup.number} • {activeGroup.tagline}
                       </span>
                       <span className="text-xs font-excon text-zinc-500 font-mono">
@@ -534,9 +534,9 @@ export default function Packages() {
                         {activeGroup.items.map((item) => (
                           <div
                             key={item}
-                            className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/[0.025] border border-white/[0.06] hover:border-[#E7B72A]/30 transition-colors"
+                            className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/[0.025] border border-white/[0.06] hover:border-[#E5B528]/30 transition-colors"
                           >
-                            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#E7B72A]/15 text-[#E7B72A] shrink-0 mt-0.5">
+                            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#E5B528]/15 text-[#E5B528] shrink-0 mt-0.5">
                               <Check className="h-3 w-3 stroke-[2.5]" />
                             </div>
                             <span className="font-epilogue text-xs sm:text-sm text-zinc-200 font-medium leading-snug">
@@ -560,7 +560,7 @@ export default function Packages() {
                           onClick={() => setActiveIndex(i)}
                           className={`cursor-pointer transition-all duration-200 ${
                             i === activeIndex
-                              ? "w-6 h-1.5 rounded-full bg-[#E7B72A]"
+                              ? "w-6 h-1.5 rounded-full bg-[#E5B528]"
                               : "w-1.5 h-1.5 rounded-full bg-zinc-700 hover:bg-zinc-500"
                           }`}
                         />
@@ -575,13 +575,13 @@ export default function Packages() {
           {/* ================= BOTTOM COMMITMENT BAR ================= */}
           <div className="p-5 sm:p-6 bg-white/[0.02] border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2.5 text-xs text-zinc-400 font-excon">
-              <Sparkles className="w-3.5 h-3.5 text-[#E7B72A]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#E5B528]" />
               <span>Zero hidden fees • Strict milestone sign-offs • Production code ownership</span>
             </div>
 
             <Link
               href="#contact"
-              className="text-xs font-excon uppercase tracking-wider text-[#E7B72A] hover:text-white transition-colors inline-flex items-center gap-1.5 font-medium"
+              className="text-xs font-excon uppercase tracking-wider text-[#E5B528] hover:text-white transition-colors inline-flex items-center gap-1.5 font-medium"
             >
               <span>Have specific requirements? Speak with us</span>
               <ArrowUpRight className="w-3.5 h-3.5" />

@@ -84,7 +84,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans bg-[#040406] text-[#f4f4f5] antialiased selection:bg-[#E7B72A] selection:text-black">
+      <body className="font-sans bg-[#040406] text-[#f4f4f5] antialiased selection:bg-[#E5B528] selection:text-black">
         <CustomCursor />
         {children}
       </body>

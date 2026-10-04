@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import SaffronButton from "@/components/ui/SaffronButton";
 
 import OpenBoxServicePills from "@/components/ui/OpenBoxServicePills";
@@ -50,7 +49,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#E7B72A] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#E5B528] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="center" />
@@ -64,7 +63,7 @@ export default function Contact() {
           {/* ===================================================== */}
           {/* LEFT SIDE: VIBRANT BRAND GOLD PANEL (45%)             */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-5 bg-[#E7B72A] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+          <div className="relative lg:col-span-5 bg-[#E5B528] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
             {/* Subtle Texture Grain Over Clean Golden Background */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
@@ -105,37 +104,12 @@ export default function Contact() {
                       nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
                     }
                   }}
-                  className="group inline-flex items-center gap-2.5 sm:gap-3 rounded-full bg-[#06070A] text-white pl-2 pr-4 sm:pr-5 py-1.5 sm:py-2 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-white/20 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 text-left cursor-pointer select-none"
+                  className="group inline-flex items-center justify-center rounded-full bg-[#06070A] text-white px-5 sm:px-6 py-2 sm:py-2.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-white/20 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none"
                   aria-label="Book a 15-min call with QDelta"
                 >
-                  {/* Left Avatar */}
-                  <div className="w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-full overflow-hidden ring-1 ring-white/25 shrink-0 bg-zinc-800">
-                    <Image
-                      src="/team/qais-founder-latest.png"
-                      alt="QDelta Team"
-                      width={32}
-                      height={32}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Plus Symbol */}
-                  <span className="text-[11px] font-epilogue text-zinc-400 font-medium select-none">
-                    +
-                  </span>
-
-                  {/* Secondary 'You' Badge */}
-                  <span className="flex items-center justify-center w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-zinc-800/90 border border-zinc-700/70 text-[10px] sm:text-[11px] font-epilogue font-semibold text-zinc-200 select-none">
-                    You
-                  </span>
-
-                  {/* Main Text */}
-                  <span className="font-epilogue text-xs sm:text-[13px] font-semibold text-white tracking-tight whitespace-nowrap pl-0.5 sm:pl-1">
+                  <span className="font-epilogue text-xs sm:text-[13px] font-semibold text-white tracking-tight whitespace-nowrap">
                     Book a 15-min call
                   </span>
-
-                  {/* Subtle Accent Arrow */}
-                  <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#E7B72A] transition-colors shrink-0 -ml-0.5 sm:-ml-1" />
                 </button>
               </div>
             </div>
@@ -146,9 +120,8 @@ export default function Contact() {
             </div>
 
             {/* Subtle Editorial Baseline Mark */}
-            <div className="relative z-10 pt-4 mt-auto border-t border-black/10 flex items-center justify-between text-[11px] font-epilogue uppercase tracking-widest text-[#06070A]/60 font-semibold">
+            <div className="relative z-10 pt-4 mt-auto border-t border-black/10 text-[11px] font-epilogue uppercase tracking-widest text-[#06070A]/60 font-semibold">
               <span>QDelta Technologies</span>
-              <span>Available 2026</span>
             </div>
           </div>
 
@@ -157,10 +130,10 @@ export default function Contact() {
           {/* ===================================================== */}
           <div className="relative lg:col-span-7 bg-[#0B0E12]/92 backdrop-blur-xl p-7 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent pointer-events-none" />
 
             {/* Ambient Warm Golden Backlight */}
-            <div className="pointer-events-none absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#E7B72A]/[0.035] blur-[100px]" />
+            <div className="pointer-events-none absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#E5B528]/[0.035] blur-[100px]" />
 
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -172,7 +145,7 @@ export default function Contact() {
                   transition={{ duration: 0.3 }}
                   className="py-10 sm:py-14 flex flex-col items-center justify-center text-center"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E7B72A]/15 border border-[#E7B72A]/40 text-[#E7B72A] shadow-[0_0_24px_rgba(231,183,42,0.25)]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5B528]/15 border border-[#E5B528]/40 text-[#E5B528] shadow-[0_0_24px_rgba(229, 181, 40,0.25)]">
                     <Check className="h-7 w-7 stroke-[2.5]" />
                   </div>
 
@@ -183,14 +156,14 @@ export default function Contact() {
                   <p className="mt-2 text-sm font-epilogue text-zinc-300 max-w-sm leading-relaxed">
                     Thank you, <strong className="text-white">{name}</strong>.
                     We’ve received your project brief and will follow up at{" "}
-                    <span className="text-[#E7B72A] font-medium">{email}</span>{" "}
+                    <span className="text-[#E5B528] font-medium">{email}</span>{" "}
                     shortly.
                   </p>
 
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="mt-7 rounded-full bg-[#E7B72A] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#F0C034] hover:scale-105 cursor-pointer shadow-md"
+                    className="mt-7 rounded-full bg-[#E5B528] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#F0C034] hover:scale-105 cursor-pointer shadow-md"
                   >
                     Send Another Inquiry
                   </button>
@@ -219,7 +192,7 @@ export default function Contact() {
                       <div className="relative group">
                         <label
                           htmlFor="name"
-                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E7B72A]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                         >
                           Name
                         </label>
@@ -230,7 +203,7 @@ export default function Contact() {
                           placeholder="Your name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E7B72A]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
                         />
                       </div>
 
@@ -238,7 +211,7 @@ export default function Contact() {
                       <div className="relative group">
                         <label
                           htmlFor="email"
-                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E7B72A]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                         >
                           Email
                         </label>
@@ -249,7 +222,7 @@ export default function Contact() {
                           placeholder="name@company.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E7B72A]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
                         />
                       </div>
                     </div>
@@ -269,7 +242,7 @@ export default function Contact() {
                               onClick={() => toggleService(service)}
                               className={`px-3.5 py-1.5 rounded-full text-xs font-epilogue tracking-wide transition-all duration-200 cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#E7B72A] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(231,183,42,0.3)] border border-[#E7B72A]"
+                                  ? "bg-[#E5B528] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(229, 181, 40,0.3)] border border-[#E5B528]"
                                   : "bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-white/25 hover:text-white"
                               }`}
                             >
@@ -284,7 +257,7 @@ export default function Contact() {
                     <div className="relative group">
                       <label
                         htmlFor="brief"
-                        className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E7B72A]"
+                        className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                       >
                         Project brief
                       </label>
@@ -295,7 +268,7 @@ export default function Contact() {
                         placeholder="Tell us briefly about your project..."
                         value={brief}
                         onChange={(e) => setBrief(e.target.value)}
-                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E7B72A] resize-none"
+                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528] resize-none"
                       />
                     </div>
 

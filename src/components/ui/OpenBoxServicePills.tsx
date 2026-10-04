@@ -13,7 +13,6 @@ interface ServicePillConfig {
   delay: number;
   floatDuration: number;
   scale?: number;
-  isDark?: boolean;
 }
 
 // 8 Core capability pills unpacked from the QDelta Service Kit
@@ -42,7 +41,7 @@ const PILLS: ServicePillConfig[] = [
     floatDuration: 4.8,
     scale: 1.0,
   },
-  // 3. UI/UX - Hero matte-black credential, unpacks toward upper-right
+  // 3. UI/UX - Unpacks toward upper-right
   {
     id: "ui-ux",
     label: "UI/UX",
@@ -53,7 +52,6 @@ const PILLS: ServicePillConfig[] = [
     delay: 1.09,
     floatDuration: 4.2,
     scale: 1.05,
-    isDark: true,
   },
   // 4. Strategy - Emerges from inside the cavity, settles near the aperture
   {
@@ -624,33 +622,17 @@ export default function OpenBoxServicePills() {
                     }
               }
             >
-              {pill.isDark ? (
-                // UI/UX Matte Black Hero Contrast Pill
-                <motion.div
-                  whileHover={{
-                    scale: 1.06,
-                    transition: { duration: 0.2, ease: "easeOut" },
-                  }}
-                  className="group relative inline-flex items-center justify-center rounded-full bg-[#0D0E12] px-3.5 sm:px-4 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.28),0_2px_6px_rgba(0,0,0,0.14)] border border-white/20 cursor-default transition-all duration-200 hover:border-white/40 hover:shadow-[0_12px_30px_rgba(0,0,0,0.38)]"
-                >
-                  <span className="font-epilogue font-bold text-xs sm:text-[13px] text-white tracking-tight whitespace-nowrap">
-                    {pill.label}
-                  </span>
-                </motion.div>
-              ) : (
-                // Editorial Solid Matte Off-White Pill
-                <motion.div
-                  whileHover={{
-                    scale: 1.06,
-                    transition: { duration: 0.2, ease: "easeOut" },
-                  }}
-                  className="group relative inline-flex items-center justify-center rounded-full bg-[#FAFAFC] px-3 sm:px-3.5 py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
-                >
-                  <span className="font-epilogue font-bold text-[11px] sm:text-xs text-zinc-900 tracking-tight whitespace-nowrap">
-                    {pill.label}
-                  </span>
-                </motion.div>
-              )}
+              <motion.div
+                whileHover={{
+                  scale: 1.06,
+                  transition: { duration: 0.2, ease: "easeOut" },
+                }}
+                className="group relative inline-flex items-center justify-center rounded-full bg-[#FAFAFC] px-3 sm:px-3.5 py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
+              >
+                <span className="font-epilogue font-bold text-[11px] sm:text-xs text-zinc-900 tracking-tight whitespace-nowrap">
+                  {pill.label}
+                </span>
+              </motion.div>
             </motion.div>
           </motion.div>
         );

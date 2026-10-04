@@ -36,7 +36,7 @@
   --font-sans: var(--font-epilogue), 'Epilogue', sans-serif;
   --font-epilogue: var(--font-epilogue), 'Epilogue', sans-serif;
   --font-excon: var(--font-excon), 'Excon', sans-serif;
-  --color-gold: #E7B72A;
+  --color-gold: #E5B528;
   --color-gold-hover: #F0C034;
   --color-obsidian: #040406;
   --color-surface: #0b0b10;
@@ -141,6 +141,11 @@ canvas {
   animation: signalDown 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+/* Hero headline gold — flat, slightly brighter than site primary #E5B528 */
+.text-hero-gold {
+  color: #ebbf2e;
+}
+
 /* ================= CINEMATIC GOLDEN GRID & RESTRAINED GLASS UTILITIES ================= */
 .bg-qdelta-grid {
   background-image: 
@@ -197,7 +202,7 @@ canvas {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(231, 183, 42, 0.45);
+  background: rgba(229, 181, 40, 0.45);
 }
 
 /* ================= HARDWARE-ACCELERATED CUSTOM CURSOR ================= */
@@ -211,15 +216,23 @@ canvas {
   }
 }
 
-@media (hover: none) and (pointer: coarse) {
+@media (hover: none), (pointer: coarse) {
   #qdelta-custom-cursor {
     display: none !important;
+  }
+
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active *,
+  html.custom-cursor-active *::before,
+  html.custom-cursor-active *::after {
+    cursor: auto !important;
   }
 }
 
 .cursor-star-inner.cursor-hovering {
   transform: scale(1.25) rotate(45deg) !important;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(231, 183, 42, 0.75)) !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(229, 181, 40, 0.75)) !important;
 }
 
 .cursor-star-inner.cursor-clicking {

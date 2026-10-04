@@ -23,7 +23,7 @@ export default function PlanetSurfaceRevolution() {
     let animId: number;
     let isVisible = true;
     // Fluid, majestic planetary rotation: ~54 seconds per full 360° revolution
-    const ROTATION_SPEED = 0.11; // degrees per frame at 60fps
+    const ROTATION_SPEED = 0.07; // degrees per frame at 60fps (~86s per revolution)
 
     const observer = new IntersectionObserver(
       ([entry]) => {

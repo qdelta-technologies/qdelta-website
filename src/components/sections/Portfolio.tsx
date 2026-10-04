@@ -69,8 +69,8 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       tagBg: "bg-white/[0.05]",
       tagBorder: "border-white/10",
       tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#E7B72A]",
-      dotColor: "#E7B72A",
+      ctaUnderline: "bg-[#E5B528]",
+      dotColor: "#E5B528",
     },
   },
   {
@@ -91,7 +91,7 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       { label: "Launch", value: "Turnkey digital sales platform" },
     ],
     theme: {
-      folderBg: "#E7B72A",
+      folderBg: "#E5B528",
       borderColor: "rgba(0, 0, 0, 0.18)",
       textPrimary: "text-[#06070A]",
       textSecondary: "text-[#06070A]/85",
@@ -135,7 +135,7 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       tagBg: "bg-black/[0.05]",
       tagBorder: "border-black/12",
       tagText: "text-zinc-900 font-semibold",
-      ctaUnderline: "bg-[#E7B72A]",
+      ctaUnderline: "bg-[#E5B528]",
       dotColor: "#18181b",
     },
   },
@@ -158,18 +158,18 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
     ],
     theme: {
       folderBg: "#080A0F",
-      borderColor: "rgba(231, 183, 42, 0.3)",
+      borderColor: "rgba(229, 181, 40, 0.3)",
       textPrimary: "text-white",
       textSecondary: "text-zinc-300",
       textMuted: "text-zinc-400",
-      tabTextColor: "text-[#E7B72A]",
+      tabTextColor: "text-[#E5B528]",
       frameBg: "bg-[#06070A]",
-      frameBorder: "border-[#E7B72A]/25",
+      frameBorder: "border-[#E5B528]/25",
       tagBg: "bg-white/[0.05]",
       tagBorder: "border-white/10",
       tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#E7B72A]",
-      dotColor: "#E7B72A",
+      ctaUnderline: "bg-[#E5B528]",
+      dotColor: "#E5B528",
     },
   },
 ];
@@ -322,19 +322,6 @@ function ArchiveFolder({
             {/* LEFT COLUMN: PURE EDITORIAL CONTENT & TYPOGRAPHY     */}
             {/* ==================================================== */}
             <div className="lg:col-span-6 flex flex-col justify-between space-y-4 sm:space-y-5">
-              {/* Category & Date Marker */}
-              <div className="flex items-center gap-2.5">
-                <span
-                  className="w-2 h-2 rounded-full shrink-0"
-                  style={{ backgroundColor: project.theme.dotColor }}
-                />
-                <span
-                  className={`font-epilogue text-xs font-semibold tracking-[0.18em] uppercase ${project.theme.textMuted}`}
-                >
-                  {project.date} // {project.category}
-                </span>
-              </div>
-
               {/* Dominant Project Title */}
               <h3
                 className={`text-2xl sm:text-3xl md:text-5xl lg:text-[48px] font-excon font-bold tracking-tight leading-[1.08] ${project.theme.textPrimary}`}
@@ -406,7 +393,7 @@ function ArchiveFolder({
 
                   {/* Corner View Hover Action Badge */}
                   <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover/mockup:opacity-100 transition-opacity duration-300 shadow-md">
-                    <ExternalLink className="w-3 h-3 text-[#E7B72A]" />
+                    <ExternalLink className="w-3 h-3 text-[#E5B528]" />
                     <span className="font-epilogue text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                       View Project
                     </span>
@@ -449,7 +436,7 @@ export default function Portfolio() {
           <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
             04 / Selected Work
           </span>
-          <div className="w-10 sm:w-12 h-[1px] bg-[#E7B72A]/60" />
+          <div className="w-10 sm:w-12 h-[1px] bg-[#E5B528]/60" />
         </div>
 
         {/* Headline & Subtitle Grid */}
@@ -460,12 +447,9 @@ export default function Portfolio() {
             </h2>
           </div>
 
-          <div className="lg:col-span-5 space-y-2">
+          <div className="lg:col-span-5">
             <p className="text-sm sm:text-base md:text-lg font-epilogue text-zinc-400 font-normal leading-relaxed">
               Explore our project archive. Each build is custom-engineered to solve specific business problems, present clear offers, and elevate digital authority.
-            </p>
-            <p className="text-[11px] sm:text-xs font-epilogue text-zinc-500 font-normal tracking-wide">
-              Concept builds demonstrated to showcase QDelta’s design, engineering and motion capabilities.
             </p>
           </div>
         </div>
@@ -485,28 +469,6 @@ export default function Portfolio() {
             onOpenModal={(p) => setActiveModalProject(p)}
           />
         ))}
-      </div>
-
-      {/* ======================================================= */}
-      {/* SECTION CTA                                             */}
-      {/* ======================================================= */}
-      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 sm:pt-10 border-t border-white/[0.08] relative z-10">
-        <div>
-          <h4 className="font-epilogue text-lg sm:text-xl font-bold text-white">
-            Have a project in mind?
-          </h4>
-          <p className="font-epilogue text-xs sm:text-sm text-zinc-400 mt-1">
-            Let’s discuss your goals, architecture and conversion strategy.
-          </p>
-        </div>
-
-        <Link
-          href="#contact"
-          className="group/cta inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#E7B72A] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(231,183,42,0.25)] hover:bg-[#F0C034] hover:shadow-[0_0_24px_rgba(231,183,42,0.35)] transition-all duration-300 hover:scale-[1.02]"
-        >
-          <span>Initiate a Project</span>
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
-        </Link>
       </div>
 
       {/* ======================================================= */}
@@ -534,7 +496,7 @@ export default function Portfolio() {
               {/* Modal Body */}
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-epilogue text-xs uppercase tracking-widest text-[#E7B72A] font-semibold">
+                  <span className="font-epilogue text-xs uppercase tracking-widest text-[#E5B528] font-semibold">
                     PROJECT {activeModalProject.indexNumber} // {activeModalProject.category}
                   </span>
                 </div>
@@ -591,7 +553,7 @@ export default function Portfolio() {
                       key={o.label}
                       className="p-3.5 rounded-xl bg-white/[0.025] border border-white/10"
                     >
-                      <span className="text-[10px] font-epilogue uppercase tracking-wider text-[#E7B72A] font-semibold">
+                      <span className="text-[10px] font-epilogue uppercase tracking-wider text-[#E5B528] font-semibold">
                         {o.label}
                       </span>
                       <p className="mt-1 font-epilogue text-xs font-bold text-white">
@@ -606,7 +568,7 @@ export default function Portfolio() {
                   <Link
                     href="#contact"
                     onClick={() => setActiveModalProject(null)}
-                    className="px-7 py-3 rounded-full bg-[#E7B72A] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#F0C034] transition-colors shadow-md"
+                    className="px-7 py-3 rounded-full bg-[#E5B528] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#F0C034] transition-colors shadow-md"
                   >
                     Discuss a Similar Build
                   </Link>
