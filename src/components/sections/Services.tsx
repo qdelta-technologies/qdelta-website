@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import Link from "next/link";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
@@ -105,54 +104,32 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           scale,
           transformOrigin: "top center",
         }}
-        className="group relative w-full rounded-xl sm:rounded-[18px] border border-black/15 bg-[#FAB406] text-[#06070A] p-6 sm:p-8 md:p-9 shadow-[0_-12px_32px_rgba(0,0,0,0.35),0_20px_40px_rgba(0,0,0,0.5),0_0_36px_rgba(250,180,6,0.12)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[320px] sm:min-h-[360px] md:min-h-[380px]"
+        className="group relative w-full rounded-2xl sm:rounded-[22px] border border-black/15 bg-gradient-to-b from-[#FFD036] via-[#FAB406] to-[#E59E00] text-[#06070A] p-7 sm:p-9 md:p-10 shadow-[0_12px_28px_-4px_rgba(0,0,0,0.55),0_24px_50px_-10px_rgba(0,0,0,0.65),inset_0_1.5px_1px_rgba(255,255,255,0.45),inset_0_-2px_4px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
       >
-        {/* Subtle Ambient Top Hairline Accent */}
-        <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1.5px] bg-gradient-to-r from-transparent via-black/20 to-transparent pointer-events-none" />
-
-        {/* Card Header: Service Number and Minimal Category / Inquire link */}
-        <div className="flex items-center justify-between border-b border-black/15 pb-3.5 sm:pb-4 relative z-10">
-          <div className="flex items-center gap-3">
-            <span className="font-epilogue text-sm sm:text-base font-bold text-[#06070A] tracking-wider">
-              {service.number}
-            </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-[#06070A]/60" />
-            <span className="text-[11px] sm:text-xs font-epilogue uppercase tracking-[0.2em] text-[#06070A]/75 font-semibold">
-              Capability
-            </span>
-          </div>
-
-          <Link
-            href="#contact"
-            className="group/link inline-flex items-center gap-2 text-xs font-epilogue uppercase tracking-wider text-[#06070A] font-bold transition-colors"
-          >
-            <span className="hidden sm:inline">Inquire Service</span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#06070A] text-[#FAB406] group-hover/link:bg-zinc-900 group-hover/link:scale-105 flex items-center justify-center transition-all shadow-sm">
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#FAB406] transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-            </div>
-          </Link>
-        </div>
+        {/* Crisp Top Specular Highlight for 3D depth */}
+        <div className="pointer-events-none absolute top-0 inset-x-6 sm:inset-x-10 h-[1.5px] bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-black/20 to-transparent" />
 
         {/* Card Body: Dominant Headline */}
-        <div className="my-auto py-4 sm:py-5 relative z-10">
-          <h3 className="text-xl min-[480px]:text-2xl sm:text-3xl md:text-[40px] font-excon font-bold tracking-tight leading-[1.12]">
+        <div className="relative z-10 pb-4 sm:pb-5">
+          <h3 className="text-2xl min-[480px]:text-3xl sm:text-4xl md:text-[42px] font-excon font-bold tracking-tight leading-[1.12]">
             <span className="block text-[#06070A]">
               {service.titleLine1}
             </span>
-            <span className="block text-[#06070A]/80 font-bold mt-0.5 sm:mt-1">
+            <span className="block text-[#06070A]/85 font-bold mt-0.5 sm:mt-1">
               {service.titleLine2}
             </span>
           </h3>
         </div>
 
-        {/* Card Footer: Minimal Capability Tags + Tagline Hook & Description */}
-        <div className="space-y-3.5 sm:space-y-4 pt-3.5 sm:pt-4 border-t border-black/15 relative z-10">
+        {/* Card Footer: Capability Tags + Tagline Hook & Description */}
+        <div className="space-y-4 pt-4 sm:pt-5 border-t border-black/15 relative z-10">
           {/* Tags Row */}
           <div className="flex flex-wrap items-center gap-2">
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-epilogue font-medium text-[#06070A] bg-black/10 hover:bg-black/15 border border-black/15 transition-colors"
+                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-[#06070A] bg-black/[0.08] hover:bg-black/12 border border-black/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_1px_2px_rgba(0,0,0,0.06)] transition-all"
               >
                 {tag}
               </span>
@@ -169,7 +146,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
               <p className="text-sm sm:text-base font-epilogue font-bold text-[#06070A] tracking-tight">
                 {service.tagline}
               </p>
-              <p className="text-xs sm:text-sm font-epilogue font-normal text-[#06070A]/80 leading-relaxed max-w-2xl">
+              <p className="text-xs sm:text-sm font-epilogue font-normal text-[#06070A]/85 leading-relaxed max-w-2xl">
                 {service.description}
               </p>
             </div>
@@ -203,7 +180,7 @@ export default function Services() {
           <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
             02 / Capabilities
           </span>
-          <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
+          <div className="w-10 sm:w-12 h-[1px] bg-[#FAB406]/60" />
         </div>
 
         {/* Headline & Supporting Text in Editorial Two-Column Grid */}
