@@ -8,6 +8,7 @@ const MERIDIAN_COUNT = 72;
 const MERIDIAN_STEP = 360 / MERIDIAN_COUNT; // 5 degrees per meridian
 
 export default function PlanetSurfaceRevolution() {
+  const containerRef = useRef<SVGGElement>(null);
   const rotationAngleRef = useRef<number>(0);
   const shadowGroupRef = useRef<SVGGElement>(null);
   const highlightGroupRef = useRef<SVGGElement>(null);
@@ -20,8 +21,25 @@ export default function PlanetSurfaceRevolution() {
     ).matches;
 
     let animId: number;
+    let isVisible = true;
     // Fluid, majestic planetary rotation: ~54 seconds per full 360° revolution
     const ROTATION_SPEED = 0.11; // degrees per frame at 60fps
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          animId = requestAnimationFrame(animate);
+        } else {
+          cancelAnimationFrame(animId);
+        }
+      },
+      { threshold: 0 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
 
     const animate = () => {
       if (!prefersReducedMotion) {
@@ -105,12 +123,17 @@ export default function PlanetSurfaceRevolution() {
         }
       }
 
-      animId = requestAnimationFrame(animate);
+      if (isVisible) {
+        animId = requestAnimationFrame(animate);
+      }
     };
 
     animId = requestAnimationFrame(animate);
 
-    return () => cancelAnimationFrame(animId);
+    return () => {
+      cancelAnimationFrame(animId);
+      observer.disconnect();
+    };
   }, []);
 
   const LATITUDES = [
@@ -124,6 +147,7 @@ export default function PlanetSurfaceRevolution() {
 
   return (
     <g
+      ref={containerRef}
       id="planet-surface-revolution-group"
       clipPath="url(#horizon-surface-clip)"
       className="pointer-events-none select-none"

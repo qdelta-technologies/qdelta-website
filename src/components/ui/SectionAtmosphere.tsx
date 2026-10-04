@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface SectionAtmosphereProps {
   /** Variant for ambient golden halos positioning */
@@ -17,8 +17,8 @@ interface SectionAtmosphereProps {
 /**
  * Universal QDelta Section Atmosphere Component
  * - Subtle Yellow Linear Architectural Grid (64px, faded via radial mask)
- * - Small, slowly drifting golden particle simulation with pulsing glow
- * - Warm Golden Ambient Halos with micro-parallax depth
+ * - Feather-light golden particle simulation with pulsing glow (no heavy CPU shadowBlur)
+ * - Warm Golden Ambient Halos with micro-parallax depth (0 React re-renders via CSS vars)
  * - Automatically pauses canvas loop when off-screen for 60fps performance
  */
 export default function SectionAtmosphere({
@@ -30,9 +30,8 @@ export default function SectionAtmosphere({
 }: SectionAtmosphereProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // 1. Particle Simulation Canvas (pauses when off-screen)
+  // 1. Particle Simulation Canvas (strictly paused when off-screen)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -101,11 +100,16 @@ export default function SectionAtmosphere({
         if (star.x > width) star.x = 0;
 
         const currentAlpha = Math.max(0.1, Math.min(0.85, star.alpha));
+
+        // Feather-light GPU vector glow without expensive CPU shadowBlur rasterization
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size * 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 184, 0, ${currentAlpha * 0.22})`;
+        ctx.fill();
+
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(245, 184, 0, ${currentAlpha})`;
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = "#F5B800";
+        ctx.fillStyle = `rgba(250, 180, 6, ${currentAlpha})`;
         ctx.fill();
       }
 
@@ -121,7 +125,7 @@ export default function SectionAtmosphere({
     };
   }, [particleCount]);
 
-  // 2. Micro-Parallax Mouse Movement for Ambient Halos
+  // 2. Micro-Parallax Mouse Movement for Ambient Halos (Direct CSS Variables, 0 React Re-renders)
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -130,12 +134,16 @@ export default function SectionAtmosphere({
     const handleMouseMove = (e: MouseEvent) => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
-        setMousePos({
-          x: Math.max(-1, Math.min(1, (e.clientX - centerX) / centerX)),
-          y: Math.max(-1, Math.min(1, (e.clientY - centerY) / centerY)),
-        });
+        const mx = Math.max(-1, Math.min(1, (e.clientX - centerX) / centerX));
+        const my = Math.max(-1, Math.min(1, (e.clientY - centerY) / centerY));
+        containerRef.current.style.setProperty("--atmos-x", `${-mx * 12}px`);
+        containerRef.current.style.setProperty("--atmos-y", `${-my * 8}px`);
+        containerRef.current.style.setProperty("--atmos-x-sm", `${-mx * 8}px`);
+        containerRef.current.style.setProperty("--atmos-y-sm", `${-my * 6}px`);
+        containerRef.current.style.setProperty("--atmos-x-lg", `${-mx * 14}px`);
       });
     };
 
@@ -159,7 +167,7 @@ export default function SectionAtmosphere({
         style={{
           background:
             "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(245, 184, 0, 0.08) 0%, rgba(245, 184, 0, 0.02) 55%, transparent 85%)",
-          transform: `translate3d(${-mousePos.x * 8}px, 0, 0)`,
+          transform: "translate3d(var(--atmos-x-sm, 0px), 0, 0)",
         }}
       />
 
@@ -167,7 +175,7 @@ export default function SectionAtmosphere({
       <div
         className="pointer-events-none absolute -top-32 left-1/2 h-[30rem] w-[52rem] rounded-full bg-radial from-[#F5B800]/[0.065] via-[#F5B800]/[0.015] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
         style={{
-          transform: `translate3d(calc(-50% + ${-mousePos.x * 12}px), ${-mousePos.y * 8}px, 0)`,
+          transform: "translate3d(calc(-50% + var(--atmos-x, 0px)), var(--atmos-y, 0px), 0)",
         }}
       />
 
@@ -176,7 +184,7 @@ export default function SectionAtmosphere({
         <div
           className="absolute top-1/2 right-[-10%] h-[26rem] w-[38rem] rounded-full bg-radial from-[#F5B800]/[0.035] via-transparent to-transparent blur-[120px] transition-transform duration-700 ease-out will-change-transform"
           style={{
-            transform: `translate3d(${-mousePos.x * 8}px, ${-mousePos.y * 6}px, 0)`,
+            transform: "translate3d(var(--atmos-x-sm, 0px), var(--atmos-y-sm, 0px), 0)",
           }}
         />
       )}
@@ -186,13 +194,13 @@ export default function SectionAtmosphere({
           <div
             className="absolute top-1/4 left-[-15%] h-[34rem] w-[48rem] rounded-full bg-radial from-[#F5B800]/[0.06] via-[#F5B800]/[0.012] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
             style={{
-              transform: `translate3d(${-mousePos.x * 12}px, ${-mousePos.y * 8}px, 0)`,
+              transform: "translate3d(var(--atmos-x, 0px), var(--atmos-y, 0px), 0)",
             }}
           />
           <div
             className="absolute bottom-10 right-[-10%] h-[28rem] w-[38rem] rounded-full bg-radial from-[#F5B800]/[0.035] via-transparent to-transparent blur-[120px] transition-transform duration-700 ease-out will-change-transform"
             style={{
-              transform: `translate3d(${-mousePos.x * 8}px, ${-mousePos.y * 6}px, 0)`,
+              transform: "translate3d(var(--atmos-x-sm, 0px), var(--atmos-y-sm, 0px), 0)",
             }}
           />
         </>
@@ -203,13 +211,13 @@ export default function SectionAtmosphere({
           <div
             className="absolute top-1/3 right-[-15%] h-[34rem] w-[50rem] rounded-full bg-radial from-[#F5B800]/[0.06] via-[#F5B800]/[0.012] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
             style={{
-              transform: `translate3d(${-mousePos.x * 12}px, ${-mousePos.y * 8}px, 0)`,
+              transform: "translate3d(var(--atmos-x, 0px), var(--atmos-y, 0px), 0)",
             }}
           />
           <div
             className="absolute -top-24 left-[-10%] h-[28rem] w-[38rem] rounded-full bg-radial from-[#F5B800]/[0.035] via-transparent to-transparent blur-[120px] transition-transform duration-700 ease-out will-change-transform"
             style={{
-              transform: `translate3d(${-mousePos.x * 8}px, ${-mousePos.y * 6}px, 0)`,
+              transform: "translate3d(var(--atmos-x-sm, 0px), var(--atmos-y-sm, 0px), 0)",
             }}
           />
         </>
@@ -220,13 +228,13 @@ export default function SectionAtmosphere({
           <div
             className="absolute -top-24 left-1/4 h-[30rem] w-[46rem] rounded-full bg-radial from-[#F5B800]/[0.055] via-[#F5B800]/[0.012] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
             style={{
-              transform: `translate3d(${-mousePos.x * 10}px, ${-mousePos.y * 6}px, 0)`,
+              transform: "translate3d(var(--atmos-x, 0px), var(--atmos-y-sm, 0px), 0)",
             }}
           />
           <div
             className="absolute bottom-[-10%] right-1/4 h-[30rem] w-[46rem] rounded-full bg-radial from-[#F5B800]/[0.045] via-[#F5B800]/[0.01] to-transparent blur-[130px] transition-transform duration-700 ease-out will-change-transform"
             style={{
-              transform: `translate3d(${-mousePos.x * 10}px, ${-mousePos.y * 6}px, 0)`,
+              transform: "translate3d(var(--atmos-x, 0px), var(--atmos-y-sm, 0px), 0)",
             }}
           />
         </>
@@ -236,7 +244,7 @@ export default function SectionAtmosphere({
         <div
           className="absolute -top-28 left-1/2 h-[34rem] w-[60rem] rounded-full bg-radial from-[#F5B800]/[0.065] via-[#F5B800]/[0.015] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
           style={{
-            transform: `translate3d(calc(-50% + ${-mousePos.x * 14}px), ${-mousePos.y * 8}px, 0)`,
+            transform: "translate3d(calc(-50% + var(--atmos-x-lg, 0px)), var(--atmos-y, 0px), 0)",
           }}
         />
       )}

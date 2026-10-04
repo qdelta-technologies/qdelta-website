@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import InteractiveDotGrid from "@/components/ui/InteractiveDotGrid";
@@ -14,13 +14,13 @@ const TOTAL_TYPING_LENGTH = LINE_1.length + LINE_2.length; // 26 + 17 = 43
 // LINE 2: "Built" (0..5 gold), " to perform." (5..17 white)
 
 export default function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const heroBgRef = useRef<HTMLDivElement>(null);
   const [displayedCount, setDisplayedCount] = useState(0);
   const [isTypingDone, setIsTypingDone] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
   const shouldReduceMotion = useReducedMotion();
 
-  // Subtle Parallax depth for background and ambient lighting
+  // Subtle Parallax depth for background and ambient lighting (0 React re-renders via CSS variables)
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -29,19 +29,24 @@ export default function Hero() {
     const handleMouseMove = (e: MouseEvent) => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
+        if (!heroBgRef.current) return;
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
-        setMousePos({
-          x: Math.max(-1, Math.min(1, (e.clientX - centerX) / centerX)),
-          y: Math.max(-1, Math.min(1, (e.clientY - centerY) / centerY)),
-        });
+        const mx = Math.max(-1, Math.min(1, (e.clientX - centerX) / centerX));
+        const my = Math.max(-1, Math.min(1, (e.clientY - centerY) / centerY));
+        heroBgRef.current.style.setProperty("--hero-mx", `${-mx * 8}px`);
+        heroBgRef.current.style.setProperty("--hero-mx-halo", `${-mx * 14}px`);
+        heroBgRef.current.style.setProperty("--hero-my-halo", `${-my * 10}px`);
       });
     };
 
     const handleMouseLeave = () => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        setMousePos({ x: 0, y: 0 });
+        if (!heroBgRef.current) return;
+        heroBgRef.current.style.setProperty("--hero-mx", "0px");
+        heroBgRef.current.style.setProperty("--hero-mx-halo", "0px");
+        heroBgRef.current.style.setProperty("--hero-my-halo", "0px");
       });
     };
 
@@ -104,7 +109,7 @@ export default function Hero() {
       className="relative w-full h-[clamp(620px,86svh,760px)] md:h-[calc(100dvh-48px)] min-h-[620px] overflow-hidden bg-[#06070A] text-white flex flex-col justify-between pt-12 md:pt-16 lg:pt-20"
     >
       {/* ================= BACKGROUND EFFECTS ================= */}
-      <div className="pointer-events-none absolute inset-0 z-0">
+      <div ref={heroBgRef} className="pointer-events-none absolute inset-0 z-0">
         {/* Interactive Dot Matrix Grid: Spreads out on mouse hover strictly above the horizon line */}
         <InteractiveDotGrid />
 
@@ -114,7 +119,7 @@ export default function Hero() {
           style={{
             background:
               "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(250,180,6,0.09) 0%, rgba(250,180,6,0.02) 50%, transparent 80%)",
-            transform: `translate3d(${-mousePos.x * 8}px, 0, 0)`,
+            transform: "translate3d(var(--hero-mx, 0px), 0, 0)",
           }}
         />
 
@@ -122,7 +127,7 @@ export default function Hero() {
         <div
           className="absolute -top-28 left-1/2 h-[20rem] w-[46rem] rounded-full bg-gradient-to-b from-[#FAB406]/10 via-[#FAB406]/[0.02] to-transparent blur-[110px] pointer-events-none transition-transform duration-700 ease-out will-change-transform"
           style={{
-            transform: `translate3d(calc(-50% + ${-mousePos.x * 14}px), ${-mousePos.y * 10}px, 0)`,
+            transform: "translate3d(calc(-50% + var(--hero-mx-halo, 0px)), var(--hero-my-halo, 0px), 0)",
           }}
         />
       </div>
@@ -249,10 +254,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-8 sm:-translate-y-10 md:-translate-y-16 lg:-translate-y-20">
         {/* Main Headline (Two Distinct Lines with Floating Diagonal Annotation Capsules) */}
         <h1
-          className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14] transition-transform duration-500 ease-out will-change-transform"
-          style={{
-            transform: `translate3d(${mousePos.x * 2.5}px, ${mousePos.y * 1.5}px, 0)`,
-          }}
+          className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14]"
         >
           {/* Screen reader accessibility */}
           <span className="sr-only">Designed to be remembered. Built to perform.</span>
@@ -426,10 +428,7 @@ export default function Hero() {
               : { opacity: 0, y: 12, filter: "blur(6px)" }
           }
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-4 sm:mt-5 max-w-xl sm:max-w-2xl mx-auto text-pretty text-sm sm:text-base md:text-[17px] leading-relaxed text-zinc-300 font-epilogue font-normal px-4 sm:px-0 transition-transform duration-500 ease-out will-change-transform"
-          style={{
-            transform: `translate3d(${mousePos.x * 1.5}px, ${mousePos.y * 1}px, 0)`,
-          }}
+          className="mt-4 sm:mt-5 max-w-xl sm:max-w-2xl mx-auto text-pretty text-sm sm:text-base md:text-[17px] leading-relaxed text-zinc-300 font-epilogue font-normal px-4 sm:px-0"
         >
           We build websites that make your brand stand out, connect with your audience, and help your business grow.
         </motion.p>
@@ -443,10 +442,7 @@ export default function Hero() {
               : { opacity: 0, y: 12, filter: "blur(6px)" }
           }
           transition={{ duration: 0.7, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4 font-epilogue transition-transform duration-500 ease-out will-change-transform"
-          style={{
-            transform: `translate3d(${mousePos.x * 1}px, ${mousePos.y * 0.7}px, 0)`,
-          }}
+          className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4 font-epilogue"
         >
           {/* Primary CTA: Let's Talk */}
           <ChamferButton href="#contact" variant="primary">

@@ -42,18 +42,26 @@ const STATS_DATA: StatItem[] = [
 export default function BrandTransformationSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const progressFillRef = useRef<HTMLDivElement>(null);
+  const progressDotRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { amount: 0.2 });
 
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
-  const [progress, setProgress] = useState<number>(0);
 
-  // Smooth 60fps video progress tracking for the traveling dot
+  // Smooth 60fps video progress tracking for the traveling dot (Direct GPU DOM update, 0 React re-renders)
   useEffect(() => {
     let animId: number;
     const updateProgress = () => {
       const video = videoRef.current;
       if (video && video.duration) {
-        setProgress(video.currentTime / video.duration);
+        const p = Math.max(0, Math.min(1, video.currentTime / video.duration));
+        const pct = (p * 100).toFixed(2);
+        if (progressFillRef.current) {
+          progressFillRef.current.style.width = `${pct}%`;
+        }
+        if (progressDotRef.current) {
+          progressDotRef.current.style.left = `${pct}%`;
+        }
       }
       if (isPlaying) {
         animId = requestAnimationFrame(updateProgress);
@@ -75,7 +83,9 @@ export default function BrandTransformationSection() {
     const clickX = e.clientX - rect.left;
     const newProgress = Math.max(0, Math.min(1, clickX / rect.width));
     video.currentTime = newProgress * video.duration;
-    setProgress(newProgress);
+    const pct = (newProgress * 100).toFixed(2);
+    if (progressFillRef.current) progressFillRef.current.style.width = `${pct}%`;
+    if (progressDotRef.current) progressDotRef.current.style.left = `${pct}%`;
   };
 
   // Play video only when meaningfully visible
@@ -127,7 +137,8 @@ export default function BrandTransformationSection() {
     const video = videoRef.current;
     if (!video) return;
     video.currentTime = 0;
-    setProgress(0);
+    if (progressFillRef.current) progressFillRef.current.style.width = "0%";
+    if (progressDotRef.current) progressDotRef.current.style.left = "0%";
     video.playbackRate = VIDEO_PLAYBACK_RATE;
     video.play();
     setIsPlaying(true);
@@ -277,8 +288,9 @@ export default function BrandTransformationSection() {
                 <div className="w-full h-[2px] bg-zinc-800 rounded-full overflow-hidden">
                   {/* Filled Gold Progress Line */}
                   <div
-                    className="h-full bg-gradient-to-r from-zinc-600 via-[#F5B800]/70 to-[#FAB406]"
-                    style={{ width: `${progress * 100}%` }}
+                    ref={progressFillRef}
+                    className="h-full bg-gradient-to-r from-zinc-600 via-[#F5B800]/70 to-[#FAB406] will-change-[width]"
+                    style={{ width: "0%" }}
                   />
                 </div>
 
@@ -290,8 +302,9 @@ export default function BrandTransformationSection() {
 
                 {/* Live Traveling Golden Glow Dot */}
                 <div
+                  ref={progressDotRef}
                   className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none will-change-[left]"
-                  style={{ left: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+                  style={{ left: "0%" }}
                 >
                   <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FAB406] ring-4 ring-[#FAB406]/25 shadow-[0_0_10px_#FAB406]" />
                 </div>

@@ -47,9 +47,23 @@ export default function InteractiveDotGrid() {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let isVisible = true;
     let gridDots: GridDot[] = [];
     let farParticles: FarParticle[] = [];
     let nearMotes: NearMote[] = [];
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          render();
+        } else {
+          cancelAnimationFrame(animationFrameId);
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
 
     const mouse = { x: -9999, y: -9999, active: false };
     const parallax = { currentX: 0, currentY: 0, targetX: 0, targetY: 0 };
@@ -67,18 +81,88 @@ export default function InteractiveDotGrid() {
     // Slow glow decay — golden linger effect
     const GLOW_DECAY = 0.972;
 
-    // Helper: Exact parabolic curve formula for horizon line
+    // Dynamic Horizon Geometry Tracker (calculates exact pixel position of the golden globe on mobile, tablet & desktop)
+    const horizonGeo = {
+      left: 0,
+      width: 1,
+      top: 0,
+      height: 1,
+      canvasTop: 0,
+      canvasLeft: 0,
+      hasSvg: false,
+    };
+
+    const updateHorizonGeo = () => {
+      const horizonSvg = (canvas.closest("#hero")?.querySelector(".hero-horizon") ||
+        document.querySelector(".hero-horizon")) as SVGElement | null;
+      if (horizonSvg) {
+        const hRect = horizonSvg.getBoundingClientRect();
+        const cRect = canvas.getBoundingClientRect();
+        if (hRect.width > 0 && hRect.height > 0) {
+          horizonGeo.left = hRect.left;
+          horizonGeo.width = hRect.width;
+          horizonGeo.top = hRect.top;
+          horizonGeo.height = hRect.height;
+          horizonGeo.canvasTop = cRect.top;
+          horizonGeo.canvasLeft = cRect.left;
+          horizonGeo.hasSvg = true;
+          return;
+        }
+      }
+      horizonGeo.hasSvg = false;
+    };
+
+    // Helper: Exact parabolic curve formula for horizon line matching the true physical globe
     const getSunLineY = (xPos: number, W: number, H: number): number => {
-      const normX = Math.max(0, Math.min(1, xPos / W));
-      const xSvg = normX * 1000;
-      const t = (xSvg + 15) / 1030;
-      const ySvg = 1000 - 960 * t * (1 - t);
-      return (ySvg / 1000) * H;
+      if (horizonGeo.hasSvg) {
+        const screenX = horizonGeo.canvasLeft + xPos;
+        const svgX = ((screenX - horizonGeo.left) / horizonGeo.width) * 1000;
+        const t = (svgX + 15) / 1030;
+        const clampedT = Math.max(0, Math.min(1, t));
+        const ySvg =
+          (1 - clampedT) * (1 - clampedT) * 1000 +
+          2 * (1 - clampedT) * clampedT * 520 +
+          clampedT * clampedT * 1000;
+        const screenY = horizonGeo.top + (ySvg / 1000) * horizonGeo.height;
+        return screenY - horizonGeo.canvasTop;
+      }
+
+      // Responsive geometric fallback matching Hero.tsx CSS breakpoints
+      let svgW = W;
+      let svgH = H;
+      if (W < 640) {
+        // Mobile: w-[260vw] h-[115vw] bottom-0
+        svgW = 2.6 * W;
+        svgH = 1.15 * W;
+      } else if (W < 768) {
+        // sm: w-[200vw] h-[95vw] bottom-0
+        svgW = 2.0 * W;
+        svgH = 0.95 * W;
+      } else if (W < 1024) {
+        // md: w-[160vw] h-[65vh] bottom-0
+        svgW = 1.6 * W;
+        svgH = 0.65 * H;
+      }
+
+      const svgLeft = (W - svgW) / 2;
+      const svgTop = H - svgH;
+      const svgX = ((xPos - svgLeft) / svgW) * 1000;
+      const t = (svgX + 15) / 1030;
+      const clampedT = Math.max(0, Math.min(1, t));
+      const ySvg =
+        (1 - clampedT) * (1 - clampedT) * 1000 +
+        2 * (1 - clampedT) * clampedT * 520 +
+        clampedT * clampedT * 1000;
+
+      return svgTop + (ySvg / 1000) * svgH;
     };
 
     const initSystem = () => {
+      updateHorizonGeo();
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      if (rect.width === 0 || rect.height === 0) return;
 
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
@@ -87,8 +171,7 @@ export default function InteractiveDotGrid() {
       const W = rect.width;
       const H = rect.height;
 
-      // ── LAYER 2 (MID): Dense Grid — full edge-to-edge coverage ──
-      // Two extra bleed columns left/right so no empty band at screen edges
+      // ── LAYER 2 (MID): Dense Grid — full edge-to-edge coverage down to the golden rim ──
       gridDots = [];
       const extraCols = 2;
       const colsNeeded = Math.ceil(W / SPACING) + extraCols * 2;
@@ -96,13 +179,13 @@ export default function InteractiveDotGrid() {
 
       for (let c = 0; c < colsNeeded; c++) {
         const x = W / 2 + (c - halfCols) * SPACING;
-        const rowsNeeded = Math.ceil(H / SPACING) + 1;
+        const rowsNeeded = Math.ceil(H / SPACING) + 2;
 
         for (let r = 0; r < rowsNeeded; r++) {
           const y = SPACING / 2 + r * SPACING;
           const sunLineY = getSunLineY(x, W, H);
 
-          if (y < sunLineY - 7) {
+          if (y < sunLineY - 4) {
             gridDots.push({
               baseX: x,
               baseY: y,
@@ -180,6 +263,25 @@ export default function InteractiveDotGrid() {
     };
 
     initSystem();
+    const rafId = requestAnimationFrame(() => {
+      initSystem();
+    });
+    const timerId = setTimeout(() => {
+      initSystem();
+    }, 120);
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(() => {
+        initSystem();
+      });
+      resizeObserver.observe(canvas);
+      const horizonSvg = (canvas.closest("#hero")?.querySelector(".hero-horizon") ||
+        document.querySelector(".hero-horizon")) as SVGElement | null;
+      if (horizonSvg) {
+        resizeObserver.observe(horizonSvg);
+      }
+    }
 
     // ── Event listeners ──
     const handleMouseMove = (e: MouseEvent) => {
@@ -414,13 +516,21 @@ export default function InteractiveDotGrid() {
         }
       }
 
-      animationFrameId = requestAnimationFrame(render);
+      if (isVisible) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
     render();
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(rafId);
+      clearTimeout(timerId);
+      observer.disconnect();
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("touchstart", handleTouchMove);
       window.removeEventListener("touchmove", handleTouchMove);
