@@ -50,8 +50,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "Directing creative vision, brand positioning, and conversion architecture. Dedicated to building digital experiences that command attention and drive measurable business outcomes.",
     focus: ["Creative Direction", "Brand Strategy", "Conversion Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
-    accentColor: "#F5B800",
-    glowColor: "rgba(245, 184, 0, 0.12)",
+    accentColor: "#FAB406",
+    glowColor: "rgba(250, 180, 6, 0.14)",
   },
   {
     id: "sai-prabath",
@@ -63,8 +63,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "Leading full-stack engineering, performance systems, and modern web architectures. Focused on delivering ultra-fast, scalable, and responsive digital flagships.",
     focus: ["Full-Stack Engineering", "Performance Optimization", "Technical Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
-    accentColor: "#38BDF8",
-    glowColor: "rgba(56, 189, 248, 0.12)",
+    accentColor: "#FAB406",
+    glowColor: "rgba(250, 180, 6, 0.14)",
   },
   {
     id: "fazeel",
@@ -76,8 +76,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "Overseeing system infrastructure, execution workflows, and client delivery standards. Ensuring every build achieves total operational reliability, security, and precision.",
     focus: ["Systems Infrastructure", "Technical Operations", "Client Delivery"],
     linkedinUrl: "https://www.linkedin.com/in/md-fazeel-167816281/",
-    accentColor: "#F5B800",
-    glowColor: "rgba(245, 184, 0, 0.12)",
+    accentColor: "#FAB406",
+    glowColor: "rgba(250, 180, 6, 0.14)",
   },
 ];
 
@@ -95,7 +95,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#F5B800] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#FAB406] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="left" />
@@ -116,12 +116,12 @@ export default function Team() {
             <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
               06 / Leadership
             </span>
-            <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
+            <div className="w-10 sm:w-12 h-[1px] bg-[#FAB406]/60" />
           </div>
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12] text-balance">
-            Meet the founders behind <span className="text-[#F5B800]">QDelta</span>
+            Meet the founders behind <span className="text-[#FAB406]">QDelta</span>
           </h2>
 
           {/* Supporting Text */}
@@ -163,9 +163,9 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#FAB406]/35 bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
                     {/* Crisp Golden Top Accent Hairline */}
-                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent z-20" />
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/55 to-transparent z-20" />
 
                     {/* Top Ambient Glow behind portrait */}
                     <div
@@ -226,12 +226,12 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD BACK FACE                                      */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.09] hover:border-[#F5B800]/30 bg-[#090C13]/92 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.85)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.1] hover:border-[#FAB406]/40 bg-[#0A0D12]/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.06)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
                     {/* Crisp Golden Top Accent Hairline */}
-                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent z-20" />
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/60 to-transparent z-20" />
 
-                    {/* Subtle Dark Tech Grid Overlay */}
-                    <div className="absolute inset-0 bg-[radial-gradient(rgba(245,184,0,0.06)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-30" />
+                    {/* Subtle Warm Grid Texture */}
+                    <div className="absolute inset-0 bg-[radial-gradient(rgba(250,180,6,0.06)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-30" />
 
                     {/* Accent Corner Glow */}
                     <div
@@ -242,40 +242,37 @@ export default function Team() {
                     {/* Top Back Header */}
                     <div className="relative z-10 border-b border-white/[0.08] pb-3.5">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-epilogue text-[11px] uppercase tracking-[0.18em] font-semibold text-zinc-400">
+                        <span className="font-epilogue text-[11px] uppercase tracking-[0.2em] font-semibold text-zinc-400">
                           {member.number} • PROFILE
                         </span>
-                        <span
-                          className="font-epilogue text-xs uppercase tracking-widest font-semibold"
-                          style={{ color: member.accentColor }}
-                        >
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-[#FAB406]/35 bg-[#FAB406]/10 text-[10px] font-epilogue uppercase tracking-widest font-bold text-[#FAB406]">
                           {member.role}
                         </span>
                       </div>
 
-                      <h3 className="font-excon text-2xl font-bold text-white tracking-tight">
+                      <h3 className="font-excon text-2xl font-bold text-white tracking-tight leading-tight">
                         {member.name}
                       </h3>
-                      <p className="text-xs font-epilogue text-zinc-400 mt-0.5">
+                      <p className="text-xs font-epilogue text-[#FAB406]/85 font-medium mt-1">
                         {member.subtitle}
                       </p>
                     </div>
 
                     {/* Middle: Short Bio & Key Focus */}
-                    <div className="relative z-10 my-auto py-1.5">
+                    <div className="relative z-10 my-auto py-2">
                       <p className="font-epilogue text-xs sm:text-[13px] text-zinc-300 leading-relaxed font-normal">
                         {member.bio}
                       </p>
 
                       <div className="mt-4">
-                        <div className="text-[10px] font-epilogue uppercase tracking-[0.18em] text-zinc-400 font-semibold mb-2">
+                        <div className="text-[10px] font-epilogue uppercase tracking-[0.2em] text-zinc-400 font-semibold mb-2">
                           Key Responsibilities & Focus
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {member.focus.map((item) => (
                             <span
                               key={item}
-                              className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-[11px] font-epilogue text-zinc-200 font-medium"
+                              className="px-2.5 py-1 rounded-md bg-[#FAB406]/[0.05] border border-[#FAB406]/20 text-[11px] font-epilogue text-zinc-200 font-medium hover:border-[#FAB406]/40 transition-colors shadow-sm"
                             >
                               {item}
                             </span>
@@ -291,11 +288,11 @@ export default function Team() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 text-xs font-epilogue uppercase tracking-wider font-semibold text-zinc-300 hover:text-white transition-colors"
+                        className="group/link inline-flex items-center gap-1.5 text-xs font-epilogue uppercase tracking-wider font-semibold text-zinc-300 hover:text-[#FAB406] transition-colors"
                       >
-                        <LinkedInIcon className="w-3.5 h-3.5 text-[#F5B800]" />
+                        <LinkedInIcon className="w-3.5 h-3.5 text-[#FAB406]" />
                         <span>Connect on LinkedIn</span>
-                        <ArrowUpRight className="w-3 h-3 text-zinc-500" />
+                        <ArrowUpRight className="w-3 h-3 text-zinc-400 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-[#FAB406]" />
                       </a>
 
                       <span className="text-[10px] font-epilogue uppercase tracking-widest text-zinc-500">
@@ -319,7 +316,7 @@ export default function Team() {
           transition={{ duration: 0.5 }}
           className="mt-10 sm:mt-12 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/[0.08] bg-[#0B0E12]/80 backdrop-blur-md text-xs font-epilogue text-zinc-400 text-center"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#F5B800] shrink-0" />
+          <Sparkles className="w-3.5 h-3.5 text-[#FAB406] shrink-0" />
           <span>Founders directly design, engineer, and lead every single client engagement</span>
         </motion.div>
       </div>
