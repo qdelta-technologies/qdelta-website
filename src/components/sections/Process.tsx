@@ -1,17 +1,14 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import Link from "next/link";
 import {
   Compass,
   Layers,
   Sparkles,
   Rocket,
   TrendingUp,
-  ArrowUpRight,
-  ShieldCheck,
 } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface ProcessStep {
@@ -68,68 +65,80 @@ const STEPS: ProcessStep[] = [
 // Number of steps
 const TOTAL_STEPS = STEPS.length; // 5
 
+/** Progress reaches each node center; final step fills the full rail. */
+function getDesktopRailPercent(activeStep: number) {
+  if (activeStep >= TOTAL_STEPS - 1) return 100;
+  return ((activeStep + 0.5) / TOTAL_STEPS) * 100;
+}
+
 export default function Process() {
   const containerRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const activeStepRef = useRef(0);
 
-  // activeStep is 0-based. -1 = section not yet visible.
   const [activeStep, setActiveStep] = useState<number>(0);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const STEP_TRANSITION = { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const };
+  const STEP_REVEAL_DELAY = 0.06;
+
+  const commitStep = (step: number) => {
+    const clamped = Math.min(Math.max(0, step), TOTAL_STEPS - 1);
+    if (clamped === activeStepRef.current) return;
+    activeStepRef.current = clamped;
+    setActiveStep(clamped);
+  };
+
+  const progressToStep = (progress: number) => {
+    const clampedProgress = Math.min(Math.max(progress, 0), 1);
+    const rawStep = Math.floor(clampedProgress * TOTAL_STEPS);
+    return Math.min(rawStep, TOTAL_STEPS - 1);
+  };
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (shouldReduceMotion) return;
+    if (window.innerWidth < 1024) return;
+    commitStep(progressToStep(latest));
+  });
 
   useEffect(() => {
     if (shouldReduceMotion) {
+      activeStepRef.current = TOTAL_STEPS - 1;
       setActiveStep(TOTAL_STEPS - 1);
       return;
     }
 
-    const section = containerRef.current;
-    if (!section) return;
+    const desktopMq = window.matchMedia("(min-width: 1024px)");
 
-    let rafId: number | null = null;
-
-    const computeStep = () => {
-      const rect = section.getBoundingClientRect();
-      const sectionHeight = section.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      const stickyRange = sectionHeight - viewportHeight;
-
-      const scrolledInto = Math.max(0, -rect.top);
-      const progress = Math.min(scrolledInto / stickyRange, 1);
-
-      const rawStep = Math.floor(progress * TOTAL_STEPS);
-      const step = Math.min(rawStep, TOTAL_STEPS - 1);
-
-      setActiveStep(step);
+    const syncDesktopStep = () => {
+      if (!desktopMq.matches) return;
+      commitStep(progressToStep(scrollYProgress.get()));
     };
 
-    // Throttle to one update per animation frame — prevents mid-frame jitter
-    const onScroll = () => {
-      if (rafId !== null) return;
-      rafId = requestAnimationFrame(() => {
-        computeStep();
-        rafId = null;
-      });
+    const onBreakpointChange = () => {
+      if (desktopMq.matches) {
+        syncDesktopStep();
+      }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    computeStep();
+    syncDesktopStep();
+    desktopMq.addEventListener("change", onBreakpointChange);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafId !== null) cancelAnimationFrame(rafId);
+      desktopMq.removeEventListener("change", onBreakpointChange);
     };
-  }, [shouldReduceMotion]);
+  }, [shouldReduceMotion, scrollYProgress]);
 
-  // Hovering temporarily spotlights a card but doesn't change the scroll-driven step
-  const effectiveActive = hoveredIndex !== null ? hoveredIndex : activeStep;
-
-  // Horizontal rail progress: map activeStep to percentage across the 5 column positions
-  const railPercent = ((activeStep / (TOTAL_STEPS - 1)) * 80) + 10; // 10% → 90%
+  const railPercent = getDesktopRailPercent(activeStep);
 
   const getStepStatus = (index: number) => {
     if (shouldReduceMotion) return "active";
-    if (index === effectiveActive) return "active";
-    if (index < effectiveActive) return "completed";
+    if (index === activeStep) return "active";
+    if (index < activeStep) return "completed";
     return "inactive";
   };
 
@@ -157,10 +166,10 @@ export default function Process() {
                 03 / How We Work
               </span>
               <span className="text-zinc-600">•</span>
-              <span className="font-epilogue text-xs tracking-[0.15em] uppercase font-semibold text-[#FAB406] transition-colors duration-300">
+              <span className="hidden lg:inline font-epilogue text-xs tracking-[0.15em] uppercase font-semibold text-[#FAB406] transition-colors duration-300">
                 Step 0{Math.min(activeStep + 1, TOTAL_STEPS)} of 0{TOTAL_STEPS}
               </span>
-              <div className="w-8 sm:w-10 h-[1px] bg-[#FAB406]/60" />
+              <div className="hidden lg:block w-8 sm:w-10 h-[1px] bg-[#FAB406]/60" />
             </div>
 
             <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[40px] font-excon font-bold tracking-tight text-white leading-[1.14] text-balance">
@@ -176,26 +185,23 @@ export default function Process() {
           {/* DESKTOP VIEW: HORIZONTAL ALTERNATING PROCESS RAIL       */}
           {/* ======================================================= */}
           <div className="hidden lg:block relative w-full mb-6 lg:mb-8 select-none">
-            <div className="relative w-full min-h-[460px] lg:min-h-[480px] flex flex-col justify-between">
+            <div className="relative w-full min-h-[480px]">
 
-              {/* Central Glowing Horizon Rail */}
-              <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] z-0 pointer-events-none">
-                {/* Neutral background rail */}
-                <div className="w-full h-full bg-white/[0.08]" />
-
-                {/* Yellow illuminated progress trace */}
+              {/* Full-width baseline + progress (behind nodes) */}
+              <div
+                className="pointer-events-none absolute left-0 right-0 top-1/2 z-[1] h-[2px] -translate-y-1/2"
+                aria-hidden
+              >
+                <div className="h-full w-full bg-white/[0.08]" />
                 <motion.div
-                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#FAB406]/50 via-[#FAB406] to-[#FAB406] shadow-[0_0_10px_rgba(250,180,6,0.5)]"
+                  className="absolute left-0 top-0 h-full origin-left bg-[#FAB406] shadow-[0_0_8px_rgba(250,180,6,0.5)]"
                   animate={{ width: `${railPercent}%` }}
-                  transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
-                >
-                  {/* Leading glow bead */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#FAB406] shadow-[0_0_8px_#FAB406]" />
-                </motion.div>
+                  transition={{ ...STEP_TRANSITION, delay: STEP_REVEAL_DELAY }}
+                />
               </div>
 
-              {/* 5-Column Grid */}
-              <div className="relative z-10 grid grid-cols-5 gap-4 w-full h-full items-center">
+              {/* 5 columns × 3 rows — middle row = nodes on the rail */}
+              <div className="relative z-10 grid w-full grid-cols-5 gap-0">
                 {STEPS.map((step, idx) => {
                   const IconComponent = step.icon;
                   const isAbove = idx % 2 === 0; // Steps 1, 3, 5 above rail; Steps 2, 4 below
@@ -240,141 +246,167 @@ export default function Process() {
                     ? "text-zinc-500"
                     : "text-zinc-700";
 
-                  const connectorClass = isActive
-                    ? "opacity-100"
+                  const connectorTone = isActive
+                    ? "bg-[#FAB406]"
                     : isCompleted
-                    ? "opacity-70"
-                    : "opacity-20";
+                    ? "bg-[#FAB406]/55"
+                    : "bg-white/20";
+
+                  const topCard = (
+                    <motion.div
+                      animate={{
+                        opacity: isActive ? 1 : isCompleted ? 0.88 : 0.18,
+                        y: isInactive ? -10 : 0,
+                        scale: isActive ? 1 : isCompleted ? 0.99 : 0.97,
+                        filter: isInactive ? "blur(2px)" : "blur(0px)",
+                      }}
+                      transition={{
+                        ...STEP_TRANSITION,
+                        delay: isActive ? STEP_REVEAL_DELAY : 0,
+                      }}
+                      className={`relative w-full max-w-[228px] overflow-hidden rounded-xl border p-5 backdrop-blur-xl ${cardClass}`}
+                    >
+                      <div className={`pointer-events-none absolute top-0 inset-x-4 h-[1px] ${hairlineClass}`} />
+                      <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
+                        <span className={`font-epilogue text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${stepLabelClass}`}>
+                          STEP {step.number}
+                        </span>
+                        <div className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all duration-300 ${iconBgClass}`}>
+                          <IconComponent className="h-4 w-4" />
+                        </div>
+                      </div>
+                      <h3 className={`mt-3 font-epilogue text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
+                        {step.title}
+                      </h3>
+                      <p className={`mt-1.5 font-epilogue text-[11.5px] leading-relaxed font-normal transition-colors duration-300 ${descClass}`}>
+                        {step.description}
+                      </p>
+                    </motion.div>
+                  );
+
+                  const bottomCard = (
+                    <motion.div
+                      animate={{
+                        opacity: isActive ? 1 : isCompleted ? 0.88 : 0.18,
+                        y: isInactive ? 10 : 0,
+                        scale: isActive ? 1 : isCompleted ? 0.99 : 0.97,
+                        filter: isInactive ? "blur(2px)" : "blur(0px)",
+                      }}
+                      transition={{
+                        ...STEP_TRANSITION,
+                        delay: isActive ? STEP_REVEAL_DELAY : 0,
+                      }}
+                      className={`relative w-full max-w-[228px] overflow-hidden rounded-xl border p-5 backdrop-blur-xl ${cardClass}`}
+                    >
+                      <div className={`pointer-events-none absolute top-0 inset-x-4 h-[1px] ${hairlineClass}`} />
+                      <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
+                        <span className={`font-epilogue text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${stepLabelClass}`}>
+                          STEP {step.number}
+                        </span>
+                        <div className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all duration-300 ${iconBgClass}`}>
+                          <IconComponent className="h-4 w-4" />
+                        </div>
+                      </div>
+                      <h3 className={`mt-3 font-epilogue text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
+                        {step.title}
+                      </h3>
+                      <p className={`mt-1.5 font-epilogue text-[11.5px] leading-relaxed font-normal transition-colors duration-300 ${descClass}`}>
+                        {step.description}
+                      </p>
+                    </motion.div>
+                  );
 
                   return (
                     <div
                       key={step.number}
-                      className="relative flex flex-col items-center justify-center h-full"
-                      onMouseEnter={() => setHoveredIndex(idx)}
-                      onMouseLeave={() => setHoveredIndex(null)}
+                      className="grid min-h-[480px] grid-rows-[1fr_auto_1fr] px-1"
                     >
-                      {/* TOP CARD (Steps 01, 03, 05) */}
-                      {isAbove ? (
-                        <div className="flex flex-col items-center mb-auto pt-1">
-                          <motion.div
-                            animate={{
-                              opacity: isActive ? 1 : isCompleted ? 0.88 : 0.18,
-                              y: isInactive ? -10 : 0,
-                              scale: isActive ? 1 : isCompleted ? 0.99 : 0.97,
-                              filter: isInactive ? "blur(2px)" : "blur(0px)",
-                            }}
-                            transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay: isActive ? 0.05 : 0 }}
-                            className={`relative overflow-hidden w-full max-w-[240px] rounded-xl border backdrop-blur-xl p-5 ${cardClass}`}
-                          >
-                            <div className={`pointer-events-none absolute top-0 inset-x-4 h-[1px] ${hairlineClass}`} />
-                            <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
-                              <span className={`font-epilogue text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${stepLabelClass}`}>
-                                STEP {step.number}
-                              </span>
-                              <div className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all duration-300 ${iconBgClass}`}>
-                                <IconComponent className="h-4 w-4" />
-                              </div>
-                            </div>
-                            <h3 className={`mt-3 font-epilogue text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
-                              {step.title}
-                            </h3>
-                            <p className={`mt-1.5 font-epilogue text-[11.5px] sm:text-xs leading-relaxed font-normal transition-colors duration-300 ${descClass}`}>
-                              {step.description}
-                            </p>
-                          </motion.div>
+                      {/* Row 1 — top cards */}
+                      <div className="flex flex-col items-center justify-end pb-0">
+                        {isAbove ? (
+                          <>
+                            {topCard}
+                            <motion.div
+                              animate={{ opacity: isActive ? 1 : isCompleted ? 0.75 : 0.2 }}
+                              transition={STEP_TRANSITION}
+                              className={`mt-0 h-9 w-[2px] shrink-0 ${connectorTone}`}
+                            />
+                          </>
+                        ) : (
+                          <div className="min-h-[1px] flex-1" aria-hidden />
+                        )}
+                      </div>
 
-                          {/* Vertical Connector */}
-                          <motion.div
-                            animate={{ opacity: isActive ? 1 : isCompleted ? 0.7 : 0.18 }}
-                            transition={{ duration: 0.55, ease: "easeOut" }}
-                            className={`w-[1.5px] h-8 ${
-                              isActive
-                                ? "bg-gradient-to-b from-[#FAB406]/50 to-[#FAB406]"
-                                : isCompleted
-                                ? "bg-[#FAB406]/50"
-                                : "bg-white/20"
-                            }`}
-                          />
-                        </div>
-                      ) : (
-                        <div className="h-[195px] w-full pointer-events-none" />
-                      )}
-
-                      {/* TIMELINE NODE */}
-                      <div className="relative my-auto flex items-center justify-center z-20">
-                        {/* Pulsing aura — active only */}
+                      {/* Row 2 — node centered on shared rail */}
+                      <div className="relative z-20 flex items-center justify-center py-0">
                         {isActive && (
                           <motion.div
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: [0.9, 1.45, 0.9], opacity: [0, 0.55, 0] }}
-                            transition={{ repeat: Infinity, duration: 2.8, ease: "easeInOut", repeatDelay: 0.2 }}
-                            className="absolute w-12 h-12 rounded-full bg-[#FAB406]/18 blur-[6px] pointer-events-none"
+                            transition={{
+                              repeat: Infinity,
+                              duration: 2.8,
+                              ease: "easeInOut",
+                              repeatDelay: 0.2,
+                              delay: STEP_REVEAL_DELAY + 0.08,
+                            }}
+                            className="pointer-events-none absolute h-12 w-12 rounded-full bg-[#FAB406]/18 blur-[6px]"
                           />
                         )}
-                        {/* Node circle */}
-                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center bg-[#06070A] transition-all duration-500 ${
-                          isActive
-                            ? "border-[#FAB406] shadow-[0_0_16px_rgba(250,180,6,0.7)] scale-110"
-                            : isCompleted
-                            ? "border-[#FAB406]/80 shadow-[0_0_8px_rgba(250,180,6,0.3)]"
-                            : "border-white/20 scale-95"
-                        }`}>
-                          <div className={`rounded-full transition-all duration-500 ${
-                            isActive
-                              ? "w-2.5 h-2.5 bg-[#FAB406] shadow-[0_0_6px_#FAB406]"
+                        <motion.div
+                          animate={{
+                            borderColor: isActive
+                              ? "rgba(250, 180, 6, 1)"
                               : isCompleted
-                              ? "w-2 h-2 bg-[#FAB406]/80"
-                              : "w-1.5 h-1.5 bg-white/25"
-                          }`} />
-                        </div>
-                      </div>
-
-                      {/* BOTTOM CARD (Steps 02, 04) */}
-                      {!isAbove ? (
-                        <div className="flex flex-col items-center mt-auto pb-1">
-                          {/* Vertical Connector */}
-                          <motion.div
-                            animate={{ opacity: isActive ? 1 : isCompleted ? 0.7 : 0.18 }}
-                            transition={{ duration: 0.55, ease: "easeOut" }}
-                            className={`w-[1.5px] h-8 ${
-                              isActive
-                                ? "bg-gradient-to-b from-[#FAB406] to-[#FAB406]/50"
-                                : isCompleted
-                                ? "bg-[#FAB406]/50"
-                                : "bg-white/20"
-                            }`}
-                          />
-
+                              ? "rgba(250, 180, 6, 0.85)"
+                              : "rgba(255, 255, 255, 0.22)",
+                            scale: isActive ? 1.08 : isCompleted ? 1 : 0.96,
+                            boxShadow: isActive
+                              ? "0 0 16px rgba(250, 180, 6, 0.75)"
+                              : isCompleted
+                              ? "0 0 10px rgba(250, 180, 6, 0.35)"
+                              : "0 0 0 rgba(0,0,0,0)",
+                          }}
+                          transition={{
+                            ...STEP_TRANSITION,
+                            delay: isActive ? STEP_REVEAL_DELAY : 0,
+                          }}
+                          className="relative flex h-6 w-6 items-center justify-center rounded-full border-2 bg-[#06070A] origin-center"
+                        >
                           <motion.div
                             animate={{
-                              opacity: isActive ? 1 : isCompleted ? 0.88 : 0.18,
-                              y: isInactive ? 10 : 0,
-                              scale: isActive ? 1 : isCompleted ? 0.99 : 0.97,
-                              filter: isInactive ? "blur(2px)" : "blur(0px)",
+                              width: isActive ? 10 : isCompleted ? 8 : 6,
+                              height: isActive ? 10 : isCompleted ? 8 : 6,
+                              backgroundColor: isActive
+                                ? "rgba(250, 180, 6, 1)"
+                                : isCompleted
+                                ? "rgba(250, 180, 6, 0.85)"
+                                : "rgba(255, 255, 255, 0.28)",
                             }}
-                            transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay: isActive ? 0.05 : 0 }}
-                            className={`relative overflow-hidden w-full max-w-[240px] rounded-xl border backdrop-blur-xl p-5 ${cardClass}`}
-                          >
-                            <div className={`pointer-events-none absolute top-0 inset-x-4 h-[1px] ${hairlineClass}`} />
-                            <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
-                              <span className={`font-epilogue text-xs uppercase tracking-[0.2em] font-semibold transition-colors duration-300 ${stepLabelClass}`}>
-                                STEP {step.number}
-                              </span>
-                              <div className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all duration-300 ${iconBgClass}`}>
-                                <IconComponent className="h-4 w-4" />
-                              </div>
-                            </div>
-                            <h3 className={`mt-3 font-epilogue text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
-                              {step.title}
-                            </h3>
-                            <p className={`mt-1.5 font-epilogue text-[11.5px] sm:text-xs leading-relaxed font-normal transition-colors duration-300 ${descClass}`}>
-                              {step.description}
-                            </p>
-                          </motion.div>
-                        </div>
-                      ) : (
-                        <div className="h-[195px] w-full pointer-events-none" />
-                      )}
+                            transition={{
+                              ...STEP_TRANSITION,
+                              delay: isActive ? STEP_REVEAL_DELAY : 0,
+                            }}
+                            className="rounded-full"
+                          />
+                        </motion.div>
+                      </div>
+
+                      {/* Row 3 — bottom cards */}
+                      <div className="flex flex-col items-center justify-start pt-0">
+                        {!isAbove ? (
+                          <>
+                            <motion.div
+                              animate={{ opacity: isActive ? 1 : isCompleted ? 0.75 : 0.2 }}
+                              transition={STEP_TRANSITION}
+                              className={`mb-0 h-9 w-[2px] shrink-0 ${connectorTone}`}
+                            />
+                            {bottomCard}
+                          </>
+                        ) : (
+                          <div className="min-h-[1px] flex-1" aria-hidden />
+                        )}
+                      </div>
                     </div>
                   );
                 })}
@@ -392,86 +424,47 @@ export default function Process() {
             </div>
 
             <div className="space-y-5 sm:space-y-6 relative">
-              {STEPS.map((step, idx) => {
+              {STEPS.map((step) => {
                 const IconComponent = step.icon;
-                const status = getStepStatus(idx);
-                const isActive = status === "active";
-                const isCompleted = status === "completed";
 
                 return (
-                  <motion.div
+                  <div
                     key={step.number}
-                    initial={{ opacity: 0, x: -12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.45, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     className="flex items-start gap-4 sm:gap-6"
                   >
-                    {/* Glowing Timeline Node */}
-                    <div className={`relative z-10 flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full border-2 bg-[#06070A] transition-all duration-300 mt-1 ${
-                      isActive
-                        ? "border-[#FAB406] shadow-[0_0_14px_rgba(250,180,6,0.65)]"
-                        : isCompleted
-                        ? "border-[#FAB406]/75 shadow-[0_0_8px_rgba(250,180,6,0.25)]"
-                        : "border-white/20"
-                    }`}>
-                      <span className={`rounded-full transition-all duration-300 ${
-                        isActive ? "h-2.5 w-2.5 bg-[#FAB406]" : isCompleted ? "h-2 w-2 bg-[#FAB406]/80" : "h-1.5 w-1.5 bg-white/30"
-                      }`} />
+                    {/* Timeline node — static on mobile */}
+                    <div
+                      className="relative z-10 mt-1 flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#FAB406]/75 bg-[#06070A] shadow-[0_0_8px_rgba(250,180,6,0.2)]"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-[#FAB406]/90" />
                     </div>
 
-                    {/* Card */}
-                    <div className={`relative overflow-hidden flex-1 rounded-xl border backdrop-blur-xl p-4 sm:p-5 transition-all duration-300 ${
-                      isActive
-                        ? "border-[#FAB406]/60 bg-[#0E1217]/95 shadow-[0_16px_40px_rgba(250,180,6,0.14)]"
-                        : isCompleted
-                        ? "border-white/[0.12] bg-[#0B0E12]/85"
-                        : "border-white/[0.05] bg-[#080A0D]/60"
-                    }`}>
-                      <div className={`pointer-events-none absolute top-0 inset-x-4 h-[1px] ${
-                        isActive ? "bg-gradient-to-r from-transparent via-[#FAB406]/90 to-transparent"
-                          : isCompleted ? "bg-gradient-to-r from-transparent via-[#FAB406]/35 to-transparent"
-                          : "bg-transparent"
-                      }`} />
+                    {/* Card — full visibility, no scroll-driven states */}
+                    <div
+                      className="relative flex-1 overflow-hidden rounded-xl border border-white/[0.12] bg-[#0B0E12]/90 p-4 shadow-[0_12px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-5"
+                    >
+                      <div className="pointer-events-none absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/35 to-transparent" />
                       <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
-                        <span className={`font-epilogue text-xs uppercase tracking-[0.2em] font-semibold ${
-                          isActive ? "text-[#FAB406]" : isCompleted ? "text-[#FAB406]/65" : "text-zinc-600"
-                        }`}>STEP {step.number}</span>
-                        <div className={`flex h-6 w-6 items-center justify-center rounded transition-all duration-300 ${
-                          isActive ? "bg-[#FAB406]/15 text-[#FAB406]" : isCompleted ? "bg-white/[0.04] text-zinc-400" : "bg-white/[0.02] text-zinc-700"
-                        }`}>
+                        <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-[#FAB406]/80">
+                          STEP {step.number}
+                        </span>
+                        <div className="flex h-6 w-6 items-center justify-center rounded bg-white/[0.04] text-[#FAB406]">
                           <IconComponent className="h-3.5 w-3.5" />
                         </div>
                       </div>
-                      <h3 className={`mt-2.5 font-epilogue text-sm sm:text-base font-bold tracking-tight transition-colors duration-300 ${
-                        isActive ? "text-white" : isCompleted ? "text-zinc-200" : "text-zinc-600"
-                      }`}>{step.title}</h3>
-                      <p className={`mt-1.5 font-epilogue text-xs sm:text-sm leading-relaxed font-normal transition-colors duration-300 ${
-                        isActive ? "text-zinc-200" : isCompleted ? "text-zinc-500" : "text-zinc-700"
-                      }`}>{step.description}</p>
+                      <h3 className="mt-2.5 font-epilogue text-sm font-bold tracking-tight text-white sm:text-base">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1.5 font-epilogue text-xs font-normal leading-relaxed text-zinc-400 sm:text-sm">
+                        {step.description}
+                      </p>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
           </div>
 
-          {/* ======================================================= */}
-          {/* REASSURANCE FOOTNOTE & CTA BAR                         */}
-          {/* ======================================================= */}
-          <div className="w-full max-w-4xl rounded-xl border border-white/[0.07] bg-[#0B0E12]/80 backdrop-blur-md px-5 py-3 sm:px-7 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left shadow-lg">
-            <div className="flex items-center gap-2.5 text-xs text-zinc-400 font-epilogue">
-              <ShieldCheck className="w-4 h-4 text-[#FAB406] shrink-0" />
-              <span>Structured milestones • Transparent communication • Zero unexpected hurdles</span>
-            </div>
-            <Link
-              href="#contact"
-              className="group/cta inline-flex items-center gap-1.5 text-xs font-epilogue uppercase tracking-wider font-semibold text-[#FAB406] hover:text-white transition-colors cursor-pointer shrink-0"
-            >
-              <span>Ready to start? Let&apos;s discuss your project</span>
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
-            </Link>
-          </div>
 
         </div>
       </div>

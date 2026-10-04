@@ -134,7 +134,7 @@ export default function Hero() {
           viewBox="0 0 1000 1000"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="hero-horizon absolute left-1/2 -translate-x-1/2 origin-bottom w-[280vw] h-[140vw] bottom-[-37vw] sm:w-[220vw] sm:h-[110vw] sm:bottom-[-25vw] md:w-[160vw] md:h-[65vh] md:bottom-0 lg:w-full lg:h-full lg:bottom-0"
+          className="hero-horizon absolute left-1/2 -translate-x-1/2 origin-bottom w-[260vw] h-[115vw] bottom-0 sm:w-[200vw] sm:h-[95vw] sm:bottom-0 md:w-[160vw] md:h-[65vh] md:bottom-0 lg:w-full lg:h-full lg:bottom-0"
           preserveAspectRatio="none"
         >
           <defs>
