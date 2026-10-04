@@ -9,7 +9,9 @@ const MERIDIAN_STEP = 360 / MERIDIAN_COUNT; // 5 degrees per meridian
 
 export default function PlanetSurfaceRevolution() {
   const rotationAngleRef = useRef<number>(0);
-  const meridiansGroupRef = useRef<SVGGElement>(null);
+  const shadowGroupRef = useRef<SVGGElement>(null);
+  const highlightGroupRef = useRef<SVGGElement>(null);
+  const coreGroupRef = useRef<SVGGElement>(null);
 
   useEffect(() => {
     // Respect user's motion preferences
@@ -19,7 +21,7 @@ export default function PlanetSurfaceRevolution() {
 
     let animId: number;
     // Fluid, majestic planetary rotation: ~54 seconds per full 360° revolution
-    const ROTATION_SPEED = 0.11; // degrees per frame at 60fps (elevated speed)
+    const ROTATION_SPEED = 0.11; // degrees per frame at 60fps
 
     const animate = () => {
       if (!prefersReducedMotion) {
@@ -27,14 +29,18 @@ export default function PlanetSurfaceRevolution() {
       }
 
       const rot = rotationAngleRef.current;
-      const rotRad = (rot * Math.PI) / 180;
 
-      // Update 3D Longitudinal Globe Meridians
-      if (meridiansGroupRef.current) {
-        const paths = meridiansGroupRef.current.children;
+      // Update Longitudinal Globe Meridians with 3D engraved seam effect matching horizontal lines
+      if (coreGroupRef.current && shadowGroupRef.current && highlightGroupRef.current) {
+        const corePaths = coreGroupRef.current.children;
+        const shadowPaths = shadowGroupRef.current.children;
+        const highlightPaths = highlightGroupRef.current.children;
+
         for (let i = 0; i < MERIDIAN_COUNT; i++) {
-          const pathEl = paths[i] as SVGPathElement | undefined;
-          if (!pathEl) continue;
+          const coreEl = corePaths[i] as SVGPathElement | undefined;
+          const shadowEl = shadowPaths[i] as SVGPathElement | undefined;
+          const highlightEl = highlightPaths[i] as SVGPathElement | undefined;
+          if (!coreEl || !shadowEl || !highlightEl) continue;
 
           // Meridian planetary longitude (-180° to 180°)
           let lon = (i * MERIDIAN_STEP + rot) % 360;
@@ -63,22 +69,38 @@ export default function PlanetSurfaceRevolution() {
             const x3 = 500 + sinLon * 565;
             const y3 = 1005;
 
-            // Smooth cubic bezier forming accurate 3D spherical globe meridians
+            // Core smooth cubic bezier
             const d = `M ${x0.toFixed(1)} ${y0.toFixed(1)} C ${x1.toFixed(1)} ${y1.toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}, ${x3.toFixed(1)} ${y3.toFixed(1)}`;
-            pathEl.setAttribute("d", d);
 
-            // Uniform limb foreshortening fade across all lines
-            const baseFactor = 0.30;
-            const op = Math.max(0, cosLon) * baseFactor;
+            // Tight micro-bevel offsets (0.28px shadow right, 0.25px highlight left)
+            // Stays nestled inside the 1.2px stroke radius (0.6px) for seamless engraved bevel edges
+            const dShadow = `M ${(x0 + 0.28).toFixed(1)} ${y0.toFixed(1)} C ${(x1 + 0.28).toFixed(1)} ${y1.toFixed(1)}, ${(x2 + 0.28).toFixed(1)} ${y2.toFixed(1)}, ${(x3 + 0.28).toFixed(1)} ${y3.toFixed(1)}`;
+            const dHighlight = `M ${(x0 - 0.25).toFixed(1)} ${y0.toFixed(1)} C ${(x1 - 0.25).toFixed(1)} ${y1.toFixed(1)}, ${(x2 - 0.25).toFixed(1)} ${y2.toFixed(1)}, ${(x3 - 0.25).toFixed(1)} ${y3.toFixed(1)}`;
 
-            pathEl.setAttribute(
-              "stroke",
-              `rgba(250, 180, 6, ${op.toFixed(3)})`
-            );
-            pathEl.setAttribute("stroke-width", "1.0");
-            pathEl.style.display = "block";
+            // Spherical specular & limb foreshortening
+            const specular = Math.pow(Math.max(0, cosLon), 1.3);
+            const opCore = Math.max(0.16, specular * 0.48);
+            const opShadow = opCore * 0.58;
+            const opHighlight = opCore * 0.52;
+
+            // 1. Subtle micro depth shadow (underneath, right edge)
+            shadowEl.setAttribute("d", dShadow);
+            shadowEl.setAttribute("stroke", `rgba(110, 65, 0, ${opShadow.toFixed(3)})`);
+            shadowEl.style.display = "block";
+
+            // 2. Subtle micro highlight (underneath, left edge)
+            highlightEl.setAttribute("d", dHighlight);
+            highlightEl.setAttribute("stroke", `rgba(255, 250, 230, ${opHighlight.toFixed(3)})`);
+            highlightEl.style.display = "block";
+
+            // 3. Core golden line (on top, exact #FAB406 gold)
+            coreEl.setAttribute("d", d);
+            coreEl.setAttribute("stroke", `rgba(250, 180, 6, ${opCore.toFixed(3)})`);
+            coreEl.style.display = "block";
           } else {
-            pathEl.style.display = "none";
+            coreEl.style.display = "none";
+            shadowEl.style.display = "none";
+            highlightEl.style.display = "none";
           }
         }
       }
@@ -91,6 +113,15 @@ export default function PlanetSurfaceRevolution() {
     return () => cancelAnimationFrame(animId);
   }, []);
 
+  const LATITUDES = [
+    { y: 821, crestY: 795, op: 0.52 },
+    { y: 867, crestY: 835, op: 0.46 },
+    { y: 913, crestY: 875, op: 0.42 },
+    { y: 959, crestY: 915, op: 0.38 },
+    { y: 1005, crestY: 955, op: 0.34 },
+    { y: 1051, crestY: 995, op: 0.30 },
+  ];
+
   return (
     <g
       id="planet-surface-revolution-group"
@@ -98,71 +129,72 @@ export default function PlanetSurfaceRevolution() {
       className="pointer-events-none select-none"
     >
       {/* ================= 1. FIXED SPHERICAL LATITUDE PARALLELS ================= */}
-      {/*
-        Concentric spherical latitude rings with uniform thickness of 1.0px
-      */}
       <g opacity="1">
-        {/* Latitude 1: Close to Crest */}
-        <path
-          d="M -50 821 Q 500 795 1050 821"
-          stroke="rgba(250, 180, 6, 0.28)"
-          strokeWidth="1.0"
-          fill="none"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Latitude 2: Sub-polar */}
-        <path
-          d="M -50 867 Q 500 835 1050 867"
-          stroke="rgba(250, 180, 6, 0.28)"
-          strokeWidth="1.0"
-          fill="none"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Latitude 3: Upper-Mid */}
-        <path
-          d="M -50 913 Q 500 875 1050 913"
-          stroke="rgba(250, 180, 6, 0.26)"
-          strokeWidth="1.0"
-          fill="none"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Latitude 4: Mid-Lower */}
-        <path
-          d="M -50 959 Q 500 915 1050 959"
-          stroke="rgba(250, 180, 6, 0.24)"
-          strokeWidth="1.0"
-          fill="none"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Latitude 5: Sub-equatorial */}
-        <path
-          d="M -50 1005 Q 500 955 1050 1005"
-          stroke="rgba(250, 180, 6, 0.22)"
-          strokeWidth="1.0"
-          fill="none"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Latitude 6: Base Baseline */}
-        <path
-          d="M -50 1051 Q 500 995 1050 1051"
-          stroke="rgba(250, 180, 6, 0.20)"
-          strokeWidth="1.0"
-          fill="none"
-          vectorEffect="non-scaling-stroke"
-        />
+        {LATITUDES.map((lat, idx) => (
+          <g key={`lat-${idx}`}>
+            {/* Subtle micro depth shadow */}
+            <path
+              d={`M -50 ${lat.y + 0.45} Q 500 ${lat.crestY + 0.45} 1050 ${lat.y + 0.45}`}
+              stroke="rgba(110, 65, 0, 0.28)"
+              strokeWidth="0.9"
+              fill="none"
+              vectorEffect="non-scaling-stroke"
+            />
+            {/* Subtle micro top highlight */}
+            <path
+              d={`M -50 ${lat.y - 0.38} Q 500 ${lat.crestY - 0.38} 1050 ${lat.y - 0.38}`}
+              stroke="rgba(255, 250, 230, 0.26)"
+              strokeWidth="0.72"
+              fill="none"
+              vectorEffect="non-scaling-stroke"
+            />
+            {/* Core golden line */}
+            <path
+              d={`M -50 ${lat.y} Q 500 ${lat.crestY} 1050 ${lat.y}`}
+              stroke="#FAB406"
+              strokeOpacity={lat.op}
+              strokeWidth="1.2"
+              fill="none"
+              vectorEffect="non-scaling-stroke"
+            />
+          </g>
+        ))}
       </g>
 
       {/* ================= 2. ROTATING 3D LONGITUDINAL MERIDIANS ================= */}
-      {/*
-        72 meridians orbiting continuously across the spherical surface from west to east,
-        creating authentic square globe cells
-      */}
-      <g ref={meridiansGroupRef}>
+      {/* Layer 1: Subtle micro depth shadow (underneath) */}
+      <g ref={shadowGroupRef}>
         {Array.from({ length: MERIDIAN_COUNT }).map((_, idx) => (
           <path
-            key={`meridian-${idx}`}
+            key={`m-s-${idx}`}
             d=""
-            strokeWidth="0.75"
+            strokeWidth="0.9"
+            fill="none"
+            vectorEffect="non-scaling-stroke"
+          />
+        ))}
+      </g>
+
+      {/* Layer 2: Subtle micro highlight (underneath) */}
+      <g ref={highlightGroupRef}>
+        {Array.from({ length: MERIDIAN_COUNT }).map((_, idx) => (
+          <path
+            key={`m-h-${idx}`}
+            d=""
+            strokeWidth="0.72"
+            fill="none"
+            vectorEffect="non-scaling-stroke"
+          />
+        ))}
+      </g>
+
+      {/* Layer 3: Core golden line (on top) */}
+      <g ref={coreGroupRef}>
+        {Array.from({ length: MERIDIAN_COUNT }).map((_, idx) => (
+          <path
+            key={`m-c-${idx}`}
+            d=""
+            strokeWidth="1.2"
             fill="none"
             vectorEffect="non-scaling-stroke"
           />

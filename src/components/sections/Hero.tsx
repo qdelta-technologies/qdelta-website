@@ -138,37 +138,51 @@ export default function Hero() {
           preserveAspectRatio="none"
         >
           <defs>
-            {/* Reduced, tight outer halo glow (clean space, no foggy blur) */}
-            <filter id="horizon-glow-tight" x="-10%" y="-30%" width="120%" height="160%">
-              <feGaussianBlur stdDeviation="3.2" result="blur" />
+            {/* Atmospheric rim glow filter (radiant golden corona) */}
+            <filter id="horizon-glow-atmospheric" x="-20%" y="-100%" width="140%" height="300%">
+              <feGaussianBlur stdDeviation="6.0" result="blur" />
             </filter>
 
-            {/* Radiant gradient along the laser beam */}
+            {/* Tight halo glow filter */}
+            <filter id="horizon-glow-tight" x="-10%" y="-50%" width="120%" height="200%">
+              <feGaussianBlur stdDeviation="2.5" result="blur" />
+            </filter>
+
+            {/* Core radiant laser beam gradient with crisp pinpoint center */}
             <linearGradient id="horizon-beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FAB406" stopOpacity="0.4" />
-              <stop offset="12%" stopColor="#FAB406" stopOpacity="0.95" />
+              <stop offset="25%" stopColor="#FAB406" stopOpacity="0.95" />
+              <stop offset="46%" stopColor="#FFF8D6" stopOpacity="1" />
               <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
-              <stop offset="88%" stopColor="#FAB406" stopOpacity="0.95" />
+              <stop offset="54%" stopColor="#FFF8D6" stopOpacity="1" />
+              <stop offset="75%" stopColor="#FAB406" stopOpacity="0.95" />
               <stop offset="100%" stopColor="#FAB406" stopOpacity="0.4" />
             </linearGradient>
 
-            {/* Tight, refined outer halo gradient */}
-            <linearGradient id="horizon-halo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
-              <stop offset="15%" stopColor="#FAB406" stopOpacity="0.6" />
-              <stop offset="50%" stopColor="#FFF2B2" stopOpacity="0.8" />
-              <stop offset="85%" stopColor="#FAB406" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
+            {/* Atmospheric corona gradient: luminous gold hugging the top outline */}
+            <linearGradient id="horizon-corona-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FAB406" stopOpacity="0" />
+              <stop offset="20%" stopColor="#FAB406" stopOpacity="0.35" />
+              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.75" />
+              <stop offset="80%" stopColor="#FAB406" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#FAB406" stopOpacity="0" />
             </linearGradient>
 
-            {/* Balanced solar atmospheric underglow with gentle warm amber depth (subtle, non-overpowering) */}
+            {/* Tight, refined outer halo gradient in pure gold (no pale bleaching) */}
+            <linearGradient id="horizon-halo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.15" />
+              <stop offset="25%" stopColor="#FAB406" stopOpacity="0.65" />
+              <stop offset="50%" stopColor="#FAB406" stopOpacity="0.85" />
+              <stop offset="75%" stopColor="#FAB406" stopOpacity="0.65" />
+              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.15" />
+            </linearGradient>
+
+            {/* Rich Gold Surface: Slightly deeper tone for richer body and contrast */}
             <linearGradient id="horizon-underglow" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FFF4C2" stopOpacity="0.92" />
-              <stop offset="10%" stopColor="#FAB406" stopOpacity="0.88" />
-              <stop offset="28%" stopColor="#F59E0B" stopOpacity="0.84" />
-              <stop offset="55%" stopColor="#D97706" stopOpacity="0.80" />
-              <stop offset="80%" stopColor="#C46000" stopOpacity="0.76" />
-              <stop offset="100%" stopColor="#A84800" stopOpacity="0.72" />
+              <stop offset="0%" stopColor="#EFA902" stopOpacity="0.95" />
+              <stop offset="25%" stopColor="#E9A300" stopOpacity="0.92" />
+              <stop offset="60%" stopColor="#DF9800" stopOpacity="0.88" />
+              <stop offset="100%" stopColor="#D28C00" stopOpacity="0.84" />
             </linearGradient>
 
             {/* Strict clipping mask ensuring the rotating surface lines never leak outside the arc */}
@@ -178,18 +192,38 @@ export default function Hero() {
           </defs>
 
           {/* ================= 1. INNER GLOW & SURFACE (CLEAN & SEAMLESS) ================= */}
-          {/* Filled Layer: Balanced, continuous atmospheric underglow across the full globe surface */}
+          {/* Base Layer: Rich gold surface */}
           <path
             d="M -15 1000 Q 500 520 1015 1000 L 1015 1005 L -15 1005 Z"
             fill="url(#horizon-underglow)"
             className="transition-opacity duration-500 ease-out opacity-100"
           />
 
-          {/* Planet Surface Revolution: Rotating spherical longitude/latitude lines */}
+          {/* 3D Top Inset Bevel Shadow: Gives the top edge physical thickness and depth */}
+          <path
+            d="M -15 1000 Q 500 520 1015 1000"
+            stroke="rgba(140, 85, 0, 0.40)"
+            strokeWidth="3.0"
+            fill="none"
+            clipPath="url(#horizon-surface-clip)"
+            vectorEffect="non-scaling-stroke"
+          />
+
+          {/* Planet Surface Revolution: Clean, elegant golden wireframe grid */}
           <PlanetSurfaceRevolution />
 
-          {/* ================= 2. LASER RIM & TIGHT OUTER CORONA (REDUCED OUTER GLOW) ================= */}
-          {/* Tight subtle halo (reduced, no foggy haze in space) */}
+          {/* ================= 2. LASER RIM & CORONA GLOW ================= */}
+          {/* Atmospheric ambient golden corona glow radiating above the top outline */}
+          <path
+            d="M -15 1000 Q 500 520 1015 1000"
+            stroke="url(#horizon-corona-gradient)"
+            strokeWidth="8.0"
+            filter="url(#horizon-glow-atmospheric)"
+            vectorEffect="non-scaling-stroke"
+            className="transition-all duration-300 ease-out"
+          />
+
+          {/* Tight vibrant halo glow */}
           <path
             d="M -15 1000 Q 500 520 1015 1000"
             stroke="url(#horizon-halo-gradient)"
@@ -199,11 +233,11 @@ export default function Hero() {
             className="transition-all duration-300 ease-out"
           />
 
-          {/* Core crisp laser line */}
+          {/* Core crisp laser rim line */}
           <path
             d="M -15 1000 Q 500 520 1015 1000"
             stroke="url(#horizon-beam-gradient)"
-            strokeWidth="2.2"
+            strokeWidth="2.0"
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
             className="transition-all duration-300 ease-out"
