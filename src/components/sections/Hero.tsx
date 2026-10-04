@@ -118,14 +118,14 @@ export default function Hero() {
           className="absolute -top-20 inset-x-0 h-64 pointer-events-none transition-transform duration-700 ease-out will-change-transform"
           style={{
             background:
-              "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(250,180,6,0.09) 0%, rgba(250,180,6,0.02) 50%, transparent 80%)",
+              "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(231,183,42,0.09) 0%, rgba(231,183,42,0.02) 50%, transparent 80%)",
             transform: "translate3d(var(--hero-mx, 0px), 0, 0)",
           }}
         />
 
         {/* Ambient Top Center Warm Halo (gentle depth parallax) */}
         <div
-          className="absolute -top-28 left-1/2 h-[20rem] w-[46rem] rounded-full bg-gradient-to-b from-[#FAB406]/10 via-[#FAB406]/[0.02] to-transparent blur-[110px] pointer-events-none transition-transform duration-700 ease-out will-change-transform"
+          className="absolute -top-28 left-1/2 h-[20rem] w-[46rem] rounded-full bg-gradient-to-b from-[#E7B72A]/10 via-[#E7B72A]/[0.02] to-transparent blur-[110px] pointer-events-none transition-transform duration-700 ease-out will-change-transform"
           style={{
             transform: "translate3d(calc(-50% + var(--hero-mx-halo, 0px)), var(--hero-my-halo, 0px), 0)",
           }}
@@ -323,12 +323,12 @@ export default function Hero() {
                 ) : (
                   <>
                     <span className="text-[#F5F5F7]">{LINE_1.slice(0, 12)}</span>
-                    <span className="text-[#FAB406]">{LINE_1.slice(12, Math.min(displayedCount, LINE_1.length))}</span>
+                    <span className="text-[#E7B72A]">{LINE_1.slice(12, Math.min(displayedCount, LINE_1.length))}</span>
                   </>
                 )}
                 {displayedCount <= LINE_1.length && !isTypingDone && (
                   <span
-                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#FAB406] ml-1.5 rounded-full shadow-[0_0_10px_rgba(250,180,6,0.6)] transition-opacity duration-300 ${
+                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#E7B72A] ml-1.5 rounded-full shadow-[0_0_10px_rgba(231,183,42,0.6)] transition-opacity duration-300 ${
                       cursorVisible ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -342,10 +342,10 @@ export default function Hero() {
               <span>
                 {Math.max(0, displayedCount - LINE_1.length) > 0 ? (
                   Math.max(0, displayedCount - LINE_1.length) <= 9 ? (
-                    <span className="text-[#FAB406]">{LINE_2.slice(0, Math.max(0, displayedCount - LINE_1.length))}</span>
+                    <span className="text-[#E7B72A]">{LINE_2.slice(0, Math.max(0, displayedCount - LINE_1.length))}</span>
                   ) : (
                     <>
-                      <span className="text-[#FAB406]">{LINE_2.slice(0, 9)}</span>
+                      <span className="text-[#E7B72A]">{LINE_2.slice(0, 9)}</span>
                       <span className="text-[#F5F5F7]">{LINE_2.slice(9, Math.max(0, displayedCount - LINE_1.length))}</span>
                     </>
                   )
@@ -356,7 +356,7 @@ export default function Hero() {
                 )}
                 {displayedCount > LINE_1.length && !isTypingDone && (
                   <span
-                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#FAB406] ml-1.5 rounded-full shadow-[0_0_10px_rgba(250,180,6,0.6)] transition-opacity duration-300 ${
+                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#E7B72A] ml-1.5 rounded-full shadow-[0_0_10px_rgba(231,183,42,0.6)] transition-opacity duration-300 ${
                       cursorVisible ? "opacity-100" : "opacity-0"
                     }`}
                   />

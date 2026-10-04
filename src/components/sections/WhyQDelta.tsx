@@ -33,7 +33,7 @@ export default function WhyQDelta() {
     <section
       id="why-qdelta"
       aria-label="Built for Business Growth — Strategic Value"
-      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 overflow-hidden selection:bg-[#F5B800] selection:text-[#06070A]"
+      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 overflow-hidden selection:bg-[#E7B72A] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ATMOSPHERE (HERO CONTINUATION) ================= */}
       <SectionAtmosphere variant="center" />
@@ -46,7 +46,7 @@ export default function WhyQDelta() {
             <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-400 font-semibold">
               01 / WHY IT MATTERS
             </span>
-            <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
+            <div className="w-10 sm:w-12 h-[1px] bg-[#E7B72A]/60" />
           </div>
 
           {/* Main Headline */}
@@ -65,13 +65,13 @@ export default function WhyQDelta() {
           {COUNTERS.map((counter, idx) => (
             <div
               key={idx}
-              className="relative rounded-xl bg-[#0B0E12]/80 border border-white/[0.07] hover:border-[#F5B800]/25 px-5 py-4 sm:py-4.5 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.65)] flex flex-col justify-between overflow-hidden transition-all duration-300"
+              className="relative rounded-xl bg-[#0B0E12]/80 border border-white/[0.07] hover:border-[#E7B72A]/25 px-5 py-4 sm:py-4.5 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.65)] flex flex-col justify-between overflow-hidden transition-all duration-300"
             >
               {/* Crisp Golden Top Accent Hairline */}
-              <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent" />
+              <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-transparent" />
 
               <div className="flex items-baseline justify-between gap-3">
-                <span className="font-epilogue font-extrabold text-xl sm:text-2xl md:text-3xl text-[#F5B800] tracking-tight">
+                <span className="font-epilogue font-extrabold text-xl sm:text-2xl md:text-3xl text-[#E7B72A] tracking-tight">
                   {counter.metric}
                 </span>
                 <span className="font-epilogue font-bold text-xs sm:text-[13px] text-zinc-200 tracking-tight text-right">
@@ -91,18 +91,18 @@ export default function WhyQDelta() {
           
           {/* BENTO CARD 1 — Large Dark Story Card (7 Columns) */}
           <div
-            className="lg:col-span-7 rounded-xl sm:rounded-2xl bg-[#0B0E12]/85 border border-white/[0.08] hover:border-[#F5B800]/25 p-6 sm:p-8 md:p-9 flex flex-col justify-between relative overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] transition-all duration-300"
+            className="lg:col-span-7 rounded-xl sm:rounded-2xl bg-[#0B0E12]/85 border border-white/[0.08] hover:border-[#E7B72A]/25 p-6 sm:p-8 md:p-9 flex flex-col justify-between relative overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] transition-all duration-300"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent" />
+            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-transparent" />
 
             {/* Ambient Warm Golden Backlight */}
-            <div className="pointer-events-none absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#F5B800]/[0.04] blur-[100px]" />
+            <div className="pointer-events-none absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#E7B72A]/[0.04] blur-[100px]" />
 
             <div>
               <div className="inline-flex items-center gap-2 mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800]" />
-                <span className="font-epilogue text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#F5B800]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E7B72A]" />
+                <span className="font-epilogue text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#E7B72A]">
                   CONVERSION & VALUE
                 </span>
               </div>
@@ -121,15 +121,15 @@ export default function WhyQDelta() {
             {/* Strategic Value Pillars */}
             <div className="mt-6 pt-5 border-t border-white/[0.07] grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-epilogue font-medium text-zinc-300">
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#F5B800]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#E7B72A]" />
                 <span>First Impressions</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#F5B800]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#E7B72A]" />
                 <span>Authority & Trust</span>
               </div>
               <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#F5B800]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#E7B72A]" />
                 <span>Lead Generation</span>
               </div>
             </div>
@@ -137,7 +137,7 @@ export default function WhyQDelta() {
 
           {/* BENTO CARD 2 — Warm Refined Gold Contrast Card (5 Columns, Both Offerings Stacked) */}
           <div
-            className="lg:col-span-5 rounded-xl sm:rounded-2xl bg-[#FAB406] text-[#06070A] p-6 sm:p-8 md:p-9 flex flex-col justify-between relative overflow-hidden shadow-[0_16px_45px_rgba(250,180,6,0.22)] border border-black/10 group transition-transform duration-300 hover:scale-[1.006]"
+            className="lg:col-span-5 rounded-xl sm:rounded-2xl bg-[#E7B72A] text-[#06070A] p-6 sm:p-8 md:p-9 flex flex-col justify-between relative overflow-hidden shadow-[0_16px_45px_rgba(231,183,42,0.22)] border border-black/10 group transition-transform duration-300 hover:scale-[1.006]"
           >
             {/* Subtle Texture Grain Over Golden Background */}
             <div
@@ -154,7 +154,7 @@ export default function WhyQDelta() {
                 <span className="font-epilogue text-xs font-bold uppercase tracking-widest text-black/75">
                   CORE OFFERINGS
                 </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black group-hover:bg-[#06070A] group-hover:text-[#FAB406] transition-colors duration-200">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 text-black group-hover:bg-[#06070A] group-hover:text-[#E7B72A] transition-colors duration-200">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </div>

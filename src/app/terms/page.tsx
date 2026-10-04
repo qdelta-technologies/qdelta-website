@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="relative min-h-screen bg-[#040406] text-white selection:bg-[#FAB406] selection:text-black flex flex-col justify-between">
+    <div className="relative min-h-screen bg-[#040406] text-white selection:bg-[#E7B72A] selection:text-black flex flex-col justify-between">
       <Navbar />
 
       <main className="relative flex-1 pt-28 pb-16 sm:pt-36 sm:pb-24 overflow-hidden">
         {/* Ambient Glow */}
-        <div className="pointer-events-none absolute top-20 left-1/2 -translate-x-1/2 h-[35rem] w-[50rem] rounded-full bg-gradient-to-b from-[#FAB406]/10 via-transparent to-transparent blur-[140px]" />
+        <div className="pointer-events-none absolute top-20 left-1/2 -translate-x-1/2 h-[35rem] w-[50rem] rounded-full bg-gradient-to-b from-[#E7B72A]/10 via-transparent to-transparent blur-[140px]" />
 
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Back Link */}
           <Link
             href="/"
-            className="group mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-zinc-300 backdrop-blur-md transition-colors hover:border-[#FAB406]/40 hover:text-white"
+            className="group mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-zinc-300 backdrop-blur-md transition-colors hover:border-[#E7B72A]/40 hover:text-white"
           >
             <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
             <span>Back to Home</span>
@@ -30,12 +30,12 @@ export default function TermsPage() {
 
           {/* Header */}
           <div className="border-b border-white/10 pb-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#FAB406]/30 bg-[#FAB406]/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-[#FAB406] mb-4">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E7B72A]/30 bg-[#E7B72A]/10 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-[#E7B72A] mb-4">
               <Scale className="h-3.5 w-3.5" />
               <span>Service Agreement</span>
             </div>
             <h1 className="font-sans text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-              Terms &amp; <span className="italic text-[#FAB406]">Conditions</span>
+              Terms &amp; <span className="italic text-[#E7B72A]">Conditions</span>
             </h1>
             <p className="mt-3 text-sm text-zinc-400 font-mono">
               Effective Date: September 2026 &bull; QDelta Technologies
@@ -49,7 +49,7 @@ export default function TermsPage() {
           <div className="mt-12 space-y-8 text-zinc-300">
             <section className="rounded-3xl border border-white/10 bg-[#0e0e14]/90 p-6 sm:p-8 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-3">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FAB406]/15 font-mono text-xs font-bold text-[#FAB406]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E7B72A]/15 font-mono text-xs font-bold text-[#E7B72A]">
                   01
                 </span>
                 <h2 className="text-lg sm:text-xl font-bold text-white font-sans">Scope & Deliverables</h2>
@@ -61,7 +61,7 @@ export default function TermsPage() {
 
             <section className="rounded-3xl border border-white/10 bg-[#0e0e14]/90 p-6 sm:p-8 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-4">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FAB406]/15 font-mono text-xs font-bold text-[#FAB406]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E7B72A]/15 font-mono text-xs font-bold text-[#E7B72A]">
                   02
                 </span>
                 <h2 className="text-lg sm:text-xl font-bold text-white font-sans">Milestone Payments & Invoicing</h2>
@@ -75,7 +75,7 @@ export default function TermsPage() {
 
             <section className="rounded-3xl border border-white/10 bg-[#0e0e14]/90 p-6 sm:p-8 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-3">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FAB406]/15 font-mono text-xs font-bold text-[#FAB406]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E7B72A]/15 font-mono text-xs font-bold text-[#E7B72A]">
                   03
                 </span>
                 <h2 className="text-lg sm:text-xl font-bold text-white font-sans">Intellectual Property & Ownership</h2>
@@ -85,9 +85,9 @@ export default function TermsPage() {
               </p>
             </section>
 
-            <section className="rounded-3xl border border-[#FAB406]/30 bg-gradient-to-br from-[#FAB406]/10 via-[#0e0e14] to-[#0e0e14] p-6 sm:p-8">
+            <section className="rounded-3xl border border-[#E7B72A]/30 bg-gradient-to-br from-[#E7B72A]/10 via-[#0e0e14] to-[#0e0e14] p-6 sm:p-8">
               <div className="flex items-center gap-3 mb-4">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FAB406]/20 font-mono text-xs font-bold text-[#FAB406]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E7B72A]/20 font-mono text-xs font-bold text-[#E7B72A]">
                   04
                 </span>
                 <h2 className="text-lg sm:text-xl font-bold text-white font-sans">Inquiries & Legal Clarification</h2>
@@ -98,7 +98,7 @@ export default function TermsPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="mailto:hello@qdelta.in"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#FAB406] px-5 py-2.5 text-xs font-bold text-black transition-all hover:bg-white"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#E7B72A] px-5 py-2.5 text-xs font-bold text-black transition-all hover:bg-white"
                 >
                   <Mail className="h-4 w-4" />
                   <span>hello@qdelta.in</span>
@@ -107,7 +107,7 @@ export default function TermsPage() {
                   href="/privacy"
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-white/10"
                 >
-                  <Shield className="h-4 w-4 text-[#FAB406]" />
+                  <Shield className="h-4 w-4 text-[#E7B72A]" />
                   <span>View Privacy Policy</span>
                 </Link>
               </div>

@@ -36,8 +36,8 @@
   --font-sans: var(--font-epilogue), 'Epilogue', sans-serif;
   --font-epilogue: var(--font-epilogue), 'Epilogue', sans-serif;
   --font-excon: var(--font-excon), 'Excon', sans-serif;
-  --color-gold: #FAB406;
-  --color-gold-hover: #F6A803;
+  --color-gold: #E7B72A;
+  --color-gold-hover: #F0C034;
   --color-obsidian: #040406;
   --color-surface: #0b0b10;
   --color-surface-card: #0e0e16;
@@ -197,7 +197,7 @@ canvas {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 184, 0, 0.4);
+  background: rgba(231, 183, 42, 0.45);
 }
 
 /* ================= HARDWARE-ACCELERATED CUSTOM CURSOR ================= */
@@ -219,7 +219,7 @@ canvas {
 
 .cursor-star-inner.cursor-hovering {
   transform: scale(1.25) rotate(45deg) !important;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(250, 180, 6, 0.75)) !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(231, 183, 42, 0.75)) !important;
 }
 
 .cursor-star-inner.cursor-clicking {

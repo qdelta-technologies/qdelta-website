@@ -83,7 +83,7 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
       const numStalks = Math.floor(width / dotSpacing);
 
       // Subtle bioluminescent golden glow
-      ctx.shadowColor = "rgba(245, 184, 0, 0.55)";
+      ctx.shadowColor = "rgba(231, 183, 42, 0.55)";
       ctx.shadowBlur = 4;
 
       for (let i = 0; i <= numStalks; i++) {
@@ -120,7 +120,7 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
 
           ctx.beginPath();
           ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(245, 184, 0, ${dotAlpha.toFixed(2)})`;
+          ctx.fillStyle = `rgba(231, 183, 42, ${dotAlpha.toFixed(2)})`;
           ctx.fill();
         }
       }

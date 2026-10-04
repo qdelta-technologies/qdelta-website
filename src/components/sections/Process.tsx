@@ -26,7 +26,7 @@ const STEPS: ProcessStep[] = [
     description:
       "We understand your business, audience, goals and project requirements before anything begins.",
     icon: Compass,
-    accentColor: "#FAB406",
+    accentColor: "#E7B72A",
   },
   {
     number: "02",
@@ -34,7 +34,7 @@ const STEPS: ProcessStep[] = [
     description:
       "We define the structure, scope, content direction and the right approach for the project.",
     icon: Layers,
-    accentColor: "#FAB406",
+    accentColor: "#E7B72A",
   },
   {
     number: "03",
@@ -42,7 +42,7 @@ const STEPS: ProcessStep[] = [
     description:
       "We turn the strategy into a polished digital experience through thoughtful design, development and interactions.",
     icon: Sparkles,
-    accentColor: "#FAB406",
+    accentColor: "#E7B72A",
   },
   {
     number: "04",
@@ -50,7 +50,7 @@ const STEPS: ProcessStep[] = [
     description:
       "We review, test and improve the project before preparing everything for a smooth launch.",
     icon: Rocket,
-    accentColor: "#FAB406",
+    accentColor: "#E7B72A",
   },
   {
     number: "05",
@@ -58,7 +58,7 @@ const STEPS: ProcessStep[] = [
     description:
       "After launch, we provide agreed support and can continue with maintenance and improvements as needed.",
     icon: TrendingUp,
-    accentColor: "#FAB406",
+    accentColor: "#E7B72A",
   },
 ];
 
@@ -146,7 +146,7 @@ export default function Process() {
     <section
       ref={containerRef}
       id="process"
-      className="relative z-20 w-full bg-[#06070A] text-white selection:bg-[#F5B800] selection:text-[#06070A] lg:h-[600vh]"
+      className="relative z-20 w-full bg-[#06070A] text-white selection:bg-[#E7B72A] selection:text-[#06070A] lg:h-[600vh]"
     >
       {/* ========================================================================= */}
       {/* PINNED STICKY STAGE — locks in viewport while all 5 steps are walked through */}
@@ -166,10 +166,10 @@ export default function Process() {
                 03 / How We Work
               </span>
               <span className="text-zinc-600">•</span>
-              <span className="hidden lg:inline font-epilogue text-xs tracking-[0.15em] uppercase font-semibold text-[#FAB406] transition-colors duration-300">
+              <span className="hidden lg:inline font-epilogue text-xs tracking-[0.15em] uppercase font-semibold text-[#E7B72A] transition-colors duration-300">
                 Step 0{Math.min(activeStep + 1, TOTAL_STEPS)} of 0{TOTAL_STEPS}
               </span>
-              <div className="hidden lg:block w-8 sm:w-10 h-[1px] bg-[#FAB406]/60" />
+              <div className="hidden lg:block w-8 sm:w-10 h-[1px] bg-[#E7B72A]/60" />
             </div>
 
             <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[40px] font-excon font-bold tracking-tight text-white leading-[1.14] text-balance">
@@ -194,7 +194,7 @@ export default function Process() {
               >
                 <div className="h-full w-full bg-white/[0.08]" />
                 <motion.div
-                  className="absolute left-0 top-0 h-full origin-left bg-[#FAB406] shadow-[0_0_8px_rgba(250,180,6,0.5)]"
+                  className="absolute left-0 top-0 h-full origin-left bg-[#E7B72A] shadow-[0_0_8px_rgba(231,183,42,0.5)]"
                   animate={{ width: `${railPercent}%` }}
                   transition={{ ...STEP_TRANSITION, delay: STEP_REVEAL_DELAY }}
                 />
@@ -211,25 +211,25 @@ export default function Process() {
                   const isInactive = status === "inactive";
 
                   const cardClass = isActive
-                    ? "border-[#FAB406]/60 bg-[#0E1217]/95 shadow-[0_16px_40px_rgba(250,180,6,0.14),0_0_24px_rgba(250,180,6,0.08)]"
+                    ? "border-[#E7B72A]/60 bg-[#0E1217]/95 shadow-[0_16px_40px_rgba(231,183,42,0.14),0_0_24px_rgba(231,183,42,0.08)]"
                     : isCompleted
                     ? "border-white/[0.12] bg-[#0B0E12]/85 shadow-[0_12px_32px_rgba(0,0,0,0.6)]"
                     : "border-white/[0.05] bg-[#080A0D]/60 shadow-none pointer-events-none";
 
                   const hairlineClass = isActive
-                    ? "bg-gradient-to-r from-transparent via-[#FAB406]/90 to-transparent"
+                    ? "bg-gradient-to-r from-transparent via-[#E7B72A]/90 to-transparent"
                     : isCompleted
-                    ? "bg-gradient-to-r from-transparent via-[#FAB406]/35 to-transparent"
+                    ? "bg-gradient-to-r from-transparent via-[#E7B72A]/35 to-transparent"
                     : "bg-transparent";
 
                   const stepLabelClass = isActive
-                    ? "text-[#FAB406]"
+                    ? "text-[#E7B72A]"
                     : isCompleted
-                    ? "text-[#FAB406]/65"
+                    ? "text-[#E7B72A]/65"
                     : "text-zinc-600";
 
                   const iconBgClass = isActive
-                    ? "bg-[#FAB406]/15 text-[#FAB406] ring-1 ring-[#FAB406]/40 shadow-[0_0_12px_rgba(250,180,6,0.3)]"
+                    ? "bg-[#E7B72A]/15 text-[#E7B72A] ring-1 ring-[#E7B72A]/40 shadow-[0_0_12px_rgba(231,183,42,0.3)]"
                     : isCompleted
                     ? "bg-white/[0.05] text-zinc-400"
                     : "bg-white/[0.02] text-zinc-700";
@@ -247,9 +247,9 @@ export default function Process() {
                     : "text-zinc-700";
 
                   const connectorTone = isActive
-                    ? "bg-[#FAB406]"
+                    ? "bg-[#E7B72A]"
                     : isCompleted
-                    ? "bg-[#FAB406]/55"
+                    ? "bg-[#E7B72A]/55"
                     : "bg-white/20";
 
                   const topCard = (
@@ -350,21 +350,21 @@ export default function Process() {
                               repeatDelay: 0.2,
                               delay: STEP_REVEAL_DELAY + 0.08,
                             }}
-                            className="pointer-events-none absolute h-12 w-12 rounded-full bg-[#FAB406]/18 blur-[6px]"
+                            className="pointer-events-none absolute h-12 w-12 rounded-full bg-[#E7B72A]/18 blur-[6px]"
                           />
                         )}
                         <motion.div
                           animate={{
                             borderColor: isActive
-                              ? "rgba(250, 180, 6, 1)"
+                              ? "rgba(231, 183, 42, 1)"
                               : isCompleted
-                              ? "rgba(250, 180, 6, 0.85)"
+                              ? "rgba(231, 183, 42, 0.85)"
                               : "rgba(255, 255, 255, 0.22)",
                             scale: isActive ? 1.08 : isCompleted ? 1 : 0.96,
                             boxShadow: isActive
-                              ? "0 0 16px rgba(250, 180, 6, 0.75)"
+                              ? "0 0 16px rgba(231, 183, 42, 0.75)"
                               : isCompleted
-                              ? "0 0 10px rgba(250, 180, 6, 0.35)"
+                              ? "0 0 10px rgba(231, 183, 42, 0.35)"
                               : "0 0 0 rgba(0,0,0,0)",
                           }}
                           transition={{
@@ -378,9 +378,9 @@ export default function Process() {
                               width: isActive ? 10 : isCompleted ? 8 : 6,
                               height: isActive ? 10 : isCompleted ? 8 : 6,
                               backgroundColor: isActive
-                                ? "rgba(250, 180, 6, 1)"
+                                ? "rgba(231, 183, 42, 1)"
                                 : isCompleted
-                                ? "rgba(250, 180, 6, 0.85)"
+                                ? "rgba(231, 183, 42, 0.85)"
                                 : "rgba(255, 255, 255, 0.28)",
                             }}
                             transition={{
@@ -434,21 +434,21 @@ export default function Process() {
                   >
                     {/* Timeline node — static on mobile */}
                     <div
-                      className="relative z-10 mt-1 flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#FAB406]/75 bg-[#06070A] shadow-[0_0_8px_rgba(250,180,6,0.2)]"
+                      className="relative z-10 mt-1 flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#E7B72A]/75 bg-[#06070A] shadow-[0_0_8px_rgba(231,183,42,0.2)]"
                     >
-                      <span className="h-2 w-2 rounded-full bg-[#FAB406]/90" />
+                      <span className="h-2 w-2 rounded-full bg-[#E7B72A]/90" />
                     </div>
 
                     {/* Card — full visibility, no scroll-driven states */}
                     <div
                       className="relative flex-1 overflow-hidden rounded-xl border border-white/[0.12] bg-[#0B0E12]/90 p-4 shadow-[0_12px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-5"
                     >
-                      <div className="pointer-events-none absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/35 to-transparent" />
+                      <div className="pointer-events-none absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/35 to-transparent" />
                       <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
-                        <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-[#FAB406]/80">
+                        <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-[#E7B72A]/80">
                           STEP {step.number}
                         </span>
-                        <div className="flex h-6 w-6 items-center justify-center rounded bg-white/[0.04] text-[#FAB406]">
+                        <div className="flex h-6 w-6 items-center justify-center rounded bg-white/[0.04] text-[#E7B72A]">
                           <IconComponent className="h-3.5 w-3.5" />
                         </div>
                       </div>

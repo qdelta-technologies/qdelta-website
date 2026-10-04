@@ -439,7 +439,7 @@ export default function InteractiveDotGrid() {
         ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
 
         if (dot.glow > 0.04) {
-          ctx.fillStyle = `rgba(250, 180, 6, ${0.55 + dot.glow * 0.45})`;
+          ctx.fillStyle = `rgba(231, 183, 42, ${0.55 + dot.glow * 0.45})`;
         } else {
           ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
         }

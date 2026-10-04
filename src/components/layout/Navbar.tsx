@@ -53,7 +53,7 @@ export default function Navbar() {
           />
 
           {/* Top architectural reference line */}
-          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-[#FAB406]/30 via-white/25 to-[#FAB406]/30" />
+          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-[#E7B72A]/30 via-white/25 to-[#E7B72A]/30" />
 
           {/* Left Wing Bottom Border */}
           <div className="absolute left-0 top-[52px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px] bg-white/[0.12]" />
@@ -71,11 +71,11 @@ export default function Navbar() {
           >
             <defs>
               <linearGradient id="navbar-gold-notch-desktop" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
-                <stop offset="20%" stopColor="#FAB406" stopOpacity="0.85" />
+                <stop offset="0%" stopColor="#E7B72A" stopOpacity="0.2" />
+                <stop offset="20%" stopColor="#E7B72A" stopOpacity="0.85" />
                 <stop offset="50%" stopColor="#FFF4A3" stopOpacity="1" />
-                <stop offset="80%" stopColor="#FAB406" stopOpacity="0.85" />
-                <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
+                <stop offset="80%" stopColor="#E7B72A" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#E7B72A" stopOpacity="0.2" />
               </linearGradient>
             </defs>
             {/* Structural bottom border */}
@@ -108,11 +108,11 @@ export default function Navbar() {
           >
             <defs>
               <linearGradient id="navbar-gold-notch-mobile" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
-                <stop offset="20%" stopColor="#FAB406" stopOpacity="0.85" />
+                <stop offset="0%" stopColor="#E7B72A" stopOpacity="0.2" />
+                <stop offset="20%" stopColor="#E7B72A" stopOpacity="0.85" />
                 <stop offset="50%" stopColor="#FFF4A3" stopOpacity="1" />
-                <stop offset="80%" stopColor="#FAB406" stopOpacity="0.85" />
-                <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
+                <stop offset="80%" stopColor="#E7B72A" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#E7B72A" stopOpacity="0.2" />
               </linearGradient>
             </defs>
             {/* Structural bottom border */}
@@ -161,7 +161,7 @@ export default function Navbar() {
                     {isHovered && (
                       <motion.span
                         layoutId="nav-dot-indicator"
-                        className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#FAB406] shadow-[0_0_6px_rgba(250,180,6,0.9)]"
+                        className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#E7B72A] shadow-[0_0_6px_rgba(231,183,42,0.9)]"
                         transition={{ type: "spring", stiffness: 450, damping: 30 }}
                       />
                     )}
@@ -199,7 +199,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <Link
               href="#contact"
-              className="group relative hidden lg:inline-flex items-center gap-2 h-9 sm:h-9.5 px-4.5 sm:px-5.5 rounded-[6px] border border-[#FAB406]/70 bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-[13px] tracking-tight shadow-[0_0_16px_rgba(250,180,6,0.25)] hover:shadow-[0_0_26px_rgba(250,180,6,0.48)] hover:bg-[#ffbe1a] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shrink-0"
+              className="group relative hidden lg:inline-flex items-center gap-2 h-9 sm:h-9.5 px-4.5 sm:px-5.5 rounded-[6px] border border-[#E7B72A]/70 bg-[#E7B72A] text-[#06070A] font-epilogue font-bold text-xs sm:text-[13px] tracking-tight shadow-[0_0_16px_rgba(231,183,42,0.25)] hover:shadow-[0_0_26px_rgba(231,183,42,0.48)] hover:bg-[#F0C034] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shrink-0"
             >
               <span>Let’s Talk</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] text-[#06070A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -210,7 +210,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="flex items-center justify-center w-8.5 h-8.5 rounded-[6px] bg-white/[0.04] border border-white/12 text-zinc-300 hover:text-white hover:border-[#FAB406]/40 transition-colors focus:outline-none cursor-pointer"
+                className="flex items-center justify-center w-8.5 h-8.5 rounded-[6px] bg-white/[0.04] border border-white/12 text-zinc-300 hover:text-white hover:border-[#E7B72A]/40 transition-colors focus:outline-none cursor-pointer"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={mobileMenuOpen}
               >
@@ -245,7 +245,7 @@ export default function Navbar() {
                     className="px-3 py-2 rounded-[6px] text-xs font-epilogue font-medium text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors flex items-center justify-between"
                   >
                     <span>{link.label}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]/60" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E7B72A]/60" />
                   </Link>
                 ))}
               </nav>
@@ -254,7 +254,7 @@ export default function Navbar() {
                 <Link
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="group flex items-center justify-center gap-2 w-full h-9 rounded-[6px] bg-[#FAB406] text-[#06070A] font-epilogue font-semibold text-xs tracking-tight shadow-[0_0_14px_rgba(250,180,6,0.3)] transition-all"
+                  className="group flex items-center justify-center gap-2 w-full h-9 rounded-[6px] bg-[#E7B72A] text-[#06070A] font-epilogue font-semibold text-xs tracking-tight shadow-[0_0_14px_rgba(231,183,42,0.3)] hover:bg-[#F0C034] transition-all"
                 >
                   <span>Let’s Talk</span>
                   <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.4] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

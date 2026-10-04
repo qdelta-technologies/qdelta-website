@@ -13,7 +13,7 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
         defaultProps={{
-          primaryColor: "#F5B800",
+          primaryColor: "#E7B72A",
           accentColor: "#06070A",
         }}
       />

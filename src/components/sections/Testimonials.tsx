@@ -70,7 +70,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 text-white selection:bg-[#F5B800] selection:text-[#06070A] sm:py-20 md:py-24"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 text-white selection:bg-[#E7B72A] selection:text-[#06070A] sm:py-20 md:py-24"
     >
       <SectionAtmosphere variant="center" />
 
@@ -80,7 +80,7 @@ export default function Testimonials() {
           <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
             05 / Testimonials
           </span>
-          <div className="h-px w-10 bg-[#F5B800]/60 sm:w-12" />
+          <div className="h-px w-10 bg-[#E7B72A]/60 sm:w-12" />
         </div>
 
         <h2 className="font-excon text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-[44px] leading-[1.12]">
@@ -110,11 +110,11 @@ export default function Testimonials() {
                   key={`${t.id}-${idx}`}
                   className="pointer-events-none relative flex min-h-[252px] w-[min(268px,calc(100vw-3rem))] shrink-0 flex-col justify-between overflow-hidden rounded-xl border border-white/[0.09] bg-[#0A0D11]/92 p-5 shadow-[0_14px_36px_rgba(0,0,0,0.62),inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-xl sm:min-h-[272px] sm:w-[292px] sm:rounded-[18px] sm:p-6 md:w-[308px]"
                 >
-                  <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[#FAB406]/55 to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[#E7B72A]/55 to-transparent" />
 
                   <div className="relative z-10">
                     <svg
-                      className="mb-3 h-4 w-4 fill-[#FAB406] opacity-90"
+                      className="mb-3 h-4 w-4 fill-[#E7B72A] opacity-90"
                       viewBox="0 0 24 24"
                       aria-hidden
                     >
@@ -127,7 +127,7 @@ export default function Testimonials() {
 
                   <div className="relative z-10 flex items-center gap-3 border-t border-white/[0.08] pt-3.5">
                     <div
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#FAB406]/30 bg-gradient-to-br from-[#FAB406]/18 to-[#0B0E12] font-epilogue text-[10px] font-bold text-[#FAB406]"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#E7B72A]/30 bg-gradient-to-br from-[#E7B72A]/18 to-[#0B0E12] font-epilogue text-[10px] font-bold text-[#E7B72A]"
                       aria-hidden
                     >
                       {getInitials(t.name)}

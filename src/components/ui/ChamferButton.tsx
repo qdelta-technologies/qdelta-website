@@ -111,16 +111,16 @@ export default function ChamferButton({
       >
         <path
           d={pathD}
-          fill={isPrimary ? "#FAB406" : "rgba(6, 7, 10, 0.65)"}
-          stroke="#FAB406"
+          fill={isPrimary ? "#E7B72A" : "rgba(6, 7, 10, 0.65)"}
+          stroke="#E7B72A"
           strokeWidth={strokeWidth}
           strokeLinejoin="miter"
           strokeMiterlimit={4}
           vectorEffect="non-scaling-stroke"
           className={`transition-all duration-300 ${
             isPrimary
-              ? "group-hover:fill-[#ffbe1a] group-hover:stroke-[#ffd043]"
-              : "group-hover:fill-[#FAB406]/[0.08] group-hover:stroke-[#FAB406]"
+              ? "group-hover:fill-[#F0C034] group-hover:stroke-[#F0C034]"
+              : "group-hover:fill-[#E7B72A]/[0.08] group-hover:stroke-[#E7B72A]"
           }`}
         />
       </svg>
@@ -130,8 +130,8 @@ export default function ChamferButton({
         aria-hidden="true"
         className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${
           isPrimary
-            ? "shadow-[0_0_20px_rgba(250,180,6,0.3)] opacity-70 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(250,180,6,0.55)]"
-            : "shadow-[0_0_18px_rgba(250,180,6,0.15)] opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_24px_rgba(250,180,6,0.35)]"
+            ? "shadow-[0_0_20px_rgba(231,183,42,0.3)] opacity-70 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(231,183,42,0.55)]"
+            : "shadow-[0_0_18px_rgba(231,183,42,0.15)] opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_24px_rgba(231,183,42,0.35)]"
         }`}
       />
 

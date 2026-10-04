@@ -8,17 +8,17 @@ interface TransformedWebsiteProps {
 export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovered = false }) => {
   return (
     <div
-      className="w-full h-full bg-[#06070A] text-white flex flex-col overflow-hidden select-none border border-[#F5B800]/40 shadow-[0_0_100px_rgba(245,184,0,0.2)] rounded-2xl relative"
+      className="w-full h-full bg-[#06070A] text-white flex flex-col overflow-hidden select-none border border-[#E7B72A]/40 shadow-[0_0_100px_rgba(245,184,0,0.2)] rounded-2xl relative"
       style={{ fontFamily: "'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif" }}
     >
       {/* Ambient Top & Bottom Gold Horizon Halos */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[54rem] h-64 bg-gradient-to-b from-[#F5B800]/25 via-[#F5B800]/5 to-transparent blur-[110px]" />
-      <div className="pointer-events-none absolute -bottom-20 inset-x-0 h-48 bg-gradient-to-t from-[#F5B800]/20 via-[#F5B800]/5 to-transparent blur-[80px]" />
+      <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[54rem] h-64 bg-gradient-to-b from-[#E7B72A]/25 via-[#E7B72A]/5 to-transparent blur-[110px]" />
+      <div className="pointer-events-none absolute -bottom-20 inset-x-0 h-48 bg-gradient-to-t from-[#E7B72A]/20 via-[#E7B72A]/5 to-transparent blur-[80px]" />
 
       {/* Modern Browser Chrome */}
       <div className="h-14 bg-[#0B0E12] border-b border-white/10 px-6 flex items-center justify-between shrink-0 relative z-10">
         <div className="flex items-center gap-2.5">
-          <div className="w-3.5 h-3.5 rounded-full bg-[#F5B800] shadow-[0_0_10px_rgba(245,184,0,0.9)]" />
+          <div className="w-3.5 h-3.5 rounded-full bg-[#E7B72A] shadow-[0_0_10px_rgba(245,184,0,0.9)]" />
           <div className="w-3.5 h-3.5 rounded-full bg-white/20" />
           <div className="w-3.5 h-3.5 rounded-full bg-white/20" />
         </div>
@@ -36,25 +36,25 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
       <div className="h-20 border-b border-white/10 bg-[#06070A]/85 backdrop-blur-md px-12 flex items-center justify-between shrink-0 relative z-10">
         {/* Same Brand Logo — Now elevated */}
         <div className="flex items-center gap-3.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#F5B800] to-[#D9A51A] flex items-center justify-center shadow-[0_0_18px_rgba(245,184,0,0.6)]">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#E7B72A] to-[#D9A51A] flex items-center justify-center shadow-[0_0_18px_rgba(245,184,0,0.6)]">
             <Layers className="w-5 h-5 text-black" />
           </div>
           <div>
             <span className="font-bold text-white text-lg tracking-tight block">NovaCraft</span>
-            <span className="text-[10px] text-[#F5B800] uppercase tracking-[0.2em] block font-mono font-medium">Creative Studio</span>
+            <span className="text-[10px] text-[#E7B72A] uppercase tracking-[0.2em] block font-mono font-medium">Creative Studio</span>
           </div>
         </div>
 
         {/* Floating Capsule Dock */}
         <div className="flex items-center gap-1 rounded-full border border-white/15 bg-[#0B0E12]/90 px-3 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl">
           <div className="flex items-center gap-6 px-3 text-xs font-medium text-zinc-300">
-            <span className="text-white hover:text-[#F5B800] cursor-pointer">Home</span>
-            <span className="hover:text-[#F5B800] cursor-pointer">About</span>
-            <span className="hover:text-[#F5B800] cursor-pointer">Services</span>
-            <span className="hover:text-[#F5B800] cursor-pointer">Work</span>
-            <span className="hover:text-[#F5B800] cursor-pointer">Contact</span>
+            <span className="text-white hover:text-[#E7B72A] cursor-pointer">Home</span>
+            <span className="hover:text-[#E7B72A] cursor-pointer">About</span>
+            <span className="hover:text-[#E7B72A] cursor-pointer">Services</span>
+            <span className="hover:text-[#E7B72A] cursor-pointer">Work</span>
+            <span className="hover:text-[#E7B72A] cursor-pointer">Contact</span>
           </div>
-          <div className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-[#F5B800] px-4 py-1.5 text-xs font-bold text-black shadow-[0_0_20px_rgba(245,184,0,0.5)]">
+          <div className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-[#E7B72A] px-4 py-1.5 text-xs font-bold text-black shadow-[0_0_20px_rgba(245,184,0,0.5)]">
             <span>Start a Project</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </div>
@@ -65,8 +65,8 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
       <div className="flex-1 p-12 lg:p-16 flex flex-row items-center justify-between gap-14 relative z-10">
         {/* Left Column: Premium Typography & Hierarchy in Epilogue */}
         <div className="flex-1 max-w-2xl space-y-7">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F5B800]/10 border border-[#F5B800]/35 text-xs font-semibold tracking-wider text-[#F5B800] backdrop-blur-md">
-            <Sparkles className="w-4 h-4 text-[#F5B800]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E7B72A]/10 border border-[#E7B72A]/35 text-xs font-semibold tracking-wider text-[#E7B72A] backdrop-blur-md">
+            <Sparkles className="w-4 h-4 text-[#E7B72A]" />
             <span>REDESIGNED BY QDELTA • HIGH CONVERSION</span>
           </div>
 
@@ -76,7 +76,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
           >
             We craft brands <br />
             <span
-              className="text-[#F5B800] font-extrabold italic drop-shadow-[0_0_35px_rgba(245,184,0,0.5)]"
+              className="text-[#E7B72A] font-extrabold italic drop-shadow-[0_0_35px_rgba(245,184,0,0.5)]"
               style={{ fontFamily: "'Epilogue', sans-serif" }}
             >
               that command attention.
@@ -95,7 +95,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
               className={`px-8 py-4 rounded-full font-bold text-sm lg:text-base flex items-center gap-3 transition-all duration-300 ${
                 isHovered
                   ? "bg-white text-black shadow-[0_0_40px_rgba(245,184,0,1)] scale-105"
-                  : "bg-[#F5B800] text-black shadow-[0_0_30px_rgba(245,184,0,0.7)]"
+                  : "bg-[#E7B72A] text-black shadow-[0_0_30px_rgba(245,184,0,0.7)]"
               }`}
               style={{ fontFamily: "'Epilogue', sans-serif" }}
             >
@@ -103,7 +103,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
               <ArrowRight className="w-5 h-5" />
             </div>
             <div className="flex items-center gap-2 text-xs text-zinc-400 font-medium">
-              <ShieldCheck className="w-4 h-4 text-[#F5B800]" />
+              <ShieldCheck className="w-4 h-4 text-[#E7B72A]" />
               <span>Built by QDelta</span>
             </div>
           </div>
@@ -111,7 +111,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
           {/* Luxury Metric Badges */}
           <div className="grid grid-cols-2 gap-5 pt-7 border-t border-white/10 text-sm">
             <div className="flex items-center gap-2.5 text-zinc-300">
-              <Zap className="w-4 h-4 text-[#F5B800]" />
+              <Zap className="w-4 h-4 text-[#E7B72A]" />
               <span><strong>0.4s</strong> Ultra-Fast Load Speed</span>
             </div>
             <div className="flex items-center gap-2.5 text-zinc-300">
@@ -124,12 +124,12 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
         {/* Right Column: High-End Glassmorphic 3D Card */}
         <div className="w-[500px] h-[380px] rounded-2xl p-7 flex flex-col justify-between relative bg-gradient-to-b from-white/[0.09] to-white/[0.02] border border-white/20 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
           {/* Card Ambient Glow */}
-          <div className="absolute top-0 right-0 w-36 h-36 bg-[#F5B800]/25 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-36 h-36 bg-[#E7B72A]/25 rounded-full blur-2xl pointer-events-none" />
 
           {/* Card Header */}
           <div className="flex items-center justify-between border-b border-white/10 pb-4 relative z-10">
             <div className="flex items-center gap-2.5">
-              <div className="w-3 h-3 rounded-full bg-[#F5B800] shadow-[0_0_10px_#F5B800]" />
+              <div className="w-3 h-3 rounded-full bg-[#E7B72A] shadow-[0_0_10px_#E7B72A]" />
               <span className="text-sm font-semibold text-white tracking-wide">Live Revenue Engine</span>
             </div>
             <span className="text-xs px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-400 font-semibold">
@@ -155,8 +155,8 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
               <svg className="w-full h-full overflow-visible" viewBox="0 0 420 80">
                 <defs>
                   <linearGradient id="chartGlowTransform" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#F5B800" stopOpacity="0.45" />
-                    <stop offset="100%" stopColor="#F5B800" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#E7B72A" stopOpacity="0.45" />
+                    <stop offset="100%" stopColor="#E7B72A" stopOpacity="0" />
                   </linearGradient>
                 </defs>
                 <path
@@ -166,11 +166,11 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
                 <path
                   d="M 0 70 Q 105 60 210 40 T 420 12"
                   fill="none"
-                  stroke="#F5B800"
+                  stroke="#E7B72A"
                   strokeWidth="3.5"
                   filter="drop-shadow(0 0 10px rgba(245,184,0,0.9))"
                 />
-                <circle cx="420" cy="12" r="6" fill="#FFFFFF" stroke="#F5B800" strokeWidth="2.5" />
+                <circle cx="420" cy="12" r="6" fill="#FFFFFF" stroke="#E7B72A" strokeWidth="2.5" />
               </svg>
             </div>
           </div>
@@ -178,7 +178,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
           {/* Card Footer Micro-Tags */}
           <div className="flex items-center justify-between border-t border-white/10 pt-4 text-xs text-zinc-400 relative z-10">
             <span>Next.js 16 • Tailwind v4</span>
-            <span className="text-[#F5B800] font-semibold">Built by QDelta</span>
+            <span className="text-[#E7B72A] font-semibold">Built by QDelta</span>
           </div>
         </div>
       </div>

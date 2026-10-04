@@ -47,8 +47,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "I work across AI, strategy, creative direction and business thinking — helping shape how QDelta approaches ideas, solves problems and builds digital experiences that create real value.",
     focus: ["AI Strategy", "Creative Direction", "Business & Product Thinking"],
     linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
-    accentColor: "#FAB406",
-    glowColor: "rgba(250, 180, 6, 0.14)",
+    accentColor: "#E7B72A",
+    glowColor: "rgba(231, 183, 42, 0.14)",
   },
   {
     id: "sai-prabath",
@@ -59,8 +59,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "I build and manage the technical side of our projects, turning ideas and designs into fast, reliable and scalable websites and web applications.",
     focus: ["Full-Stack Development", "Web Applications", "Performance & Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
-    accentColor: "#FAB406",
-    glowColor: "rgba(250, 180, 6, 0.14)",
+    accentColor: "#E7B72A",
+    glowColor: "rgba(231, 183, 42, 0.14)",
   },
   {
     id: "fazeel",
@@ -71,8 +71,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "I work across generative AI and user experience, building smarter workflows and designing digital experiences that are clear, useful and easy to use.",
     focus: ["GenAI Development", "UX Design", "AI Workflows"],
     linkedinUrl: "https://www.linkedin.com/in/md-fazeel-167816281/",
-    accentColor: "#FAB406",
-    glowColor: "rgba(250, 180, 6, 0.14)",
+    accentColor: "#E7B72A",
+    glowColor: "rgba(231, 183, 42, 0.14)",
   },
 ];
 
@@ -90,7 +90,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#FAB406] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#E7B72A] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="left" />
@@ -111,12 +111,12 @@ export default function Team() {
             <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
               06 / TEAM
             </span>
-            <div className="w-10 sm:w-12 h-[1px] bg-[#FAB406]/60" />
+            <div className="w-10 sm:w-12 h-[1px] bg-[#E7B72A]/60" />
           </div>
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-excon font-bold tracking-tight text-white leading-[1.12] text-balance">
-            Meet the people behind <span className="text-[#FAB406]">QDelta</span>.
+            Meet the people behind <span className="text-[#E7B72A]">QDelta</span>.
           </h2>
 
           {/* Supporting Text */}
@@ -154,9 +154,9 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#FAB406]/35 bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#E7B72A]/35 bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
                     {/* Crisp Golden Top Accent Hairline */}
-                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/55 to-transparent z-20" />
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/55 to-transparent z-20" />
 
                     {/* Top Ambient Glow behind portrait */}
                     <div
@@ -182,7 +182,7 @@ export default function Team() {
                     {/* Top Flip Indicator Badge (Clean, No Numbering) */}
                     <div className="absolute top-4 right-4 z-10">
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B0E12]/80 backdrop-blur-md border border-white/10 text-[10px] font-epilogue text-zinc-300 shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
-                        <RefreshCw className="w-3 h-3 text-[#FAB406]" />
+                        <RefreshCw className="w-3 h-3 text-[#E7B72A]" />
                         <span className="font-medium">Flip</span>
                       </div>
                     </div>
@@ -193,7 +193,7 @@ export default function Team() {
                         <h3 className="font-excon text-2xl sm:text-[1.6rem] font-bold text-white tracking-tight leading-tight">
                           {member.name}
                         </h3>
-                        <span className="font-epilogue text-xs uppercase tracking-[0.16em] font-semibold text-[#FAB406]">
+                        <span className="font-epilogue text-xs uppercase tracking-[0.16em] font-semibold text-[#E7B72A]">
                           {member.role}
                         </span>
                       </div>
@@ -206,7 +206,7 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD BACK FACE (GOLDEN YELLOW & BLACK/WHITE TYPE)   */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-[#FAB406] bg-[#FAB406] shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-[#E7B72A] bg-[#E7B72A] shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
                     {/* Top Back Header */}
                     <div className="relative z-10 border-b border-[#06070A]/15 pb-3.5">
                       <div className="flex items-center justify-between mb-2">
@@ -258,7 +258,7 @@ export default function Team() {
                         onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#06070A] text-white text-xs font-epilogue uppercase tracking-wider font-bold shadow-sm hover:bg-black/85 transition-colors"
                       >
-                        <LinkedInIcon className="w-3.5 h-3.5 text-[#FAB406]" />
+                        <LinkedInIcon className="w-3.5 h-3.5 text-[#E7B72A]" />
                         <span>View LinkedIn</span>
                         <ArrowUpRight className="w-3 h-3 text-white/70" />
                       </a>
@@ -284,7 +284,7 @@ export default function Team() {
           transition={{ duration: 0.5 }}
           className="mt-10 sm:mt-12 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/[0.08] bg-[#0B0E12]/80 backdrop-blur-md text-xs font-epilogue text-zinc-400 text-center"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#FAB406] shrink-0" />
+          <Sparkles className="w-3.5 h-3.5 text-[#E7B72A] shrink-0" />
           <span>Founders directly design, engineer, and lead every single client engagement</span>
         </motion.div>
       </div>

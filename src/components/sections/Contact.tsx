@@ -50,7 +50,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#F5B800] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#E7B72A] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="center" />
@@ -64,7 +64,7 @@ export default function Contact() {
           {/* ===================================================== */}
           {/* LEFT SIDE: VIBRANT BRAND GOLD PANEL (45%)             */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-5 bg-[#FAB406] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+          <div className="relative lg:col-span-5 bg-[#E7B72A] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
             {/* Subtle Texture Grain Over Clean Golden Background */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
@@ -135,7 +135,7 @@ export default function Contact() {
                   </span>
 
                   {/* Subtle Accent Arrow */}
-                  <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#F5B800] transition-colors shrink-0 -ml-0.5 sm:-ml-1" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#E7B72A] transition-colors shrink-0 -ml-0.5 sm:-ml-1" />
                 </button>
               </div>
             </div>
@@ -157,10 +157,10 @@ export default function Contact() {
           {/* ===================================================== */}
           <div className="relative lg:col-span-7 bg-[#0B0E12]/92 backdrop-blur-xl p-7 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-transparent pointer-events-none" />
 
             {/* Ambient Warm Golden Backlight */}
-            <div className="pointer-events-none absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#F5B800]/[0.035] blur-[100px]" />
+            <div className="pointer-events-none absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#E7B72A]/[0.035] blur-[100px]" />
 
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -172,7 +172,7 @@ export default function Contact() {
                   transition={{ duration: 0.3 }}
                   className="py-10 sm:py-14 flex flex-col items-center justify-center text-center"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F5B800]/15 border border-[#F5B800]/40 text-[#F5B800] shadow-[0_0_24px_rgba(245,184,0,0.25)]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E7B72A]/15 border border-[#E7B72A]/40 text-[#E7B72A] shadow-[0_0_24px_rgba(231,183,42,0.25)]">
                     <Check className="h-7 w-7 stroke-[2.5]" />
                   </div>
 
@@ -183,14 +183,14 @@ export default function Contact() {
                   <p className="mt-2 text-sm font-epilogue text-zinc-300 max-w-sm leading-relaxed">
                     Thank you, <strong className="text-white">{name}</strong>.
                     We’ve received your project brief and will follow up at{" "}
-                    <span className="text-[#F5B800] font-medium">{email}</span>{" "}
+                    <span className="text-[#E7B72A] font-medium">{email}</span>{" "}
                     shortly.
                   </p>
 
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="mt-7 rounded-full bg-[#FAB406] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#ffbe1a] hover:scale-105 cursor-pointer shadow-md"
+                    className="mt-7 rounded-full bg-[#E7B72A] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#F0C034] hover:scale-105 cursor-pointer shadow-md"
                   >
                     Send Another Inquiry
                   </button>
@@ -219,7 +219,7 @@ export default function Contact() {
                       <div className="relative group">
                         <label
                           htmlFor="name"
-                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#F5B800]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E7B72A]"
                         >
                           Name
                         </label>
@@ -230,7 +230,7 @@ export default function Contact() {
                           placeholder="Your name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#F5B800]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E7B72A]"
                         />
                       </div>
 
@@ -238,7 +238,7 @@ export default function Contact() {
                       <div className="relative group">
                         <label
                           htmlFor="email"
-                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#F5B800]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E7B72A]"
                         >
                           Email
                         </label>
@@ -249,7 +249,7 @@ export default function Contact() {
                           placeholder="name@company.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#F5B800]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E7B72A]"
                         />
                       </div>
                     </div>
@@ -269,7 +269,7 @@ export default function Contact() {
                               onClick={() => toggleService(service)}
                               className={`px-3.5 py-1.5 rounded-full text-xs font-epilogue tracking-wide transition-all duration-200 cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#F5B800] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(245,184,0,0.3)] border border-[#F5B800]"
+                                  ? "bg-[#E7B72A] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(231,183,42,0.3)] border border-[#E7B72A]"
                                   : "bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-white/25 hover:text-white"
                               }`}
                             >
@@ -284,7 +284,7 @@ export default function Contact() {
                     <div className="relative group">
                       <label
                         htmlFor="brief"
-                        className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#F5B800]"
+                        className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E7B72A]"
                       >
                         Project brief
                       </label>
@@ -295,7 +295,7 @@ export default function Contact() {
                         placeholder="Tell us briefly about your project..."
                         value={brief}
                         onChange={(e) => setBrief(e.target.value)}
-                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#F5B800] resize-none"
+                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E7B72A] resize-none"
                       />
                     </div>
 

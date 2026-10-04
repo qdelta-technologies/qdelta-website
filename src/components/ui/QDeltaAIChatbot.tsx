@@ -285,13 +285,13 @@ export default function QDeltaAIChatbot() {
           aria-label={isOpen ? "Close QDelta AI Assistant" : "Open QDelta AI Assistant"}
           className={`group flex h-10 sm:h-11 items-center rounded-full border px-2.5 sm:px-3 shadow-[0_8px_32px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 ease-out focus:outline-none cursor-pointer ${
             isOpen
-              ? "border-[#F5B800] bg-[#0E0E14] text-[#F5B800] shadow-[0_0_20px_rgba(245,184,0,0.3)]"
-              : "border-white/15 bg-[#0B0E12]/90 text-white hover:border-[#F5B800]/60 hover:bg-[#0E0E14] hover:shadow-[0_0_20px_rgba(245,184,0,0.25)] hover:pr-4 hover:pl-3"
+              ? "border-[#E7B72A] bg-[#0E0E14] text-[#E7B72A] shadow-[0_0_20px_rgba(231,183,42,0.3)]"
+              : "border-white/15 bg-[#0B0E12]/90 text-white hover:border-[#E7B72A]/60 hover:bg-[#0E0E14] hover:shadow-[0_0_20px_rgba(231,183,42,0.25)] hover:pr-4 hover:pl-3"
           }`}
         >
           {/* Bot Icon with Live Indicator */}
           <div className="relative flex items-center justify-center shrink-0">
-            <Bot className="h-5 w-5 sm:h-6 sm:w-6 text-[#F5B800] transition-transform duration-300 group-hover:scale-110" />
+            <Bot className="h-5 w-5 sm:h-6 sm:w-6 text-[#E7B72A] transition-transform duration-300 group-hover:scale-110" />
             {/* Pulsing Emerald Edge Indicator */}
             <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-emerald-400 ring-2 ring-[#0B0E12] animate-pulse" />
           </div>
@@ -300,12 +300,12 @@ export default function QDeltaAIChatbot() {
           {isOpen ? (
             <span className="pl-2.5 text-xs font-semibold text-white flex items-center gap-1.5">
               <span>Close</span>
-              <X className="w-3 h-3 text-[#F5B800]" />
+              <X className="w-3 h-3 text-[#E7B72A]" />
             </span>
           ) : (
             <span className="max-w-0 overflow-hidden whitespace-nowrap text-xs font-semibold text-white opacity-0 transition-all duration-300 ease-out group-hover:max-w-xs group-hover:opacity-100 group-hover:pl-2.5 flex items-center gap-1.5">
               <span>Ask AI</span>
-              <Sparkles className="w-3 h-3 text-[#F5B800]" />
+              <Sparkles className="w-3 h-3 text-[#E7B72A]" />
             </span>
           )}
         </motion.button>
@@ -333,10 +333,10 @@ export default function QDeltaAIChatbot() {
               mass: 0.75,
             }}
             style={{ transformOrigin: "bottom right" }}
-            className="fixed bottom-[128px] right-4 sm:bottom-[142px] sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[64vh] sm:max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/95 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl flex flex-col overflow-hidden text-white font-sans selection:bg-[#F5B800] selection:text-black origin-bottom-right"
+            className="fixed bottom-[128px] right-4 sm:bottom-[142px] sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[64vh] sm:max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/95 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl flex flex-col overflow-hidden text-white font-sans selection:bg-[#E7B72A] selection:text-black origin-bottom-right"
           >
             {/* Top Amber Horizon Accent Line */}
-            <div className="absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-transparent pointer-events-none" />
 
             {/* Header */}
             <div className="relative z-10 flex items-center justify-between border-b border-white/[0.08] px-3.5 py-2.5 sm:px-4 sm:py-2.5 bg-[#0B0E12]/80">
@@ -376,7 +376,7 @@ export default function QDeltaAIChatbot() {
               {messages.length === 0 ? (
                 /* Welcome Greeting State */
                 <div className="flex flex-col items-center justify-center text-center py-4 px-1">
-                  <div className="relative mb-2.5 flex h-10 w-10 items-center justify-center rounded-xl bg-black border border-white/15 shadow-[0_0_20px_rgba(245,184,0,0.2)]">
+                  <div className="relative mb-2.5 flex h-10 w-10 items-center justify-center rounded-xl bg-black border border-white/15 shadow-[0_0_20px_rgba(231,183,42,0.2)]">
                     <Image
                       src="/images/qdelta-avatar.png"
                       alt="QDelta Logo"
@@ -401,10 +401,10 @@ export default function QDeltaAIChatbot() {
                       <button
                         key={i}
                         onClick={() => sendMessage(prompt)}
-                        className="group flex items-center justify-between rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[11px] text-zinc-300 hover:border-[#F5B800]/40 hover:bg-[#F5B800]/[0.06] hover:text-white transition-all duration-200 cursor-pointer text-left"
+                        className="group flex items-center justify-between rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[11px] text-zinc-300 hover:border-[#E7B72A]/40 hover:bg-[#E7B72A]/[0.06] hover:text-white transition-all duration-200 cursor-pointer text-left"
                       >
                         <span className="truncate pr-1">{prompt}</span>
-                        <ArrowUpRight className="w-3 h-3 text-zinc-500 group-hover:text-[#F5B800] transition-colors shrink-0" />
+                        <ArrowUpRight className="w-3 h-3 text-zinc-500 group-hover:text-[#E7B72A] transition-colors shrink-0" />
                       </button>
                     ))}
                   </div>
@@ -422,12 +422,12 @@ export default function QDeltaAIChatbot() {
                     <div
                       className={`h-7 w-7 sm:h-7.5 sm:w-7.5 shrink-0 rounded-[9px] flex items-center justify-center overflow-hidden border shadow-sm ${
                         msg.role === "user"
-                          ? "bg-[#161622] border-[#F5B800]/30 text-[#F5B800]"
+                          ? "bg-[#161622] border-[#E7B72A]/30 text-[#E7B72A]"
                           : "bg-black border-white/20 shadow-[0_0_12px_rgba(245,158,11,0.22)]"
                       }`}
                     >
                       {msg.role === "user" ? (
-                        <User className="w-3.5 h-3.5 text-[#F5B800]" />
+                        <User className="w-3.5 h-3.5 text-[#E7B72A]" />
                       ) : (
                         <Image
                           src="/images/qdelta-avatar.png"
@@ -443,14 +443,14 @@ export default function QDeltaAIChatbot() {
                     <div
                       className={`relative max-w-[85%] rounded-xl px-3 py-2 sm:px-3.5 sm:py-2.5 shadow-md ${
                         msg.role === "user"
-                          ? "bg-[#181824] border border-[#F5B800]/30 text-white rounded-tr-none text-xs sm:text-[12.5px] leading-relaxed"
+                          ? "bg-[#181824] border border-[#E7B72A]/30 text-white rounded-tr-none text-xs sm:text-[12.5px] leading-relaxed"
                           : msg.isRateLimited
-                          ? "bg-[#161208] border border-[#F5B800]/30 text-zinc-200 rounded-tl-none"
+                          ? "bg-[#161208] border border-[#E7B72A]/30 text-zinc-200 rounded-tl-none"
                           : "bg-[#0E0E14] border border-white/[0.08] text-zinc-200 rounded-tl-none"
                       }`}
                     >
                       {msg.isRateLimited && (
-                        <div className="mb-1.5 flex items-center justify-between text-[10px] font-mono text-[#F5B800]">
+                        <div className="mb-1.5 flex items-center justify-between text-[10px] font-mono text-[#E7B72A]">
                           <div className="flex items-center gap-1.5">
                             <ShieldAlert className="w-3 h-3 shrink-0" />
                             <span>Session Limit (10/hr)</span>
@@ -458,7 +458,7 @@ export default function QDeltaAIChatbot() {
                           <Link
                             href="#contact"
                             onClick={() => setIsOpen(false)}
-                            className="text-[#F5B800] hover:underline flex items-center gap-1 ml-2 font-semibold"
+                            className="text-[#E7B72A] hover:underline flex items-center gap-1 ml-2 font-semibold"
                           >
                             Book Call <ArrowUpRight className="w-2.5 h-2.5" />
                           </Link>
@@ -488,9 +488,9 @@ export default function QDeltaAIChatbot() {
                   </div>
                   <div className="rounded-xl rounded-tl-none bg-[#0E0E14] border border-white/[0.08] px-3 py-2">
                     <div className="flex items-center gap-1">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#F5B800] animate-bounce" />
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#F5B800] animate-bounce [animation-delay:0.2s]" />
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#F5B800] animate-bounce [animation-delay:0.4s]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#E7B72A] animate-bounce" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#E7B72A] animate-bounce [animation-delay:0.2s]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#E7B72A] animate-bounce [animation-delay:0.4s]" />
                     </div>
                   </div>
                 </div>
@@ -501,7 +501,7 @@ export default function QDeltaAIChatbot() {
 
             {/* Input Dock */}
             <div className="border-t border-white/[0.08] bg-[#0A0D11]/90 p-2.5 sm:p-3">
-              <div className="relative flex items-center rounded-lg border border-white/12 bg-[#06070A] focus-within:border-[#F5B800]/50 transition-colors">
+              <div className="relative flex items-center rounded-lg border border-white/12 bg-[#06070A] focus-within:border-[#E7B72A]/50 transition-colors">
                 <textarea
                   ref={textareaRef}
                   value={input}
@@ -517,7 +517,7 @@ export default function QDeltaAIChatbot() {
                   onClick={() => sendMessage()}
                   disabled={!input.trim() || isLoading}
                   aria-label="Send message"
-                  className="absolute right-1 flex h-6.5 w-6.5 items-center justify-center rounded-md bg-[#F5B800] text-black transition-all hover:bg-white disabled:opacity-30 disabled:hover:bg-[#F5B800] cursor-pointer"
+                  className="absolute right-1 flex h-6.5 w-6.5 items-center justify-center rounded-md bg-[#E7B72A] text-black transition-all hover:bg-white disabled:opacity-30 disabled:hover:bg-[#E7B72A] cursor-pointer"
                 >
                   <Send className="w-3 h-3" />
                 </button>

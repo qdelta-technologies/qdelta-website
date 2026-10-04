@@ -212,7 +212,7 @@ export default function ImmersiveLandscape() {
           ref={glowRef}
           className="pointer-events-none absolute inset-0 z-1 flex items-center justify-center will-change-transform"
         >
-          <div className="w-[680px] h-[420px] rounded-full bg-[#FAB406]/10 blur-3xl pointer-events-none" />
+          <div className="w-[680px] h-[420px] rounded-full bg-[#E7B72A]/10 blur-3xl pointer-events-none" />
         </div>
 
         {/* ================= TOP HEADER ================= */}
@@ -222,7 +222,7 @@ export default function ImmersiveLandscape() {
         >
           <h2 className="font-sans text-base sm:text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-white leading-snug sm:leading-tight">
             The Same Business.{" "}
-            <span className="text-[#FAB406] font-normal italic">A Flagship Result.</span>
+            <span className="text-[#E7B72A] font-normal italic">A Flagship Result.</span>
           </h2>
         </div>
 
@@ -278,7 +278,7 @@ export default function ImmersiveLandscape() {
           {/* Golden Frame Border & Ambient Halo — Fades on GPU opacity during scroll (ZERO blur repaint) */}
           <div
             ref={cardBorderRef}
-            className="pointer-events-none absolute inset-0 z-20 rounded-[20px] border border-[#FAB406]/45 shadow-[0_0_60px_rgba(250,180,6,0.22),0_25px_80px_rgba(0,0,0,0.95)] will-change-[opacity]"
+            className="pointer-events-none absolute inset-0 z-20 rounded-[20px] border border-[#E7B72A]/45 shadow-[0_0_60px_rgba(231,183,42,0.22),0_25px_80px_rgba(0,0,0,0.95)] will-change-[opacity]"
           />
         </div>
 
@@ -294,7 +294,7 @@ export default function ImmersiveLandscape() {
 
         {/* ================= REFINED GOLDEN HORIZON DIVIDER AT BOTTOM ================= */}
         <div className="pointer-events-none absolute bottom-0 inset-x-0 z-40">
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent shadow-[0_0_15px_rgba(250,180,6,0.3)]" />
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-transparent shadow-[0_0_15px_rgba(231,183,42,0.3)]" />
         </div>
       </div>
     </section>

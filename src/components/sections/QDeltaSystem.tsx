@@ -89,9 +89,9 @@ export default function QDeltaSystem() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(250, 180, 6, ${Math.max(0, Math.min(1, p.alpha))})`;
+        ctx.fillStyle = `rgba(231, 183, 42, ${Math.max(0, Math.min(1, p.alpha))})`;
         ctx.shadowBlur = 8;
-        ctx.shadowColor = "#FAB406";
+        ctx.shadowColor = "#E7B72A";
         ctx.fill();
       });
 
@@ -373,7 +373,7 @@ export default function QDeltaSystem() {
       ref={containerRef}
       id="system"
       aria-label="The QDelta System"
-      className="relative z-20 w-full bg-[#040406] text-white selection:bg-[#FAB406] selection:text-black"
+      className="relative z-20 w-full bg-[#040406] text-white selection:bg-[#E7B72A] selection:text-black"
       style={{ height: "240vh" }}
     >
       {/* ================= STICKY 100VH VIEWPORT ================= */}
@@ -387,18 +387,18 @@ export default function QDeltaSystem() {
           className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         >
           {/* Ambient Deep Golden Radial Glow along the central vertical axis */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70rem] h-[55rem] rounded-full bg-radial from-[#FAB406]/[0.08] via-[#FAB406]/[0.02] to-transparent blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70rem] h-[55rem] rounded-full bg-radial from-[#E7B72A]/[0.08] via-[#E7B72A]/[0.02] to-transparent blur-[120px]" />
 
           {/* Bottom Ground Plane Floor Horizon Glow & Reflective Field */}
-          <div className="absolute -bottom-10 inset-x-0 h-72 bg-gradient-to-t from-[#FAB406]/[0.15] via-[#FAB406]/[0.04] to-transparent blur-2xl" />
+          <div className="absolute -bottom-10 inset-x-0 h-72 bg-gradient-to-t from-[#E7B72A]/[0.15] via-[#E7B72A]/[0.04] to-transparent blur-2xl" />
 
           {/* Subtle Concentric Ground Horizon Rings at the floor */}
           <div
-            className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-32 rounded-[100%] border border-[#FAB406]/20 opacity-40 pointer-events-none"
+            className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-32 rounded-[100%] border border-[#E7B72A]/20 opacity-40 pointer-events-none"
             style={{ transform: "translate(-50%, 0) rotateX(78deg)" }}
           />
           <div
-            className="absolute bottom-[-2%] left-1/2 -translate-x-1/2 w-[350px] sm:w-[500px] h-20 rounded-[100%] border border-[#FAB406]/25 opacity-50 pointer-events-none"
+            className="absolute bottom-[-2%] left-1/2 -translate-x-1/2 w-[350px] sm:w-[500px] h-20 rounded-[100%] border border-[#E7B72A]/25 opacity-50 pointer-events-none"
             style={{ transform: "translate(-50%, 0) rotateX(78deg)" }}
           />
 
@@ -418,55 +418,55 @@ export default function QDeltaSystem() {
           {/* Ambient Diffuse Halo */}
           <div
             ref={beamHaloRef}
-            className="absolute inset-y-0 w-36 bg-gradient-to-b from-[#FAB406]/[0.15] via-[#FAB406]/[0.08] to-[#FAB406]/[0.18] blur-[42px] opacity-40 transition-opacity"
+            className="absolute inset-y-0 w-36 bg-gradient-to-b from-[#E7B72A]/[0.15] via-[#E7B72A]/[0.08] to-[#E7B72A]/[0.18] blur-[42px] opacity-40 transition-opacity"
           />
 
           {/* Golden Corona Glow */}
           <div
             ref={beamGlowRef}
-            className="absolute inset-y-0 w-6 bg-gradient-to-b from-[#FAB406]/90 via-[#FAB406]/65 to-[#FAB406]/90 blur-[10px] opacity-60"
+            className="absolute inset-y-0 w-6 bg-gradient-to-b from-[#E7B72A]/90 via-[#E7B72A]/65 to-[#E7B72A]/90 blur-[10px] opacity-60"
           />
 
           {/* Razor-Sharp Photon Core Filament */}
           <div
             ref={beamCoreRef}
-            className="absolute inset-y-0 w-[1.5px] bg-[#FFFBEA] shadow-[0_0_12px_#FAB406,0_0_24px_rgba(250,180,6,0.8)] opacity-70"
+            className="absolute inset-y-0 w-[1.5px] bg-[#FFFBEA] shadow-[0_0_12px_#E7B72A,0_0_24px_rgba(231,183,42,0.8)] opacity-70"
           />
 
           {/* Top Beam Clean Origin Flare at Viewport Top Edge */}
           <div
             ref={topOrbRef}
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-10 bg-gradient-to-b from-[#FAB406]/40 to-transparent blur-lg opacity-70 pointer-events-none"
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-10 bg-gradient-to-b from-[#E7B72A]/40 to-transparent blur-lg opacity-70 pointer-events-none"
           />
 
           {/* Bottom Horizon Impact Flare & Floor Pool */}
           <div
             ref={bottomFlareRef}
-            className="absolute bottom-[6%] left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#FFFBEA] shadow-[0_0_35px_12px_#FAB406,0_0_70px_24px_rgba(250,180,6,0.5)] opacity-85"
+            className="absolute bottom-[6%] left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#FFFBEA] shadow-[0_0_35px_12px_#E7B72A,0_0_70px_24px_rgba(231,183,42,0.5)] opacity-85"
           />
 
           {/* Upper Orbital Ring Intersect (Strategy / Development height) */}
           <div
             ref={orbitUpperRef}
-            className="absolute top-[37%] left-1/2 -translate-x-1/2 w-56 sm:w-72 h-8 rounded-[100%] border border-[#FAB406]/40 shadow-[0_0_15px_rgba(250,180,6,0.35)] pointer-events-none"
+            className="absolute top-[37%] left-1/2 -translate-x-1/2 w-56 sm:w-72 h-8 rounded-[100%] border border-[#E7B72A]/40 shadow-[0_0_15px_rgba(231,183,42,0.35)] pointer-events-none"
             style={{ transform: "translate(-50%, -50%) rotateX(72deg)" }}
           />
 
           {/* Lower Orbital Ring Intersect (Design / Conversion height) */}
           <div
             ref={orbitLowerRef}
-            className="absolute top-[61%] left-1/2 -translate-x-1/2 w-64 sm:w-80 h-9 rounded-[100%] border border-[#FAB406]/40 shadow-[0_0_15px_rgba(250,180,6,0.35)] pointer-events-none"
+            className="absolute top-[61%] left-1/2 -translate-x-1/2 w-64 sm:w-80 h-9 rounded-[100%] border border-[#E7B72A]/40 shadow-[0_0_15px_rgba(231,183,42,0.35)] pointer-events-none"
             style={{ transform: "translate(-50%, -50%) rotateX(72deg)" }}
           />
 
           {/* Center Beam Nodes where connectors anchor */}
           <div
             ref={node01Ref}
-            className="absolute top-[37%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_3px_#FAB406] z-30"
+            className="absolute top-[37%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_3px_#E7B72A] z-30"
           />
           <div
             ref={node03Ref}
-            className="absolute top-[61%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_3px_#FAB406] z-30"
+            className="absolute top-[61%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_3px_#E7B72A] z-30"
           />
         </div>
 
@@ -476,9 +476,9 @@ export default function QDeltaSystem() {
           className="relative z-30 w-full max-w-4xl mx-auto pt-20 sm:pt-24 md:pt-28 px-4 text-center select-none"
         >
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#FAB406]/30 bg-[#FAB406]/[0.08] backdrop-blur-md mb-3.5 sm:mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] animate-pulse" />
-            <span className="font-epilogue text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#FAB406]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#E7B72A]/30 bg-[#E7B72A]/[0.08] backdrop-blur-md mb-3.5 sm:mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E7B72A] animate-pulse" />
+            <span className="font-epilogue text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#E7B72A]">
               THE QDELTA SYSTEM
             </span>
           </div>
@@ -486,7 +486,7 @@ export default function QDeltaSystem() {
           {/* Main Headline */}
           <h2 className="font-epilogue font-bold text-2xl sm:text-3xl md:text-5xl lg:text-[56px] text-white tracking-tight leading-[1.08]">
             Built to speak.{" "}
-            <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FAB406] to-[#FAB406]">
+            <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E7B72A] to-[#E7B72A]">
               Designed to work.
             </span>
           </h2>
@@ -510,7 +510,7 @@ export default function QDeltaSystem() {
                 className="text-right pr-3 sm:pr-6 md:pr-8"
               >
                 <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center justify-end gap-1.5 sm:gap-2">
-                  <span className="text-[#FAB406] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
+                  <span className="text-[#E7B72A] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     01 —
                   </span>
                   <span>Strategy</span>
@@ -523,7 +523,7 @@ export default function QDeltaSystem() {
               {/* Connector line extending toward central beam */}
               <div
                 ref={line01Ref}
-                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-r from-transparent via-[#FAB406]/50 to-[#FAB406]"
+                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-[#E7B72A]"
               />
             </div>
 
@@ -532,7 +532,7 @@ export default function QDeltaSystem() {
               {/* Connector line extending from central beam */}
               <div
                 ref={line02Ref}
-                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-l from-transparent via-[#FAB406]/50 to-[#FAB406]"
+                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-l from-transparent via-[#E7B72A]/50 to-[#E7B72A]"
               />
 
               <div
@@ -540,7 +540,7 @@ export default function QDeltaSystem() {
                 className="text-left pl-3 sm:pl-6 md:pl-8"
               >
                 <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center gap-1.5 sm:gap-2">
-                  <span className="text-[#FAB406] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
+                  <span className="text-[#E7B72A] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     02 —
                   </span>
                   <span>Development</span>
@@ -559,7 +559,7 @@ export default function QDeltaSystem() {
                 className="text-right pr-3 sm:pr-6 md:pr-8"
               >
                 <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center justify-end gap-1.5 sm:gap-2">
-                  <span className="text-[#FAB406] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
+                  <span className="text-[#E7B72A] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     03 —
                   </span>
                   <span>Design</span>
@@ -572,7 +572,7 @@ export default function QDeltaSystem() {
               {/* Connector line extending toward central beam */}
               <div
                 ref={line03Ref}
-                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-r from-transparent via-[#FAB406]/50 to-[#FAB406]"
+                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-[#E7B72A]"
               />
             </div>
 
@@ -581,7 +581,7 @@ export default function QDeltaSystem() {
               {/* Connector line extending from central beam */}
               <div
                 ref={line04Ref}
-                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-l from-transparent via-[#FAB406]/50 to-[#FAB406]"
+                className="h-[1px] flex-1 max-w-[60px] sm:max-w-[120px] lg:max-w-[180px] bg-gradient-to-l from-transparent via-[#E7B72A]/50 to-[#E7B72A]"
               />
 
               <div
@@ -589,7 +589,7 @@ export default function QDeltaSystem() {
                 className="text-left pl-3 sm:pl-6 md:pl-8"
               >
                 <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center gap-1.5 sm:gap-2">
-                  <span className="text-[#FAB406] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
+                  <span className="text-[#E7B72A] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     04 —
                   </span>
                   <span>Conversion</span>
@@ -608,25 +608,25 @@ export default function QDeltaSystem() {
           className="pointer-events-none absolute inset-0 z-40 flex flex-col items-center justify-center px-4 text-center select-none"
         >
           <div className="max-w-4xl mx-auto">
-            <p className="font-epilogue text-[11px] sm:text-xs uppercase tracking-[0.32em] text-[#FAB406] mb-3 sm:mb-4">
+            <p className="font-epilogue text-[11px] sm:text-xs uppercase tracking-[0.32em] text-[#E7B72A] mb-3 sm:mb-4">
               THE INTEGRATED ADVANTAGE
             </p>
             <h3 className="font-epilogue font-extrabold text-2xl sm:text-3xl md:text-5xl lg:text-7xl text-white tracking-tight leading-[1.12]">
               “One clear system.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FAB406] to-[#FAB406]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E7B72A] to-[#E7B72A]">
                 One stronger presence.”
               </span>
             </h3>
-            <div className="mt-6 mx-auto w-24 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406] to-transparent shadow-[0_0_12px_#FAB406]" />
+            <div className="mt-6 mx-auto w-24 h-[1.5px] bg-gradient-to-r from-transparent via-[#E7B72A] to-transparent shadow-[0_0_12px_#E7B72A]" />
           </div>
         </div>
 
         {/* ================= 6. BOTTOM SUBTLE STATUS BAR / SCROLL CUE ================= */}
         <div className="relative z-30 w-full pb-6 sm:pb-8 flex justify-center items-center select-none pointer-events-none">
           <div className="flex items-center gap-3 text-[11px] font-mono text-zinc-500 tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]/70 shadow-[0_0_6px_#FAB406]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E7B72A]/70 shadow-[0_0_6px_#E7B72A]" />
             <span className="uppercase text-zinc-400">Scroll to explore the architecture</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]/70 shadow-[0_0_6px_#FAB406]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E7B72A]/70 shadow-[0_0_6px_#E7B72A]" />
           </div>
         </div>
       </div>

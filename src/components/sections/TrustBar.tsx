@@ -35,7 +35,7 @@ export default function TrustBar() {
               </span>
               <span
                 aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 rotate-45 bg-[#F5B800] shadow-[0_0_6px_rgba(245,184,0,0.6)]"
+                className="inline-block h-1.5 w-1.5 rotate-45 bg-[#E7B72A] shadow-[0_0_6px_rgba(231,183,42,0.6)]"
               />
             </div>
           ))}
@@ -50,7 +50,7 @@ export default function TrustBar() {
               </span>
               <span
                 aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 rotate-45 bg-[#F5B800] shadow-[0_0_6px_rgba(245,184,0,0.6)]"
+                className="inline-block h-1.5 w-1.5 rotate-45 bg-[#E7B72A] shadow-[0_0_6px_rgba(231,183,42,0.6)]"
               />
             </div>
           ))}

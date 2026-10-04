@@ -104,7 +104,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           scale,
           transformOrigin: "top center",
         }}
-        className="group relative w-full rounded-2xl sm:rounded-[22px] border border-black/15 bg-gradient-to-b from-[#FFD036] via-[#FAB406] to-[#E59E00] text-[#06070A] p-7 sm:p-9 md:p-10 shadow-[0_12px_28px_-4px_rgba(0,0,0,0.55),0_24px_50px_-10px_rgba(0,0,0,0.65),inset_0_1.5px_1px_rgba(255,255,255,0.45),inset_0_-2px_4px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
+        className="group relative w-full rounded-2xl sm:rounded-[22px] border border-black/15 bg-gradient-to-b from-[#F0C034] via-[#E7B72A] to-[#DCAB22] text-[#06070A] p-7 sm:p-9 md:p-10 shadow-[0_12px_28px_-4px_rgba(0,0,0,0.55),0_24px_50px_-10px_rgba(0,0,0,0.65),inset_0_1.5px_1px_rgba(255,255,255,0.45),inset_0_-2px_4px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
       >
         {/* Crisp Top Specular Highlight for 3D depth */}
         <div className="pointer-events-none absolute top-0 inset-x-6 sm:inset-x-10 h-[1.5px] bg-gradient-to-r from-transparent via-white/60 to-transparent" />
@@ -180,7 +180,7 @@ export default function Services() {
           <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
             02 / Capabilities
           </span>
-          <div className="w-10 sm:w-12 h-[1px] bg-[#FAB406]/60" />
+          <div className="w-10 sm:w-12 h-[1px] bg-[#E7B72A]/60" />
         </div>
 
         {/* Headline & Supporting Text in Editorial Two-Column Grid */}

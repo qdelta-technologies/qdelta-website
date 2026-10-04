@@ -148,7 +148,7 @@ export default function BrandTransformationSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-20 overflow-hidden selection:bg-[#F5B800] selection:text-[#06070A]"
+      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-20 overflow-hidden selection:bg-[#E7B72A] selection:text-[#06070A]"
       aria-label="About QDelta — Strategic Value & Capability"
     >
       {/* ================= BACKGROUND ATMOSPHERE ================= */}
@@ -165,17 +165,17 @@ export default function BrandTransformationSection() {
         >
           {/* Eyebrow with flanking golden lines */}
           <div className="flex items-center gap-3.5 mb-3.5 sm:mb-4 select-none justify-center">
-            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-r from-transparent to-[#F5B800]/60" />
+            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-r from-transparent to-[#E7B72A]/60" />
             <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-400 font-semibold">
               ABOUT QDELTA
             </span>
-            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-l from-transparent to-[#F5B800]/60" />
+            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-l from-transparent to-[#E7B72A]/60" />
           </div>
 
           {/* Headline (Single line on desktop/tablets, balanced on mobile) */}
           <h2 className="font-excon font-bold text-xl sm:text-2xl md:text-4xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.18] md:whitespace-nowrap">
             <span className="inline-block">Websites that do more</span>{" "}
-            <span className="inline-block text-[#FAB406]">than look good.</span>
+            <span className="inline-block text-[#E7B72A]">than look good.</span>
           </h2>
 
           {/* Supporting Text */}
@@ -196,13 +196,13 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="order-1 col-span-1 md:col-span-2 lg:col-span-6 lg:row-span-2 rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group"
+            className="order-1 col-span-1 md:col-span-2 lg:col-span-6 lg:row-span-2 rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#E7B72A]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/50 to-transparent z-20" />
+            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/50 to-transparent z-20" />
 
             {/* Ambient Warm Golden Backlight */}
-            <div className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-[#F5B800]/[0.04] blur-[90px]" />
+            <div className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-[#E7B72A]/[0.04] blur-[90px]" />
 
             {/* Video Player Frame */}
             <div
@@ -244,11 +244,11 @@ export default function BrandTransformationSection() {
                   type="button"
                   onClick={togglePlayPause}
                   aria-label={isPlaying ? "Pause video" : "Play video"}
-                  className="flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#F5B800]/60 text-white text-xs font-epilogue transition-all shadow-md cursor-pointer select-none"
+                  className="flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#E7B72A]/60 text-white text-xs font-epilogue transition-all shadow-md cursor-pointer select-none"
                 >
                   <span
                     className={`w-1.5 h-1.5 rounded-full ${
-                      isPlaying ? "bg-[#F5B800] animate-pulse" : "bg-zinc-500"
+                      isPlaying ? "bg-[#E7B72A] animate-pulse" : "bg-zinc-500"
                     }`}
                   />
                   <span className="text-[11px] sm:text-xs font-medium">
@@ -261,7 +261,7 @@ export default function BrandTransformationSection() {
                   type="button"
                   onClick={handleRestart}
                   aria-label="Restart video"
-                  className="p-1.5 sm:p-2 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#F5B800]/60 text-white hover:text-[#F5B800] transition-all shadow-md cursor-pointer"
+                  className="p-1.5 sm:p-2 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#E7B72A]/60 text-white hover:text-[#E7B72A] transition-all shadow-md cursor-pointer"
                   title="Restart from beginning"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -273,7 +273,7 @@ export default function BrandTransformationSection() {
             <div className="pt-3.5 sm:pt-4 px-1 sm:px-2 flex flex-col gap-2.5 select-none">
               <div className="flex items-center justify-between text-[11px] sm:text-xs font-epilogue">
                 <span className="text-zinc-400 font-medium">From ordinary</span>
-                <span className="text-[#FAB406] font-semibold">
+                <span className="text-[#E7B72A] font-semibold">
                   To standout
                 </span>
               </div>
@@ -289,7 +289,7 @@ export default function BrandTransformationSection() {
                   {/* Filled Gold Progress Line */}
                   <div
                     ref={progressFillRef}
-                    className="h-full bg-gradient-to-r from-zinc-600 via-[#F5B800]/70 to-[#FAB406] will-change-[width]"
+                    className="h-full bg-gradient-to-r from-zinc-600 via-[#E7B72A]/70 to-[#E7B72A] will-change-[width]"
                     style={{ width: "0%" }}
                   />
                 </div>
@@ -298,7 +298,7 @@ export default function BrandTransformationSection() {
                 <div className="absolute left-0 w-2 h-2 -translate-y-1/2 top-1/2 rounded-full border border-zinc-600 bg-[#06070A]" />
 
                 {/* Right Destination Ring ("To standout") */}
-                <div className="absolute right-0 w-2 h-2 -translate-y-1/2 top-1/2 rounded-full border border-[#FAB406]/40 bg-[#06070A]" />
+                <div className="absolute right-0 w-2 h-2 -translate-y-1/2 top-1/2 rounded-full border border-[#E7B72A]/40 bg-[#06070A]" />
 
                 {/* Live Traveling Golden Glow Dot */}
                 <div
@@ -306,7 +306,7 @@ export default function BrandTransformationSection() {
                   className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none will-change-[left]"
                   style={{ left: "0%" }}
                 >
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FAB406] ring-4 ring-[#FAB406]/25 shadow-[0_0_10px_#FAB406]" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#E7B72A] ring-4 ring-[#E7B72A]/25 shadow-[0_0_10px_#E7B72A]" />
                 </div>
               </div>
             </div>
@@ -320,14 +320,14 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="order-2 col-span-1 lg:col-span-3 lg:row-start-1 lg:col-start-1 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,184,0,0.08)] group"
+            className="order-2 col-span-1 lg:col-span-3 lg:row-start-1 lg:col-start-1 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E7B72A]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(231,183,42,0.08)] group"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/40 to-transparent" />
+            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/40 to-transparent" />
 
             {/* Top Row: Icon Badge & Number */}
             <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#F5B800]/10 border border-[#F5B800]/25 flex items-center justify-center text-[#F5B800] transition-colors group-hover:bg-[#F5B800]/15">
+              <div className="w-9 h-9 rounded-lg bg-[#E7B72A]/10 border border-[#E7B72A]/25 flex items-center justify-center text-[#E7B72A] transition-colors group-hover:bg-[#E7B72A]/15">
                 <Sparkles className="w-4 h-4" />
               </div>
               <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
@@ -354,14 +354,14 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="order-3 col-span-1 lg:col-span-3 lg:row-start-1 lg:col-start-10 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,184,0,0.08)] group"
+            className="order-3 col-span-1 lg:col-span-3 lg:row-start-1 lg:col-start-10 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E7B72A]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(231,183,42,0.08)] group"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/40 to-transparent" />
+            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/40 to-transparent" />
 
             {/* Top Row: Icon Badge & Number */}
             <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#F5B800]/10 border border-[#F5B800]/25 flex items-center justify-center text-[#F5B800] transition-colors group-hover:bg-[#F5B800]/15">
+              <div className="w-9 h-9 rounded-lg bg-[#E7B72A]/10 border border-[#E7B72A]/25 flex items-center justify-center text-[#E7B72A] transition-colors group-hover:bg-[#E7B72A]/15">
                 <Layers className="w-4 h-4" />
               </div>
               <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
@@ -388,14 +388,14 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="order-4 col-span-1 lg:col-span-3 lg:row-start-2 lg:col-start-1 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,184,0,0.08)] group"
+            className="order-4 col-span-1 lg:col-span-3 lg:row-start-2 lg:col-start-1 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E7B72A]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(231,183,42,0.08)] group"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/40 to-transparent" />
+            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/40 to-transparent" />
 
             {/* Top Row: Icon Badge & Number */}
             <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#F5B800]/10 border border-[#F5B800]/25 flex items-center justify-center text-[#F5B800] transition-colors group-hover:bg-[#F5B800]/15">
+              <div className="w-9 h-9 rounded-lg bg-[#E7B72A]/10 border border-[#E7B72A]/25 flex items-center justify-center text-[#E7B72A] transition-colors group-hover:bg-[#E7B72A]/15">
                 <ShieldCheck className="w-4 h-4" />
               </div>
               <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
@@ -422,14 +422,14 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="order-5 col-span-1 lg:col-span-3 lg:row-start-2 lg:col-start-10 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,184,0,0.08)] group"
+            className="order-5 col-span-1 lg:col-span-3 lg:row-start-2 lg:col-start-10 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E7B72A]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(231,183,42,0.08)] group"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/40 to-transparent" />
+            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/40 to-transparent" />
 
             {/* Top Row: Icon Badge & Number */}
             <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#F5B800]/10 border border-[#F5B800]/25 flex items-center justify-center text-[#F5B800] transition-colors group-hover:bg-[#F5B800]/15">
+              <div className="w-9 h-9 rounded-lg bg-[#E7B72A]/10 border border-[#E7B72A]/25 flex items-center justify-center text-[#E7B72A] transition-colors group-hover:bg-[#E7B72A]/15">
                 <BarChart3 className="w-4 h-4" />
               </div>
               <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
@@ -459,14 +459,14 @@ export default function BrandTransformationSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: 0.25 + idx * 0.08 }}
-              className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#F5B800]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,184,0,0.08)] group select-none"
+              className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E7B72A]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(231,183,42,0.08)] group select-none"
             >
               {/* Crisp Golden Top Accent Hairline */}
-              <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#F5B800]/40 to-transparent" />
+              <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E7B72A]/40 to-transparent" />
 
               {/* Top Row: Metric & Label */}
               <div className="flex items-baseline justify-between gap-3">
-                <span className="font-excon font-extrabold text-xl sm:text-2xl md:text-3xl text-[#FAB406] tracking-tight">
+                <span className="font-excon font-extrabold text-xl sm:text-2xl md:text-3xl text-[#E7B72A] tracking-tight">
                   {stat.metric}
                 </span>
                 <span className="font-epilogue font-bold text-xs sm:text-[13px] text-white tracking-tight">

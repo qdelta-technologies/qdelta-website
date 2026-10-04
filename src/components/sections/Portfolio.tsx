@@ -69,8 +69,8 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       tagBg: "bg-white/[0.05]",
       tagBorder: "border-white/10",
       tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#F5B800]",
-      dotColor: "#F5B800",
+      ctaUnderline: "bg-[#E7B72A]",
+      dotColor: "#E7B72A",
     },
   },
   {
@@ -135,7 +135,7 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
       tagBg: "bg-black/[0.05]",
       tagBorder: "border-black/12",
       tagText: "text-zinc-900 font-semibold",
-      ctaUnderline: "bg-[#D9A51A]",
+      ctaUnderline: "bg-[#E7B72A]",
       dotColor: "#18181b",
     },
   },
@@ -158,18 +158,18 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
     ],
     theme: {
       folderBg: "#080A0F",
-      borderColor: "rgba(245, 184, 0, 0.3)",
+      borderColor: "rgba(231, 183, 42, 0.3)",
       textPrimary: "text-white",
       textSecondary: "text-zinc-300",
       textMuted: "text-zinc-400",
-      tabTextColor: "text-[#F5B800]",
+      tabTextColor: "text-[#E7B72A]",
       frameBg: "bg-[#06070A]",
-      frameBorder: "border-[#F5B800]/25",
+      frameBorder: "border-[#E7B72A]/25",
       tagBg: "bg-white/[0.05]",
       tagBorder: "border-white/10",
       tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#F5B800]",
-      dotColor: "#F5B800",
+      ctaUnderline: "bg-[#E7B72A]",
+      dotColor: "#E7B72A",
     },
   },
 ];
@@ -406,7 +406,7 @@ function ArchiveFolder({
 
                   {/* Corner View Hover Action Badge */}
                   <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover/mockup:opacity-100 transition-opacity duration-300 shadow-md">
-                    <ExternalLink className="w-3 h-3 text-[#F5B800]" />
+                    <ExternalLink className="w-3 h-3 text-[#E7B72A]" />
                     <span className="font-epilogue text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider">
                       View Project
                     </span>
@@ -449,7 +449,7 @@ export default function Portfolio() {
           <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
             04 / Selected Work
           </span>
-          <div className="w-10 sm:w-12 h-[1px] bg-[#F5B800]/60" />
+          <div className="w-10 sm:w-12 h-[1px] bg-[#E7B72A]/60" />
         </div>
 
         {/* Headline & Subtitle Grid */}
@@ -502,7 +502,7 @@ export default function Portfolio() {
 
         <Link
           href="#contact"
-          className="group/cta inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(250,180,6,0.25)] hover:bg-[#ffbe1a] hover:shadow-[0_0_24px_rgba(250,180,6,0.35)] transition-all duration-300 hover:scale-[1.02]"
+          className="group/cta inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#E7B72A] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(231,183,42,0.25)] hover:bg-[#F0C034] hover:shadow-[0_0_24px_rgba(231,183,42,0.35)] transition-all duration-300 hover:scale-[1.02]"
         >
           <span>Initiate a Project</span>
           <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
@@ -534,7 +534,7 @@ export default function Portfolio() {
               {/* Modal Body */}
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="font-epilogue text-xs uppercase tracking-widest text-[#F5B800] font-semibold">
+                  <span className="font-epilogue text-xs uppercase tracking-widest text-[#E7B72A] font-semibold">
                     PROJECT {activeModalProject.indexNumber} // {activeModalProject.category}
                   </span>
                 </div>
@@ -591,7 +591,7 @@ export default function Portfolio() {
                       key={o.label}
                       className="p-3.5 rounded-xl bg-white/[0.025] border border-white/10"
                     >
-                      <span className="text-[10px] font-epilogue uppercase tracking-wider text-[#F5B800] font-semibold">
+                      <span className="text-[10px] font-epilogue uppercase tracking-wider text-[#E7B72A] font-semibold">
                         {o.label}
                       </span>
                       <p className="mt-1 font-epilogue text-xs font-bold text-white">
@@ -606,7 +606,7 @@ export default function Portfolio() {
                   <Link
                     href="#contact"
                     onClick={() => setActiveModalProject(null)}
-                    className="px-7 py-3 rounded-full bg-[#FAB406] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#ffbe1a] transition-colors shadow-md"
+                    className="px-7 py-3 rounded-full bg-[#E7B72A] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#F0C034] transition-colors shadow-md"
                   >
                     Discuss a Similar Build
                   </Link>
