@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
@@ -18,8 +18,6 @@ export default function Navbar() {
   const [isPastHero, setIsPastHero] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [navWidth, setNavWidth] = useState<number>(1200);
 
   // Monitor scroll state past hero
   useEffect(() => {
@@ -27,7 +25,6 @@ export default function Navbar() {
       const heroEl = document.getElementById("hero");
       if (heroEl) {
         const rect = heroEl.getBoundingClientRect();
-        // User has scrolled past hero when hero bottom is near the top
         setIsPastHero(rect.bottom <= 80);
       } else {
         setIsPastHero(window.scrollY > 480);
@@ -39,157 +36,102 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Measure navbar width dynamically for responsive precision SVG geometry
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const updateWidth = () => {
-      if (containerRef.current) {
-        setNavWidth(containerRef.current.offsetWidth);
-      }
-    };
-    updateWidth();
-
-    const ro = new ResizeObserver(updateWidth);
-    ro.observe(containerRef.current);
-    window.addEventListener("resize", updateWidth);
-
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", updateWidth);
-    };
-  }, []);
-
-  const cx = navWidth / 2;
-  const isMobile = navWidth < 680;
-
-  // Architectural frame dimensions (sleeker sizing)
-  const H1 = isMobile ? 52 : 60; // Wing height (px)
-  const H2 = isMobile ? 68 : 78; // Center notch height (px)
-  // Width parameters for center notch with comfortable, balanced proportions
-  const notchFlatHalf = isMobile ? 80 : 102; // Half of flat bottom under logo
-  const chamferWidth = isMobile ? 22 : 28; // Horizontal span of angled chamfer
-
-  const x1 = 0;
-  const x2 = Math.max(0, cx - notchFlatHalf - chamferWidth);
-  const x3 = Math.max(0, cx - notchFlatHalf);
-  const x4 = Math.min(navWidth, cx + notchFlatHalf);
-  const x5 = Math.min(navWidth, cx + notchFlatHalf + chamferWidth);
-  const x6 = navWidth;
-
-  // Exact polygon path of the architectural navbar
-  const framePath = `
-    M 0 0
-    L ${x6} 0
-    L ${x6} ${H1}
-    L ${x5} ${H1}
-    L ${x4} ${H2}
-    L ${x3} ${H2}
-    L ${x2} ${H1}
-    L 0 ${H1}
-    Z
-  `;
-
-  // Perimeter architectural line contour (excluding top edge)
-  const bottomContourPath = `
-    M 0 ${H1}
-    L ${x2} ${H1}
-    L ${x3} ${H2}
-    L ${x4} ${H2}
-    L ${x5} ${H1}
-    L ${x6} ${H1}
-  `;
-
-  // Gold accent line trace highlighting the center keystone notch
-  const notchAccentPath = `
-    M ${x2} ${H1}
-    L ${x3} ${H2}
-    L ${x4} ${H2}
-    L ${x5} ${H1}
-  `;
-
   return (
     <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
       <div
-        ref={containerRef}
-        className="relative pointer-events-auto w-full max-w-full select-none"
-        style={{ height: `${H2}px` }}
+        className="relative pointer-events-auto w-full max-w-full select-none h-[68px] min-[680px]:h-[78px]"
       >
         {/* ======================================================== */}
-        {/* 1. ARCHITECTURAL SVG GEOMETRY FRAME & GLASS SURFACE     */}
+        {/* 1. ARCHITECTURAL GLASS FRAME & BORDERS (PURE CSS ZERO-SHIFT) */}
         {/* ======================================================== */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
+        <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+          {/* Glassmorphism body fill with responsive polygon clip-path */}
+          <div
+            className={`navbar-frame-glass absolute inset-0 w-full h-full backdrop-blur-2xl transition-colors duration-300 ${
+              isPastHero ? "bg-[#06070A]/92" : "bg-[#080A0E]/78"
+            }`}
+          />
+
+          {/* Top architectural reference line */}
+          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-[#FAB406]/30 via-white/25 to-[#FAB406]/30" />
+
+          {/* Left Wing Bottom Border */}
+          <div className="absolute left-0 top-[52px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px] bg-white/[0.12]" />
+
+          {/* Right Wing Bottom Border */}
+          <div className="absolute right-0 top-[52px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px] bg-white/[0.12]" />
+
+          {/* Center Keystone Notch (Desktop >= 680px: width 260px, height 78px) */}
           <svg
-            suppressHydrationWarning
-            width={navWidth}
-            height={H2}
-            viewBox={`0 0 ${navWidth} ${H2}`}
-            className="w-full h-full"
+            width="260"
+            height="78"
+            viewBox="0 0 260 78"
             fill="none"
+            className="hidden min-[680px]:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none overflow-visible"
           >
             <defs>
-              {/* Subtle gold gradient for the center notch edge */}
-              <linearGradient id="navbar-gold-notch" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient id="navbar-gold-notch-desktop" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
                 <stop offset="20%" stopColor="#FAB406" stopOpacity="0.85" />
                 <stop offset="50%" stopColor="#FFF4A3" stopOpacity="1" />
                 <stop offset="80%" stopColor="#FAB406" stopOpacity="0.85" />
                 <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
               </linearGradient>
-
-              {/* Top subtle horizon shimmer */}
-              <linearGradient id="navbar-top-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FAB406" stopOpacity="0.3" />
-                <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#FAB406" stopOpacity="0.3" />
-              </linearGradient>
             </defs>
-
-            {/* Glassmorphism body fill */}
+            {/* Structural bottom border */}
             <path
-              suppressHydrationWarning
-              d={framePath}
-              fill={isPastHero ? "rgba(6, 7, 10, 0.92)" : "rgba(8, 10, 14, 0.78)"}
-              className="backdrop-blur-2xl transition-colors duration-300"
-            />
-
-            {/* Perimeter crisp 1px architectural border */}
-            <path
-              suppressHydrationWarning
-              d={framePath}
-              stroke="rgba(255, 255, 255, 0.09)"
-              strokeWidth="1"
-              vectorEffect="non-scaling-stroke"
-            />
-
-            {/* Bottom structural outline */}
-            <path
-              suppressHydrationWarning
-              d={bottomContourPath}
+              d="M 0 60 L 28 78 L 232 78 L 260 60"
               stroke="rgba(255, 255, 255, 0.15)"
               strokeWidth="1"
               vectorEffect="non-scaling-stroke"
+              fill="none"
             />
-
-            {/* Golden Keystone Accent: Angled cuts + notch base */}
+            {/* Golden Keystone Accent */}
             <path
-              suppressHydrationWarning
-              d={notchAccentPath}
-              stroke="url(#navbar-gold-notch)"
+              d="M 0 60 L 28 78 L 232 78 L 260 60"
+              stroke="url(#navbar-gold-notch-desktop)"
               strokeWidth="1.6"
               strokeLinecap="round"
               strokeLinejoin="round"
               vectorEffect="non-scaling-stroke"
+              fill="none"
             />
+          </svg>
 
-            {/* Top architectural reference line */}
-            <line
-              suppressHydrationWarning
-              x1="0"
-              y1="0"
-              x2={navWidth}
-              y2="0"
-              stroke="url(#navbar-top-shimmer)"
+          {/* Center Keystone Notch (Mobile < 680px: width 204px, height 68px) */}
+          <svg
+            width="204"
+            height="68"
+            viewBox="0 0 204 68"
+            fill="none"
+            className="block min-[680px]:hidden absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none overflow-visible"
+          >
+            <defs>
+              <linearGradient id="navbar-gold-notch-mobile" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
+                <stop offset="20%" stopColor="#FAB406" stopOpacity="0.85" />
+                <stop offset="50%" stopColor="#FFF4A3" stopOpacity="1" />
+                <stop offset="80%" stopColor="#FAB406" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
+              </linearGradient>
+            </defs>
+            {/* Structural bottom border */}
+            <path
+              d="M 0 52 L 22 68 L 182 68 L 204 52"
+              stroke="rgba(255, 255, 255, 0.15)"
               strokeWidth="1"
+              vectorEffect="non-scaling-stroke"
+              fill="none"
+            />
+            {/* Golden Keystone Accent */}
+            <path
+              d="M 0 52 L 22 68 L 182 68 L 204 52"
+              stroke="url(#navbar-gold-notch-mobile)"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+              fill="none"
             />
           </svg>
         </div>
@@ -200,8 +142,7 @@ export default function Navbar() {
         <div className="relative z-10 w-full h-full">
           {/* ----------------- ZONE 1: LEFT (NAV LINKS) ----------------- */}
           <div
-            className="absolute left-0 top-0 flex items-center pl-6 sm:pl-10 md:pl-12 lg:pl-16 pr-4"
-            style={{ height: `${H1}px` }}
+            className="absolute left-0 top-0 flex items-center pl-6 sm:pl-10 md:pl-12 lg:pl-16 pr-4 h-[52px] min-[680px]:h-[60px]"
           >
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-5 sm:gap-6 lg:gap-7" aria-label="Main Navigation">
@@ -233,8 +174,7 @@ export default function Navbar() {
 
           {/* ----------------- ZONE 2: CENTER (QDELTA LOGO BLOCK) ----------------- */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 top-0 flex items-center justify-center"
-            style={{ height: `${H2}px` }}
+            className="absolute left-1/2 -translate-x-1/2 top-0 flex items-center justify-center h-[68px] min-[680px]:h-[78px]"
           >
             <Link
               href="/"
@@ -254,8 +194,7 @@ export default function Navbar() {
 
           {/* ----------------- ZONE 3: RIGHT (MAIN CTA BUTTON & MOBILE MENU) ----------------- */}
           <div
-            className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pr-12 lg:pr-16 pl-4"
-            style={{ height: `${H1}px` }}
+            className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pr-12 lg:pr-16 pl-4 h-[52px] min-[680px]:h-[60px]"
           >
             {/* Desktop CTA */}
             <Link

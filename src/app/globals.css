@@ -202,7 +202,11 @@ canvas {
 
 /* ================= HARDWARE-ACCELERATED CUSTOM CURSOR ================= */
 @media (hover: hover) and (pointer: fine) {
-  html, body, *, *::before, *::after {
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active *,
+  html.custom-cursor-active *::before,
+  html.custom-cursor-active *::after {
     cursor: none !important;
   }
 }
@@ -220,5 +224,36 @@ canvas {
 
 .cursor-star-inner.cursor-clicking {
   transform: scale(0.85) !important;
+}
+
+/* ================= ARCHITECTURAL NAVBAR GLASSMORPHISM FRAME ================= */
+/* 100% Pure CSS responsive geometry - Zero layout shift or hydration jumps */
+.navbar-frame-glass {
+  --nav-h1: 60px;
+  --nav-h2: 78px;
+  --nav-notch-flat: 102px;
+  --nav-notch-chamfer: 28px;
+  --nav-notch-total: 130px;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% var(--nav-h1),
+    calc(50% + var(--nav-notch-total)) var(--nav-h1),
+    calc(50% + var(--nav-notch-flat)) var(--nav-h2),
+    calc(50% - var(--nav-notch-flat)) var(--nav-h2),
+    calc(50% - var(--nav-notch-total)) var(--nav-h1),
+    0 var(--nav-h1)
+  );
+}
+
+@media (max-width: 679px) {
+  .navbar-frame-glass {
+    --nav-h1: 52px;
+    --nav-h2: 68px;
+    --nav-notch-flat: 80px;
+    --nav-notch-chamfer: 22px;
+    --nav-notch-total: 102px;
+  }
 }
 

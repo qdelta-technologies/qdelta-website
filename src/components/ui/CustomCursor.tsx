@@ -26,11 +26,15 @@ export default function CustomCursor() {
     const star = starRef.current;
     if (!cursor || !star) return;
 
-    let isVisible = false;
+    let isVisible = document.documentElement.classList.contains("custom-cursor-active");
+    if (isVisible) {
+      cursor.style.opacity = "1";
+    }
 
     const updatePosition = (clientX: number, clientY: number) => {
       if (!isVisible) {
         isVisible = true;
+        document.documentElement.classList.add("custom-cursor-active");
         cursor.style.opacity = "1";
       }
       cursor.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
@@ -70,10 +74,12 @@ export default function CustomCursor() {
     const onMouseLeave = () => {
       isVisible = false;
       cursor.style.opacity = "0";
+      document.documentElement.classList.remove("custom-cursor-active");
     };
 
     const onMouseEnter = (e: MouseEvent) => {
       isVisible = true;
+      document.documentElement.classList.add("custom-cursor-active");
       cursor.style.opacity = "1";
       updatePosition(e.clientX, e.clientY);
     };
