@@ -1,38 +1,30 @@
 import type { Metadata } from "next";
+import { Alata } from "next/font/google";
 import localFont from "next/font/local";
-import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
 
-const playfair = Playfair_Display({
+const alata = Alata({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: "400",
+  variable: "--font-alata",
   display: "swap",
 });
 
-const epilogue = localFont({
+const satoshi = localFont({
   src: [
     {
-      path: "../../public/fonts/Epilogue-Variable.woff2",
+      path: "../../public/fonts/Satoshi-Variable.woff2",
+      weight: "300 900",
       style: "normal",
     },
     {
-      path: "../../public/fonts/Epilogue-VariableItalic.woff2",
+      path: "../../public/fonts/Satoshi-Variable-Italic.woff2",
+      weight: "300 900",
       style: "italic",
     },
   ],
-  variable: "--font-epilogue",
-  display: "swap",
-});
-
-const excon = localFont({
-  src: [
-    {
-      path: "../../public/fonts/Excon-Variable.woff2",
-      style: "normal",
-    },
-  ],
-  variable: "--font-excon",
+  variable: "--font-satoshi",
   display: "swap",
 });
 
@@ -53,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${epilogue.variable} ${excon.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${alata.variable} ${satoshi.variable}`}>
       <head>
         {/* Instant desktop custom cursor activation — zero invisible cursor delay */}
         <script

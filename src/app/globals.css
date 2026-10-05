@@ -1,41 +1,14 @@
 @import "tailwindcss";
 
 
-@theme {
-  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-epilogue), ui-sans-serif, system-ui, sans-serif;
-}
-
-
-/* ================= FONTS (HIGH EFFICIENCY WOFF2 VARIABLE) ================= */
-@font-face {
-  font-family: 'Epilogue';
-  src: url('/fonts/Epilogue-Variable.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Epilogue';
-  src: url('/fonts/Epilogue-VariableItalic.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Excon';
-  src: url('/fonts/Excon-Variable.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-}
+/* Alata (display) + Satoshi (UI/body) via next/font in layout.tsx */
 
 @theme {
-  --font-sans: var(--font-epilogue), 'Epilogue', sans-serif;
-  --font-epilogue: var(--font-epilogue), 'Epilogue', sans-serif;
-  --font-excon: var(--font-excon), 'Excon', sans-serif;
+  --font-sans: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-alata), "Alata", sans-serif;
+  --font-epilogue: var(--font-satoshi), "Satoshi", sans-serif;
+  --font-excon: var(--font-alata), "Alata", sans-serif;
   --color-gold: #E5B528;
   --color-gold-hover: #F0C034;
   --color-obsidian: #040406;
@@ -43,18 +16,25 @@
   --color-surface-card: #0e0e16;
 }
 
-/* Default font is Epilogue, allowing Excon to be applied wherever desired */
 html,
 body {
-  font-family: var(--font-epilogue), 'Epilogue', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-satoshi), "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.02em;
 }
 
+/* Legacy utility names — excon = Alata display; epilogue = Satoshi UI/body */
 .font-excon {
-  font-family: var(--font-excon), 'Excon', sans-serif !important;
+  font-family: var(--font-alata), "Alata", sans-serif !important;
+  letter-spacing: 0.02em;
 }
 
 .font-epilogue {
-  font-family: var(--font-epilogue), 'Epilogue', sans-serif !important;
+  font-family: var(--font-satoshi), "Satoshi", sans-serif !important;
+}
+
+.font-display {
+  font-family: var(--font-alata), "Alata", sans-serif !important;
+  letter-spacing: 0.02em;
 }
 
 /* Ensure all WebGL and 2D canvases are strictly transparent */
@@ -111,17 +91,18 @@ canvas {
   }
 }
 
-/* Testimonial marquee cards — warm dark + subtle gold wash (opaque) */
+/* Testimonial marquee cards — brand gold on dark section */
 .testimonial-card-3d {
   position: relative;
   background: linear-gradient(
-    165deg,
-    #3a3424 0%,
-    #26221a 28%,
-    #1c1a15 58%,
-    #161513 100%
+    168deg,
+    #ebbc30 0%,
+    #e5b528 48%,
+    #d4a520 100%
   );
-  box-shadow: inset 0 1px 0 rgba(235, 191, 46, 0.28);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.35) inset;
 }
 
 .testimonial-card-3d::before {
@@ -131,10 +112,10 @@ canvas {
   border-radius: inherit;
   pointer-events: none;
   background: radial-gradient(
-    ellipse 115% 70% at 50% -15%,
-    rgba(229, 181, 40, 0.26) 0%,
-    rgba(229, 181, 40, 0.06) 42%,
-    transparent 68%
+    ellipse 120% 65% at 50% -12%,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 38%,
+    transparent 62%
   );
 }
 

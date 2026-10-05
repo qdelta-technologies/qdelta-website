@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface TestimonialItem {
   id: string;
@@ -66,35 +67,35 @@ function getInitials(name: string) {
 function TestimonialCard({ t }: { t: TestimonialItem }) {
   return (
     <article
-      className="testimonial-card-3d pointer-events-none relative flex min-h-[252px] w-[min(268px,calc(100vw-3rem))] shrink-0 flex-col justify-between overflow-hidden rounded-xl border border-[#E5B528]/22 p-5 shadow-none sm:min-h-[272px] sm:w-[292px] sm:rounded-[18px] sm:p-6 md:w-[308px]"
+      className="testimonial-card-3d pointer-events-none relative flex min-h-[252px] w-[min(268px,calc(100vw-3rem))] shrink-0 flex-col justify-between overflow-hidden rounded-xl border border-[#C9A020]/45 p-5 sm:min-h-[272px] sm:w-[292px] sm:rounded-[18px] sm:p-6 md:w-[308px]"
     >
-      <div className="pointer-events-none absolute inset-x-5 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-6 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
       <div className="relative z-10">
         <svg
-          className="mb-3 h-4 w-4 fill-[#E5B528] opacity-90"
+          className="mb-3 h-4 w-4 fill-[#06070A]/75 opacity-95"
           viewBox="0 0 24 24"
           aria-hidden
         >
           <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
         </svg>
-        <p className="line-clamp-6 font-epilogue text-xs font-normal leading-relaxed text-zinc-100/95 sm:text-[13px]">
+        <p className="line-clamp-6 font-epilogue text-xs font-normal leading-relaxed text-[#1a1c22] sm:text-[13px]">
           “{t.quote}”
         </p>
       </div>
 
-      <div className="relative z-10 flex items-center gap-3 border-t border-white/12 pt-3.5">
+      <div className="relative z-10 flex items-center gap-3 border-t border-[#06070A]/10 pt-3.5">
         <div
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#E5B528]/50 bg-[#1f1c14] font-epilogue text-[10px] font-bold text-[#F0C034]"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#06070A]/20 bg-[#06070A]/90 font-epilogue text-[10px] font-bold text-[#F0C034]"
           aria-hidden
         >
           {getInitials(t.name)}
         </div>
         <div className="min-w-0">
-          <p className="truncate font-epilogue text-xs font-bold text-white sm:text-[13px]">
+          <p className="truncate font-epilogue text-xs font-bold text-[#06070A] sm:text-[13px]">
             {t.name}
           </p>
-          <p className="truncate font-epilogue text-[11px] font-medium text-zinc-400">
+          <p className="truncate font-epilogue text-[11px] font-medium text-zinc-600">
             {t.role}
           </p>
         </div>
@@ -128,32 +129,27 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative z-20 w-full overflow-hidden bg-gradient-to-b from-[#EBBC30] via-[#E5B528] to-[#D4A520] py-16 text-[#06070A] selection:bg-[#06070A] selection:text-[#E5B528] sm:py-20 md:py-24"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 text-white selection:bg-[#E5B528] selection:text-[#06070A] sm:py-20 md:py-24"
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-60"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent"
         aria-hidden
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(6, 7, 10, 0.13) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(6, 7, 10, 0.13) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
       />
+
+      <SectionAtmosphere variant="dual" particleCount={28} />
 
       <div className="relative z-10 mx-auto mb-10 max-w-4xl px-4 text-center sm:mb-12 sm:px-6">
         <div className="mb-3 select-none text-center">
-          <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-[#06070A]/75">
+          <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-[#E5B528]">
             Testimonials
           </span>
         </div>
 
-        <h2 className="font-excon text-2xl font-bold tracking-tight text-[#06070A] sm:text-3xl md:text-[44px] leading-[1.12]">
+        <h2 className="font-excon text-2xl font-bold leading-[1.12] tracking-tight text-white sm:text-3xl md:text-[44px]">
           Inspiring Client Experiences
         </h2>
 
-        <p className="mx-auto mt-2.5 max-w-lg font-epilogue text-sm font-normal leading-relaxed text-[#06070A]/80 sm:text-base">
+        <p className="mx-auto mt-2.5 max-w-lg font-epilogue text-sm font-normal leading-relaxed text-zinc-400 sm:text-base">
           Trusted by businesses that wanted more than just a website.
         </p>
       </div>

@@ -9,7 +9,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
   return (
     <div
       className="w-full h-full bg-[#06070A] text-white flex flex-col overflow-hidden select-none border border-[#E5B528]/40 shadow-[0_0_100px_rgba(245,184,0,0.2)] rounded-2xl relative"
-      style={{ fontFamily: "'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif" }}
+      style={{ fontFamily: "'Satoshi', 'Alata', -apple-system, BlinkMacSystemFont, sans-serif", letterSpacing: "0.02em" }}
     >
       {/* Ambient Top & Bottom Gold Horizon Halos */}
       <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[54rem] h-64 bg-gradient-to-b from-[#E5B528]/25 via-[#E5B528]/5 to-transparent blur-[110px]" />
@@ -63,7 +63,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
 
       {/* Transformed Hero Showcase */}
       <div className="flex-1 p-12 lg:p-16 flex flex-row items-center justify-between gap-14 relative z-10">
-        {/* Left Column: Premium Typography & Hierarchy in Epilogue */}
+        {/* Left Column: Premium Typography & Hierarchy in Alata */}
         <div className="flex-1 max-w-2xl space-y-7">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5B528]/10 border border-[#E5B528]/35 text-xs font-semibold tracking-wider text-[#E5B528] backdrop-blur-md">
             <Sparkles className="w-4 h-4 text-[#E5B528]" />
@@ -72,12 +72,12 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
 
           <h1
             className="text-5xl lg:text-6xl font-extrabold text-white leading-[1.08] tracking-tight"
-            style={{ fontFamily: "'Epilogue', sans-serif" }}
+            style={{ fontFamily: "'Alata', sans-serif" }}
           >
             We craft brands <br />
             <span
               className="text-[#E5B528] font-extrabold italic drop-shadow-[0_0_35px_rgba(245,184,0,0.5)]"
-              style={{ fontFamily: "'Epilogue', sans-serif" }}
+              style={{ fontFamily: "'Alata', sans-serif" }}
             >
               that command attention.
             </span>
@@ -85,7 +85,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
 
           <p
             className="text-base lg:text-lg text-zinc-300 leading-relaxed max-w-xl font-normal"
-            style={{ fontFamily: "'Epilogue', sans-serif" }}
+            style={{ fontFamily: "'Satoshi', sans-serif" }}
           >
             Award-winning creative studio delivering bespoke digital experiences that captivate audiences and convert visitors into loyal clients.
           </p>
@@ -97,7 +97,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
                   ? "bg-white text-black shadow-[0_0_40px_rgba(245,184,0,1)] scale-105"
                   : "bg-[#E5B528] text-black shadow-[0_0_30px_rgba(245,184,0,0.7)]"
               }`}
-              style={{ fontFamily: "'Epilogue', sans-serif" }}
+              style={{ fontFamily: "'Satoshi', sans-serif" }}
             >
               <span>Start a Project</span>
               <ArrowRight className="w-5 h-5" />
