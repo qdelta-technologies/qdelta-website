@@ -285,6 +285,7 @@ export default function InteractiveDotGrid() {
 
     // ── Event listeners ──
     const handleMouseMove = (e: MouseEvent) => {
+      if (!isVisible) return;
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;

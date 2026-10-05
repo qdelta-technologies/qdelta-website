@@ -71,14 +71,27 @@ export default function BrandTransformationSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressFillRef = useRef<HTMLDivElement>(null);
   const progressDotRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { amount: 0.2 });
+  const isInView = useInView(sectionRef, { amount: 0.2, margin: "100px 0px -10% 0px" });
 
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const isPlayingRef = useRef(false);
+  const isInViewRef = useRef(false);
 
-  // Smooth 60fps video progress tracking for the traveling dot (Direct GPU DOM update, 0 React re-renders)
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  useEffect(() => {
+    isInViewRef.current = isInView;
+  }, [isInView]);
+
+  // Video progress rail — rAF only while playing and section is visible
   useEffect(() => {
     let animId: number;
     const updateProgress = () => {
+      if (!isPlayingRef.current || !isInViewRef.current) {
+        return;
+      }
       const video = videoRef.current;
       if (video && video.duration) {
         const p = Math.max(0, Math.min(1, video.currentTime / video.duration));
@@ -90,17 +103,15 @@ export default function BrandTransformationSection() {
           progressDotRef.current.style.left = `${pct}%`;
         }
       }
-      if (isPlaying) {
-        animId = requestAnimationFrame(updateProgress);
-      }
+      animId = requestAnimationFrame(updateProgress);
     };
 
-    if (isPlaying) {
+    if (isPlaying && isInView) {
       animId = requestAnimationFrame(updateProgress);
     }
 
     return () => cancelAnimationFrame(animId);
-  }, [isPlaying]);
+  }, [isPlaying, isInView]);
 
   const handleRailClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -175,7 +186,7 @@ export default function BrandTransformationSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-20 overflow-hidden selection:bg-[#E5B528] selection:text-[#06070A]"
+      className="relative z-20 w-full bg-[#06070A] text-white pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 scroll-mt-20 overflow-hidden selection:bg-[#E5B528] selection:text-[#06070A]"
       aria-label="About QDelta — Strategic Value & Capability"
     >
       {/* ================= BACKGROUND ATMOSPHERE ================= */}
@@ -188,7 +199,7 @@ export default function BrandTransformationSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-4xl xl:max-w-5xl mb-10 sm:mb-12 md:mb-14"
+          className="text-center max-w-4xl xl:max-w-5xl mb-8 sm:mb-10 md:mb-12"
         >
           {/* Eyebrow with flanking golden lines */}
           <div className="flex items-center gap-3.5 mb-3.5 sm:mb-4 select-none justify-center">
@@ -236,11 +247,10 @@ export default function BrandTransformationSection() {
               <video
                 ref={videoRef}
                 src="/section-video-3d-muted.mp4"
-                autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 disablePictureInPicture
                 onLoadedMetadata={(e) => {
                   e.currentTarget.playbackRate = VIDEO_PLAYBACK_RATE;
@@ -254,7 +264,6 @@ export default function BrandTransformationSection() {
                 style={{
                   transform: "translate3d(0, 0, 0)",
                   backfaceVisibility: "hidden",
-                  willChange: "transform",
                 }}
               />
 

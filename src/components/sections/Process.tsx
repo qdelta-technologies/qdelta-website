@@ -75,6 +75,7 @@ export default function Process() {
   const containerRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const activeStepRef = useRef(0);
+  const desktopScrollMqRef = useRef<MediaQueryList | null>(null);
 
   const [activeStep, setActiveStep] = useState<number>(0);
 
@@ -142,9 +143,13 @@ const mobileCardVariants = {
     return Math.min(rawStep, TOTAL_STEPS - 1);
   };
 
+  useEffect(() => {
+    desktopScrollMqRef.current = window.matchMedia("(min-width: 1024px)");
+  }, []);
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (shouldReduceMotion) return;
-    if (window.innerWidth < 1024) return;
+    if (!desktopScrollMqRef.current?.matches) return;
     commitStep(progressToStep(latest));
   });
 

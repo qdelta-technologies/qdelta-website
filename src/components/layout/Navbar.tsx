@@ -20,21 +20,34 @@ export default function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Monitor scroll state past hero
+  // Monitor scroll state past hero (rAF-coalesced — avoids setState every scroll tick)
   useEffect(() => {
-    const handleScroll = () => {
+    let rafId = 0;
+    let lastPastHero = false;
+
+    const measure = () => {
+      rafId = 0;
       const heroEl = document.getElementById("hero");
-      if (heroEl) {
-        const rect = heroEl.getBoundingClientRect();
-        setIsPastHero(rect.bottom <= 80);
-      } else {
-        setIsPastHero(window.scrollY > 480);
+      const nextPastHero = heroEl
+        ? heroEl.getBoundingClientRect().bottom <= 80
+        : window.scrollY > 480;
+      if (nextPastHero !== lastPastHero) {
+        lastPastHero = nextPastHero;
+        setIsPastHero(nextPastHero);
       }
     };
 
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(measure);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    measure();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (

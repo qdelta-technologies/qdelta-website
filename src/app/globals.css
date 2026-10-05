@@ -102,6 +102,10 @@ canvas {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+
   .animate-marquee-continuous {
     animation: none;
   }
@@ -178,15 +182,15 @@ canvas {
 /* ================= CINEMATIC GOLDEN GRID & RESTRAINED GLASS UTILITIES ================= */
 .bg-qdelta-grid {
   background-image: 
-    linear-gradient(to right, rgba(245, 184, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 184, 0, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(229, 181, 40, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 181, 40, 0.075) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 .bg-qdelta-grid-dense {
   background-image: 
-    linear-gradient(to right, rgba(245, 184, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 184, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(229, 181, 40, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 181, 40, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 

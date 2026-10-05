@@ -7,7 +7,7 @@ interface SectionAtmosphereProps {
   variant?: "center" | "left" | "right" | "dual" | "top";
   /** Optional density of floating particles (default: 36) */
   particleCount?: number;
-  /** Opacity of the yellow linear grid (default: 0.8) */
+  /** Opacity multiplier for the yellow linear grid (default: 1) */
   gridOpacity?: number;
   /** Whether to show top/bottom edge fade gradients (default: true) */
   edgeVignette?: boolean;
@@ -24,34 +24,44 @@ interface SectionAtmosphereProps {
 export default function SectionAtmosphere({
   variant = "center",
   particleCount = 36,
-  gridOpacity = 0.8,
+  gridOpacity = 0.85,
   edgeVignette = true,
   className = "",
 }: SectionAtmosphereProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // 1. Particle Simulation Canvas (strictly paused when off-screen)
+  // Particle canvas + parallax: paused when off-screen (single visibility observer)
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animationFrameId: number;
-    let isVisible = true;
+    let parallaxRafId: number;
+    let isVisible = false;
 
     let width = (canvas.width = canvas.offsetWidth || window.innerWidth);
     let height = (canvas.height = canvas.offsetHeight || 800);
 
-    const handleResize = () => {
+    const syncCanvasSize = () => {
       if (!canvas) return;
       width = canvas.width = canvas.offsetWidth || window.innerWidth;
       height = canvas.height = canvas.offsetHeight || 800;
     };
-    window.addEventListener("resize", handleResize);
 
-    // Pause loop when section is scrolled out of viewport
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(() => {
+        syncCanvasSize();
+      });
+      resizeObserver.observe(container);
+    } else {
+      window.addEventListener("resize", syncCanvasSize);
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry.isIntersecting;
@@ -59,14 +69,13 @@ export default function SectionAtmosphere({
           render();
         } else {
           cancelAnimationFrame(animationFrameId);
+          cancelAnimationFrame(parallaxRafId);
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.05, rootMargin: "80px 0px" }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    observer.observe(container);
 
     // Initialize slowly moving golden particles
     const stars = Array.from({ length: particleCount }, () => ({
@@ -116,25 +125,15 @@ export default function SectionAtmosphere({
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-      observer.disconnect();
-    };
-  }, [particleCount]);
-
-  // 2. Micro-Parallax Mouse Movement for Ambient Halos (Direct CSS Variables, 0 React Re-renders)
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let rafId: number;
     const handleMouseMove = (e: MouseEvent) => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        if (!containerRef.current) return;
+      if (!isVisible || prefersReducedMotion) return;
+      cancelAnimationFrame(parallaxRafId);
+      parallaxRafId = requestAnimationFrame(() => {
+        if (!containerRef.current || !isVisible) return;
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         const mx = Math.max(-1, Math.min(1, (e.clientX - centerX) / centerX));
@@ -147,12 +146,26 @@ export default function SectionAtmosphere({
       });
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    if (!prefersReducedMotion) {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    }
+
+    render();
+
     return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(parallaxRafId);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      } else {
+        window.removeEventListener("resize", syncCanvasSize);
+      }
+      if (!prefersReducedMotion) {
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
+      observer.disconnect();
     };
-  }, []);
+  }, [particleCount]);
 
   return (
     <div
@@ -255,8 +268,8 @@ export default function SectionAtmosphere({
         style={{
           opacity: gridOpacity,
           backgroundImage: `
-            linear-gradient(to right, rgba(229, 181, 40, 0.035) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(229, 181, 40, 0.035) 1px, transparent 1px)
+            linear-gradient(to right, rgba(229, 181, 40, 0.075) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(229, 181, 40, 0.075) 1px, transparent 1px)
           `,
           backgroundSize: "40px 40px",
           backgroundPosition: "0 0",
@@ -270,7 +283,7 @@ export default function SectionAtmosphere({
       {/* ================= 3. GLOWING STARFIELD / PARTICLE SIMULATION CANVAS ================= */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full opacity-65"
+        className="absolute inset-0 w-full h-full opacity-55"
       />
 
       {/* ================= 4. SOFT BOTTOM EDGE VIGNETTE (SEAMLESS SECTION BLEND) ================= */}

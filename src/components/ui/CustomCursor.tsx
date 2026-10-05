@@ -35,6 +35,23 @@ export default function CustomCursor() {
       cursor.style.opacity = "1";
     }
 
+    let hoverInteractive = false;
+    const interactiveSelector =
+      'a, button, input, textarea, select, [role="button"], .cursor-pointer, [data-cursor-interactive], label';
+
+    const syncHoverState = (clientX: number, clientY: number) => {
+      const target = document.elementFromPoint(clientX, clientY);
+      const interactive = target?.closest(interactiveSelector);
+      const nextHover = !!interactive;
+      if (nextHover === hoverInteractive) return;
+      hoverInteractive = nextHover;
+      if (nextHover) {
+        star.classList.add("cursor-hovering");
+      } else {
+        star.classList.remove("cursor-hovering");
+      }
+    };
+
     const updatePosition = (clientX: number, clientY: number) => {
       if (!isVisible) {
         isVisible = true;
@@ -47,12 +64,14 @@ export default function CustomCursor() {
     const onPointerMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
       updatePosition(e.clientX, e.clientY);
+      syncHoverState(e.clientX, e.clientY);
     };
 
     const onMouseMove = (e: MouseEvent) => {
       // Ignore synthetic mouse events from touch (common on mobile browsers)
       if (typeof window !== "undefined" && "PointerEvent" in window) return;
       updatePosition(e.clientX, e.clientY);
+      syncHoverState(e.clientX, e.clientY);
     };
 
     const onMouseDown = () => {
@@ -63,23 +82,10 @@ export default function CustomCursor() {
       star.classList.remove("cursor-clicking");
     };
 
-    const onMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-
-      const interactive = target.closest(
-        'a, button, input, textarea, select, [role="button"], .cursor-pointer, [data-cursor-interactive], label'
-      );
-
-      if (interactive) {
-        star.classList.add("cursor-hovering");
-      } else {
-        star.classList.remove("cursor-hovering");
-      }
-    };
-
     const onMouseLeave = () => {
       isVisible = false;
+      hoverInteractive = false;
+      star.classList.remove("cursor-hovering");
       cursor.style.opacity = "0";
       document.documentElement.classList.remove("custom-cursor-active");
     };
@@ -95,7 +101,6 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("mousedown", onMouseDown, { passive: true });
     window.addEventListener("mouseup", onMouseUp, { passive: true });
-    window.addEventListener("mouseover", onMouseOver, { passive: true });
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("mouseenter", onMouseEnter);
 
@@ -104,7 +109,6 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("mouseover", onMouseOver);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
       document.documentElement.classList.remove("custom-cursor-active");

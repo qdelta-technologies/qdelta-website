@@ -14,39 +14,57 @@ const TOTAL_TYPING_LENGTH = LINE_1.length + LINE_2.length; // 26 + 17 = 43
 // LINE 2: "Built" (0..5 gold), " to perform." (5..17 white)
 
 export default function Hero() {
+  const heroSectionRef = useRef<HTMLElement>(null);
   const heroBgRef = useRef<HTMLDivElement>(null);
   const [displayedCount, setDisplayedCount] = useState(0);
   const [isTypingDone, setIsTypingDone] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
   const shouldReduceMotion = useReducedMotion();
 
-  // Subtle Parallax depth for background and ambient lighting (0 React re-renders via CSS variables)
+  // Subtle parallax for background (paused when hero is off-screen)
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const heroEl = heroSectionRef.current;
+    if (!heroEl) return;
+
     let rafId: number;
+    let isVisible = true;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(heroEl);
+
+    const applyParallax = (mx: number, my: number) => {
+      if (!heroBgRef.current) return;
+      heroBgRef.current.style.setProperty("--hero-mx", `${-mx * 8}px`);
+      heroBgRef.current.style.setProperty("--hero-mx-halo", `${-mx * 14}px`);
+      heroBgRef.current.style.setProperty("--hero-my-halo", `${-my * 10}px`);
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
+      if (!isVisible) return;
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        if (!heroBgRef.current) return;
+        if (!isVisible || !heroBgRef.current) return;
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         const mx = Math.max(-1, Math.min(1, (e.clientX - centerX) / centerX));
         const my = Math.max(-1, Math.min(1, (e.clientY - centerY) / centerY));
-        heroBgRef.current.style.setProperty("--hero-mx", `${-mx * 8}px`);
-        heroBgRef.current.style.setProperty("--hero-mx-halo", `${-mx * 14}px`);
-        heroBgRef.current.style.setProperty("--hero-my-halo", `${-my * 10}px`);
+        applyParallax(mx, my);
       });
     };
 
     const handleMouseLeave = () => {
+      if (!isVisible) return;
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        if (!heroBgRef.current) return;
-        heroBgRef.current.style.setProperty("--hero-mx", "0px");
-        heroBgRef.current.style.setProperty("--hero-mx-halo", "0px");
-        heroBgRef.current.style.setProperty("--hero-my-halo", "0px");
+        applyParallax(0, 0);
       });
     };
 
@@ -55,6 +73,7 @@ export default function Hero() {
 
     return () => {
       cancelAnimationFrame(rafId);
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
@@ -105,6 +124,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={heroSectionRef}
       id="hero"
       className="relative w-full h-[clamp(620px,86svh,760px)] md:h-[calc(100dvh-48px)] min-h-[620px] overflow-hidden bg-[#06070A] text-white flex flex-col justify-between pt-12 md:pt-16 lg:pt-20"
     >

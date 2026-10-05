@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/ui/CustomCursor";
+import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -85,10 +85,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans bg-[#040406] text-[#f4f4f5] antialiased selection:bg-[#E5B528] selection:text-black">
-        <CustomCursor />
+        <CustomCursorRoot />
         {children}
       </body>
     </html>
   );
 }
-

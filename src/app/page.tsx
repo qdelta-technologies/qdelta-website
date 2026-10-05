@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import TrustBar from "@/components/sections/TrustBar";
@@ -5,13 +6,14 @@ import BrandTransformationSection from "@/components/sections/BrandTransformatio
 import Services from "@/components/sections/Services";
 import Process from "@/components/sections/Process";
 import Portfolio from "@/components/sections/Portfolio";
-import Testimonials from "@/components/sections/Testimonials";
-import Team from "@/components/sections/Team";
-import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import QDeltaAIChatbot from "@/components/ui/QDeltaAIChatbot";
 import SectionDivider from "@/components/ui/SectionDivider";
+import DeferredOverlays from "@/components/ui/DeferredOverlays";
+
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
+const Team = dynamic(() => import("@/components/sections/Team"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 export default function Home() {
   return (
@@ -36,14 +38,8 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <QDeltaAIChatbot />
+      <DeferredOverlays />
       <WhatsAppButton />
     </div>
   );
 }
-
-
-
-
-
-

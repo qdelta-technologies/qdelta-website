@@ -131,12 +131,12 @@ export default function Testimonials() {
       className="relative z-20 w-full overflow-hidden bg-gradient-to-b from-[#EBBC30] via-[#E5B528] to-[#D4A520] py-16 text-[#06070A] selection:bg-[#06070A] selection:text-[#E5B528] sm:py-20 md:py-24"
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-50"
+        className="pointer-events-none absolute inset-0 opacity-60"
         aria-hidden
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(6, 7, 10, 0.09) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(6, 7, 10, 0.09) 1px, transparent 1px)
+            linear-gradient(to right, rgba(6, 7, 10, 0.13) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(6, 7, 10, 0.13) 1px, transparent 1px)
           `,
           backgroundSize: "40px 40px",
         }}
