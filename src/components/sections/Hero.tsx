@@ -492,16 +492,16 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4 font-epilogue"
         >
-          {/* Primary CTA: Let's Talk */}
-          <ChamferButton href="#contact" variant="primary">
-            <span>Let’s Talk</span>
-            <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </ChamferButton>
-
           {/* Secondary CTA: Explore Our Work */}
           <ChamferButton href="#projects" variant="outline">
             <span>Explore Our Work</span>
             <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </ChamferButton>
+
+          {/* Primary CTA: Let's Talk */}
+          <ChamferButton href="#contact" variant="primary">
+            <span>Let’s Talk</span>
+            <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </ChamferButton>
         </motion.div>
       </div>

@@ -176,8 +176,15 @@ export default function Team() {
                       />
                     </div>
 
-                    {/* Deep Cinematic Gradient Vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#06070A] via-[#06070A]/60 via-45% to-transparent pointer-events-none" />
+                    {/* Bottom text scrim only — keeps portraits bright */}
+                    <div
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-[38%] sm:h-[34%]"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(6, 7, 10, 0.94) 0%, rgba(6, 7, 10, 0.5) 38%, rgba(6, 7, 10, 0.12) 68%, transparent 100%)",
+                      }}
+                      aria-hidden
+                    />
 
                     {/* Top Flip Indicator Badge (Clean, No Numbering) */}
                     <div className="absolute top-4 right-4 z-10">
@@ -188,16 +195,16 @@ export default function Team() {
                     </div>
 
                     {/* Front Info at Bottom */}
-                    <div className="relative z-10">
-                      <div className="flex items-baseline justify-between">
+                    <div className="relative z-10 [text-shadow:0_1px_12px_rgba(0,0,0,0.45)]">
+                      <div className="flex items-baseline justify-between gap-2">
                         <h3 className="font-excon text-2xl sm:text-[1.6rem] font-bold text-white tracking-tight leading-tight">
                           {member.name}
                         </h3>
-                        <span className="font-epilogue text-xs uppercase tracking-[0.16em] font-semibold text-[#E5B528]">
+                        <span className="shrink-0 font-epilogue text-xs uppercase tracking-[0.16em] font-semibold text-[#E5B528]">
                           {member.role}
                         </span>
                       </div>
-                      <p className="mt-0.5 text-xs font-epilogue text-zinc-300 font-normal">
+                      <p className="mt-0.5 text-xs font-epilogue text-zinc-200 font-normal">
                         {member.subtitle}
                       </p>
                     </div>

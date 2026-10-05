@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ChevronRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import ChamferButton from "@/components/ui/ChamferButton";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
@@ -196,17 +197,23 @@ export default function Navbar() {
           <div
             className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pr-12 lg:pr-16 pl-4 h-[52px] min-[680px]:h-[60px]"
           >
-            {/* Desktop CTA */}
-            <Link
-              href="#contact"
-              className="group relative hidden lg:inline-flex items-center gap-2 h-9 sm:h-9.5 px-4.5 sm:px-5.5 rounded-[6px] border border-[#E5B528]/70 bg-[#E5B528] text-[#06070A] font-epilogue font-bold text-xs sm:text-[13px] tracking-tight shadow-[0_0_16px_rgba(229, 181, 40,0.25)] hover:shadow-[0_0_26px_rgba(229, 181, 40,0.48)] hover:bg-[#F0C034] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shrink-0"
-            >
-              <span>Let’s Talk</span>
-              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] text-[#06070A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            {/* Desktop-only CTA (xl+); hidden on mobile & tablet */}
+            <div className="hidden xl:block shrink-0">
+              <ChamferButton
+                href="#contact"
+                variant="outline"
+                cutLarge={10}
+                cutSmall={5}
+                strokeWidth={1.5}
+                className="!px-5 !py-2 text-xs sm:!text-[13px] font-bold"
+              >
+                <span>Contact Us</span>
+                <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </ChamferButton>
+            </div>
 
-            {/* Mobile Menu Trigger Button */}
-            <div className="flex lg:hidden items-center">
+            {/* Mobile & tablet menu */}
+            <div className="flex xl:hidden items-center">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -234,9 +241,9 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -6, scale: 0.98 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="pointer-events-auto absolute top-full left-0 right-0 mt-2 rounded-[8px] bg-[#080A0E]/96 border border-white/12 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-2xl lg:hidden z-50"
+              className="pointer-events-auto absolute top-full left-0 right-0 mt-2 rounded-[8px] bg-[#080A0E]/96 border border-white/12 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-2xl xl:hidden z-50"
             >
-              <nav className="flex flex-col gap-1 pb-3 border-b border-white/[0.08]">
+              <nav className="flex flex-col gap-1">
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.label}
@@ -249,17 +256,6 @@ export default function Navbar() {
                   </Link>
                 ))}
               </nav>
-
-              <div className="pt-3">
-                <Link
-                  href="#contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="group flex items-center justify-center gap-2 w-full h-9 rounded-[6px] bg-[#E5B528] text-[#06070A] font-epilogue font-semibold text-xs tracking-tight shadow-[0_0_14px_rgba(229, 181, 40,0.3)] hover:bg-[#F0C034] transition-all"
-                >
-                  <span>Let’s Talk</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.4] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>

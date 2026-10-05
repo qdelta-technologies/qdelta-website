@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/strip-utf8-bom.mjs",
-    "dev": "next dev",
+    "dev": "node scripts/strip-utf8-bom.mjs && node scripts/dev.mjs",
+    "strip-bom": "node scripts/strip-utf8-bom.mjs",
     "prebuild": "node scripts/strip-utf8-bom.mjs",
     "build": "next build",
     "start": "next start",

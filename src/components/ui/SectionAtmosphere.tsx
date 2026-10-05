@@ -16,7 +16,7 @@ interface SectionAtmosphereProps {
 
 /**
  * Universal QDelta Section Atmosphere Component
- * - Subtle Yellow Linear Architectural Grid (64px, faded via radial mask)
+ * - Subtle Yellow Linear Architectural Grid (40px, soft horizontal edge fade)
  * - Feather-light golden particle simulation with pulsing glow (no heavy CPU shadowBlur)
  * - Warm Golden Ambient Halos with micro-parallax depth (0 React re-renders via CSS vars)
  * - Automatically pauses canvas loop when off-screen for 60fps performance
@@ -258,9 +258,12 @@ export default function SectionAtmosphere({
             linear-gradient(to right, rgba(229, 181, 40, 0.035) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(229, 181, 40, 0.035) 1px, transparent 1px)
           `,
-          backgroundSize: "64px 64px",
-          maskImage: "radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 95%)",
-          WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 95%)",
+          backgroundSize: "40px 40px",
+          backgroundPosition: "0 0",
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
         }}
       />
 
@@ -272,7 +275,7 @@ export default function SectionAtmosphere({
 
       {/* ================= 4. SOFT BOTTOM EDGE VIGNETTE (SEAMLESS SECTION BLEND) ================= */}
       {edgeVignette && (
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#06070A] via-[#06070A]/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#06070A]/75 via-[#06070A]/25 to-transparent pointer-events-none" />
       )}
     </div>
   );

@@ -83,8 +83,51 @@ export default function Process() {
     offset: ["start start", "end end"],
   });
 
-  const STEP_TRANSITION = { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const };
-  const STEP_REVEAL_DELAY = 0.06;
+const STEP_TRANSITION = { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const };
+const STEP_REVEAL_DELAY = 0.06;
+
+const MOBILE_EASE = [0.22, 1, 0.36, 1] as const;
+
+const mobileTimelineVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.08 },
+  },
+};
+
+const mobileNodeVariants = {
+  hidden: { scale: 0.35, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { type: "spring" as const, stiffness: 420, damping: 24 },
+  },
+};
+
+const mobileConnectorVariants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { duration: 0.5, ease: MOBILE_EASE, delay: 0.06 },
+  },
+};
+
+const mobileCardVariants = {
+  hidden: (cardOnRight: boolean) => ({
+    opacity: 0,
+    x: cardOnRight ? 40 : -40,
+    y: 12,
+    filter: "blur(8px)",
+  }),
+  visible: {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.55, ease: MOBILE_EASE, delay: 0.1 },
+  },
+};
 
   const commitStep = (step: number) => {
     const clamped = Math.min(Math.max(0, step), TOTAL_STEPS - 1);
@@ -415,54 +458,141 @@ export default function Process() {
           </div>
 
           {/* ======================================================= */}
-          {/* MOBILE / TABLET VIEW: VERTICAL TIMELINE                 */}
+          {/* MOBILE / TABLET: CENTER-SPINE ZIGZAG                    */}
           {/* ======================================================= */}
-          <div className="lg:hidden relative w-full max-w-xl mx-auto pl-4 sm:pl-6 mb-8 select-none">
-            {/* Vertical rail */}
-            <div className="absolute left-[27px] sm:left-[35px] top-6 bottom-6 w-[2px]">
-              <div className="w-full h-full bg-white/[0.08]" />
-            </div>
+          <div className="lg:hidden relative w-full max-w-md sm:max-w-lg mx-auto mb-8 select-none px-1">
+            <motion.div
+              initial={shouldReduceMotion ? false : { scaleY: 0, opacity: 0.4 }}
+              whileInView={shouldReduceMotion ? undefined : { scaleY: 1, opacity: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.1, ease: MOBILE_EASE }}
+              className="pointer-events-none absolute left-1/2 top-3 bottom-3 w-px -translate-x-1/2 origin-top bg-gradient-to-b from-[#E5B528]/45 via-white/12 to-[#E5B528]/35"
+              aria-hidden
+            />
 
-            <div className="space-y-5 sm:space-y-6 relative">
-              {STEPS.map((step) => {
+            <motion.ol
+              className="relative flex flex-col gap-7 sm:gap-9"
+              initial="hidden"
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{ once: true, amount: 0.12 }}
+              variants={shouldReduceMotion ? undefined : mobileTimelineVariants}
+            >
+              {STEPS.map((step, idx) => {
                 const IconComponent = step.icon;
+                const cardOnRight = idx % 2 === 0;
 
                 return (
-                  <div
+                  <motion.li
                     key={step.number}
-                    className="flex items-start gap-4 sm:gap-6"
+                    variants={shouldReduceMotion ? undefined : { hidden: {}, visible: {} }}
+                    className="relative list-none"
                   >
-                    {/* Timeline node — static on mobile */}
-                    <div
-                      className="relative z-10 mt-1 flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#E5B528]/75 bg-[#06070A] shadow-[0_0_8px_rgba(229, 181, 40,0.2)]"
-                    >
-                      <span className="h-2 w-2 rounded-full bg-[#E5B528]/90" />
-                    </div>
+                    {cardOnRight ? (
+                      <motion.div
+                        variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
+                        style={{ transformOrigin: "left center" }}
+                        className="pointer-events-none absolute top-7 z-0 left-[calc(50%+1.15rem)] h-px w-[16%] sm:w-[20%] bg-gradient-to-r from-[#E5B528]/60 to-transparent"
+                        aria-hidden
+                      />
+                    ) : (
+                      <motion.div
+                        variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
+                        style={{ transformOrigin: "right center" }}
+                        className="pointer-events-none absolute top-7 z-0 right-[calc(50%+1.15rem)] h-px w-[16%] sm:w-[20%] bg-gradient-to-l from-[#E5B528]/60 to-transparent"
+                        aria-hidden
+                      />
+                    )}
 
-                    {/* Card — full visibility, no scroll-driven states */}
-                    <div
-                      className="relative flex-1 overflow-hidden rounded-xl border border-white/[0.12] bg-[#0B0E12]/90 p-4 shadow-[0_12px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-5"
-                    >
-                      <div className="pointer-events-none absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/35 to-transparent" />
-                      <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
-                        <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-[#E5B528]/80">
-                          STEP {step.number}
-                        </span>
-                        <div className="flex h-6 w-6 items-center justify-center rounded bg-white/[0.04] text-[#E5B528]">
-                          <IconComponent className="h-3.5 w-3.5" />
+                    <div className="grid grid-cols-[minmax(0,1fr)_2.85rem_minmax(0,1fr)] items-start gap-x-1.5 sm:gap-x-2">
+                      <motion.div
+                        custom={cardOnRight}
+                        variants={shouldReduceMotion ? undefined : mobileCardVariants}
+                        className={
+                          cardOnRight
+                            ? "col-start-3 row-start-1"
+                            : "col-start-1 row-start-1"
+                        }
+                      >
+                        <div className="relative overflow-hidden rounded-xl border border-white/[0.12] bg-[#0B0E12]/92 p-4 shadow-[0_12px_28px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:rounded-2xl sm:p-5">
+                          <motion.div
+                            initial={shouldReduceMotion ? false : { scaleX: 0, opacity: 0 }}
+                            whileInView={
+                              shouldReduceMotion ? undefined : { scaleX: 1, opacity: 1 }
+                            }
+                            viewport={{ once: true, amount: 0.5 }}
+                            transition={{ duration: 0.45, delay: 0.22, ease: MOBILE_EASE }}
+                            style={{
+                              transformOrigin: cardOnRight ? "left center" : "right center",
+                            }}
+                            className="pointer-events-none absolute top-0 inset-x-3 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent"
+                          />
+                          <div className="flex items-center justify-between gap-2 border-b border-white/[0.08] pb-2">
+                            <span className="font-epilogue text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5B528]">
+                              Step {step.number}
+                            </span>
+                            <motion.div
+                              initial={
+                                shouldReduceMotion
+                                  ? false
+                                  : { scale: 0.55, rotate: -14, opacity: 0 }
+                              }
+                              whileInView={
+                                shouldReduceMotion
+                                  ? undefined
+                                  : { scale: 1, rotate: 0, opacity: 1 }
+                              }
+                              viewport={{ once: true, amount: 0.55 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 20,
+                                delay: 0.2,
+                              }}
+                              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-[#E5B528]/25 bg-[#E5B528]/10 text-[#E5B528]"
+                            >
+                              <IconComponent className="h-3.5 w-3.5" />
+                            </motion.div>
+                          </div>
+                          <h3 className="mt-2 font-excon text-sm font-bold tracking-tight text-white sm:text-[15px]">
+                            {step.title}
+                          </h3>
+                          <p className="mt-1.5 font-epilogue text-[11px] leading-relaxed text-zinc-400 sm:text-xs">
+                            {step.description}
+                          </p>
                         </div>
+                      </motion.div>
+
+                      <div className="col-start-2 row-start-1 z-10 flex justify-center pt-4 sm:pt-5">
+                        <motion.div
+                          variants={shouldReduceMotion ? undefined : mobileNodeVariants}
+                          className="relative flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#E5B528] bg-[#06070A] shadow-[0_0_14px_rgba(229,181,40,0.35)]"
+                        >
+                          {!shouldReduceMotion && (
+                            <motion.span
+                              className="pointer-events-none absolute inset-[-2px] rounded-full border border-[#E5B528]/35"
+                              animate={{
+                                scale: [1, 1.35, 1],
+                                opacity: [0.35, 0, 0.35],
+                              }}
+                              transition={{
+                                repeat: Infinity,
+                                duration: 2.6,
+                                ease: "easeInOut",
+                                delay: idx * 0.35,
+                              }}
+                              aria-hidden
+                            />
+                          )}
+                          <span className="relative font-epilogue text-[10px] font-bold text-[#E5B528]">
+                            {step.number}
+                          </span>
+                        </motion.div>
                       </div>
-                      <h3 className="mt-2.5 font-epilogue text-sm font-bold tracking-tight text-white sm:text-base">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1.5 font-epilogue text-xs font-normal leading-relaxed text-zinc-400 sm:text-sm">
-                        {step.description}
-                      </p>
                     </div>
-                  </div>
+                  </motion.li>
                 );
               })}
-            </div>
+            </motion.ol>
           </div>
 
 

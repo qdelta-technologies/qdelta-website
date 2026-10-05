@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
-  Play,
-  Pause,
   RotateCcw,
   Sparkles,
   Layers,
@@ -32,10 +31,43 @@ const STATS_DATA: StatItem[] = [
     label: "Years Experience",
     detail: "In web design & development",
   },
+];
+
+interface PillarItem {
+  num: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+const PILLARS: PillarItem[] = [
   {
-    metric: "End-to-End",
-    label: "Project Flow",
-    detail: "Strategy → Design → Development → Support",
+    num: "01",
+    title: "Better First Impressions",
+    description:
+      "Premium digital experiences that make your brand feel more valuable.",
+    icon: Sparkles,
+  },
+  {
+    num: "02",
+    title: "Clearer User Experience",
+    description:
+      "Simple journeys that make it easier for people to understand and act.",
+    icon: Layers,
+  },
+  {
+    num: "03",
+    title: "Built with Purpose",
+    description:
+      "Every section is designed to support trust, engagement and results.",
+    icon: ShieldCheck,
+  },
+  {
+    num: "04",
+    title: "Strategy-Led Thinking",
+    description:
+      "We shape the website around your business, audience and goals.",
+    icon: BarChart3,
   },
 ];
 
@@ -185,18 +217,15 @@ export default function BrandTransformationSection() {
           </p>
         </motion.div>
 
-        {/* ================= MAIN BENTO GRID ================= */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
-          
-          {/* ========================================================= */}
-          {/* CENTRAL VIDEO CARD (DOMINANT VISUAL ELEMENT)              */}
-          {/* ========================================================= */}
+        {/* ================= VIDEO + UNIFIED VALUE PANEL ================= */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-stretch">
+          {/* Left: motion / video */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="order-1 col-span-1 md:col-span-2 lg:col-span-6 lg:row-span-2 rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group"
+            className="rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
           >
             {/* Crisp Golden Top Accent Hairline */}
             <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-20" />
@@ -312,174 +341,75 @@ export default function BrandTransformationSection() {
             </div>
           </motion.div>
 
-          {/* ========================================================= */}
-          {/* CARD 01: BETTER FIRST IMPRESSIONS                         */}
-          {/* ========================================================= */}
+          {/* Right: T-block — stats bar + 2×2 pillars in one panel */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="order-2 col-span-1 lg:col-span-3 lg:row-start-1 lg:col-start-1 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(229, 181, 40,0.08)] group"
+            transition={{ duration: 0.55, delay: 0.15 }}
+            className="relative flex flex-col overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.09] bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] lg:min-h-[420px]"
           >
-            {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent" />
+            <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-[#E5B528]/45 to-transparent" />
 
-            {/* Top Row: Icon Badge & Number */}
-            <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#E5B528]/10 border border-[#E5B528]/25 flex items-center justify-center text-[#E5B528] transition-colors group-hover:bg-[#E5B528]/15">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
-                01
-              </span>
+            {/* T top bar — proof points */}
+            <div className="grid grid-cols-2 border-b border-white/[0.08]">
+              {STATS_DATA.map((stat, idx) => (
+                <div
+                  key={stat.label}
+                  className={`px-4 py-4 sm:px-5 sm:py-5 ${idx === 1 ? "border-l border-white/[0.08]" : ""}`}
+                >
+                  <p className="font-excon text-2xl sm:text-3xl font-extrabold text-[#E5B528] tracking-tight leading-none">
+                    {stat.metric}
+                  </p>
+                  <p className="mt-1.5 font-epilogue text-xs sm:text-[13px] font-semibold text-white">
+                    {stat.label}
+                  </p>
+                  <p className="mt-1 font-epilogue text-[11px] sm:text-xs text-zinc-500 leading-relaxed">
+                    {stat.detail}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            {/* Content */}
-            <div className="mt-4">
-              <h3 className="font-excon font-bold text-lg sm:text-xl text-white tracking-tight leading-snug">
-                Better First Impressions
-              </h3>
-              <p className="mt-2 font-epilogue text-xs sm:text-[13px] text-zinc-400 font-normal leading-relaxed">
-                Premium digital experiences that make your brand feel more valuable.
-              </p>
+            {/* T body — four pillars */}
+            <div className="grid flex-1 grid-cols-1 sm:grid-cols-2">
+              {PILLARS.map((pillar, idx) => {
+                const Icon = pillar.icon;
+                const isLeftCol = idx % 2 === 0;
+                const isTopRow = idx < 2;
+                return (
+                  <article
+                    key={pillar.num}
+                    className={[
+                      "group/pillar relative flex flex-col gap-2.5 px-4 py-4 sm:px-5 sm:py-5 transition-colors hover:bg-white/[0.02]",
+                      idx < PILLARS.length - 1
+                        ? "border-b border-white/[0.08] sm:border-b-0"
+                        : "",
+                      isTopRow ? "sm:border-b border-white/[0.08]" : "",
+                      isLeftCol ? "sm:border-r border-white/[0.08]" : "",
+                    ].join(" ")}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-[#E5B528]/25 bg-[#E5B528]/10 text-[#E5B528]">
+                        <Icon className="h-3.5 w-3.5" aria-hidden />
+                      </div>
+                      <span className="font-epilogue text-[10px] font-semibold tracking-[0.2em] text-zinc-600">
+                        {pillar.num}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="font-excon text-base sm:text-[17px] font-bold text-white tracking-tight leading-snug">
+                        {pillar.title}
+                      </h3>
+                      <p className="mt-1.5 font-epilogue text-[11px] sm:text-xs text-zinc-400 leading-relaxed">
+                        {pillar.description}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </motion.div>
-
-          {/* ========================================================= */}
-          {/* CARD 02: CLEARER USER EXPERIENCE                          */}
-          {/* ========================================================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="order-3 col-span-1 lg:col-span-3 lg:row-start-1 lg:col-start-10 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(229, 181, 40,0.08)] group"
-          >
-            {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent" />
-
-            {/* Top Row: Icon Badge & Number */}
-            <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#E5B528]/10 border border-[#E5B528]/25 flex items-center justify-center text-[#E5B528] transition-colors group-hover:bg-[#E5B528]/15">
-                <Layers className="w-4 h-4" />
-              </div>
-              <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
-                02
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="mt-4">
-              <h3 className="font-excon font-bold text-lg sm:text-xl text-white tracking-tight leading-snug">
-                Clearer User Experience
-              </h3>
-              <p className="mt-2 font-epilogue text-xs sm:text-[13px] text-zinc-400 font-normal leading-relaxed">
-                Simple journeys that make it easier for people to understand and act.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* ========================================================= */}
-          {/* CARD 03: BUILT WITH PURPOSE                               */}
-          {/* ========================================================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="order-4 col-span-1 lg:col-span-3 lg:row-start-2 lg:col-start-1 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(229, 181, 40,0.08)] group"
-          >
-            {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent" />
-
-            {/* Top Row: Icon Badge & Number */}
-            <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#E5B528]/10 border border-[#E5B528]/25 flex items-center justify-center text-[#E5B528] transition-colors group-hover:bg-[#E5B528]/15">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
-                03
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="mt-4">
-              <h3 className="font-excon font-bold text-lg sm:text-xl text-white tracking-tight leading-snug">
-                Built with Purpose
-              </h3>
-              <p className="mt-2 font-epilogue text-xs sm:text-[13px] text-zinc-400 font-normal leading-relaxed">
-                Every section is designed to support trust, engagement and results.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* ========================================================= */}
-          {/* CARD 04: STRATEGY-LED THINKING                            */}
-          {/* ========================================================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="order-5 col-span-1 lg:col-span-3 lg:row-start-2 lg:col-start-10 relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(229, 181, 40,0.08)] group"
-          >
-            {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent" />
-
-            {/* Top Row: Icon Badge & Number */}
-            <div className="flex items-center justify-between">
-              <div className="w-9 h-9 rounded-lg bg-[#E5B528]/10 border border-[#E5B528]/25 flex items-center justify-center text-[#E5B528] transition-colors group-hover:bg-[#E5B528]/15">
-                <BarChart3 className="w-4 h-4" />
-              </div>
-              <span className="font-epilogue text-xs text-zinc-500 font-semibold tracking-widest">
-                04
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="mt-4">
-              <h3 className="font-excon font-bold text-lg sm:text-xl text-white tracking-tight leading-snug">
-                Strategy-Led Thinking
-              </h3>
-              <p className="mt-2 font-epilogue text-xs sm:text-[13px] text-zinc-400 font-normal leading-relaxed">
-                We shape the website around your business, audience and goals.
-              </p>
-            </div>
-          </motion.div>
-
-        </div>
-
-        {/* ================= STATS / TRUST PROOF ROW ================= */}
-        <div className="w-full mt-4 sm:mt-5 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-          {STATS_DATA.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: 0.25 + idx * 0.08 }}
-              className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.08] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-5 sm:p-6 shadow-[0_12px_32px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(229, 181, 40,0.08)] group select-none"
-            >
-              {/* Crisp Golden Top Accent Hairline */}
-              <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent" />
-
-              {/* Top Row: Metric & Label */}
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="font-excon font-extrabold text-xl sm:text-2xl md:text-3xl text-[#E5B528] tracking-tight">
-                  {stat.metric}
-                </span>
-                <span className="font-epilogue font-bold text-xs sm:text-[13px] text-white tracking-tight">
-                  {stat.label}
-                </span>
-              </div>
-
-              {/* Bottom Row: Detail */}
-              <p className="mt-3 font-epilogue text-xs sm:text-[13px] text-zinc-400 font-normal leading-relaxed">
-                {stat.detail}
-              </p>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

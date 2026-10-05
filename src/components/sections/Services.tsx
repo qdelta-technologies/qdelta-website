@@ -130,7 +130,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-[#06070A] bg-black/[0.08] hover:bg-black/12 border border-black/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_1px_2px_rgba(0,0,0,0.08)] transition-all"
+                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-[#06070A] bg-black/[0.08] hover:bg-black/12 border border-[#06070A]/35 hover:border-[#06070A]/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_1px_2px_rgba(0,0,0,0.08)] transition-all"
               >
                 {tag}
               </span>
