@@ -143,11 +143,10 @@ export default function Testimonials() {
       />
 
       <div className="relative z-10 mx-auto mb-10 max-w-4xl px-4 text-center sm:mb-12 sm:px-6">
-        <div className="mb-3 flex items-center justify-center gap-3 select-none">
+        <div className="mb-3 select-none text-center">
           <span className="font-epilogue text-xs font-semibold uppercase tracking-[0.2em] text-[#06070A]/75">
-            05 / Testimonials
+            Testimonials
           </span>
-          <div className="h-px w-10 bg-[#E5B528]/70 sm:w-12" />
         </div>
 
         <h2 className="font-excon text-2xl font-bold tracking-tight text-[#06070A] sm:text-3xl md:text-[44px] leading-[1.12]">

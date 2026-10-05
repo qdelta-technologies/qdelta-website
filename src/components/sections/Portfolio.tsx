@@ -432,11 +432,10 @@ export default function Portfolio() {
       {/* ======================================================= */}
       <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10">
         {/* Editorial Section Identifier */}
-        <div className="flex items-center gap-3 mb-4 select-none">
-          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
-            04 / Selected Work
+        <div className="mb-4 select-none">
+          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]">
+            Our Portfolio
           </span>
-          <div className="w-10 sm:w-12 h-[1px] bg-[#E5B528]/60" />
         </div>
 
         {/* Headline & Subtitle Grid */}

@@ -75,11 +75,10 @@ export default function Contact() {
 
             {/* Top Eyebrow — Editorial Style in Dark Charcoal */}
             <div className="relative z-10">
-              <div className="flex items-center gap-3 select-none">
+              <div className="select-none">
                 <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-[#06070A]/80 font-bold">
-                  07 / Get In Touch
+                  Get In Touch
                 </span>
-                <div className="w-10 sm:w-12 h-[1px] bg-black/25" />
               </div>
             </div>
 

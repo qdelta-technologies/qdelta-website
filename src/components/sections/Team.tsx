@@ -107,11 +107,10 @@ export default function Team() {
           className="flex flex-col items-center text-center mb-10 sm:mb-12 max-w-3xl"
         >
           {/* Editorial Section Identifier */}
-          <div className="flex items-center gap-3 mb-4 select-none justify-center">
+          <div className="mb-4 select-none text-center">
             <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
-              06 / TEAM
+              Team
             </span>
-            <div className="w-10 sm:w-12 h-[1px] bg-[#E5B528]/60" />
           </div>
 
           {/* Heading */}

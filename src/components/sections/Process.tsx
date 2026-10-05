@@ -204,15 +204,13 @@ const mobileCardVariants = {
           {/* SECTION HEADER                                          */}
           {/* ======================================================= */}
           <div className="flex flex-col items-center text-center mb-6 lg:mb-8 max-w-3xl">
-            <div className="flex items-center gap-2.5 sm:gap-3 mb-3 select-none justify-center">
-              <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
-                03 / How We Work
+            <div className="mb-3 flex flex-col items-center gap-1 select-none">
+              <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]">
+                How We Work
               </span>
-              <span className="text-zinc-600">•</span>
               <span className="hidden lg:inline font-epilogue text-xs tracking-[0.15em] uppercase font-semibold text-[#E5B528] transition-colors duration-300">
                 Step 0{Math.min(activeStep + 1, TOTAL_STEPS)} of 0{TOTAL_STEPS}
               </span>
-              <div className="hidden lg:block w-8 sm:w-10 h-[1px] bg-[#E5B528]/60" />
             </div>
 
             <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[40px] font-excon font-bold tracking-tight text-white leading-[1.14] text-balance">

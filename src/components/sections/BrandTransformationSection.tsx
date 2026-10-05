@@ -34,7 +34,6 @@ const STATS_DATA: StatItem[] = [
 ];
 
 interface PillarItem {
-  num: string;
   title: string;
   description: string;
   icon: LucideIcon;
@@ -42,28 +41,24 @@ interface PillarItem {
 
 const PILLARS: PillarItem[] = [
   {
-    num: "01",
     title: "Better First Impressions",
     description:
       "Premium digital experiences that make your brand feel more valuable.",
     icon: Sparkles,
   },
   {
-    num: "02",
     title: "Clearer User Experience",
     description:
       "Simple journeys that make it easier for people to understand and act.",
     icon: Layers,
   },
   {
-    num: "03",
     title: "Built with Purpose",
     description:
       "Every section is designed to support trust, engagement and results.",
     icon: ShieldCheck,
   },
   {
-    num: "04",
     title: "Strategy-Led Thinking",
     description:
       "We shape the website around your business, audience and goals.",
@@ -198,7 +193,7 @@ export default function BrandTransformationSection() {
           {/* Eyebrow with flanking golden lines */}
           <div className="flex items-center gap-3.5 mb-3.5 sm:mb-4 select-none justify-center">
             <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-r from-transparent to-[#E5B528]/60" />
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-400 font-semibold">
+            <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-[#E5B528] font-semibold">
               ABOUT QDELTA
             </span>
             <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-l from-transparent to-[#E5B528]/60" />
@@ -379,7 +374,7 @@ export default function BrandTransformationSection() {
                 const isTopRow = idx < 2;
                 return (
                   <article
-                    key={pillar.num}
+                    key={pillar.title}
                     className={[
                       "group/pillar relative flex flex-col gap-2.5 px-4 py-4 sm:px-5 sm:py-5 transition-colors hover:bg-white/[0.02]",
                       idx < PILLARS.length - 1
@@ -389,13 +384,8 @@ export default function BrandTransformationSection() {
                       isLeftCol ? "sm:border-r border-white/[0.08]" : "",
                     ].join(" ")}
                   >
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-[#E5B528]/25 bg-[#E5B528]/10 text-[#E5B528]">
-                        <Icon className="h-3.5 w-3.5" aria-hidden />
-                      </div>
-                      <span className="font-epilogue text-[10px] font-semibold tracking-[0.2em] text-zinc-600">
-                        {pillar.num}
-                      </span>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-md border border-[#E5B528]/25 bg-[#E5B528]/10 text-[#E5B528]">
+                      <Icon className="h-3.5 w-3.5" aria-hidden />
                     </div>
                     <div>
                       <h3 className="font-excon text-base sm:text-[17px] font-bold text-white tracking-tight leading-snug">
