@@ -1,8 +1,6 @@
 import { spawn } from "node:child_process";
 import { readFileSync, watch, writeFileSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-
 const ROOT_DIR = path.join(import.meta.dirname, "..");
 const SRC = path.join(ROOT_DIR, "src");
 const BOM = Buffer.from([0xef, 0xbb, 0xbf]);
@@ -24,7 +22,10 @@ watch(SRC, { recursive: true }, (_event, filename) => {
   stripBomFile(path.join(SRC, filename));
 });
 
-const child = spawn("next", ["dev"], {
+// Use `npm run dev -- --webpack` if PostCSS/Turbopack native binding issues return.
+const useWebpack =
+  process.env.QDELTA_DEV_WEBPACK === "1" || process.argv.includes("--webpack");
+const child = spawn("next", useWebpack ? ["dev", "--webpack"] : ["dev"], {
   cwd: ROOT_DIR,
   stdio: "inherit",
   shell: true,

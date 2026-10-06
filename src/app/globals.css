@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 
-/* Alata (display) + Satoshi (UI/body) via next/font in layout.tsx */
+/* Satoshi (headings + body) + Plus Jakarta Sans (secondary UI) via next/font in layout.tsx */
 
 @theme {
   --font-sans: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-alata), "Alata", sans-serif;
-  --font-epilogue: var(--font-satoshi), "Satoshi", sans-serif;
-  --font-excon: var(--font-alata), "Alata", sans-serif;
+  --font-display: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-epilogue: var(--font-epilogue-family), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-excon: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
   --color-gold: #E5B528;
   --color-gold-hover: #F0C034;
   --color-obsidian: #040406;
@@ -22,18 +22,24 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* Legacy utility names — excon = Alata display; epilogue = Satoshi UI/body */
+/* Semantic utilities — display/excon/sans = Satoshi; font-epilogue = Plus Jakarta Sans */
 .font-excon {
-  font-family: var(--font-alata), "Alata", sans-serif !important;
+  font-family: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif !important;
   letter-spacing: 0.02em;
 }
 
 .font-epilogue {
-  font-family: var(--font-satoshi), "Satoshi", sans-serif !important;
+  font-family: var(--font-epilogue-family), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif !important;
 }
 
 .font-display {
-  font-family: var(--font-alata), "Alata", sans-serif !important;
+  font-family: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: 0.02em;
+}
+
+/* Hero headline only — Alata display */
+.font-alata {
+  font-family: var(--font-alata-family), "Alata", sans-serif !important;
   letter-spacing: 0.02em;
 }
 

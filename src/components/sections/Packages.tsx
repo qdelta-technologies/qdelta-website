@@ -113,7 +113,7 @@ export default function Packages() {
           </div>
 
           {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[3.2rem] font-epilogue font-extrabold tracking-tight text-white leading-[1.08] text-balance max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[3.2rem] font-excon font-extrabold tracking-tight text-white leading-[1.08] text-balance max-w-3xl">
             Two Ways to Work With <span className="text-[#E5B528]">QDelta</span>
           </h2>
 
@@ -181,7 +181,7 @@ export default function Packages() {
 
               {/* Title & Short Description */}
               <div className="mt-4">
-                <h3 className="text-xl sm:text-2xl font-epilogue font-black text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-excon font-black text-white tracking-tight">
                   QDelta Digital
                 </h3>
                 <p className="mt-2 text-xs sm:text-[13px] font-epilogue text-zinc-300 leading-relaxed">
@@ -261,7 +261,7 @@ export default function Packages() {
 
               {/* Title & Short Description */}
               <div className="mt-4">
-                <h3 className="text-xl sm:text-2xl font-epilogue font-black text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-excon font-black text-white tracking-tight">
                   QDelta Signature
                 </h3>
                 <p className="mt-2 text-xs sm:text-[13px] font-epilogue text-zinc-300 leading-relaxed">
@@ -334,7 +334,7 @@ export default function Packages() {
                 <ShieldCheck className="w-3.5 h-3.5 text-[#E5B528]" />
                 <span>STANDARD QUALITY COMMITMENTS</span>
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-epilogue font-extrabold text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-excon font-extrabold text-white tracking-tight">
                 What Both Packages Include
               </h3>
               <p className="mt-1 text-xs sm:text-sm font-epilogue text-zinc-400">
@@ -515,7 +515,7 @@ export default function Packages() {
                     </div>
 
                     {/* Group Title */}
-                    <h4 className="text-xl sm:text-2xl md:text-4xl font-epilogue font-extrabold text-white tracking-tight">
+                    <h4 className="text-xl sm:text-2xl md:text-4xl font-excon font-extrabold text-white tracking-tight">
                       {activeGroup.title}
                     </h4>
 

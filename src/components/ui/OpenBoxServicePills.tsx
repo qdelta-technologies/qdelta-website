@@ -493,7 +493,7 @@ export default function OpenBoxServicePills() {
             textAnchor="middle"
             fill="#18181B"
             fontSize="8.5"
-            fontFamily="var(--font-epilogue), system-ui, sans-serif"
+            fontFamily="var(--font-epilogue-family), 'Plus Jakarta Sans', system-ui, sans-serif"
             fontWeight="800"
             letterSpacing="0.26em"
           >
@@ -505,7 +505,7 @@ export default function OpenBoxServicePills() {
             textAnchor="middle"
             fill="#27272A"
             fontSize="6.5"
-            fontFamily="var(--font-excon), system-ui, sans-serif"
+            fontFamily="var(--font-satoshi), Satoshi, system-ui, sans-serif"
             fontWeight="600"
             letterSpacing="0.32em"
           >

@@ -484,7 +484,7 @@ export default function QDeltaSystem() {
           </div>
 
           {/* Main Headline */}
-          <h2 className="font-epilogue font-bold text-2xl sm:text-3xl md:text-5xl lg:text-[56px] text-white tracking-tight leading-[1.08]">
+          <h2 className="font-excon font-bold text-2xl sm:text-3xl md:text-5xl lg:text-[56px] text-white tracking-tight leading-[1.08]">
             Built to speak.{" "}
             <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E5B528] to-[#E5B528]">
               Designed to work.
@@ -509,7 +509,7 @@ export default function QDeltaSystem() {
                 ref={block01Ref}
                 className="text-right pr-3 sm:pr-6 md:pr-8"
               >
-                <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center justify-end gap-1.5 sm:gap-2">
+                <div className="font-excon font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center justify-end gap-1.5 sm:gap-2">
                   <span className="text-[#E5B528] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     01 —
                   </span>
@@ -539,7 +539,7 @@ export default function QDeltaSystem() {
                 ref={block02Ref}
                 className="text-left pl-3 sm:pl-6 md:pl-8"
               >
-                <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center gap-1.5 sm:gap-2">
+                <div className="font-excon font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center gap-1.5 sm:gap-2">
                   <span className="text-[#E5B528] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     02 —
                   </span>
@@ -558,7 +558,7 @@ export default function QDeltaSystem() {
                 ref={block03Ref}
                 className="text-right pr-3 sm:pr-6 md:pr-8"
               >
-                <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center justify-end gap-1.5 sm:gap-2">
+                <div className="font-excon font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center justify-end gap-1.5 sm:gap-2">
                   <span className="text-[#E5B528] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     03 —
                   </span>
@@ -588,7 +588,7 @@ export default function QDeltaSystem() {
                 ref={block04Ref}
                 className="text-left pl-3 sm:pl-6 md:pl-8"
               >
-                <div className="font-epilogue font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center gap-1.5 sm:gap-2">
+                <div className="font-excon font-bold text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tight flex items-center gap-1.5 sm:gap-2">
                   <span className="text-[#E5B528] font-mono text-[11px] sm:text-xs md:text-sm font-semibold">
                     04 —
                   </span>
@@ -611,7 +611,7 @@ export default function QDeltaSystem() {
             <p className="font-epilogue text-[11px] sm:text-xs uppercase tracking-[0.32em] text-[#E5B528] mb-3 sm:mb-4">
               THE INTEGRATED ADVANTAGE
             </p>
-            <h3 className="font-epilogue font-extrabold text-2xl sm:text-3xl md:text-5xl lg:text-7xl text-white tracking-tight leading-[1.12]">
+            <h3 className="font-excon font-extrabold text-2xl sm:text-3xl md:text-5xl lg:text-7xl text-white tracking-tight leading-[1.12]">
               “One clear system.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E5B528] to-[#E5B528]">
                 One stronger presence.”

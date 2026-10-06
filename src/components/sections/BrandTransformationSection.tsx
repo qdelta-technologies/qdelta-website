@@ -212,14 +212,14 @@ export default function BrandTransformationSection() {
 
           {/* Headline (Single line on desktop/tablets, balanced on mobile) */}
           <h2 className="font-excon font-bold text-xl sm:text-2xl md:text-4xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.18] md:whitespace-nowrap">
-            <span className="inline-block">Websites that do more</span>{" "}
-            <span className="inline-block text-[#E5B528]">than look good.</span>
+            <span className="inline-block">Designed for attention.</span>{" "}
+            <span className="inline-block text-[#E5B528]">Built for action.</span>
           </h2>
 
           {/* Supporting Text */}
           <p className="mt-3.5 sm:mt-4 font-epilogue text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed font-normal max-w-2xl mx-auto">
-            We combine design, strategy and development to create websites that
-            build trust, improve experience and support business growth.
+            We combine strategy, design and development to create digital
+            experiences that build trust and move businesses forward.
           </p>
         </motion.div>
 
@@ -393,17 +393,17 @@ export default function BrandTransformationSection() {
                       isLeftCol ? "sm:border-r border-white/[0.08]" : "",
                     ].join(" ")}
                   >
-                    <div className="flex h-8 w-8 items-center justify-center rounded-md border border-[#E5B528]/25 bg-[#E5B528]/10 text-[#E5B528]">
-                      <Icon className="h-3.5 w-3.5" aria-hidden />
-                    </div>
-                    <div>
-                      <h3 className="font-excon text-base sm:text-[17px] font-bold text-white tracking-tight leading-snug">
+                    <div className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-2.5">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[#E5B528]/25 bg-[#E5B528]/10 text-[#E5B528]">
+                        <Icon className="h-3.5 w-3.5" aria-hidden />
+                      </div>
+                      <h3 className="min-w-0 flex-1 font-excon text-base sm:text-[17px] font-bold text-white tracking-tight leading-snug sm:flex-none">
                         {pillar.title}
                       </h3>
-                      <p className="mt-1.5 font-epilogue text-[11px] sm:text-xs text-zinc-400 leading-relaxed">
-                        {pillar.description}
-                      </p>
                     </div>
+                    <p className="font-epilogue text-[11px] sm:text-xs text-zinc-400 leading-relaxed sm:mt-0">
+                      {pillar.description}
+                    </p>
                   </article>
                 );
               })}

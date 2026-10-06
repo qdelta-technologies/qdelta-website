@@ -274,7 +274,7 @@ export default function Hero() {
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-8 sm:-translate-y-10 md:-translate-y-16 lg:-translate-y-20">
         {/* Main Headline (Two Distinct Lines with Floating Diagonal Annotation Capsules) */}
         <h1
-          className="relative z-10 flex flex-col items-center text-center font-excon font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14]"
+          className="relative z-10 flex flex-col items-center text-center font-alata font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14]"
         >
           {/* Screen reader accessibility */}
           <span className="sr-only">Designed to be remembered. Built to perform.</span>

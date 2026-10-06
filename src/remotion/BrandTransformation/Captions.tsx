@@ -57,7 +57,7 @@ export const Captions: React.FC<CaptionsProps> = ({ frame }) => {
   return (
     <div
       className="pointer-events-none absolute bottom-16 inset-x-0 z-50 flex items-center justify-center select-none"
-      style={{ fontFamily: "'Satoshi', sans-serif", letterSpacing: "0.02em" }}
+      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: "0.02em" }}
     >
       {/* Caption 1 */}
       {cap1Opacity > 0 && (

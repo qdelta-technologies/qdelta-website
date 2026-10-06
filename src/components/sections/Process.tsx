@@ -65,6 +65,20 @@ const STEPS: ProcessStep[] = [
 // Number of steps
 const TOTAL_STEPS = STEPS.length; // 5
 
+/** Mobile-only compact timeline (desktop keeps 5-step STEPS above). */
+const MOBILE_STEPS = [
+  "Discover",
+  "Define",
+  "Plan",
+  "Structure",
+  "Design",
+  "Prototype",
+  "Develop",
+  "Refine",
+  "Launch",
+  "Support",
+] as const;
+
 /** Progress reaches each node center; final step fills the full rail. */
 function getDesktopRailPercent(activeStep: number) {
   if (activeStep >= TOTAL_STEPS - 1) return 100;
@@ -114,19 +128,15 @@ const mobileConnectorVariants = {
   },
 };
 
-const mobileCardVariants = {
+const mobileBoxVariants = {
   hidden: (cardOnRight: boolean) => ({
     opacity: 0,
-    x: cardOnRight ? 40 : -40,
-    y: 12,
-    filter: "blur(8px)",
+    x: cardOnRight ? 16 : -16,
   }),
   visible: {
     opacity: 1,
     x: 0,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.55, ease: MOBILE_EASE, delay: 0.1 },
+    transition: { duration: 0.4, ease: MOBILE_EASE, delay: 0.06 },
   },
 };
 
@@ -219,11 +229,11 @@ const mobileCardVariants = {
             </div>
 
             <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[40px] font-excon font-bold tracking-tight text-white leading-[1.14] text-balance">
-              A structured path from concept to launch.
+              Every project starts with a clear process.
             </h2>
 
             <p className="mt-2 text-xs sm:text-sm md:text-base font-epilogue text-zinc-400 font-normal leading-relaxed text-balance max-w-2xl">
-              A transparent, milestone-driven workflow that eliminates friction and turns complex requirements into high-performing websites.
+              A structured workflow with clear milestones that keeps everything on track and turns ideas into high-performing digital experiences.
             </p>
           </div>
 
@@ -321,7 +331,7 @@ const mobileCardVariants = {
                           <IconComponent className="h-4 w-4" />
                         </div>
                       </div>
-                      <h3 className={`mt-3 font-epilogue text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
+                      <h3 className={`mt-3 font-excon text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
                         {step.title}
                       </h3>
                       <p className={`mt-1.5 font-epilogue text-[11.5px] leading-relaxed font-normal transition-colors duration-300 ${descClass}`}>
@@ -353,7 +363,7 @@ const mobileCardVariants = {
                           <IconComponent className="h-4 w-4" />
                         </div>
                       </div>
-                      <h3 className={`mt-3 font-epilogue text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
+                      <h3 className={`mt-3 font-excon text-base font-bold tracking-tight leading-snug transition-colors duration-300 ${titleClass}`}>
                         {step.title}
                       </h3>
                       <p className={`mt-1.5 font-epilogue text-[11.5px] leading-relaxed font-normal transition-colors duration-300 ${descClass}`}>
@@ -461,135 +471,96 @@ const mobileCardVariants = {
           </div>
 
           {/* ======================================================= */}
-          {/* MOBILE / TABLET: CENTER-SPINE ZIGZAG                    */}
+          {/* MOBILE / TABLET: compact 10-step zig-zag (desktop unchanged) */}
           {/* ======================================================= */}
-          <div className="lg:hidden relative w-full max-w-md sm:max-w-lg mx-auto mb-8 select-none px-1">
+          <div className="lg:hidden relative w-full max-w-sm sm:max-w-md mx-auto mb-8 select-none px-1 sm:px-2">
             <motion.div
               initial={shouldReduceMotion ? false : { scaleY: 0, opacity: 0.4 }}
               whileInView={shouldReduceMotion ? undefined : { scaleY: 1, opacity: 1 }}
               viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 1.1, ease: MOBILE_EASE }}
-              className="pointer-events-none absolute left-1/2 top-3 bottom-3 w-px -translate-x-1/2 origin-top bg-gradient-to-b from-[#E5B528]/45 via-white/12 to-[#E5B528]/35"
+              transition={{ duration: 0.9, ease: MOBILE_EASE }}
+              className="pointer-events-none absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 origin-top bg-gradient-to-b from-[#E5B528]/50 via-white/10 to-[#E5B528]/40"
               aria-hidden
             />
 
             <motion.ol
-              className="relative flex flex-col gap-7 sm:gap-9"
+              className="relative flex flex-col gap-y-6 sm:gap-y-6"
               initial="hidden"
               whileInView={shouldReduceMotion ? undefined : "visible"}
-              viewport={{ once: true, amount: 0.12 }}
-              variants={shouldReduceMotion ? undefined : mobileTimelineVariants}
+              viewport={{ once: true, amount: 0.08 }}
+              variants={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      ...mobileTimelineVariants,
+                      visible: {
+                        transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+                      },
+                    }
+              }
             >
-              {STEPS.map((step, idx) => {
-                const IconComponent = step.icon;
+              {MOBILE_STEPS.map((label, idx) => {
                 const cardOnRight = idx % 2 === 0;
+                const stepNum = String(idx + 1).padStart(2, "0");
 
                 return (
                   <motion.li
-                    key={step.number}
+                    key={label}
                     variants={shouldReduceMotion ? undefined : { hidden: {}, visible: {} }}
-                    className="relative list-none"
+                    className="relative list-none min-h-[2.75rem] sm:min-h-[3rem]"
                   >
-                    {cardOnRight ? (
-                      <motion.div
-                        variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
-                        style={{ transformOrigin: "left center" }}
-                        className="pointer-events-none absolute top-7 z-0 left-[calc(50%+1.15rem)] h-px w-[16%] sm:w-[20%] bg-gradient-to-r from-[#E5B528]/60 to-transparent"
-                        aria-hidden
-                      />
-                    ) : (
-                      <motion.div
-                        variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
-                        style={{ transformOrigin: "right center" }}
-                        className="pointer-events-none absolute top-7 z-0 right-[calc(50%+1.15rem)] h-px w-[16%] sm:w-[20%] bg-gradient-to-l from-[#E5B528]/60 to-transparent"
-                        aria-hidden
-                      />
-                    )}
+                    <div className="grid h-full min-h-[inherit] grid-cols-[1fr_auto_1fr] items-center gap-x-0">
+                      <div className="col-start-1 flex h-full items-center justify-end pr-3 sm:pr-4">
+                        {!cardOnRight && (
+                          <motion.span
+                            custom={false}
+                            variants={shouldReduceMotion ? undefined : mobileBoxVariants}
+                            className="font-excon text-xs sm:text-[13px] font-semibold tracking-tight text-[#E5B528] whitespace-nowrap"
+                          >
+                            {label}
+                          </motion.span>
+                        )}
+                      </div>
 
-                    <div className="grid grid-cols-[minmax(0,1fr)_2.85rem_minmax(0,1fr)] items-start gap-x-1.5 sm:gap-x-2">
-                      <motion.div
-                        custom={cardOnRight}
-                        variants={shouldReduceMotion ? undefined : mobileCardVariants}
-                        className={
-                          cardOnRight
-                            ? "col-start-3 row-start-1"
-                            : "col-start-1 row-start-1"
-                        }
-                      >
-                        <div className="relative overflow-hidden rounded-xl border border-white/[0.12] bg-[#0B0E12]/92 p-4 shadow-[0_12px_28px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:rounded-2xl sm:p-5">
+                      <div className="col-start-2 z-10 flex items-center justify-center">
+                        {!cardOnRight && (
                           <motion.div
-                            initial={shouldReduceMotion ? false : { scaleX: 0, opacity: 0 }}
-                            whileInView={
-                              shouldReduceMotion ? undefined : { scaleX: 1, opacity: 1 }
-                            }
-                            viewport={{ once: true, amount: 0.5 }}
-                            transition={{ duration: 0.45, delay: 0.22, ease: MOBILE_EASE }}
-                            style={{
-                              transformOrigin: cardOnRight ? "left center" : "right center",
-                            }}
-                            className="pointer-events-none absolute top-0 inset-x-3 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent"
+                            variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
+                            style={{ transformOrigin: "right center" }}
+                            className="h-px w-8 sm:w-10 shrink-0 bg-gradient-to-l from-[#E5B528] via-[#E5B528]/45 to-transparent"
+                            aria-hidden
                           />
-                          <div className="flex items-center justify-between gap-2 border-b border-white/[0.08] pb-2">
-                            <span className="font-epilogue text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5B528]">
-                              Step {step.number}
-                            </span>
-                            <motion.div
-                              initial={
-                                shouldReduceMotion
-                                  ? false
-                                  : { scale: 0.55, rotate: -14, opacity: 0 }
-                              }
-                              whileInView={
-                                shouldReduceMotion
-                                  ? undefined
-                                  : { scale: 1, rotate: 0, opacity: 1 }
-                              }
-                              viewport={{ once: true, amount: 0.55 }}
-                              transition={{
-                                type: "spring",
-                                stiffness: 400,
-                                damping: 20,
-                                delay: 0.2,
-                              }}
-                              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-[#E5B528]/25 bg-[#E5B528]/10 text-[#E5B528]"
-                            >
-                              <IconComponent className="h-3.5 w-3.5" />
-                            </motion.div>
-                          </div>
-                          <h3 className="mt-2 font-excon text-sm font-bold tracking-tight text-white sm:text-[15px]">
-                            {step.title}
-                          </h3>
-                          <p className="mt-1.5 font-epilogue text-[11px] leading-relaxed text-zinc-400 sm:text-xs">
-                            {step.description}
-                          </p>
-                        </div>
-                      </motion.div>
-
-                      <div className="col-start-2 row-start-1 z-10 flex justify-center pt-4 sm:pt-5">
+                        )}
                         <motion.div
                           variants={shouldReduceMotion ? undefined : mobileNodeVariants}
-                          className="relative flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#E5B528] bg-[#06070A] shadow-[0_0_14px_rgba(229,181,40,0.35)]"
+                          className="relative flex h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem] shrink-0 items-center justify-center rounded-full border border-[#E5B528]/90 bg-[#06070A] shadow-[0_0_10px_rgba(229,181,40,0.4)]"
                         >
-                          {!shouldReduceMotion && (
-                            <motion.span
-                              className="pointer-events-none absolute inset-[-2px] rounded-full border border-[#E5B528]/35"
-                              animate={{
-                                scale: [1, 1.35, 1],
-                                opacity: [0.35, 0, 0.35],
-                              }}
-                              transition={{
-                                repeat: Infinity,
-                                duration: 2.6,
-                                ease: "easeInOut",
-                                delay: idx * 0.35,
-                              }}
-                              aria-hidden
-                            />
-                          )}
-                          <span className="relative font-epilogue text-[10px] font-bold text-[#E5B528]">
-                            {step.number}
-                          </span>
+                          <span
+                            className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#E5B528]"
+                            aria-hidden
+                          />
+                          <span className="sr-only">Step {stepNum}: {label}</span>
                         </motion.div>
+                        {cardOnRight && (
+                          <motion.div
+                            variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
+                            style={{ transformOrigin: "left center" }}
+                            className="h-px w-8 sm:w-10 shrink-0 bg-gradient-to-r from-[#E5B528] via-[#E5B528]/45 to-transparent"
+                            aria-hidden
+                          />
+                        )}
+                      </div>
+
+                      <div className="col-start-3 flex h-full items-center justify-start pl-3 sm:pl-4">
+                        {cardOnRight && (
+                          <motion.span
+                            custom={true}
+                            variants={shouldReduceMotion ? undefined : mobileBoxVariants}
+                            className="font-excon text-xs sm:text-[13px] font-semibold tracking-tight text-[#E5B528] whitespace-nowrap"
+                          >
+                            {label}
+                          </motion.span>
+                        )}
                       </div>
                     </div>
                   </motion.li>

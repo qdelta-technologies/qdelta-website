@@ -202,7 +202,7 @@ export default function Contact() {
                           placeholder="Your name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
                         />
                       </div>
 
@@ -221,7 +221,7 @@ export default function Contact() {
                           placeholder="name@company.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
                         />
                       </div>
                     </div>
@@ -267,7 +267,7 @@ export default function Contact() {
                         placeholder="Tell us briefly about your project..."
                         value={brief}
                         onChange={(e) => setBrief(e.target.value)}
-                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-epilogue text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528] resize-none"
+                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528] resize-none"
                       />
                     </div>
 

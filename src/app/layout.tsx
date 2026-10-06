@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Alata } from "next/font/google";
+import { Alata, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
@@ -7,7 +7,14 @@ import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
 const alata = Alata({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-alata",
+  variable: "--font-alata-family",
+  display: "swap",
+});
+
+const epilogue = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-epilogue-family",
   display: "swap",
 });
 
@@ -45,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${alata.variable} ${satoshi.variable}`}>
+    <html lang="en" className={`${satoshi.variable} ${epilogue.variable} ${alata.variable}`}>
       <head>
         {/* Instant desktop custom cursor activation — zero invisible cursor delay */}
         <script

@@ -21,7 +21,7 @@ export interface SaffronButtonProps {
  * Features:
  * - Fluid capsule geometry with smooth hover feedback
  * - Signature 4-point star SVG badge mark with -14deg -> +18deg micro-rotation easing
- * - QDelta golden-yellow branding (#E5B528) and Alata typography
+ * - QDelta golden-yellow branding (#E5B528) and Satoshi typography
  */
 export default function SaffronButton({
   children = "Start a project",

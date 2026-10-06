@@ -9,7 +9,7 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
   return (
     <div
       className="w-full h-full bg-[#06070A] text-white flex flex-col overflow-hidden select-none border border-[#E5B528]/40 shadow-[0_0_100px_rgba(245,184,0,0.2)] rounded-2xl relative"
-      style={{ fontFamily: "'Satoshi', 'Alata', -apple-system, BlinkMacSystemFont, sans-serif", letterSpacing: "0.02em" }}
+      style={{ fontFamily: "'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif", letterSpacing: "0.02em" }}
     >
       {/* Ambient Top & Bottom Gold Horizon Halos */}
       <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[54rem] h-64 bg-gradient-to-b from-[#E5B528]/25 via-[#E5B528]/5 to-transparent blur-[110px]" />
@@ -63,21 +63,24 @@ export const TransformedWebsite: React.FC<TransformedWebsiteProps> = ({ isHovere
 
       {/* Transformed Hero Showcase */}
       <div className="flex-1 p-12 lg:p-16 flex flex-row items-center justify-between gap-14 relative z-10">
-        {/* Left Column: Premium Typography & Hierarchy in Alata */}
+        {/* Left Column: Premium Typography & Hierarchy */}
         <div className="flex-1 max-w-2xl space-y-7">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5B528]/10 border border-[#E5B528]/35 text-xs font-semibold tracking-wider text-[#E5B528] backdrop-blur-md">
+          <div
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5B528]/10 border border-[#E5B528]/35 text-xs font-semibold tracking-wider text-[#E5B528] backdrop-blur-md"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
             <Sparkles className="w-4 h-4 text-[#E5B528]" />
             <span>REDESIGNED BY QDELTA • HIGH CONVERSION</span>
           </div>
 
           <h1
             className="text-5xl lg:text-6xl font-extrabold text-white leading-[1.08] tracking-tight"
-            style={{ fontFamily: "'Alata', sans-serif" }}
+            style={{ fontFamily: "'Satoshi', sans-serif" }}
           >
             We craft brands <br />
             <span
               className="text-[#E5B528] font-extrabold italic drop-shadow-[0_0_35px_rgba(245,184,0,0.5)]"
-              style={{ fontFamily: "'Alata', sans-serif" }}
+              style={{ fontFamily: "'Satoshi', sans-serif" }}
             >
               that command attention.
             </span>

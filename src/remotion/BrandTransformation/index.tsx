@@ -46,9 +46,9 @@ export const BrandTransformationComposition: React.FC<BrandTransformationProps> 
 
   return (
     <AbsoluteFill className="bg-[#030305] text-white flex items-center justify-center overflow-hidden">
-      {/* Alata (display) + Satoshi (UI/body) — matches site typography */}
+      {/* Satoshi (headings + body) + Plus Jakarta Sans (secondary) — matches site typography */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         @import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,2&display=swap');
       `}</style>
 
