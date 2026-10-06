@@ -175,7 +175,7 @@ export default function ProcessMobileJourney() {
             >
               <div className="grid h-full grid-cols-[1fr_auto_1fr] items-center">
                 {/* Left label pill */}
-                <div className="col-start-1 flex h-full items-center justify-end pr-1 sm:pr-2">
+                <div className="col-start-1 flex h-full items-center justify-end pr-3 sm:pr-4">
                   {labelOnLeft && (
                     <motion.div
                       custom={false}
@@ -198,6 +198,12 @@ export default function ProcessMobileJourney() {
                     style={{ x: nodeShift }}
                     className="relative flex items-center justify-center"
                   >
+                    {labelOnLeft && (
+                      <span
+                        className="mr-1.5 h-px w-8 sm:w-10 shrink-0 opacity-0"
+                        aria-hidden
+                      />
+                    )}
                     <span className="relative flex h-6 w-6 shrink-0 items-center justify-center">
                       <span
                         className="pointer-events-none absolute -inset-1 rounded-full bg-[#E5B528]/20 blur-md"
@@ -210,11 +216,17 @@ export default function ProcessMobileJourney() {
                       </span>
                       <span className="sr-only">Step {stepNum}: {label}</span>
                     </span>
+                    {!labelOnLeft && (
+                      <span
+                        className="ml-1.5 h-px w-8 sm:w-10 shrink-0 opacity-0"
+                        aria-hidden
+                      />
+                    )}
                   </motion.div>
                 </div>
 
                 {/* Right label pill */}
-                <div className="col-start-3 flex h-full items-center justify-start pl-1 sm:pl-2">
+                <div className="col-start-3 flex h-full items-center justify-start pl-3 sm:pl-4">
                   {!labelOnLeft && (
                     <motion.div
                       custom={true}
