@@ -88,17 +88,6 @@ export default function ProcessMobileJourney() {
         },
       };
 
-  const connectorVariants = shouldReduceMotion
-    ? undefined
-    : {
-        hidden: { scaleX: 0, opacity: 0 },
-        visible: {
-          scaleX: 1,
-          opacity: 1,
-          transition: { duration: 0.38, ease: MOBILE_EASE, delay: 0.02 },
-        },
-      };
-
   return (
     <div
       className="relative w-full max-w-sm sm:max-w-md mx-auto mb-8 select-none px-0 sm:px-1"
@@ -203,22 +192,12 @@ export default function ProcessMobileJourney() {
                   )}
                 </div>
 
-                {/* Node + connectors (shift together to follow the road) */}
                 <div className="col-start-2 flex items-center justify-center">
                   <motion.div
                     variants={nodeVariants}
                     style={{ x: nodeShift }}
                     className="relative flex items-center justify-center"
                   >
-                    {labelOnLeft && (
-                      <motion.div
-                        variants={connectorVariants}
-                        style={{ transformOrigin: "right center" }}
-                        className="mr-1.5 h-px w-8 sm:w-10 shrink-0 bg-gradient-to-l from-[#E5B528]/90 via-[#E5B528]/45 to-transparent"
-                        aria-hidden
-                      />
-                    )}
-
                     <span className="relative flex h-6 w-6 shrink-0 items-center justify-center">
                       <span
                         className="pointer-events-none absolute -inset-1 rounded-full bg-[#E5B528]/20 blur-md"
@@ -231,15 +210,6 @@ export default function ProcessMobileJourney() {
                       </span>
                       <span className="sr-only">Step {stepNum}: {label}</span>
                     </span>
-
-                    {!labelOnLeft && (
-                      <motion.div
-                        variants={connectorVariants}
-                        style={{ transformOrigin: "left center" }}
-                        className="ml-1.5 h-px w-8 sm:w-10 shrink-0 bg-gradient-to-r from-[#E5B528]/90 via-[#E5B528]/45 to-transparent"
-                        aria-hidden
-                      />
-                    )}
                   </motion.div>
                 </div>
 
