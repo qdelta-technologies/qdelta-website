@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+import ProcessMobileJourney from "@/components/sections/ProcessMobileJourney";
 
 interface ProcessStep {
   number: string;
@@ -65,20 +66,6 @@ const STEPS: ProcessStep[] = [
 // Number of steps
 const TOTAL_STEPS = STEPS.length; // 5
 
-/** Mobile-only compact timeline (desktop keeps 5-step STEPS above). */
-const MOBILE_STEPS = [
-  "Discover",
-  "Define",
-  "Plan",
-  "Structure",
-  "Design",
-  "Prototype",
-  "Develop",
-  "Refine",
-  "Launch",
-  "Support",
-] as const;
-
 /** Progress reaches each node center; final step fills the full rail. */
 function getDesktopRailPercent(activeStep: number) {
   if (activeStep >= TOTAL_STEPS - 1) return 100;
@@ -100,45 +87,6 @@ export default function Process() {
 
 const STEP_TRANSITION = { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const };
 const STEP_REVEAL_DELAY = 0.06;
-
-const MOBILE_EASE = [0.22, 1, 0.36, 1] as const;
-
-const mobileTimelineVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.14, delayChildren: 0.08 },
-  },
-};
-
-const mobileNodeVariants = {
-  hidden: { scale: 0.35, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { type: "spring" as const, stiffness: 420, damping: 24 },
-  },
-};
-
-const mobileConnectorVariants = {
-  hidden: { scaleX: 0, opacity: 0 },
-  visible: {
-    scaleX: 1,
-    opacity: 1,
-    transition: { duration: 0.5, ease: MOBILE_EASE, delay: 0.06 },
-  },
-};
-
-const mobileBoxVariants = {
-  hidden: (cardOnRight: boolean) => ({
-    opacity: 0,
-    x: cardOnRight ? 16 : -16,
-  }),
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.4, ease: MOBILE_EASE, delay: 0.06 },
-  },
-};
 
   const commitStep = (step: number) => {
     const clamped = Math.min(Math.max(0, step), TOTAL_STEPS - 1);
@@ -470,103 +418,9 @@ const mobileBoxVariants = {
             </div>
           </div>
 
-          {/* ======================================================= */}
-          {/* MOBILE / TABLET: compact 10-step zig-zag (desktop unchanged) */}
-          {/* ======================================================= */}
-          <div className="lg:hidden relative w-full max-w-sm sm:max-w-md mx-auto mb-8 select-none px-1 sm:px-2">
-            <motion.div
-              initial={shouldReduceMotion ? false : { scaleY: 0, opacity: 0.4 }}
-              whileInView={shouldReduceMotion ? undefined : { scaleY: 1, opacity: 1 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.9, ease: MOBILE_EASE }}
-              className="pointer-events-none absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 origin-top bg-gradient-to-b from-[#E5B528]/50 via-white/10 to-[#E5B528]/40"
-              aria-hidden
-            />
-
-            <motion.ol
-              className="relative flex flex-col gap-y-6 sm:gap-y-6"
-              initial="hidden"
-              whileInView={shouldReduceMotion ? undefined : "visible"}
-              viewport={{ once: true, amount: 0.08 }}
-              variants={
-                shouldReduceMotion
-                  ? undefined
-                  : {
-                      ...mobileTimelineVariants,
-                      visible: {
-                        transition: { staggerChildren: 0.07, delayChildren: 0.05 },
-                      },
-                    }
-              }
-            >
-              {MOBILE_STEPS.map((label, idx) => {
-                const cardOnRight = idx % 2 === 0;
-                const stepNum = String(idx + 1).padStart(2, "0");
-
-                return (
-                  <motion.li
-                    key={label}
-                    variants={shouldReduceMotion ? undefined : { hidden: {}, visible: {} }}
-                    className="relative list-none min-h-[2.75rem] sm:min-h-[3rem]"
-                  >
-                    <div className="grid h-full min-h-[inherit] grid-cols-[1fr_auto_1fr] items-center gap-x-0">
-                      <div className="col-start-1 flex h-full items-center justify-end pr-3 sm:pr-4">
-                        {!cardOnRight && (
-                          <motion.span
-                            custom={false}
-                            variants={shouldReduceMotion ? undefined : mobileBoxVariants}
-                            className="font-excon text-xs sm:text-[13px] font-semibold tracking-tight text-[#E5B528] whitespace-nowrap"
-                          >
-                            {label}
-                          </motion.span>
-                        )}
-                      </div>
-
-                      <div className="col-start-2 z-10 flex items-center justify-center">
-                        {!cardOnRight && (
-                          <motion.div
-                            variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
-                            style={{ transformOrigin: "right center" }}
-                            className="h-px w-8 sm:w-10 shrink-0 bg-gradient-to-l from-[#E5B528] via-[#E5B528]/45 to-transparent"
-                            aria-hidden
-                          />
-                        )}
-                        <motion.div
-                          variants={shouldReduceMotion ? undefined : mobileNodeVariants}
-                          className="relative flex h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem] shrink-0 items-center justify-center rounded-full border border-[#E5B528]/90 bg-[#06070A] shadow-[0_0_10px_rgba(229,181,40,0.4)]"
-                        >
-                          <span
-                            className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#E5B528]"
-                            aria-hidden
-                          />
-                          <span className="sr-only">Step {stepNum}: {label}</span>
-                        </motion.div>
-                        {cardOnRight && (
-                          <motion.div
-                            variants={shouldReduceMotion ? undefined : mobileConnectorVariants}
-                            style={{ transformOrigin: "left center" }}
-                            className="h-px w-8 sm:w-10 shrink-0 bg-gradient-to-r from-[#E5B528] via-[#E5B528]/45 to-transparent"
-                            aria-hidden
-                          />
-                        )}
-                      </div>
-
-                      <div className="col-start-3 flex h-full items-center justify-start pl-3 sm:pl-4">
-                        {cardOnRight && (
-                          <motion.span
-                            custom={true}
-                            variants={shouldReduceMotion ? undefined : mobileBoxVariants}
-                            className="font-excon text-xs sm:text-[13px] font-semibold tracking-tight text-[#E5B528] whitespace-nowrap"
-                          >
-                            {label}
-                          </motion.span>
-                        )}
-                      </div>
-                    </div>
-                  </motion.li>
-                );
-              })}
-            </motion.ol>
+          {/* MOBILE / TABLET: 10-step road journey (lg+ desktop rail unchanged) */}
+          <div className="lg:hidden w-full">
+            <ProcessMobileJourney />
           </div>
 
 
