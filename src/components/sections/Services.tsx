@@ -104,13 +104,28 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           scale,
           transformOrigin: "top center",
         }}
-        className="group relative w-full rounded-2xl sm:rounded-[22px] border border-black/14 bg-gradient-to-b from-[#F4D04A] via-[#EABD32] to-[#E5B528] text-[#06070A] p-7 sm:p-9 md:p-10 shadow-[0_12px_26px_-4px_rgba(0,0,0,0.58),0_22px_46px_-10px_rgba(0,0,0,0.64),0_2px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.38),inset_0_-2px_6px_rgba(0,0,0,0.06)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
+        className="group relative w-full rounded-2xl sm:rounded-[22px] border border-[#5C4A12]/35 bg-[#0F0E0A] text-[#06070A] p-7 sm:p-9 md:p-10 shadow-[0_14px_32px_-6px_rgba(0,0,0,0.72),0_28px_56px_-14px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,236,170,0.22)] transition-all duration-300 overflow-hidden flex flex-col justify-between min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
       >
-        {/* Light wash — keeps cards readable on mobile without darkening */}
-        <div className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-[22px] bg-gradient-to-b from-white/[0.14] via-white/[0.04] to-[#E5B528]/[0.08]" />
-        {/* Subtle edge depth */}
-        <div className="pointer-events-none absolute top-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-        <div className="pointer-events-none absolute bottom-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-black/14 to-transparent" />
+        {/* Premium gold body gradient — deeper, less washed-out */}
+        <div
+          className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-[22px] bg-gradient-to-br from-[#B8891A] via-[#D4A82A] to-[#C49A28]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-[22px] bg-gradient-to-b from-[#F0C84A]/35 via-[#E5B528]/90 to-[#D4A82A]/82"
+          aria-hidden
+        />
+        {/* Warm top sheen + bottom depth (no flat white wash) */}
+        <div
+          className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-[22px] bg-[radial-gradient(ellipse_90%_55%_at_50%_-8%,rgba(255,228,150,0.42),transparent_58%)]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0 rounded-2xl sm:rounded-[22px] bg-gradient-to-t from-[#5C4A12]/10 via-transparent to-transparent"
+          aria-hidden
+        />
+        <div className="pointer-events-none absolute top-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-[#FFF4C8]/45 to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 inset-x-6 sm:inset-x-10 h-[1px] bg-gradient-to-r from-transparent via-black/22 to-transparent" />
 
         {/* Card Body: Dominant Headline */}
         <div className="relative z-10 pb-4 sm:pb-5">
@@ -139,7 +154,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-[#06070A] bg-[#F5D04A]/20 hover:bg-[#F5D04A]/30 border border-[#06070A]/40 hover:border-[#06070A]/55 transition-colors"
+                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-[#06070A] bg-[#06070A]/[0.07] hover:bg-[#06070A]/[0.11] border border-[#06070A]/45 hover:border-[#06070A]/60 backdrop-blur-[2px] transition-colors"
               >
                 {tag}
               </span>

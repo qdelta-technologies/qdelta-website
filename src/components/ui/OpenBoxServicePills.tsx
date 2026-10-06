@@ -13,16 +13,19 @@ interface ServicePillConfig {
   delay: number;
   floatDuration: number;
   scale?: number;
+  /** When true, no settled tilt or idle wobble (level pill). */
+  level?: boolean;
 }
 
 // 8 Core capability pills unpacked from the QDelta Service Kit
 const PILLS: ServicePillConfig[] = [
-  // 1. Motion - Rises upward from the center cavity mouth first
+  // 1. AI Automation - Rises upward from the center cavity mouth first
   {
-    id: "motion",
-    label: "Motion",
+    id: "ai-automation",
+    label: "AI Automation",
     className: "top-[14%] left-1/2 -translate-x-1/2 z-30",
-    initialRotate: 3,
+    initialRotate: 0,
+    level: true,
     startX: 0,
     startY: 75,
     delay: 0.85,
@@ -135,6 +138,16 @@ const PATHS = {
   backRidgeClosed: "M 154 102 L 266 102",
   backRidgeOpen: "M 154 62 L 266 62",
 };
+
+/** Shared reveal timing (mobile + desktop) — keep pills snappy after box opens */
+const BOX_OPEN_DURATION = 0.48;
+const BOX_OPEN_DELAY = 0.1;
+const CAVITY_DURATION = 0.36;
+const CAVITY_DELAY = 0.14;
+const PILL_OPACITY_DURATION = 0.3;
+const PILL_MOVE_DURATION = 0.5;
+const PILL_DELAY_SCALE = 0.48;
+const FLOAT_IDLE_SCALE = 0.82;
 
 export default function OpenBoxServicePills() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -311,8 +324,8 @@ export default function OpenBoxServicePills() {
                 }
           }
           transition={{
-            duration: 0.72,
-            delay: isOpen ? 0.22 : 0,
+            duration: BOX_OPEN_DURATION,
+            delay: isOpen ? BOX_OPEN_DELAY + 0.02 : 0,
             ease: [0.16, 1, 0.3, 1],
           }}
           fill="url(#back-panel-matte)"
@@ -330,8 +343,8 @@ export default function OpenBoxServicePills() {
                 }
           }
           transition={{
-            duration: 0.72,
-            delay: isOpen ? 0.22 : 0,
+            duration: BOX_OPEN_DURATION,
+            delay: isOpen ? BOX_OPEN_DELAY + 0.02 : 0,
             ease: [0.16, 1, 0.3, 1],
           }}
           stroke="#FFFFFF"
@@ -342,8 +355,8 @@ export default function OpenBoxServicePills() {
         <motion.g
           animate={{ opacity: isOpen ? 1 : 0 }}
           transition={{
-            duration: 0.55,
-            delay: isOpen ? 0.28 : 0,
+            duration: CAVITY_DURATION,
+            delay: isOpen ? CAVITY_DELAY : 0,
             ease: "easeOut",
           }}
         >
@@ -379,8 +392,8 @@ export default function OpenBoxServicePills() {
                 }
           }
           transition={{
-            duration: 0.75,
-            delay: isOpen ? 0.2 : 0,
+            duration: BOX_OPEN_DURATION,
+            delay: isOpen ? BOX_OPEN_DELAY : 0,
             ease: [0.16, 1, 0.3, 1],
           }}
           fill="url(#left-wing-matte)"
@@ -397,8 +410,8 @@ export default function OpenBoxServicePills() {
                 }
           }
           transition={{
-            duration: 0.75,
-            delay: isOpen ? 0.2 : 0,
+            duration: BOX_OPEN_DURATION,
+            delay: isOpen ? BOX_OPEN_DELAY : 0,
             ease: [0.16, 1, 0.3, 1],
           }}
           stroke="#FFFFFF"
@@ -416,8 +429,8 @@ export default function OpenBoxServicePills() {
                 }
           }
           transition={{
-            duration: 0.75,
-            delay: isOpen ? 0.2 : 0,
+            duration: BOX_OPEN_DURATION,
+            delay: isOpen ? BOX_OPEN_DELAY : 0,
             ease: [0.16, 1, 0.3, 1],
           }}
           fill="url(#right-wing-matte)"
@@ -434,8 +447,8 @@ export default function OpenBoxServicePills() {
                 }
           }
           transition={{
-            duration: 0.75,
-            delay: isOpen ? 0.2 : 0,
+            duration: BOX_OPEN_DURATION,
+            delay: isOpen ? BOX_OPEN_DELAY : 0,
             ease: [0.16, 1, 0.3, 1],
           }}
           stroke="#FFFFFF"
@@ -453,7 +466,7 @@ export default function OpenBoxServicePills() {
           strokeWidth="1.2"
           strokeLinecap="round"
           animate={{ opacity: isOpen ? 0 : 0.85 }}
-          transition={{ duration: 0.3, delay: isOpen ? 0.12 : 0 }}
+          transition={{ duration: 0.22, delay: isOpen ? 0.06 : 0 }}
         />
 
         {/* 7. Front Sculptural Body Facet (The anchored base of the box) */}
@@ -485,31 +498,19 @@ export default function OpenBoxServicePills() {
           strokeWidth="1"
         />
 
-        {/* Minimal Debossed Editorial Kit Branding */}
+        {/* Minimal debossed kit label */}
         <g opacity="0.48" className="select-none">
           <text
             x="210"
-            y="172"
+            y="178"
             textAnchor="middle"
             fill="#18181B"
-            fontSize="8.5"
-            fontFamily="var(--font-epilogue-family), 'Plus Jakarta Sans', system-ui, sans-serif"
-            fontWeight="800"
-            letterSpacing="0.26em"
-          >
-            QDELTA // SERVICE KIT
-          </text>
-          <text
-            x="210"
-            y="184"
-            textAnchor="middle"
-            fill="#27272A"
-            fontSize="6.5"
+            fontSize="9"
             fontFamily="var(--font-satoshi), Satoshi, system-ui, sans-serif"
-            fontWeight="600"
-            letterSpacing="0.32em"
+            fontWeight="700"
+            letterSpacing="0.02em"
           >
-            CORE CAPABILITIES — 2026
+            QDELTA SERVICE KIT
           </text>
         </g>
       </svg>
@@ -527,6 +528,7 @@ export default function OpenBoxServicePills() {
       {/* 8 EMERGING SERVICE CAPABILITY PILLS                      */}
       {/* ======================================================== */}
       {PILLS.map((pill) => {
+        const pillDelay = pill.delay * PILL_DELAY_SCALE;
         return (
           <motion.div
             key={pill.id}
@@ -561,28 +563,28 @@ export default function OpenBoxServicePills() {
                 ? { duration: 0.2 }
                 : {
                     opacity: {
-                      duration: 0.45,
-                      delay: isOpen ? pill.delay : 0,
+                      duration: PILL_OPACITY_DURATION,
+                      delay: isOpen ? pillDelay : 0,
                       ease: "easeOut",
                     },
                     scale: {
-                      duration: 0.75,
-                      delay: isOpen ? pill.delay : 0,
+                      duration: PILL_MOVE_DURATION,
+                      delay: isOpen ? pillDelay : 0,
                       ease: [0.16, 1, 0.3, 1],
                     },
                     x: {
-                      duration: 0.8,
-                      delay: isOpen ? pill.delay : 0,
+                      duration: PILL_MOVE_DURATION,
+                      delay: isOpen ? pillDelay : 0,
                       ease: [0.16, 1, 0.3, 1],
                     },
                     y: {
-                      duration: 0.8,
-                      delay: isOpen ? pill.delay : 0,
+                      duration: PILL_MOVE_DURATION,
+                      delay: isOpen ? pillDelay : 0,
                       ease: [0.16, 1, 0.3, 1],
                     },
                     rotate: {
-                      duration: 0.8,
-                      delay: isOpen ? pill.delay : 0,
+                      duration: PILL_MOVE_DURATION,
+                      delay: isOpen ? pillDelay : 0,
                       ease: [0.16, 1, 0.3, 1],
                     },
                   }
@@ -597,7 +599,7 @@ export default function OpenBoxServicePills() {
                 isOpen && !shouldReduceMotion
                   ? {
                       y: [-2, 2.5, -2],
-                      rotate: [-0.6, 0.6, -0.6],
+                      rotate: pill.level ? 0 : [-0.6, 0.6, -0.6],
                     }
                   : { y: 0, rotate: 0 }
               }
@@ -608,17 +610,22 @@ export default function OpenBoxServicePills() {
                       y: {
                         repeat: Infinity,
                         repeatType: "mirror",
-                        duration: pill.floatDuration,
+                        duration: pill.floatDuration * FLOAT_IDLE_SCALE,
                         ease: "easeInOut",
-                        delay: pill.delay + 0.8,
+                        delay: pillDelay + PILL_MOVE_DURATION,
                       },
-                      rotate: {
-                        repeat: Infinity,
-                        repeatType: "mirror",
-                        duration: pill.floatDuration * 1.15,
-                        ease: "easeInOut",
-                        delay: pill.delay + 0.8,
-                      },
+                      ...(pill.level
+                        ? {}
+                        : {
+                            rotate: {
+                              repeat: Infinity,
+                              repeatType: "mirror",
+                              duration:
+                                pill.floatDuration * FLOAT_IDLE_SCALE * 1.15,
+                              ease: "easeInOut",
+                              delay: pillDelay + PILL_MOVE_DURATION,
+                            },
+                          }),
                     }
               }
             >
@@ -627,7 +634,9 @@ export default function OpenBoxServicePills() {
                   scale: 1.06,
                   transition: { duration: 0.2, ease: "easeOut" },
                 }}
-                className="group relative inline-flex items-center justify-center rounded-full bg-[#FAFAFC] px-3 sm:px-3.5 py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
+                className={`group relative inline-flex items-center justify-center rounded-full bg-[#FAFAFC] py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)] ${
+                  pill.level ? "px-3.5 sm:px-4" : "px-3 sm:px-3.5"
+                }`}
               >
                 <span className="font-epilogue font-bold text-[11px] sm:text-xs text-zinc-900 tracking-tight whitespace-nowrap">
                   {pill.label}

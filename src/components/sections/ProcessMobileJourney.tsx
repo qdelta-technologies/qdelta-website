@@ -4,16 +4,16 @@ import React from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 const MOBILE_STEPS = [
-  "Discover",
-  "Define",
-  "Plan",
-  "Structure",
-  "Design",
-  "Prototype",
-  "Develop",
-  "Refine",
-  "Launch",
-  "Support",
+  { id: "01", label: "Understand Needs" },
+  { id: "02", label: "Define Goals" },
+  { id: "03", label: "Project Planning" },
+  { id: "04", label: "Website Structure" },
+  { id: "05", label: "UX Focused Design" },
+  { id: "06", label: "Prototype" },
+  { id: "07", label: "Website Development" },
+  { id: "08", label: "Testing & Refinment" },
+  { id: "09", label: "Website Launch" },
+  { id: "10", label: "Ongoing Support" },
 ] as const;
 
 const STEP_COUNT = MOBILE_STEPS.length;
@@ -161,14 +161,13 @@ export default function ProcessMobileJourney() {
         viewport={{ once: true, amount: 0.08 }}
         variants={stagger}
       >
-        {MOBILE_STEPS.map((label, idx) => {
+        {MOBILE_STEPS.map((step, idx) => {
           const labelOnLeft = idx % 2 === 0;
-          const stepNum = String(idx + 1).padStart(2, "0");
           const nodeShift = idx % 2 === 0 ? "-16%" : "16%";
 
           return (
             <motion.li
-              key={label}
+              key={step.id}
               variants={shouldReduceMotion ? undefined : { hidden: {}, visible: {} }}
               className="relative list-none"
               style={{ height: ROW_HEIGHT }}
@@ -180,13 +179,14 @@ export default function ProcessMobileJourney() {
                     <motion.div
                       custom={false}
                       variants={pillVariants}
-                      className="group flex max-w-[9.5rem] sm:max-w-[10.5rem] items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.04] px-3 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+                      className="group flex max-w-[9.5rem] sm:max-w-[10.5rem] items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.04] px-2.5 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
                     >
-                      <span className="font-epilogue text-[9px] font-semibold tabular-nums tracking-wider text-white/35">
-                        {stepNum}
-                      </span>
-                      <span className="font-excon text-xs sm:text-[13px] font-semibold tracking-tight text-[#E5B528] whitespace-nowrap">
-                        {label}
+                      <span className="font-excon text-[9px] sm:text-[10px] font-semibold leading-snug tracking-tight text-center text-[#E5B528]">
+                        <span className="font-epilogue tabular-nums text-white/40">
+                          {step.id}
+                        </span>
+                        <span className="text-white/25"> — </span>
+                        {step.label}
                       </span>
                     </motion.div>
                   )}
@@ -214,7 +214,9 @@ export default function ProcessMobileJourney() {
                       >
                         <span className="h-2 w-2 rounded-full bg-[#E5B528] shadow-[0_0_6px_rgba(229,181,40,0.9)]" />
                       </span>
-                      <span className="sr-only">Step {stepNum}: {label}</span>
+                      <span className="sr-only">
+                        Step {step.id}: {step.label}
+                      </span>
                     </span>
                     {!labelOnLeft && (
                       <span
@@ -231,13 +233,14 @@ export default function ProcessMobileJourney() {
                     <motion.div
                       custom={true}
                       variants={pillVariants}
-                      className="group flex max-w-[9.5rem] sm:max-w-[10.5rem] items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.04] px-3 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+                      className="group flex max-w-[9.5rem] sm:max-w-[10.5rem] items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.04] px-2.5 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
                     >
-                      <span className="font-epilogue text-[9px] font-semibold tabular-nums tracking-wider text-white/35">
-                        {stepNum}
-                      </span>
-                      <span className="font-excon text-xs sm:text-[13px] font-semibold tracking-tight text-[#E5B528] whitespace-nowrap">
-                        {label}
+                      <span className="font-excon text-[9px] sm:text-[10px] font-semibold leading-snug tracking-tight text-center text-[#E5B528]">
+                        <span className="font-epilogue tabular-nums text-white/40">
+                          {step.id}
+                        </span>
+                        <span className="text-white/25"> — </span>
+                        {step.label}
                       </span>
                     </motion.div>
                   )}

@@ -283,7 +283,7 @@ export default function QDeltaAIChatbot() {
           whileTap={{ scale: 0.94 }}
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Close QDelta AI Assistant" : "Open QDelta AI Assistant"}
-          className={`group flex h-10 sm:h-11 items-center rounded-full border px-2.5 sm:px-3 shadow-[0_8px_32px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 ease-out focus:outline-none cursor-pointer ${
+          className={`group flex h-11 sm:h-12 items-center rounded-full border px-3 shadow-[0_8px_32px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 ease-out focus:outline-none cursor-pointer ${
             isOpen
               ? "border-[#E5B528] bg-[#0E0E14] text-[#E5B528] shadow-[0_0_20px_rgba(229, 181, 40,0.3)]"
               : "border-white/15 bg-[#0B0E12]/90 text-white hover:border-[#E5B528]/60 hover:bg-[#0E0E14] hover:shadow-[0_0_20px_rgba(229, 181, 40,0.25)] hover:pr-4 hover:pl-3"

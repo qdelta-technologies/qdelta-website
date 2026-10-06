@@ -57,6 +57,8 @@ export default function InteractiveDotGrid() {
     let farParticles: FarParticle[] = [];
     let nearMotes: NearMote[] = [];
 
+    const mouse = { x: -9999, y: -9999, active: false };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry.isIntersecting;
@@ -64,13 +66,14 @@ export default function InteractiveDotGrid() {
           render();
         } else {
           cancelAnimationFrame(animationFrameId);
+          mouse.active = false;
+          mouse.x = -9999;
+          mouse.y = -9999;
         }
       },
       { threshold: 0 }
     );
     observer.observe(canvas);
-
-    const mouse = { x: -9999, y: -9999, active: false };
     const parallax = { currentX: 0, currentY: 0, targetX: 0, targetY: 0 };
 
     // Denser 22px spacing — ~85% more dots, fully covers edges

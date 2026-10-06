@@ -1,25 +1,19 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import InteractiveDotGrid from "@/components/ui/InteractiveDotGrid";
 import PlanetSurfaceRevolution from "@/components/ui/PlanetSurfaceRevolution";
 import ChamferButton from "@/components/ui/ChamferButton";
-
-const LINE_1 = "Designed to be remembered.";
-const LINE_2 = "Built to perform.";
-const TOTAL_TYPING_LENGTH = LINE_1.length + LINE_2.length; // 26 + 17 = 43
-// LINE 1: "Designed to be " (0..15 white), "remembered." (15..26 gold)
-// LINE 2: "Built" (0..5 gold), " to perform." (5..17 white)
+import HeroTypewriterHeadline from "@/components/sections/HeroTypewriterHeadline";
 
 export default function Hero() {
   const heroSectionRef = useRef<HTMLElement>(null);
   const heroBgRef = useRef<HTMLDivElement>(null);
-  const [displayedCount, setDisplayedCount] = useState(0);
   const [isTypingDone, setIsTypingDone] = useState(false);
-  const [cursorVisible, setCursorVisible] = useState(true);
   const shouldReduceMotion = useReducedMotion();
+  const handleTypingDone = useCallback(() => setIsTypingDone(true), []);
 
   // Subtle parallax for background (paused when hero is off-screen)
   useEffect(() => {
@@ -78,49 +72,6 @@ export default function Hero() {
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
-
-  // Cinematic Typewriter Effect with natural cadence across two lines
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      setDisplayedCount(TOTAL_TYPING_LENGTH);
-      setIsTypingDone(true);
-      setCursorVisible(false);
-      return;
-    }
-
-    let timeoutId: NodeJS.Timeout;
-    let currentIdx = 0;
-
-    const typeNextChar = () => {
-      if (currentIdx < TOTAL_TYPING_LENGTH) {
-        currentIdx++;
-        setDisplayedCount(currentIdx);
-
-        // Controlled, natural pacing with an intentional pause after Line 1
-        let delay = 38;
-        if (currentIdx === LINE_1.length) {
-          // Pause after Line 1 ("Designed to be remembered.")
-          delay = 260;
-        } else if (currentIdx === LINE_1.length + 5) {
-          // Brief breath after "Built"
-          delay = 100;
-        }
-
-        timeoutId = setTimeout(typeNextChar, delay);
-      } else {
-        setIsTypingDone(true);
-        // Softly fade out cursor after typewriter completes
-        timeoutId = setTimeout(() => {
-          setCursorVisible(false);
-        }, 700);
-      }
-    };
-
-    // Soft entrance delay before typing starts
-    timeoutId = setTimeout(typeNextChar, 320);
-
-    return () => clearTimeout(timeoutId);
-  }, [shouldReduceMotion]);
 
   return (
     <section
@@ -272,220 +223,10 @@ export default function Hero() {
 
       {/* ================= HERO MAIN CONTENT (CENTERED & BALANCED) ================= */}
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center -translate-y-8 sm:-translate-y-10 md:-translate-y-16 lg:-translate-y-20">
-        {/* Main Headline (Two Distinct Lines with Floating Diagonal Annotation Capsules) */}
-        <h1
-          className="relative z-10 flex flex-col items-center text-center font-alata font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14]"
-        >
-          {/* Screen reader accessibility */}
-          <span className="sr-only">Designed to be remembered. Built to perform.</span>
-
-          {/* Visual Two-Line Presentation */}
-          <div aria-hidden="true" className="flex flex-col items-center gap-1 sm:gap-2">
-            
-            {/* LINE 01: Designed to be remembered. */}
-            <div className="relative inline-block mx-auto px-1 sm:px-2">
-              {/* CURSOR 01: Strategy & Design (Upwards of 'Designed', top-left - Appears after subtagline) */}
-              <motion.div
-                initial={{ opacity: 0, y: -6, filter: "blur(4px)" }}
-                animate={
-                  isTypingDone
-                    ? shouldReduceMotion
-                      ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                      : { opacity: 1, y: [0, -3, 0], filter: "blur(0px)" }
-                    : { opacity: 0, y: -6, filter: "blur(4px)" }
-                }
-                transition={{
-                  opacity: { duration: 0.6, delay: 0.55 },
-                  filter: { duration: 0.6, delay: 0.55 },
-                  y: isTypingDone && !shouldReduceMotion
-                    ? {
-                        duration: 4.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 1.15,
-                      }
-                    : { duration: 0.5, delay: 0.55 },
-                }}
-                className="pointer-events-none select-none z-20 absolute -top-8 sm:-top-9 md:-top-10 -left-2 min-[440px]:-left-5 sm:-left-10 md:-left-14 flex items-center gap-2 scale-[0.75] min-[420px]:scale-[0.85] sm:scale-[0.9] lg:scale-100 origin-bottom-left"
-              >
-                {/* Round Pill Capsule with White Borders & Transparent Black Background */}
-                <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] shrink-0 animate-pulse" />
-                  <span className="whitespace-nowrap font-medium text-white">Strategy & Design</span>
-                </div>
-
-                {/* Crisp 27px Cursor Arrow (White) */}
-                <svg
-                  width="27"
-                  height="27"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
-                  style={{
-                    transform: "rotate(170deg)",
-                  }}
-                >
-                  <path
-                    d="M4 4L11.5 21L14 13.5L21.5 11L4 4Z"
-                    fill="currentColor"
-                    stroke="#050315"
-                    strokeWidth="1.6"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </motion.div>
-
-              {/* CURSOR 02 (mobile): Development & Conversion — top-right, opposite Strategy */}
-              <motion.div
-                initial={{ opacity: 0, y: -6, filter: "blur(4px)" }}
-                animate={
-                  isTypingDone
-                    ? shouldReduceMotion
-                      ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                      : { opacity: 1, y: [0, -3, 0], filter: "blur(0px)" }
-                    : { opacity: 0, y: -6, filter: "blur(4px)" }
-                }
-                transition={{
-                  opacity: { duration: 0.6, delay: 0.72 },
-                  filter: { duration: 0.6, delay: 0.72 },
-                  y: isTypingDone && !shouldReduceMotion
-                    ? {
-                        duration: 4.8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 1.35,
-                      }
-                    : { duration: 0.5, delay: 0.72 },
-                }}
-                className="pointer-events-none select-none z-20 md:hidden absolute -top-8 sm:-top-9 -right-2 min-[440px]:-right-5 sm:-right-10 flex items-center gap-2 scale-[0.75] min-[420px]:scale-[0.85] sm:scale-[0.9] origin-bottom-right"
-              >
-                {/* Arrow first (toward headline), pill on the right — mirror of Strategy layout */}
-                <svg
-                  width="27"
-                  height="27"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
-                  style={{ transform: "rotate(170deg) scaleX(-1)" }}
-                >
-                  <path
-                    d="M4 4L11.5 21L14 13.5L21.5 11L4 4Z"
-                    fill="currentColor"
-                    stroke="#050315"
-                    strokeWidth="1.6"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] shrink-0 animate-pulse" />
-                  <span className="whitespace-nowrap font-medium text-white">Development & Conversion</span>
-                </div>
-              </motion.div>
-
-              {/* Line 1 Content */}
-              <span>
-                {Math.min(displayedCount, LINE_1.length) <= 12 ? (
-                  <span className="text-[#F5F5F7]">{LINE_1.slice(0, Math.min(displayedCount, LINE_1.length))}</span>
-                ) : (
-                  <>
-                    <span className="text-[#F5F5F7]">{LINE_1.slice(0, 12)}</span>
-                    <span className="text-hero-gold">{LINE_1.slice(12, Math.min(displayedCount, LINE_1.length))}</span>
-                  </>
-                )}
-                {displayedCount <= LINE_1.length && !isTypingDone && (
-                  <span
-                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#EBBF2E] ml-1.5 rounded-full transition-opacity duration-300 ${
-                      cursorVisible ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                )}
-              </span>
-            </div>
-
-            {/* LINE 02: Built to perform. */}
-            <div className="relative inline-block mx-auto px-1 sm:px-2 mt-0.5 sm:mt-1">
-              {/* Line 2 Content */}
-              <span>
-                {Math.max(0, displayedCount - LINE_1.length) > 0 ? (
-                  Math.max(0, displayedCount - LINE_1.length) <= 9 ? (
-                    <span className="text-hero-gold">{LINE_2.slice(0, Math.max(0, displayedCount - LINE_1.length))}</span>
-                  ) : (
-                    <>
-                      <span className="text-hero-gold">{LINE_2.slice(0, 9)}</span>
-                      <span className="text-[#F5F5F7]">{LINE_2.slice(9, Math.max(0, displayedCount - LINE_1.length))}</span>
-                    </>
-                  )
-                ) : (
-                  <span className="invisible opacity-0 select-none" aria-hidden="true">
-                    {LINE_2}
-                  </span>
-                )}
-                {displayedCount > LINE_1.length && !isTypingDone && (
-                  <span
-                    className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#EBBF2E] ml-1.5 rounded-full transition-opacity duration-300 ${
-                      cursorVisible ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                )}
-              </span>
-
-              {/* CURSOR 02 (md+): Development & Conversion — beside 'perform.' */}
-              <motion.div
-                initial={{ opacity: 0, y: 6, filter: "blur(4px)" }}
-                animate={
-                  isTypingDone
-                    ? shouldReduceMotion
-                      ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                      : { opacity: 1, y: [0, 3, 0], filter: "blur(0px)" }
-                    : { opacity: 0, y: 6, filter: "blur(4px)" }
-                }
-                transition={{
-                  opacity: { duration: 0.6, delay: 0.72 },
-                  filter: { duration: 0.6, delay: 0.72 },
-                  y: isTypingDone && !shouldReduceMotion
-                    ? {
-                        duration: 4.8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 1.35,
-                      }
-                    : { duration: 0.5, delay: 0.72 },
-                }}
-                className="pointer-events-none select-none z-20 hidden md:flex absolute left-full ml-1.5 sm:ml-2.5 md:ml-3.5 bottom-0.5 sm:bottom-1 md:bottom-1.5 items-center gap-1.5 sm:gap-2 flex-row-reverse scale-[0.72] min-[440px]:scale-[0.82] sm:scale-[0.9] lg:scale-100 origin-left"
-              >
-                {/* Round Pill Capsule with White Borders & Transparent Black Background */}
-                <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] shrink-0 animate-pulse" />
-                  <span className="whitespace-nowrap font-medium text-white">Development & Conversion</span>
-                </div>
-
-                {/* Crisp 27px Cursor Arrow (White) */}
-                <svg
-                  width="27"
-                  height="27"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
-                  style={{
-                    transform: "rotate(-10deg)",
-                  }}
-                >
-                  <path
-                    d="M4 4L11.5 21L14 13.5L21.5 11L4 4Z"
-                    fill="currentColor"
-                    stroke="#050315"
-                    strokeWidth="1.6"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </motion.div>
-            </div>
-
-          </div>
-        </h1>
+        <HeroTypewriterHeadline
+          shouldReduceMotion={shouldReduceMotion}
+          onTypingDone={handleTypingDone}
+        />
 
         {/* Subheadline (Appears smoothly only after typewriter finishes) */}
         <motion.p
@@ -495,7 +236,7 @@ export default function Hero() {
               ? { opacity: 1, y: 0, filter: "blur(0px)" }
               : { opacity: 0, y: 12, filter: "blur(6px)" }
           }
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className="mt-4 sm:mt-5 max-w-xl sm:max-w-2xl mx-auto text-pretty text-sm sm:text-base md:text-[17px] leading-relaxed text-zinc-300 font-epilogue font-normal px-4 sm:px-0"
         >
           We build websites that make your brand stand out, connect with your audience, and help your business grow.
@@ -509,7 +250,7 @@ export default function Hero() {
               ? { opacity: 1, y: 0, filter: "blur(0px)" }
               : { opacity: 0, y: 12, filter: "blur(6px)" }
           }
-          transition={{ duration: 0.7, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4 font-epilogue"
         >
           {/* Secondary CTA: Explore Our Work */}

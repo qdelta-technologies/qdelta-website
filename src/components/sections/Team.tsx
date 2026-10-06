@@ -3,23 +3,22 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, RefreshCw } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
-function LinkedInIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+/** Official LinkedIn brand mark (#0A66C2) — stays crisp at small sizes */
+function LinkedInBrandIcon({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg
-      className={className}
+      className={`shrink-0 ${className}`}
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
     >
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect width="4" height="12" x="2" y="9" />
-      <circle cx="4" cy="4" r="2" />
+      <path
+        fill="#0A66C2"
+        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+      />
     </svg>
   );
 }
@@ -76,9 +75,97 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
 ];
 
+function MobileTeamImage({ member }: { member: TeamMember }) {
+  return (
+    <div className="relative aspect-square w-full overflow-hidden bg-[#0B0E12]">
+      <Image
+        src={member.image}
+        alt={`${member.name} — ${member.role}`}
+        fill
+        className="object-cover object-top"
+        sizes="50vw"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]"
+        aria-hidden
+      />
+    </div>
+  );
+}
+
+function MobileTeamInfo({ member }: { member: TeamMember }) {
+  return (
+    <div className="flex aspect-square w-full flex-col bg-[#0B0E12] px-3 pb-3 pt-2 sm:px-3.5 sm:pb-3.5 sm:pt-2.5 text-white overflow-hidden">
+      <div className="shrink-0 border-b border-white/[0.1] pb-1.5">
+        <div className="flex items-center justify-end">
+          <span className="font-epilogue text-[9px] uppercase tracking-widest font-extrabold text-[#E5B528]">
+            {member.role}
+          </span>
+        </div>
+        <h3 className="mt-0.5 font-excon text-base sm:text-lg font-bold tracking-tight leading-tight text-white">
+          {member.name}
+        </h3>
+        <p className="mt-0 font-epilogue text-[10px] font-medium leading-snug text-zinc-400">
+          {member.subtitle}
+        </p>
+      </div>
+
+      <p className="mt-1.5 min-h-0 flex-1 overflow-hidden font-epilogue text-[10px] sm:text-[11px] leading-snug font-medium text-zinc-300 line-clamp-[7]">
+        {member.bio}
+      </p>
+
+      <div className="mt-2 shrink-0 space-y-2">
+        <div className="flex flex-wrap gap-1">
+          {member.focus.map((item) => (
+            <span
+              key={item}
+              className="inline-flex items-center rounded-full border border-[#E5B528]/45 bg-[#E5B528]/10 px-2 py-0.5 font-epilogue text-[9px] font-semibold text-zinc-100"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+
+        {member.linkedinUrl ? (
+          <a
+            href={member.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${member.name} on LinkedIn`}
+            className="inline-flex items-center justify-center rounded-md transition-transform hover:scale-105 active:scale-95"
+          >
+            <LinkedInBrandIcon className="h-8 w-8 sm:h-9 sm:w-9 rounded-[3px]" />
+          </a>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+type MobileInfoRevealCustom = { imageOnLeft: boolean; index: number };
+
+const mobileInfoReveal = {
+  hidden: ({ imageOnLeft }: MobileInfoRevealCustom) => ({
+    x: imageOnLeft ? "-42%" : "42%",
+    scale: 0.92,
+    opacity: 0.5,
+  }),
+  visible: ({ imageOnLeft, index }: MobileInfoRevealCustom) => ({
+    x: 0,
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.72,
+      ease: [0.22, 1, 0.36, 1] as const,
+      delay: 0.05 + index * 0.04,
+    },
+  }),
+};
+
 export default function Team() {
   const [flippedCards, setFlippedCards] = useState<Record<string, boolean>>({});
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const handleCardClick = (id: string) => {
     setFlippedCards((prev) => ({
@@ -108,8 +195,8 @@ export default function Team() {
         >
           {/* Editorial Section Identifier */}
           <div className="mb-4 select-none text-center">
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-400">
-              Team
+            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]">
+              Our Team
             </span>
           </div>
 
@@ -125,9 +212,60 @@ export default function Team() {
         </motion.div>
 
         {/* ======================================================= */}
-        {/* 3 PREMIUM 3D FLIP TEAM CARDS                            */}
+        {/* MOBILE: 2-column editorial checkerboard                 */}
         {/* ======================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 w-full items-stretch">
+        <div className="md:hidden flex w-full max-w-md mx-auto flex-col gap-2.5 sm:gap-3">
+          {TEAM_MEMBERS.map((member, idx) => {
+            const imageFirst = idx % 2 === 0;
+            const imageCell = (
+              <motion.div
+                whileTap={{ scale: 0.985 }}
+                transition={{ type: "spring", stiffness: 420, damping: 28 }}
+                className="relative z-20 min-w-0 bg-[#0B0E12]"
+              >
+                <MobileTeamImage member={member} />
+              </motion.div>
+            );
+            const infoCell = (
+              <motion.div
+                custom={{ imageOnLeft: imageFirst, index: idx }}
+                initial={shouldReduceMotion ? false : "hidden"}
+                whileInView={shouldReduceMotion ? undefined : "visible"}
+                viewport={{ once: true, amount: 0.45 }}
+                variants={mobileInfoReveal}
+                whileTap={{ scale: 0.985 }}
+                transition={{ type: "spring", stiffness: 420, damping: 28 }}
+                className="relative z-10 min-w-0 will-change-transform"
+              >
+                <MobileTeamInfo member={member} />
+              </motion.div>
+            );
+
+            return (
+              <div
+                key={member.id}
+                className="grid grid-cols-2 overflow-hidden rounded-xl border border-white/[0.1] divide-x divide-white/[0.08] shadow-[0_10px_32px_rgba(0,0,0,0.4)]"
+              >
+                {imageFirst ? (
+                  <>
+                    {imageCell}
+                    {infoCell}
+                  </>
+                ) : (
+                  <>
+                    {infoCell}
+                    {imageCell}
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ======================================================= */}
+        {/* DESKTOP: 3 PREMIUM 3D FLIP TEAM CARDS                   */}
+        {/* ======================================================= */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6 sm:gap-7 w-full items-stretch">
           {TEAM_MEMBERS.map((member, idx) => {
             const isFlipped = Boolean(flippedCards[member.id] || hoveredCard === member.id);
 
@@ -210,43 +348,42 @@ export default function Team() {
                   </div>
 
                   {/* =================================================== */}
-                  {/* CARD BACK FACE (GOLDEN YELLOW & BLACK/WHITE TYPE)   */}
+                  {/* CARD BACK FACE (DARK PANEL + GOLD OUTLINE)              */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-[#E5B528] bg-[#E5B528] shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.1] bg-[#0B0E12] shadow-[0_20px_50px_rgba(0,0,0,0.5)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300">
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent z-20" />
+
                     {/* Top Back Header */}
-                    <div className="relative z-10 border-b border-[#06070A]/15 pb-3.5">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-epilogue text-[10px] uppercase tracking-[0.2em] font-bold text-[#06070A]/65">
-                          PROFILE
-                        </span>
-                        <span className="font-epilogue text-xs uppercase tracking-widest font-extrabold text-[#06070A]">
+                    <div className="relative z-10 border-b border-white/[0.1] pb-2.5">
+                      <div className="flex items-center justify-end">
+                        <span className="font-epilogue text-xs uppercase tracking-widest font-extrabold text-[#E5B528]">
                           {member.role}
                         </span>
                       </div>
 
-                      <h3 className="font-excon text-2xl font-bold text-[#06070A] tracking-tight leading-tight">
+                      <h3 className="mt-1 font-excon text-2xl font-bold text-white tracking-tight leading-tight">
                         {member.name}
                       </h3>
-                      <p className="text-xs font-epilogue text-[#06070A]/80 font-medium mt-0.5">
+                      <p className="text-xs font-epilogue text-zinc-400 font-medium mt-0">
                         {member.subtitle}
                       </p>
                     </div>
 
                     {/* Middle: Short Bio & Key Focus */}
                     <div className="relative z-10 my-auto py-2">
-                      <p className="font-epilogue text-xs sm:text-[13px] text-[#06070A] leading-relaxed font-medium">
+                      <p className="font-epilogue text-xs sm:text-[13px] text-zinc-300 leading-relaxed font-medium">
                         {member.bio}
                       </p>
 
                       <div className="mt-4">
-                        <div className="text-[10px] font-epilogue uppercase tracking-[0.18em] text-[#06070A]/70 font-bold mb-2">
+                        <div className="text-[10px] font-epilogue uppercase tracking-[0.18em] text-zinc-500 font-bold mb-2">
                           Key Responsibilities & Focus
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {member.focus.map((item) => (
                             <span
                               key={item}
-                              className="px-2.5 py-1 rounded-md bg-white text-[#06070A] font-epilogue text-[11px] font-semibold shadow-sm border border-black/5"
+                              className="px-2.5 py-1 rounded-full border border-[#E5B528]/45 bg-[#E5B528]/10 text-zinc-100 font-epilogue text-[11px] font-semibold"
                             >
                               {item}
                             </span>
@@ -256,20 +393,20 @@ export default function Team() {
                     </div>
 
                     {/* Bottom: LinkedIn & Flip Back Action */}
-                    <div className="relative z-10 pt-3 border-t border-[#06070A]/15 flex items-center justify-between">
+                    <div className="relative z-10 pt-3 border-t border-white/[0.1] flex items-center justify-between">
                       <a
                         href={member.linkedinUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#06070A] text-white text-xs font-epilogue uppercase tracking-wider font-bold shadow-sm hover:bg-black/85 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#E5B528]/50 bg-[#E5B528]/10 text-[#E5B528] text-xs font-epilogue uppercase tracking-wider font-bold shadow-sm hover:bg-[#E5B528]/15 transition-colors"
                       >
-                        <LinkedInIcon className="w-3.5 h-3.5 text-[#E5B528]" />
+                        <LinkedInBrandIcon className="h-4 w-4 rounded-[2px]" />
                         <span>View LinkedIn</span>
-                        <ArrowUpRight className="w-3 h-3 text-white/70" />
+                        <ArrowUpRight className="w-3 h-3 text-[#E5B528]/80" />
                       </a>
 
-                      <span className="text-[10px] font-epilogue uppercase tracking-widest text-[#06070A]/60 font-bold">
+                      <span className="text-[10px] font-epilogue uppercase tracking-widest text-zinc-500 font-bold">
                         Tap to return
                       </span>
                     </div>

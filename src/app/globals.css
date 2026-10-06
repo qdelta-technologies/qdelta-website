@@ -139,6 +139,17 @@ canvas {
   animation: floatGentle 3.6s ease-in-out infinite;
 }
 
+@keyframes hero-cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.18;
+  }
+}
+
 /* ================= HORIZON SIGNAL CONNECTION PULSE ================= */
 @keyframes signalDown {
   0% {
