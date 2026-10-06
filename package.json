@@ -1,0 +1,36 @@
+{
+  "name": "qdelta-website-new",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/strip-utf8-bom.mjs && node scripts/dev.mjs",
+    "strip-bom": "node scripts/strip-utf8-bom.mjs",
+    "prebuild": "node scripts/strip-utf8-bom.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "remotion:studio": "remotion studio",
+    "remotion:render": "remotion render"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.532",
+    "@remotion/player": "^4.0.532",
+    "gsap": "^3.15.0",
+    "lucide-react": "^1.48.0",
+    "motion": "^13.4.6",
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "remotion": "^4.0.532"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

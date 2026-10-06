@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+
+/* Satoshi (body) + DM Sans (UI/body copy) + Excon (card headings) + Bricolage Grotesque (section H2s) */
+
+@theme {
+  --font-sans: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading-family), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-epilogue: var(--font-epilogue-family), "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-excon: var(--font-excon-family), "Excon", ui-sans-serif, system-ui, sans-serif;
+  --color-gold: #E5B528;
+  --color-gold-hover: #F0C034;
+  --color-obsidian: #040406;
+  --color-surface: #0b0b10;
+  --color-surface-card: #0e0e16;
+}
+
+html,
+body {
+  font-family: var(--font-satoshi), "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Semantic utilities — font-heading = Bricolage Grotesque (section H2s); font-excon = Excon (card titles); font-epilogue = DM Sans (body/UI) */
+.font-heading {
+  font-family: var(--font-heading-family), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: -0.02em;
+}
+
+.font-excon {
+  font-family: var(--font-excon-family), "Excon", ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: -0.01em;
+}
+
+.font-epilogue {
+  font-family: var(--font-epilogue-family), "DM Sans", ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: 0em;
+}
+
+.font-display {
+  font-family: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: 0.02em;
+}
+
+/* Hero headline only — Alata display */
+.font-alata {
+  font-family: var(--font-alata-family), "Alata", sans-serif !important;
+  letter-spacing: 0.02em;
+}
+
+/* Ensure all WebGL and 2D canvases are strictly transparent */
+canvas {
+  background-color: transparent !important;
+}
+
+/* ================= MARQUEE TICKER ANIMATION ================= */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ================= CONTINUOUS NON-STOP MARQUEE ================= */
+@keyframes marqueeContinuous {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-continuous {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: marqueeContinuous 30s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marqueeContinuousReverse {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: marqueeContinuousReverse 36s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+
+  .animate-marquee-continuous {
+    animation: none;
+  }
+}
+
+/* Testimonial marquee cards — brand gold on dark section */
+.testimonial-card-3d {
+  position: relative;
+  background: linear-gradient(
+    168deg,
+    #ebbc30 0%,
+    #e5b528 48%,
+    #d4a520 100%
+  );
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.35) inset;
+}
+
+.testimonial-card-3d::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 120% 65% at 50% -12%,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 38%,
+    transparent 62%
+  );
+}
+
+/* ================= INTERACTIVE CURSOR FLOATING ANIMATION ================= */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 3.6s ease-in-out infinite;
+}
+
+@keyframes hero-cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.18;
+  }
+}
+
+/* ================= HORIZON SIGNAL CONNECTION PULSE ================= */
+@keyframes signalDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.85;
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(180%);
+    opacity: 0;
+  }
+}
+
+.animate-signal-down {
+  animation: signalDown 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Hero headline gold — flat, slightly brighter than site primary #E5B528 */
+.text-hero-gold {
+  color: #ebbf2e;
+}
+
+/* ================= CINEMATIC GOLDEN GRID & RESTRAINED GLASS UTILITIES ================= */
+.bg-qdelta-grid {
+  background-image: 
+    linear-gradient(to right, rgba(229, 181, 40, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 181, 40, 0.075) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.bg-qdelta-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(229, 181, 40, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 181, 40, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.glass-dark-card {
+  background: rgba(11, 14, 18, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-dark-card:hover, .glass-dark-card-hover:hover {
+  border-color: rgba(245, 184, 0, 0.22);
+  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.8), 0 0 24px -4px rgba(245, 184, 0, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ================= NO SCROLLBAR UTILITY ================= */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* Global Subtle Dark Scrollbar (Prevents Windows White Scrollbar) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 181, 40, 0.45);
+}
+
+/* ================= HARDWARE-ACCELERATED CUSTOM CURSOR ================= */
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active *,
+  html.custom-cursor-active *::before,
+  html.custom-cursor-active *::after {
+    cursor: none !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  #qdelta-custom-cursor {
+    display: none !important;
+  }
+
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active *,
+  html.custom-cursor-active *::before,
+  html.custom-cursor-active *::after {
+    cursor: auto !important;
+  }
+}
+
+.cursor-star-inner.cursor-hovering {
+  transform: scale(1.25) rotate(45deg) !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(229, 181, 40, 0.75)) !important;
+}
+
+.cursor-star-inner.cursor-clicking {
+  transform: scale(0.85) !important;
+}
+
+/* ================= ARCHITECTURAL NAVBAR GLASSMORPHISM FRAME ================= */
+/* 100% Pure CSS responsive geometry - Zero layout shift or hydration jumps */
+.navbar-frame-glass {
+  --nav-h1: 60px;
+  --nav-h2: 78px;
+  --nav-notch-flat: 102px;
+  --nav-notch-chamfer: 28px;
+  --nav-notch-total: 130px;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% var(--nav-h1),
+    calc(50% + var(--nav-notch-total)) var(--nav-h1),
+    calc(50% + var(--nav-notch-flat)) var(--nav-h2),
+    calc(50% - var(--nav-notch-flat)) var(--nav-h2),
+    calc(50% - var(--nav-notch-total)) var(--nav-h1),
+    0 var(--nav-h1)
+  );
+}
+
+@media (max-width: 679px) {
+  .navbar-frame-glass {
+    --nav-h1: 52px;
+    --nav-h2: 68px;
+    --nav-notch-flat: 80px;
+    --nav-notch-chamfer: 22px;
+    --nav-notch-total: 102px;
+  }
+}
+
