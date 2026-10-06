@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { setupCrispCanvas, snapCanvasCoord } from "@/utils/canvasCrisp";
 
 export default function QDeltaSystem() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,15 +47,42 @@ export default function QDeltaSystem() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = 0;
+    let height = 0;
+    let isVisible = true;
 
-    const handleResize = () => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const syncSize = () => {
       if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      setupCrispCanvas(canvas, ctx, rect.width, rect.height);
+      width = rect.width;
+      height = rect.height;
     };
-    window.addEventListener("resize", handleResize);
+
+    syncSize();
+
+    const resizeObserver =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(() => syncSize())
+        : null;
+    if (resizeObserver) {
+      resizeObserver.observe(canvas);
+    } else {
+      window.addEventListener("resize", syncSize);
+    }
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    visibilityObserver.observe(canvas);
 
     // Particle pool
     const particleCount = 45;
@@ -69,6 +97,13 @@ export default function QDeltaSystem() {
     }));
 
     const render = () => {
+      if (!isVisible || prefersReducedMotion) {
+        if (!prefersReducedMotion) {
+          animationFrameId = requestAnimationFrame(render);
+        }
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
 
       particles.forEach((p) => {
@@ -87,22 +122,48 @@ export default function QDeltaSystem() {
         if (p.x < 0) p.x = width;
         if (p.x > width) p.x = 0;
 
+        const alpha = Math.max(0, Math.min(1, p.alpha));
+        const cx = snapCanvasCoord(p.x);
+        const cy = snapCanvasCoord(p.y);
+        const coreR = Math.max(0.75, p.size);
+
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(229, 181, 40, ${Math.max(0, Math.min(1, p.alpha))})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "#E5B528";
+        ctx.arc(cx, cy, coreR + 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(229, 181, 40, ${alpha * 0.2})`;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 214, 96, ${alpha})`;
         ctx.fill();
       });
 
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    if (prefersReducedMotion) {
+      syncSize();
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        const cx = snapCanvasCoord(p.x);
+        const cy = snapCanvasCoord(p.y);
+        const coreR = Math.max(0.75, p.size);
+        ctx.beginPath();
+        ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 214, 96, ${p.alpha})`;
+        ctx.fill();
+      });
+    } else {
+      render();
+    }
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
+      resizeObserver?.disconnect();
+      if (!resizeObserver) {
+        window.removeEventListener("resize", syncSize);
+      }
+      visibilityObserver.disconnect();
     };
   }, []);
 
@@ -410,7 +471,7 @@ export default function QDeltaSystem() {
         {/* Dynamic Canvas Particles */}
         <canvas
           ref={canvasRef}
-          className="pointer-events-none absolute inset-0 z-10 opacity-75"
+          className="pointer-events-none absolute inset-0 z-10 h-full w-full"
         />
 
         {/* ================= 2. THE CENTRAL GLOWING GOLDEN BEAM ================= */}

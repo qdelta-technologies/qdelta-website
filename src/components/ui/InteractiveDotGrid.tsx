@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { setupCrispCanvas, snapCanvasCoord } from "@/utils/canvasCrisp";
 
 interface GridDot {
   baseX: number;
@@ -45,6 +46,10 @@ export default function InteractiveDotGrid() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
     let animationFrameId: number;
     let isVisible = true;
@@ -160,13 +165,10 @@ export default function InteractiveDotGrid() {
     const initSystem = () => {
       updateHorizonGeo();
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
       if (rect.width === 0 || rect.height === 0) return;
 
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      setupCrispCanvas(canvas, ctx, rect.width, rect.height);
 
       const W = rect.width;
       const H = rect.height;
@@ -343,13 +345,17 @@ export default function InteractiveDotGrid() {
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      time += 1;
+      if (!prefersReducedMotion) {
+        time += 1;
+      }
 
       const W = canvas.getBoundingClientRect().width || canvas.width;
       const H = canvas.getBoundingClientRect().height || canvas.height;
 
-      parallax.currentX += (parallax.targetX - parallax.currentX) * 0.04;
-      parallax.currentY += (parallax.targetY - parallax.currentY) * 0.04;
+      if (!prefersReducedMotion) {
+        parallax.currentX += (parallax.targetX - parallax.currentX) * 0.04;
+        parallax.currentY += (parallax.targetY - parallax.currentY) * 0.04;
+      }
 
       const isMobile = W < 640;
       const repelRadius = isMobile ? 35 : REPEL_RADIUS;
@@ -361,8 +367,10 @@ export default function InteractiveDotGrid() {
 
       for (let i = 0; i < farParticles.length; i++) {
         const p = farParticles[i];
-        p.baseX += p.vx;
-        p.baseY += p.vy;
+        if (!prefersReducedMotion) {
+          p.baseX += p.vx;
+          p.baseY += p.vy;
+        }
 
         const sunLineY = getSunLineY(p.baseX, W, H);
 
@@ -378,7 +386,13 @@ export default function InteractiveDotGrid() {
         const currentOpacity = Math.max(0.04, p.opacity + twinkle);
 
         ctx.beginPath();
-        ctx.arc(renderX, renderY, p.radius, 0, Math.PI * 2);
+        ctx.arc(
+          snapCanvasCoord(renderX),
+          snapCanvasCoord(renderY),
+          p.radius,
+          0,
+          Math.PI * 2
+        );
         ctx.fillStyle = `rgba(255, 255, 255, ${currentOpacity})`;
         ctx.fill();
       }
@@ -394,7 +408,7 @@ export default function InteractiveDotGrid() {
         const baseTargetX = dot.baseX + midShiftX;
         const baseTargetY = dot.baseY + midShiftY;
 
-        if (mouse.active) {
+        if (mouse.active && !prefersReducedMotion) {
           const dx = dot.x - mouse.x;
           const dy = dot.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -437,7 +451,13 @@ export default function InteractiveDotGrid() {
         // Render dot — crisp, sharp, subtle and transparent at rest
         ctx.beginPath();
         const radius = dot.glow > 0.08 ? 1.5 : 1.1;
-        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+        ctx.arc(
+          snapCanvasCoord(dot.x),
+          snapCanvasCoord(dot.y),
+          radius,
+          0,
+          Math.PI * 2
+        );
 
         if (dot.glow > 0.04) {
           ctx.fillStyle = `rgba(229, 181, 40, ${0.55 + dot.glow * 0.45})`;
@@ -454,9 +474,11 @@ export default function InteractiveDotGrid() {
       for (let i = 0; i < nearMotes.length; i++) {
         const m = nearMotes[i];
 
-        const sway = Math.sin(time * m.swaySpeed + m.phase) * 0.38;
-        m.baseX += m.vx + sway;
-        m.baseY += m.vy;
+        if (!prefersReducedMotion) {
+          const sway = Math.sin(time * m.swaySpeed + m.phase) * 0.38;
+          m.baseX += m.vx + sway;
+          m.baseY += m.vy;
+        }
 
         const sunLineY = getSunLineY(m.baseX, W, H);
 
@@ -493,7 +515,7 @@ export default function InteractiveDotGrid() {
         const fadeOut = Math.max(0, Math.min(1, (m.baseY - 15) / 55));
         const lifeFade = fadeIn * fadeOut;
 
-        if (mouse.active) {
+        if (mouse.active && !prefersReducedMotion) {
           const dx = renderX - mouse.x;
           const dy = renderY - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -511,7 +533,13 @@ export default function InteractiveDotGrid() {
         if (moteOpacity > 0.01) {
           // Sharp crisp core — no blurry halo ring
           ctx.beginPath();
-          ctx.arc(renderX, renderY, m.radius, 0, Math.PI * 2);
+          ctx.arc(
+            snapCanvasCoord(renderX),
+            snapCanvasCoord(renderY),
+            m.radius,
+            0,
+            Math.PI * 2
+          );
           ctx.fillStyle = `rgba(255, 210, 80, ${moteOpacity})`;
           ctx.fill();
         }

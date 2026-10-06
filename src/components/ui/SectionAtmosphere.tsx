@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { setupCrispCanvas, snapCanvasCoord } from "@/utils/canvasCrisp";
 
 interface SectionAtmosphereProps {
   /** Variant for ambient golden halos positioning */
@@ -43,13 +44,16 @@ export default function SectionAtmosphere({
     let parallaxRafId: number;
     let isVisible = false;
 
-    let width = (canvas.width = canvas.offsetWidth || window.innerWidth);
-    let height = (canvas.height = canvas.offsetHeight || 800);
+    let width = 0;
+    let height = 0;
 
     const syncCanvasSize = () => {
-      if (!canvas) return;
-      width = canvas.width = canvas.offsetWidth || window.innerWidth;
-      height = canvas.height = canvas.offsetHeight || 800;
+      if (!canvas || !container) return;
+      const cssW = container.clientWidth || window.innerWidth;
+      const cssH = container.clientHeight || 800;
+      setupCrispCanvas(canvas, ctx, cssW, cssH);
+      width = cssW;
+      height = cssH;
     };
 
     let resizeObserver: ResizeObserver | null = null;
@@ -77,6 +81,12 @@ export default function SectionAtmosphere({
 
     observer.observe(container);
 
+    syncCanvasSize();
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     // Initialize slowly moving golden particles
     const stars = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
@@ -96,9 +106,13 @@ export default function SectionAtmosphere({
       const now = Date.now();
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
-        star.y += star.speedY;
-        star.x += star.speedX;
-        star.alpha += Math.sin(now * 0.002 * star.pulseSpeed) * 0.008;
+        if (!prefersReducedMotion) {
+          star.y += star.speedY;
+          star.x += star.speedX;
+        }
+        star.alpha += prefersReducedMotion
+          ? 0
+          : Math.sin(now * 0.002 * star.pulseSpeed) * 0.008;
 
         // Wrap around seamlessly
         if (star.y < 0) {
@@ -109,25 +123,24 @@ export default function SectionAtmosphere({
         if (star.x > width) star.x = 0;
 
         const currentAlpha = Math.max(0.1, Math.min(0.85, star.alpha));
+        const cx = snapCanvasCoord(star.x);
+        const cy = snapCanvasCoord(star.y);
+        const coreR = Math.max(0.75, star.size);
 
-        // Feather-light GPU vector glow without expensive CPU shadowBlur rasterization
+        // Crisp two-layer dot — no shadowBlur (keeps edges sharp on retina)
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size * 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(229, 181, 40, ${currentAlpha * 0.22})`;
+        ctx.arc(cx, cy, coreR + 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(229, 181, 40, ${currentAlpha * 0.18})`;
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(229, 181, 40, ${currentAlpha})`;
+        ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 214, 96, ${currentAlpha})`;
         ctx.fill();
       }
 
       animationFrameId = requestAnimationFrame(render);
     };
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!isVisible || prefersReducedMotion) return;
@@ -283,7 +296,7 @@ export default function SectionAtmosphere({
       {/* ================= 3. GLOWING STARFIELD / PARTICLE SIMULATION CANVAS ================= */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full opacity-55"
+        className="absolute inset-0 w-full h-full"
       />
 
       {/* ================= 4. SOFT BOTTOM EDGE VIGNETTE (SEAMLESS SECTION BLEND) ================= */}

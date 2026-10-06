@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { setupCrispCanvas, snapCanvasCoord } from "@/utils/canvasCrisp";
 
 interface YellowDotWavesProps {
   className?: string;
@@ -21,15 +22,17 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
     let width = 0;
     let height = 0;
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     const handleResize = () => {
       const rect = canvas.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (width > 0 && height > 0) {
+        setupCrispCanvas(canvas, ctx, width, height);
+      }
     };
 
     handleResize();
@@ -56,7 +59,9 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
         return;
       }
 
-      const elapsed = (currentTime - startTime) * 0.0018;
+      const elapsed = prefersReducedMotion
+        ? 0
+        : (currentTime - startTime) * 0.0018;
 
       ctx.clearRect(0, 0, width, height);
 
@@ -81,10 +86,6 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
       // Spacing between dot stalks along the bottom border
       const dotSpacing = 7;
       const numStalks = Math.floor(width / dotSpacing);
-
-      // Subtle bioluminescent golden glow
-      ctx.shadowColor = "rgba(229, 181, 40, 0.55)";
-      ctx.shadowBlur = 4;
 
       for (let i = 0; i <= numStalks; i++) {
         const x = i * dotSpacing;
@@ -118,14 +119,20 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
           const dotRadius = k === 0 ? 1.75 : Math.max(1.0, 1.75 - progress * 0.45);
           const dotAlpha = k === 0 ? 0.95 : Math.max(0.65, 0.95 - progress * 0.25);
 
+          const cx = snapCanvasCoord(dotX);
+          const cy = snapCanvasCoord(dotY);
+
           ctx.beginPath();
-          ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(229, 181, 40, ${dotAlpha.toFixed(2)})`;
+          ctx.arc(cx, cy, dotRadius + 0.25, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(229, 181, 40, ${(dotAlpha * 0.25).toFixed(2)})`;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(cx, cy, dotRadius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 214, 96, ${dotAlpha.toFixed(2)})`;
           ctx.fill();
         }
       }
-
-      ctx.shadowBlur = 0;
 
       animationFrameId = requestAnimationFrame(render);
     };
