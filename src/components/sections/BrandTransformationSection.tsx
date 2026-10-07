@@ -128,6 +128,10 @@ export default function BrandTransformationSection() {
   const progressDotRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { amount: 0.2, margin: "100px 0px -10% 0px" });
 
+  const isMobile = typeof window !== "undefined"
+    ? window.matchMedia("(hover: none) and (pointer: coarse)").matches
+    : false;
+
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const isPlayingRef = useRef(false);
   const isInViewRef = useRef(false);
@@ -140,33 +144,35 @@ export default function BrandTransformationSection() {
     isInViewRef.current = isInView;
   }, [isInView]);
 
-  // Video progress rail — rAF only while playing and section is visible
+  // Video progress rail — rAF on desktop, throttled interval on mobile
   useEffect(() => {
-    let animId: number;
-    const updateProgress = () => {
-      if (!isPlayingRef.current || !isInViewRef.current) {
-        return;
-      }
+    const writeProgress = () => {
       const video = videoRef.current;
       if (video && video.duration) {
         const p = Math.max(0, Math.min(1, video.currentTime / video.duration));
         const pct = (p * 100).toFixed(2);
-        if (progressFillRef.current) {
-          progressFillRef.current.style.width = `${pct}%`;
-        }
-        if (progressDotRef.current) {
-          progressDotRef.current.style.left = `${pct}%`;
-        }
+        if (progressFillRef.current) progressFillRef.current.style.width = `${pct}%`;
+        if (progressDotRef.current) progressDotRef.current.style.left = `${pct}%`;
       }
-      animId = requestAnimationFrame(updateProgress);
     };
 
-    if (isPlaying && isInView) {
-      animId = requestAnimationFrame(updateProgress);
+    if (!isPlaying || !isInView) return;
+
+    if (isMobile) {
+      // 8fps is plenty for a progress bar on mobile
+      const intervalId = setInterval(writeProgress, 125);
+      return () => clearInterval(intervalId);
     }
 
+    let animId: number;
+    const loop = () => {
+      if (!isPlayingRef.current || !isInViewRef.current) return;
+      writeProgress();
+      animId = requestAnimationFrame(loop);
+    };
+    animId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(animId);
-  }, [isPlaying, isInView]);
+  }, [isPlaying, isInView, isMobile]);
 
   const handleRailClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -200,16 +206,16 @@ export default function BrandTransformationSection() {
     }
   }, []);
 
-  // Autoplay when in view, pause when out of view
+  // Autoplay when in view (desktop only); pause when out of view
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !isMobile) {
       handlePlay();
       setIsPlaying(true);
-    } else {
+    } else if (!isInView) {
       handlePause();
       setIsPlaying(false);
     }
-  }, [isInView, handlePlay, handlePause]);
+  }, [isInView, isMobile, handlePlay, handlePause]);
 
   const togglePlayPause = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -314,7 +320,7 @@ export default function BrandTransformationSection() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload={isMobile ? "none" : "metadata"}
                 disablePictureInPicture
                 onLoadedMetadata={(e) => {
                   e.currentTarget.playbackRate = VIDEO_PLAYBACK_RATE;
