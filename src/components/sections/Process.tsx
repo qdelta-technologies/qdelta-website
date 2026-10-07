@@ -154,6 +154,9 @@ const STEP_REVEAL_DELAY = 0.06;
       id="process"
       className="relative z-20 w-full bg-[#080B10] text-white selection:bg-[#E5B528] selection:text-[#06070A] lg:h-[600vh]"
     >
+      {/* Top yellow hairline separator */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-10" aria-hidden />
+
       {/* ========================================================================= */}
       {/* PINNED STICKY STAGE — locks in viewport while all 5 steps are walked through */}
       {/* ========================================================================= */}

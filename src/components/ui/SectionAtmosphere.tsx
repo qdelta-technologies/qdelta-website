@@ -187,21 +187,13 @@ export default function SectionAtmosphere({
       aria-hidden="true"
     >
       {/* ================= UNIVERSAL TOP AMBIENT GOLDEN GRADIENT (SUBTLE HORIZON GLOW) ================= */}
-      {/* 1. Direct Horizon Edge Radial Ambient Gradient (smooth top beam) */}
+      {/* 1. Very subtle top horizon tint — kept light to avoid muddy brownish top */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-64 select-none transition-transform duration-700 ease-out will-change-transform"
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 select-none transition-transform duration-700 ease-out will-change-transform"
         style={{
           background:
-            "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(229, 181, 40, 0.18) 0%, rgba(229, 181, 40, 0.05) 55%, transparent 85%)",
+            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(229, 181, 40, 0.07) 0%, transparent 80%)",
           transform: "translate3d(var(--atmos-x-sm, 0px), 0, 0)",
-        }}
-      />
-
-      {/* 2. Top-Center Volumetric Golden Halo (matching WhyQDelta reference) */}
-      <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-[30rem] w-[52rem] rounded-full bg-radial from-[#E5B528]/[0.14] via-[#E5B528]/[0.035] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
-        style={{
-          transform: "translate3d(calc(-50% + var(--atmos-x, 0px)), var(--atmos-y, 0px), 0)",
         }}
       />
 

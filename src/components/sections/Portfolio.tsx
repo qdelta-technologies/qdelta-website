@@ -475,6 +475,7 @@ export default function Portfolio() {
       ref={containerRef}
       className="relative z-20 w-full bg-[#040406] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-10" aria-hidden />
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="right" gridOpacity={0.15} />
 
