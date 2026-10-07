@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Check } from "lucide-react";
-import SaffronButton from "@/components/ui/SaffronButton";
+import ChamferButton from "@/components/ui/ChamferButton";
 
 import OpenBoxServicePills from "@/components/ui/OpenBoxServicePills";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
@@ -19,6 +19,7 @@ const SERVICES = [
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
   const [selectedServices, setSelectedServices] = useState<string[]>([
     "Landing Page",
   ]);
@@ -42,6 +43,7 @@ export default function Contact() {
     setSubmitted(false);
     setName("");
     setEmail("");
+    setMobile("");
     setSelectedServices(["Landing Page"]);
     setBrief("");
   };
@@ -127,7 +129,7 @@ export default function Contact() {
           {/* ===================================================== */}
           {/* RIGHT SIDE: TRANSPARENT-BLACK GRAPHITE FORM (55%)     */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-7 bg-[#0B0E12]/92 backdrop-blur-xl p-7 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
+          <div className="relative lg:col-span-7 bg-[#0B0E12]/92 backdrop-blur-xl p-5 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
             {/* Crisp Golden Top Accent Hairline */}
             <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent pointer-events-none" />
 
@@ -175,7 +177,7 @@ export default function Contact() {
                   exit={{ opacity: 0 }}
                 >
                   {/* Form Header */}
-                  <div className="mb-7 sm:mb-8">
+                  <div className="mb-4 sm:mb-8">
                     <h3 className="font-excon text-xl sm:text-2xl md:text-[2rem] font-bold text-white tracking-tight">
                       Start Your Project
                     </h3>
@@ -184,9 +186,9 @@ export default function Contact() {
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-7">
                     {/* Name & Email (Underline Minimal Inputs) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-7">
                       {/* Name */}
                       <div className="relative group">
                         <label
@@ -221,6 +223,24 @@ export default function Contact() {
                           placeholder="name@company.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
+                        />
+                      </div>
+
+                      {/* Mobile */}
+                      <div className="relative group">
+                        <label
+                          htmlFor="mobile"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
+                        >
+                          Mobile
+                        </label>
+                        <input
+                          id="mobile"
+                          type="tel"
+                          placeholder="+1 000 000 0000"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
                           className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
                         />
                       </div>
@@ -262,7 +282,7 @@ export default function Contact() {
                       </label>
                       <textarea
                         id="brief"
-                        rows={3}
+                        rows={2}
                         required
                         placeholder="Tell us briefly about your project..."
                         value={brief}
@@ -272,15 +292,22 @@ export default function Contact() {
                     </div>
 
                     {/* Submit CTA */}
-                    <div className="pt-2">
-                      <SaffronButton
+                    <div className="pt-0">
+                      <ChamferButton
                         type="submit"
-                        size="lg"
                         variant="primary"
-                        className="w-full h-12 sm:h-13 text-sm font-bold tracking-wide"
+                        className="w-full text-sm font-bold tracking-wide px-8 py-3"
                       >
-                        Send Inquiry
-                      </SaffronButton>
+                        <span>Send Inquiry</span>
+                        <span
+                          className="relative inline-grid place-items-center shrink-0 w-4 h-4 text-[#06070A] -rotate-[14deg] transition-transform duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:rotate-[18deg]"
+                          aria-hidden="true"
+                        >
+                          <svg viewBox="0 0 392.94 418.13" className="w-full h-full fill-current block">
+                            <path d="M243.7,418.13C198.37,312.3,118.14,268.5,0,294.73,135.19,238.54,203.38,148.99,149.24,0c49.45,103.91,130.68,145.05,243.7,123.4-127.69,63.18-168.91,165.26-149.24,294.73Z" />
+                          </svg>
+                        </span>
+                      </ChamferButton>
                     </div>
                   </form>
                 </motion.div>

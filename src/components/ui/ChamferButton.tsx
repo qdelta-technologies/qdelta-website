@@ -13,6 +13,7 @@ export interface ChamferButtonProps {
   cutSmall?: number;
   strokeWidth?: number;
   ariaLabel?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 /**
@@ -36,6 +37,7 @@ export default function ChamferButton({
   cutSmall = 6,
   strokeWidth = 1.6,
   ariaLabel,
+  type = "button",
 }: ChamferButtonProps) {
   const containerRef = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
@@ -204,7 +206,7 @@ export default function ChamferButton({
   return (
     <button
       ref={containerRef}
-      type="button"
+      type={type}
       aria-label={ariaLabel}
       className={baseClasses}
       style={{ clipPath: clipPathStyle }}

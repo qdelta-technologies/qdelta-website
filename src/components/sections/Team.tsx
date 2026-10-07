@@ -41,6 +41,7 @@ interface TeamMember {
   linkedinUrl: string;
   githubUrl?: string;
   instagramUrl?: string;
+  portfolioUrl?: string;
   accentColor: string;
   glowColor: string;
 }
@@ -55,6 +56,9 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "I work across AI, strategy, creative direction and business thinking — helping shape how QDelta approaches ideas, solves problems and builds digital experiences that create real value.",
     focus: ["AI Strategy", "Creative Direction", "Business & Product Thinking"],
     linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
+    instagramUrl: "#",
+    githubUrl: "#",
+    portfolioUrl: "#",
     accentColor: "#E5B528",
     glowColor: "rgba(229, 181, 40, 0.14)",
   },
@@ -67,6 +71,9 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "I build and manage the technical side of our projects, turning ideas and designs into fast, reliable and scalable websites and web applications.",
     focus: ["Full-Stack Development", "Web Applications", "Performance & Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
+    githubUrl: "#",
+    instagramUrl: "#",
+    portfolioUrl: "#",
     accentColor: "#E5B528",
     glowColor: "rgba(229, 181, 40, 0.14)",
   },
@@ -79,6 +86,9 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "I work across generative AI and user experience, building smarter workflows and designing digital experiences that are clear, useful and easy to use.",
     focus: ["GenAI Development", "UX Design", "AI Workflows"],
     linkedinUrl: "https://www.linkedin.com/in/md-fazeel-167816281/",
+    instagramUrl: "#",
+    githubUrl: "#",
+    portfolioUrl: "#",
     accentColor: "#E5B528",
     glowColor: "rgba(229, 181, 40, 0.14)",
   },
@@ -86,52 +96,50 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 function MobileTeamCard({ member }: { member: TeamMember }) {
   return (
-    <div className="relative flex items-center gap-4 overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0B0E12] px-4 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
-      {/* Photo */}
-      <div className="relative h-[124px] w-[100px] shrink-0 overflow-hidden rounded-xl border border-white/[0.08]">
+    <div
+      className="relative flex overflow-hidden rounded-2xl border border-white/[0.1] backdrop-blur-xl"
+      style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 100%)" }}
+    >
+      {/* Gold top hairline */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent z-10" aria-hidden />
+
+      {/* Full-height photo — left ~38% */}
+      <div className="relative w-[38%] shrink-0 min-h-[148px]">
         <Image
           src={member.image}
-          alt={`${member.name}`}
+          alt={member.name}
           fill
           className="object-cover object-top"
-          sizes="88px"
-        />
-        {/* Bottom scrim for legibility */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
-          style={{ background: "linear-gradient(to top, rgba(11,14,18,0.55) 0%, transparent 100%)" }}
-          aria-hidden
+          sizes="140px"
         />
       </div>
 
-      {/* Info */}
-      <div className="flex min-w-0 flex-1 flex-col gap-1">
-        {/* Role badge */}
-        <span className="font-epilogue text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#E5B528]">
-          {member.role}
-        </span>
+      {/* Info panel — right side */}
+      <div className="flex flex-1 flex-col justify-between px-4 py-4">
+        {/* Top: role pill + name + subtitle */}
+        <div className="flex flex-col gap-1.5">
+          <span className="inline-flex w-fit items-center rounded-full border border-[#E5B528]/35 bg-[#E5B528]/10 px-2.5 py-0.5 font-epilogue text-[9px] font-extrabold uppercase tracking-[0.18em] text-[#E5B528]">
+            {member.role}
+          </span>
+          <h3 className="font-excon text-[24px] font-bold leading-none tracking-tight text-white">
+            {member.name}
+          </h3>
+          <p className="font-epilogue text-[11px] font-medium leading-snug text-zinc-400">
+            {member.subtitle}
+          </p>
+        </div>
 
-        {/* Name */}
-        <h3 className="font-excon text-[22px] font-bold leading-none tracking-tight text-white">
-          {member.name}
-        </h3>
-
-        {/* Subtitle */}
-        <p className="font-epilogue text-[11px] font-medium text-zinc-400 leading-tight">
-          {member.subtitle}
-        </p>
-
-        {/* Social icons */}
-        <div className="mt-2 flex items-center gap-2.5">
+        {/* Bottom: divider + social icons */}
+        <div className="mt-3 border-t border-white/[0.07] pt-3 flex items-center gap-2">
           {member.linkedinUrl && (
             <a
               href={member.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${member.name} on LinkedIn`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.04] transition-all hover:border-[#0A66C2]/50 hover:bg-[#0A66C2]/10 active:scale-90"
+              className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.05] transition-all hover:border-[#0A66C2]/50 hover:bg-[#0A66C2]/10 active:scale-90"
             >
-              <LinkedInIcon className="h-4 w-4" />
+              <LinkedInIcon className="h-3.5 w-3.5" />
             </a>
           )}
           {member.githubUrl && (
@@ -140,9 +148,9 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${member.name} on GitHub`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.04] text-zinc-300 transition-all hover:border-white/25 hover:bg-white/[0.08] active:scale-90"
+              className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.05] text-zinc-300 transition-all hover:border-white/25 hover:bg-white/[0.08] active:scale-90"
             >
-              <GitHubIcon className="h-4 w-4" />
+              <GitHubIcon className="h-3.5 w-3.5" />
             </a>
           )}
           {member.instagramUrl && (
@@ -151,19 +159,24 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${member.name} on Instagram`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.04] transition-all hover:border-pink-500/30 hover:bg-pink-500/10 active:scale-90"
+              className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.05] text-zinc-300 transition-all hover:border-pink-500/30 hover:bg-pink-500/10 active:scale-90"
             >
-              <InstagramIcon className="h-4 w-4" />
+              <InstagramIcon className="h-3.5 w-3.5" />
+            </a>
+          )}
+          {member.portfolioUrl && (
+            <a
+              href={member.portfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto flex items-center gap-1 font-epilogue text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-500 transition-colors hover:text-[#E5B528]"
+            >
+              Portfolio
+              <ArrowUpRight className="h-3 w-3" />
             </a>
           )}
         </div>
       </div>
-
-      {/* Gold top hairline */}
-      <div
-        className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/30 to-transparent"
-        aria-hidden
-      />
     </div>
   );
 }
@@ -220,7 +233,7 @@ export default function Team() {
         {/* ======================================================= */}
         {/* MOBILE: Clean vertical card stack                       */}
         {/* ======================================================= */}
-        <div className="md:hidden flex w-full max-w-sm mx-auto flex-col gap-3">
+        <div className="md:hidden flex w-full flex-col gap-3">
           {TEAM_MEMBERS.map((member) => (
             <MobileTeamCard key={member.id} member={member} />
           ))}
