@@ -36,11 +36,15 @@ export default function CustomCursor() {
     }
 
     let hoverInteractive = false;
+    let hoverRafId = 0;
+    let pendingHoverX = 0;
+    let pendingHoverY = 0;
     const interactiveSelector =
       'a, button, input, textarea, select, [role="button"], .cursor-pointer, [data-cursor-interactive], label';
 
-    const syncHoverState = (clientX: number, clientY: number) => {
-      const target = document.elementFromPoint(clientX, clientY);
+    const doHoverCheck = () => {
+      hoverRafId = 0;
+      const target = document.elementFromPoint(pendingHoverX, pendingHoverY);
       const interactive = target?.closest(interactiveSelector);
       const nextHover = !!interactive;
       if (nextHover === hoverInteractive) return;
@@ -49,6 +53,15 @@ export default function CustomCursor() {
         star.classList.add("cursor-hovering");
       } else {
         star.classList.remove("cursor-hovering");
+      }
+    };
+
+    // rAF-throttled: elementFromPoint runs once per frame, not per event
+    const syncHoverState = (clientX: number, clientY: number) => {
+      pendingHoverX = clientX;
+      pendingHoverY = clientY;
+      if (!hoverRafId) {
+        hoverRafId = requestAnimationFrame(doHoverCheck);
       }
     };
 
@@ -105,6 +118,7 @@ export default function CustomCursor() {
     document.addEventListener("mouseenter", onMouseEnter);
 
     return () => {
+      if (hoverRafId) cancelAnimationFrame(hoverRafId);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mousedown", onMouseDown);

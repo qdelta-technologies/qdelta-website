@@ -486,7 +486,7 @@ export default function Portfolio() {
       {/* ======================================================= */}
       <AnimatePresence>
         {activeModalProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md">
             <motion.div
               initial={{ opacity: 0, scale: 0.94, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -525,7 +525,7 @@ export default function Portfolio() {
                     alt={activeModalProject.name}
                     fill
                     className="object-cover"
-                    sizes="800px"
+                    sizes="(max-width: 768px) 100vw, 800px"
                   />
                 </div>
 

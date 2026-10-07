@@ -107,11 +107,9 @@ canvas {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none;
-  }
-
-  .animate-marquee-continuous {
+  .animate-marquee,
+  .animate-marquee-continuous,
+  .animate-marquee-reverse {
     animation: none;
   }
 }

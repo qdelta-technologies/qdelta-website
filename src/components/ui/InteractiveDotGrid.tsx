@@ -165,9 +165,41 @@ export default function InteractiveDotGrid() {
       return svgTop + (ySvg / 1000) * svgH;
     };
 
+    // Cached canvas logical dimensions (updated on resize via initSystem)
+    let cachedW = 0;
+    let cachedH = 0;
+
+    // Pre-computed sunLineY lookup: maps column index → y threshold, rebuilt on resize
+    let sunLineLookup: number[] = [];
+    let lookupSpacing = SPACING;
+    let lookupW = 0;
+    let lookupH = 0;
+
+    const buildSunLineLookup = (W: number, H: number) => {
+      lookupW = W;
+      lookupH = H;
+      lookupSpacing = SPACING;
+      const extraCols = 2;
+      const colsNeeded = Math.ceil(W / SPACING) + extraCols * 2;
+      const halfCols = (colsNeeded - 1) / 2;
+      sunLineLookup = [];
+      for (let c = 0; c < colsNeeded; c++) {
+        const x = W / 2 + (c - halfCols) * SPACING;
+        sunLineLookup[c] = getSunLineY(x, W, H);
+      }
+    };
+
+    // Cached rect for touch/mouse coordinate offset (updated on resize, not every event)
+    let cachedRect = { left: 0, top: 0, width: 0, height: 0 };
+    const updateCachedRect = () => {
+      const r = canvas.getBoundingClientRect();
+      cachedRect = { left: r.left, top: r.top, width: r.width, height: r.height };
+    };
+
     const initSystem = () => {
       updateHorizonGeo();
-      const rect = canvas.getBoundingClientRect();
+      updateCachedRect();
+      const rect = cachedRect;
 
       if (rect.width === 0 || rect.height === 0) return;
 
@@ -176,19 +208,29 @@ export default function InteractiveDotGrid() {
       const W = rect.width;
       const H = rect.height;
 
+      // Update cached logical dimensions
+      cachedW = W;
+      cachedH = H;
+
+      // Increase spacing on mobile to reduce dot count (~30% fewer dots)
+      const isMobileInit = W < 640;
+      const effectiveSpacing = isMobileInit ? 28 : SPACING;
+
+      buildSunLineLookup(W, H);
+
       // ── LAYER 2 (MID): Dense Grid — full edge-to-edge coverage down to the golden rim ──
       gridDots = [];
       const extraCols = 2;
-      const colsNeeded = Math.ceil(W / SPACING) + extraCols * 2;
+      const colsNeeded = Math.ceil(W / effectiveSpacing) + extraCols * 2;
       const halfCols = (colsNeeded - 1) / 2;
 
       for (let c = 0; c < colsNeeded; c++) {
-        const x = W / 2 + (c - halfCols) * SPACING;
-        const rowsNeeded = Math.ceil(H / SPACING) + 2;
+        const x = W / 2 + (c - halfCols) * effectiveSpacing;
+        const rowsNeeded = Math.ceil(H / effectiveSpacing) + 2;
 
         for (let r = 0; r < rowsNeeded; r++) {
-          const y = SPACING / 2 + r * SPACING;
-          const sunLineY = getSunLineY(x, W, H);
+          const y = effectiveSpacing / 2 + r * effectiveSpacing;
+          const sunLineY = sunLineLookup[c] ?? getSunLineY(x, W, H);
 
           if (y < sunLineY - 4) {
             gridDots.push({
@@ -291,19 +333,18 @@ export default function InteractiveDotGrid() {
     // ── Event listeners ──
     const handleMouseMove = (e: MouseEvent) => {
       if (!isVisible) return;
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      // Use cached rect — no forced layout on every mousemove
+      mouse.x = e.clientX - cachedRect.left;
+      mouse.y = e.clientY - cachedRect.top;
       mouse.active = true;
 
-      const halfW = rect.width / 2;
-      const halfH = rect.height / 2;
+      const halfW = cachedRect.width / 2;
+      const halfH = cachedRect.height / 2;
       parallax.targetX = (mouse.x - halfW) / halfW;
       parallax.targetY = (mouse.y - halfH) / halfH;
     };
 
     const handleMouseLeave = () => {
-      // Don't snap — let velocity spring slowly pull dots home
       mouse.active = false;
       mouse.x = -9999;
       mouse.y = -9999;
@@ -312,16 +353,16 @@ export default function InteractiveDotGrid() {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      // Disable dot-repel on touch — it fights native scroll momentum
+      // Only update parallax offset, not the repel cursor
       if (e.touches && e.touches.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.touches[0].clientX - rect.left;
-        mouse.y = e.touches[0].clientY - rect.top;
-        mouse.active = true;
-
-        const halfW = rect.width / 2;
-        const halfH = rect.height / 2;
-        parallax.targetX = (mouse.x - halfW) / halfW;
-        parallax.targetY = (mouse.y - halfH) / halfH;
+        const halfW = cachedRect.width / 2;
+        const halfH = cachedRect.height / 2;
+        const tx = e.touches[0].clientX - cachedRect.left;
+        const ty = e.touches[0].clientY - cachedRect.top;
+        parallax.targetX = (tx - halfW) / halfW;
+        parallax.targetY = (ty - halfH) / halfH;
+        // Don't set mouse.active — keeps repel disabled on touch
       }
     };
 
@@ -352,8 +393,9 @@ export default function InteractiveDotGrid() {
         time += 1;
       }
 
-      const W = canvas.getBoundingClientRect().width || canvas.width;
-      const H = canvas.getBoundingClientRect().height || canvas.height;
+      // Use cached values — avoid getBoundingClientRect() inside rAF loop
+      const W = cachedW || canvas.width;
+      const H = cachedH || canvas.height;
 
       if (!prefersReducedMotion) {
         parallax.currentX += (parallax.targetX - parallax.currentX) * 0.04;
@@ -368,6 +410,12 @@ export default function InteractiveDotGrid() {
       const farShiftX = parallax.currentX * 5;
       const farShiftY = parallax.currentY * 3;
 
+      const getSunLineYFast = (x: number): number => {
+        if (sunLineLookup.length === 0) return getSunLineY(x, W, H);
+        const colIdx = Math.round((x - W / 2) / lookupSpacing + (sunLineLookup.length - 1) / 2);
+        return sunLineLookup[Math.max(0, Math.min(sunLineLookup.length - 1, colIdx))] ?? getSunLineY(x, W, H);
+      };
+
       for (let i = 0; i < farParticles.length; i++) {
         const p = farParticles[i];
         if (!prefersReducedMotion) {
@@ -375,7 +423,7 @@ export default function InteractiveDotGrid() {
           p.baseY += p.vy;
         }
 
-        const sunLineY = getSunLineY(p.baseX, W, H);
+        const sunLineY = getSunLineYFast(p.baseX);
 
         if (p.baseY < 10) p.baseY = sunLineY - 14;
         if (p.baseY > sunLineY - 10) p.baseY = 12;
@@ -444,8 +492,9 @@ export default function InteractiveDotGrid() {
         // Slow glow decay — golden shape stays visible for seconds
         dot.glow *= GLOW_DECAY;
 
-        // Hard boundary: never cross horizon line
-        const hardLimitY = getSunLineY(dot.x, W, H) - 6;
+        // Hard boundary: never cross horizon line (use cached lookup, not live calc)
+        const colIdx = Math.round((dot.x - W / 2) / lookupSpacing + (sunLineLookup.length - 1) / 2);
+        const hardLimitY = (sunLineLookup[Math.max(0, Math.min(sunLineLookup.length - 1, colIdx))] ?? getSunLineY(dot.x, W, H)) - 6;
         if (dot.y > hardLimitY) {
           dot.y = hardLimitY;
           dot.vy *= -0.25;
@@ -483,11 +532,11 @@ export default function InteractiveDotGrid() {
           m.baseY += m.vy;
         }
 
-        const sunLineY = getSunLineY(m.baseX, W, H);
+        const sunLineY = getSunLineYFast(m.baseX);
 
         if (m.baseY < 15 || m.baseY > sunLineY + 2) {
           m.baseX = Math.random() * W;
-          const newSunY = getSunLineY(m.baseX, W, H);
+          const newSunY = getSunLineYFast(m.baseX);
           m.baseY = newSunY - (1 + Math.random() * 5);
           m.vx = (Math.random() - 0.5) * 0.18;
 

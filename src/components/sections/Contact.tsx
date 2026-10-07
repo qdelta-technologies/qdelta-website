@@ -129,7 +129,7 @@ export default function Contact() {
           {/* ===================================================== */}
           {/* RIGHT SIDE: TRANSPARENT-BLACK GRAPHITE FORM (55%)     */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-7 bg-[#0B0E12]/92 backdrop-blur-xl p-5 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
+          <div className="relative lg:col-span-7 bg-[#0B0E12]/93 backdrop-blur-md p-5 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
             {/* Crisp Golden Top Accent Hairline */}
             <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent pointer-events-none" />
 

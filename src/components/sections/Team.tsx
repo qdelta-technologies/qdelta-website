@@ -97,8 +97,8 @@ const TEAM_MEMBERS: TeamMember[] = [
 function MobileTeamCard({ member }: { member: TeamMember }) {
   return (
     <div
-      className="relative flex overflow-hidden rounded-2xl border border-white/[0.1] backdrop-blur-xl"
-      style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 100%)" }}
+      className="relative flex overflow-hidden rounded-2xl border border-white/[0.1] backdrop-blur-sm"
+      style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)" }}
     >
       {/* Gold top hairline */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent z-10" aria-hidden />
@@ -264,7 +264,7 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#E5B528]/35 bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#E5B528]/35 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
                     {/* Crisp Golden Top Accent Hairline */}
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent z-20" />
 

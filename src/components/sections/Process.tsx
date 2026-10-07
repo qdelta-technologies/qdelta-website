@@ -268,7 +268,7 @@ const STEP_REVEAL_DELAY = 0.06;
                         ...STEP_TRANSITION,
                         delay: isActive ? STEP_REVEAL_DELAY : 0,
                       }}
-                      className={`relative w-full max-w-[228px] overflow-hidden rounded-xl border p-5 backdrop-blur-xl ${cardClass}`}
+                      className={`relative w-full max-w-[228px] overflow-hidden rounded-xl border p-5 backdrop-blur-sm ${cardClass}`}
                     >
                       <div className={`pointer-events-none absolute top-0 inset-x-4 h-[1px] ${hairlineClass}`} />
                       <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
@@ -300,7 +300,7 @@ const STEP_REVEAL_DELAY = 0.06;
                         ...STEP_TRANSITION,
                         delay: isActive ? STEP_REVEAL_DELAY : 0,
                       }}
-                      className={`relative w-full max-w-[228px] overflow-hidden rounded-xl border p-5 backdrop-blur-xl ${cardClass}`}
+                      className={`relative w-full max-w-[228px] overflow-hidden rounded-xl border p-5 backdrop-blur-sm ${cardClass}`}
                     >
                       <div className={`pointer-events-none absolute top-0 inset-x-4 h-[1px] ${hairlineClass}`} />
                       <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">

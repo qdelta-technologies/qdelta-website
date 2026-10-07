@@ -96,42 +96,11 @@ export default function Hero() {
 
         {/* Ambient Top Center Warm Halo (gentle depth parallax) */}
         <div
-          className="absolute -top-28 left-1/2 h-[20rem] w-[46rem] rounded-full bg-gradient-to-b from-[#E5B528]/10 via-[#E5B528]/[0.02] to-transparent blur-[110px] pointer-events-none transition-transform duration-700 ease-out will-change-transform"
+          className="absolute -top-28 left-1/2 h-[20rem] w-[46rem] rounded-full bg-gradient-to-b from-[#E5B528]/10 via-[#E5B528]/[0.02] to-transparent blur-[72px] pointer-events-none transition-transform duration-700 ease-out will-change-transform"
           style={{
             transform: "translate3d(calc(-50% + var(--hero-mx-halo, 0px)), var(--hero-my-halo, 0px), 0)",
           }}
         />
-
-        {/* Vertical light ray — rises from horizon to top */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 top-0 flex justify-center"
-          aria-hidden
-        >
-          {/* Ray beam */}
-          <div
-            className="absolute bottom-0 top-0 w-[1.5px]"
-            style={{
-              background: "linear-gradient(to top, rgba(229,181,40,0.0) 0%, rgba(229,181,40,0.55) 28%, rgba(255,240,180,0.75) 50%, rgba(255,248,210,0.6) 62%, rgba(229,181,40,0.15) 82%, transparent 100%)",
-              filter: "blur(0.5px)",
-            }}
-          />
-          {/* Soft bloom around beam */}
-          <div
-            className="absolute bottom-0 top-0 w-[80px]"
-            style={{
-              background: "linear-gradient(to top, transparent 0%, rgba(229,181,40,0.04) 25%, rgba(229,181,40,0.08) 45%, rgba(229,181,40,0.05) 65%, transparent 100%)",
-              filter: "blur(18px)",
-            }}
-          />
-          {/* Horizon bloom — warm base glow where ray originates */}
-          <div
-            className="absolute bottom-0 h-48 w-[260px]"
-            style={{
-              background: "radial-gradient(ellipse 100% 100% at 50% 100%, rgba(229,181,40,0.18) 0%, rgba(229,181,40,0.06) 50%, transparent 100%)",
-              filter: "blur(8px)",
-            }}
-          />
-        </div>
       </div>
 
       {/* ================= CELESTIAL HORIZON ARC ================= */}
@@ -261,13 +230,9 @@ export default function Hero() {
 
         {/* Subheadline (Appears smoothly only after typewriter finishes) */}
         <motion.p
-          initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-          animate={
-            isTypingDone
-              ? { opacity: 1, y: 0, filter: "blur(0px)" }
-              : { opacity: 0, y: 12, filter: "blur(6px)" }
-          }
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={isTypingDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mt-4 sm:mt-5 max-w-xl sm:max-w-2xl mx-auto text-pretty text-sm sm:text-base md:text-[17px] leading-relaxed text-zinc-300 font-epilogue font-normal px-4 sm:px-0"
         >
           We build websites that make your brand stand out, connect with your audience, and help your business grow.
@@ -275,13 +240,9 @@ export default function Hero() {
 
         {/* Action Buttons (Revealed after subheadline with a soft stagger) */}
         <motion.div
-          initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-          animate={
-            isTypingDone
-              ? { opacity: 1, y: 0, filter: "blur(0px)" }
-              : { opacity: 0, y: 12, filter: "blur(6px)" }
-          }
-          transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={isTypingDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 sm:mt-8 flex flex-row items-center justify-center gap-3 sm:gap-4 font-epilogue"
         >
           {/* Secondary CTA: Explore Our Work */}

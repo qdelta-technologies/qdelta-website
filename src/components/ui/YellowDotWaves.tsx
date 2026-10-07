@@ -42,10 +42,16 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
     });
     resizeObserver.observe(canvas);
 
-    // Pause when offscreen
+    // Pause when offscreen — cancel rAF entirely, restart on re-entry
     const intersectionObserver = new IntersectionObserver(
       ([entry]) => {
+        const wasVisible = isVisible;
         isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible) {
+          animationFrameId = requestAnimationFrame(render);
+        } else if (!isVisible && wasVisible) {
+          cancelAnimationFrame(animationFrameId);
+        }
       },
       { threshold: 0.05 }
     );
@@ -54,10 +60,7 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
     let startTime = performance.now();
 
     const render = (currentTime: number) => {
-      if (!isVisible) {
-        animationFrameId = requestAnimationFrame(render);
-        return;
-      }
+      if (!isVisible) return;
 
       const elapsed = prefersReducedMotion
         ? 0

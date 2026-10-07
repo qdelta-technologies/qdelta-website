@@ -245,7 +245,7 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#E5B528]/30 bg-[#0B0E12]/85 backdrop-blur-xl p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
+            className="rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#E5B528]/30 bg-[#0B0E12]/90 backdrop-blur-md p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
           >
             {/* Crisp Golden Top Accent Hairline */}
             <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-20" />
@@ -383,7 +383,7 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, delay: 0.15 }}
-            className="relative flex flex-col overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.09] bg-[#0B0E12]/85 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] lg:min-h-[420px]"
+            className="relative flex flex-col overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.09] bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.85)] lg:min-h-[420px]"
           >
             <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-[#E5B528]/45 to-transparent" />
             <div className="pointer-events-none absolute bottom-0 right-0 w-56 h-56 rounded-full blur-[70px] opacity-[0.07]" style={{ background: "#E5B528" }} />

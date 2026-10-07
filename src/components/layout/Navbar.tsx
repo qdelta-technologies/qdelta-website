@@ -61,8 +61,8 @@ export default function Navbar() {
         <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
           {/* Glassmorphism body fill with responsive polygon clip-path */}
           <div
-            className={`navbar-frame-glass absolute inset-0 w-full h-full backdrop-blur-2xl transition-colors duration-300 ${
-              isPastHero ? "bg-[#06070A]/92" : "bg-[#080A0E]/78"
+            className={`navbar-frame-glass absolute inset-0 w-full h-full backdrop-blur-lg transition-colors duration-300 ${
+              isPastHero ? "bg-[#06070A]/92" : "bg-[#080A0E]/80"
             }`}
           />
 
@@ -258,7 +258,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -6, scale: 0.98 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="pointer-events-auto absolute top-full left-0 right-0 mt-2 rounded-[8px] bg-[#080A0E]/96 border border-white/12 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-2xl xl:hidden z-50"
+              className="pointer-events-auto absolute top-full left-0 right-0 mt-2 rounded-[8px] bg-[#080A0E]/96 border border-white/12 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-md xl:hidden z-50"
             >
               <nav className="flex flex-col gap-1">
                 {NAV_LINKS.map((link) => (

@@ -333,7 +333,7 @@ export default function QDeltaAIChatbot() {
               mass: 0.75,
             }}
             style={{ transformOrigin: "bottom right" }}
-            className="fixed bottom-[128px] right-4 sm:bottom-[142px] sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[64vh] sm:max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/95 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl flex flex-col overflow-hidden text-white font-sans selection:bg-[#E5B528] selection:text-black origin-bottom-right"
+            className="fixed bottom-[128px] right-4 sm:bottom-[142px] sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[350px] md:w-[360px] h-[450px] max-h-[64vh] sm:max-h-[70vh] rounded-2xl border border-white/12 bg-[#08080D]/97 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-md flex flex-col overflow-hidden text-white font-sans selection:bg-[#E5B528] selection:text-black origin-bottom-right"
           >
             {/* Top Amber Horizon Accent Line */}
             <div className="absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent pointer-events-none" />

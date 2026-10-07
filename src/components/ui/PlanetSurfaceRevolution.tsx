@@ -2,10 +2,9 @@
 
 import React, { useEffect, useRef } from "react";
 
-// 72 longitudinal meridians around the 360° globe (spaced every 5°)
-// Combined with ~40px latitude spacing, this creates balanced, square-like grid quads
-const MERIDIAN_COUNT = 72;
-const MERIDIAN_STEP = 360 / MERIDIAN_COUNT; // 5 degrees per meridian
+// 36 meridians (10° step) — half the DOM mutations, visually indistinguishable at globe scale
+const MERIDIAN_COUNT = 36;
+const MERIDIAN_STEP = 360 / MERIDIAN_COUNT;
 
 export default function PlanetSurfaceRevolution() {
   const containerRef = useRef<SVGGElement>(null);
@@ -87,33 +86,33 @@ export default function PlanetSurfaceRevolution() {
             const x3 = 500 + sinLon * 565;
             const y3 = 1005;
 
-            // Core smooth cubic bezier
-            const d = `M ${x0.toFixed(1)} ${y0.toFixed(1)} C ${x1.toFixed(1)} ${y1.toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}, ${x3.toFixed(1)} ${y3.toFixed(1)}`;
+            // Round to 1 decimal using integer math — avoids .toFixed() string allocations
+            const r1 = (v: number) => Math.round(v * 10) / 10;
 
-            // Tight micro-bevel offsets (0.28px shadow right, 0.25px highlight left)
-            // Stays nestled inside the 1.2px stroke radius (0.6px) for seamless engraved bevel edges
-            const dShadow = `M ${(x0 + 0.28).toFixed(1)} ${y0.toFixed(1)} C ${(x1 + 0.28).toFixed(1)} ${y1.toFixed(1)}, ${(x2 + 0.28).toFixed(1)} ${y2.toFixed(1)}, ${(x3 + 0.28).toFixed(1)} ${y3.toFixed(1)}`;
-            const dHighlight = `M ${(x0 - 0.25).toFixed(1)} ${y0.toFixed(1)} C ${(x1 - 0.25).toFixed(1)} ${y1.toFixed(1)}, ${(x2 - 0.25).toFixed(1)} ${y2.toFixed(1)}, ${(x3 - 0.25).toFixed(1)} ${y3.toFixed(1)}`;
+            const d = `M ${r1(x0)} ${r1(y0)} C ${r1(x1)} ${r1(y1)}, ${r1(x2)} ${r1(y2)}, ${r1(x3)} ${r1(y3)}`;
+            const dShadow = `M ${r1(x0 + 0.28)} ${r1(y0)} C ${r1(x1 + 0.28)} ${r1(y1)}, ${r1(x2 + 0.28)} ${r1(y2)}, ${r1(x3 + 0.28)} ${r1(y3)}`;
+            const dHighlight = `M ${r1(x0 - 0.25)} ${r1(y0)} C ${r1(x1 - 0.25)} ${r1(y1)}, ${r1(x2 - 0.25)} ${r1(y2)}, ${r1(x3 - 0.25)} ${r1(y3)}`;
 
-            // Spherical specular & limb foreshortening
             const specular = Math.pow(Math.max(0, cosLon), 1.3);
             const opCore = Math.max(0.16, specular * 0.48);
             const opShadow = opCore * 0.58;
             const opHighlight = opCore * 0.52;
 
-            // 1. Subtle micro depth shadow (underneath, right edge)
+            // Use Math.round for opacity strings — avoids .toFixed() allocations
+            const opCoreS = Math.round(opCore * 1000) / 1000;
+            const opShadowS = Math.round(opShadow * 1000) / 1000;
+            const opHighlightS = Math.round(opHighlight * 1000) / 1000;
+
             shadowEl.setAttribute("d", dShadow);
-            shadowEl.setAttribute("stroke", `rgba(110, 65, 0, ${opShadow.toFixed(3)})`);
+            shadowEl.setAttribute("stroke", `rgba(110, 65, 0, ${opShadowS})`);
             shadowEl.style.display = "block";
 
-            // 2. Subtle micro highlight (underneath, left edge)
             highlightEl.setAttribute("d", dHighlight);
-            highlightEl.setAttribute("stroke", `rgba(255, 250, 230, ${opHighlight.toFixed(3)})`);
+            highlightEl.setAttribute("stroke", `rgba(255, 250, 230, ${opHighlightS})`);
             highlightEl.style.display = "block";
 
-            // 3. Core golden line (on top, exact #FAB406 gold)
             coreEl.setAttribute("d", d);
-            coreEl.setAttribute("stroke", `rgba(250, 180, 6, ${opCore.toFixed(3)})`);
+            coreEl.setAttribute("stroke", `rgba(250, 180, 6, ${opCoreS})`);
             coreEl.style.display = "block";
           } else {
             coreEl.style.display = "none";
