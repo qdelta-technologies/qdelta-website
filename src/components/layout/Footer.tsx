@@ -131,7 +131,7 @@ export default function Footer() {
               <a
                 href="mailto:hello@qdelta.in"
                 aria-label="Email"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#EA4335]/10 border border-[#EA4335]/25 text-[#EA4335] hover:bg-[#EA4335]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <MailIcon className="w-4 h-4" />
               </a>
@@ -141,7 +141,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E1306C]/10 border border-[#E1306C]/25 text-[#E1306C] hover:bg-[#E1306C]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -151,19 +151,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X / Twitter"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.06] border border-white/[0.12] text-white hover:bg-white/[0.12] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <XTwitterIcon className="w-3.5 h-3.5" />
-              </a>
-
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#6e40c9]/10 border border-[#6e40c9]/25 text-[#a78bfa] hover:bg-[#6e40c9]/20 transition-all duration-200 cursor-pointer shadow-sm"
-              >
-                <GitHubIcon className="w-4 h-4" />
               </a>
 
               <a
@@ -171,7 +161,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#0A66C2]/15 border border-[#0A66C2]/30 text-[#0A66C2] hover:bg-[#0A66C2]/25 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <LinkedInIcon className="w-4 h-4" />
               </a>
