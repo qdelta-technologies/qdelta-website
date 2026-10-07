@@ -333,7 +333,20 @@ export default function InteractiveDotGrid() {
     // ── Event listeners ──
     const handleMouseMove = (e: MouseEvent) => {
       if (!isVisible) return;
-      // Use cached rect — no forced layout on every mousemove
+      // Only react when cursor is actually over this canvas
+      if (
+        e.clientX < cachedRect.left ||
+        e.clientX > cachedRect.left + cachedRect.width ||
+        e.clientY < cachedRect.top ||
+        e.clientY > cachedRect.top + cachedRect.height
+      ) {
+        mouse.active = false;
+        mouse.x = -9999;
+        mouse.y = -9999;
+        parallax.targetX = 0;
+        parallax.targetY = 0;
+        return;
+      }
       mouse.x = e.clientX - cachedRect.left;
       mouse.y = e.clientY - cachedRect.top;
       mouse.active = true;
@@ -383,6 +396,8 @@ export default function InteractiveDotGrid() {
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("touchend", handleTouchEnd);
     window.addEventListener("resize", handleResize);
+    // Keep cachedRect accurate on scroll so bounds check stays correct
+    window.addEventListener("scroll", updateCachedRect, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
 
     let time = 0;
@@ -617,6 +632,7 @@ export default function InteractiveDotGrid() {
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", updateCachedRect);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);

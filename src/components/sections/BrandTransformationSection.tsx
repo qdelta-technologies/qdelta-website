@@ -8,10 +8,51 @@ import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 const VIDEO_PLAYBACK_RATE = 1.35;
 
 const STATS_DATA = [
-  { metric: "10+", label: "Clients Served", detail: "Across multiple industries" },
-  { metric: "2+",  label: "Years Experience", detail: "In design & development" },
-  { metric: "100%", label: "Custom Built", detail: "No templates, ever" },
+  { num: 10, suffix: "+", label: "Clients Served", detail: "Across multiple industries" },
+  { num: 2,  suffix: "+", label: "Years Experience", detail: "In design & development" },
+  { num: 100, suffix: "%", label: "Custom Built", detail: "No templates, ever" },
 ];
+
+function useCountUp(target: number, isInView: boolean, duration = 1200) {
+  const [count, setCount] = useState(0);
+  const startedRef = useRef(false);
+  useEffect(() => {
+    if (!isInView || startedRef.current) return;
+    startedRef.current = true;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [isInView, target, duration]);
+  return count;
+}
+
+function StatItem({ num, suffix, label, detail, borderLeft }: { num: number; suffix: string; label: string; detail: string; borderLeft: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
+  const count = useCountUp(num, isInView);
+  return (
+    <div
+      ref={ref}
+      className={`flex flex-col items-center text-center px-3 py-5 sm:py-6 ${borderLeft ? "border-l border-white/[0.08]" : ""}`}
+    >
+      <p className="font-excon text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-none">
+        {count}{suffix}
+      </p>
+      <p className="mt-1.5 font-epilogue text-[11px] sm:text-xs font-semibold text-[#E5B528] leading-tight">
+        {label}
+      </p>
+      <p className="mt-0.5 font-epilogue text-[10px] text-zinc-600 leading-snug hidden sm:block">
+        {detail}
+      </p>
+    </div>
+  );
+}
 
 const DIFFERENTIATORS = [
   { label: "Strategy first", detail: "We understand the business before touching the design." },
@@ -217,11 +258,11 @@ export default function BrandTransformationSection() {
         >
           {/* Eyebrow with flanking golden lines */}
           <div className="flex items-center gap-3.5 mb-3.5 sm:mb-4 select-none justify-center">
-            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-r from-transparent to-[#E5B528]/60" />
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-[#E5B528] font-semibold">
+            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-r from-transparent to-zinc-500/60" />
+            <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-400 font-semibold">
               ABOUT QDELTA
             </span>
-            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-l from-transparent to-[#E5B528]/60" />
+            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-l from-transparent to-zinc-500/60" />
           </div>
 
           {/* Headline (Single line on desktop/tablets, balanced on mobile) */}
@@ -247,6 +288,15 @@ export default function BrandTransformationSection() {
             transition={{ duration: 0.55, delay: 0.1 }}
             className="rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#E5B528]/30 bg-[#0B0E12]/90 backdrop-blur-md p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
           >
+            {/* Sandstone grain texture */}
+            <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-10" aria-hidden>
+              <filter id="grain-about-left">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+                <feColorMatrix type="saturate" values="0" in="noise"/>
+              </filter>
+              <rect width="100%" height="100%" filter="url(#grain-about-left)"/>
+            </svg>
+
             {/* Crisp Golden Top Accent Hairline */}
             <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-20" />
 
@@ -385,26 +435,29 @@ export default function BrandTransformationSection() {
             transition={{ duration: 0.55, delay: 0.15 }}
             className="relative flex flex-col overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.09] bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.85)] lg:min-h-[420px]"
           >
+            {/* Sandstone grain texture */}
+            <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-10" aria-hidden>
+              <filter id="grain-about-right">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+                <feColorMatrix type="saturate" values="0" in="noise"/>
+              </filter>
+              <rect width="100%" height="100%" filter="url(#grain-about-right)"/>
+            </svg>
+
             <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-[#E5B528]/45 to-transparent" />
             <div className="pointer-events-none absolute bottom-0 right-0 w-56 h-56 rounded-full blur-[70px] opacity-[0.07]" style={{ background: "#E5B528" }} />
 
             {/* Stats row */}
             <div className="grid grid-cols-3 border-b border-white/[0.08]">
               {STATS_DATA.map((stat, idx) => (
-                <div
+                <StatItem
                   key={stat.label}
-                  className={`flex flex-col items-center text-center px-3 py-5 sm:py-6 ${idx > 0 ? "border-l border-white/[0.08]" : ""}`}
-                >
-                  <p className="font-excon text-2xl sm:text-3xl font-extrabold text-[#E5B528] tracking-tight leading-none">
-                    {stat.metric}
-                  </p>
-                  <p className="mt-1.5 font-epilogue text-[11px] sm:text-xs font-semibold text-white leading-tight">
-                    {stat.label}
-                  </p>
-                  <p className="mt-0.5 font-epilogue text-[10px] text-zinc-600 leading-snug hidden sm:block">
-                    {stat.detail}
-                  </p>
-                </div>
+                  num={stat.num}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  detail={stat.detail}
+                  borderLeft={idx > 0}
+                />
               ))}
             </div>
 

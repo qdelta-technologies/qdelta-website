@@ -322,6 +322,46 @@ function ArchiveFolder({
             aria-hidden
           />
 
+          {/* Sandstone grain texture */}
+          <svg
+            className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay"
+            aria-hidden
+          >
+            <filter id={`proj-grain-${project.id ?? project.name}`}>
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+              <feColorMatrix type="saturate" values="0" in="noise"/>
+            </filter>
+            <rect width="100%" height="100%" filter={`url(#proj-grain-${project.id ?? project.name})`}/>
+          </svg>
+
+          {/* CAD fine grid */}
+          <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.09]" aria-hidden>
+            <defs>
+              <pattern id={`cad-grid-${project.id}`} width="28" height="28" patternUnits="userSpaceOnUse">
+                <path d="M 28 0 L 0 0 0 28" fill="none" stroke={project.theme.dotColor} strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill={`url(#cad-grid-${project.id})`}/>
+          </svg>
+
+          {/* CAD corner brackets */}
+          {[
+            { pos: "top-3 left-3", d: "M 16 0 L 0 0 L 0 16" },
+            { pos: "top-3 right-3", d: "M 0 0 L 16 0 L 16 16" },
+            { pos: "bottom-3 left-3", d: "M 16 16 L 0 16 L 0 0" },
+            { pos: "bottom-3 right-3", d: "M 0 16 L 16 16 L 16 0" },
+          ].map(({ pos, d }) => (
+            <svg
+              key={d}
+              width="16" height="16"
+              viewBox="0 0 16 16"
+              className={`pointer-events-none absolute ${pos} opacity-60`}
+              aria-hidden
+            >
+              <path d={d} fill="none" stroke={project.theme.dotColor} strokeWidth="1.5" strokeLinecap="square"/>
+            </svg>
+          ))}
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch relative z-10">
             {/* ==================================================== */}
             {/* LEFT COLUMN: EDITORIAL CONTENT                       */}

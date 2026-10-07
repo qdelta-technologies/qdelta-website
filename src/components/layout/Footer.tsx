@@ -6,6 +6,15 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import YellowDotWaves from "@/components/ui/YellowDotWaves";
 
+function MailIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
+
 function LinkedInIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg
@@ -117,16 +126,14 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Social Icons (Black & Gold Interaction) */}
+            {/* Social Icons — brand-colored */}
             <div className="flex items-center gap-2.5 mt-5 sm:mt-7">
               <a
-                href="https://www.linkedin.com/company/qdelta-technologies"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#E5B528] hover:text-[#06070A] hover:border-[#E5B528] transition-all duration-200 cursor-pointer shadow-sm"
+                href="mailto:hello@qdelta.in"
+                aria-label="Email"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#EA4335]/10 border border-[#EA4335]/25 text-[#EA4335] hover:bg-[#EA4335]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
-                <LinkedInIcon className="w-4 h-4" />
+                <MailIcon className="w-4 h-4" />
               </a>
 
               <a
@@ -134,7 +141,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#E5B528] hover:text-[#06070A] hover:border-[#E5B528] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E1306C]/10 border border-[#E1306C]/25 text-[#E1306C] hover:bg-[#E1306C]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -144,7 +151,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X / Twitter"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#E5B528] hover:text-[#06070A] hover:border-[#E5B528] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.06] border border-white/[0.12] text-white hover:bg-white/[0.12] transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <XTwitterIcon className="w-3.5 h-3.5" />
               </a>
@@ -154,9 +161,19 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.08] text-zinc-300 hover:bg-[#E5B528] hover:text-[#06070A] hover:border-[#E5B528] transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#6e40c9]/10 border border-[#6e40c9]/25 text-[#a78bfa] hover:bg-[#6e40c9]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <GitHubIcon className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/qdelta-technologies"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#0A66C2]/15 border border-[#0A66C2]/30 text-[#0A66C2] hover:bg-[#0A66C2]/25 transition-all duration-200 cursor-pointer shadow-sm"
+              >
+                <LinkedInIcon className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -185,12 +202,12 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* COLUMN 2: Company */}
+            {/* COLUMN 2: Quick Links */}
             <div>
               <div className="flex items-center gap-2 mb-3.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
-                  Company
+                  Quick Links
                 </h4>
               </div>
               <ul className="space-y-2">
@@ -207,8 +224,8 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* COLUMN 3: Connect */}
-            <div className="col-span-2 sm:col-span-1">
+            {/* COLUMN 3: Connect — hidden on mobile */}
+            <div className="hidden sm:block col-span-2 sm:col-span-1">
               <div className="flex items-center gap-2 mb-3.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
@@ -252,13 +269,6 @@ export default function Footer() {
           <p className="text-center sm:text-left">
             © 2026 QDelta Technologies. All rights reserved.
           </p>
-        </div>
-
-        {/* ================= LARGE BRAND ELEMENT: OVERSIZED QDELTA ================= */}
-        <div className="relative w-full pt-4 sm:pt-6 pb-6 sm:pb-10 pointer-events-none select-none flex items-center justify-center">
-          <div className="font-excon font-bold tracking-tight text-[15vw] lg:text-[13vw] leading-[1.05] text-center text-[#E5B528]/[0.05] uppercase">
-            QDELTA
-          </div>
         </div>
 
         {/* ================= BOTTOM BORDER YELLOW DOT WAVE & GRASS ACCENT ================= */}

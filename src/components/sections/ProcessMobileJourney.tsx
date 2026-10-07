@@ -12,7 +12,7 @@ const MOBILE_STEPS = [
   { id: "06", label: "Prototype" },
   { id: "07", label: "Website Development" },
   { id: "08", label: "Testing & Refinement" },
-  { id: "09", label: "Website Launch" },
+  { id: "09", label: "Launch" },
   { id: "10", label: "Ongoing Support" },
 ] as const;
 

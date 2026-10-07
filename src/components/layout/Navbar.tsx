@@ -61,9 +61,7 @@ export default function Navbar() {
         <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
           {/* Glassmorphism body fill with responsive polygon clip-path */}
           <div
-            className={`navbar-frame-glass absolute inset-0 w-full h-full backdrop-blur-lg transition-colors duration-300 ${
-              isPastHero ? "bg-[#06070A]/92" : "bg-[#080A0E]/80"
-            }`}
+            className="navbar-frame-glass absolute inset-0 w-full h-full backdrop-blur-lg bg-[#06070A]/40"
           />
 
           {/* Top architectural reference line */}

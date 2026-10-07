@@ -45,7 +45,13 @@ export default function Hero() {
       if (!isVisible) return;
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        if (!isVisible || !heroBgRef.current) return;
+        if (!isVisible || !heroBgRef.current || !heroSectionRef.current) return;
+        // Only apply parallax when cursor is within the hero section
+        const heroRect = heroSectionRef.current.getBoundingClientRect();
+        if (e.clientY > heroRect.bottom || e.clientY < heroRect.top) {
+          applyParallax(0, 0);
+          return;
+        }
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         const mx = Math.max(-1, Math.min(1, (e.clientX - centerX) / centerX));

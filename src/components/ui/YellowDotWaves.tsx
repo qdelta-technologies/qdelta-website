@@ -127,12 +127,12 @@ export default function YellowDotWaves({ className = "" }: YellowDotWavesProps) 
 
           ctx.beginPath();
           ctx.arc(cx, cy, dotRadius + 0.25, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(229, 181, 40, ${(dotAlpha * 0.25).toFixed(2)})`;
+          ctx.fillStyle = `rgba(229,181,40,${(dotAlpha * 0.25).toFixed(2)})`;
           ctx.fill();
 
           ctx.beginPath();
           ctx.arc(cx, cy, dotRadius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 214, 96, ${dotAlpha.toFixed(2)})`;
+          ctx.fillStyle = `rgba(229,181,40,${dotAlpha.toFixed(2)})`;
           ctx.fill();
         }
       }

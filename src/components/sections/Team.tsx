@@ -57,7 +57,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     focus: ["AI Strategy", "Creative Direction", "Business & Product Thinking"],
     linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
     instagramUrl: "#",
-    githubUrl: "#",
     portfolioUrl: "#",
     accentColor: "#E5B528",
     glowColor: "rgba(229, 181, 40, 0.14)",
@@ -71,7 +70,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     bio: "I build and manage the technical side of our projects, turning ideas and designs into fast, reliable and scalable websites and web applications.",
     focus: ["Full-Stack Development", "Web Applications", "Performance & Architecture"],
     linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
-    githubUrl: "#",
     instagramUrl: "#",
     portfolioUrl: "#",
     accentColor: "#E5B528",
@@ -87,7 +85,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     focus: ["GenAI Development", "UX Design", "AI Workflows"],
     linkedinUrl: "https://www.linkedin.com/in/md-fazeel-167816281/",
     instagramUrl: "#",
-    githubUrl: "#",
     portfolioUrl: "#",
     accentColor: "#E5B528",
     glowColor: "rgba(229, 181, 40, 0.14)",
@@ -100,6 +97,15 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
       className="relative flex overflow-hidden rounded-2xl border border-white/[0.1] backdrop-blur-sm"
       style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)" }}
     >
+      {/* Sandstone grain texture */}
+      <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-0" aria-hidden>
+        <filter id={`grain-tm-${member.name.replace(/\s/g,"")}`}>
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+          <feColorMatrix type="saturate" values="0" in="noise"/>
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#grain-tm-${member.name.replace(/\s/g,"")})`}/>
+      </svg>
+
       {/* Gold top hairline */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent z-10" aria-hidden />
 
@@ -265,6 +271,15 @@ export default function Team() {
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
                   <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#E5B528]/35 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                    {/* Sandstone grain texture */}
+                    <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-10" aria-hidden>
+                      <filter id={`grain-tf-${member.name.replace(/\s/g,"")}`}>
+                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+                        <feColorMatrix type="saturate" values="0" in="noise"/>
+                      </filter>
+                      <rect width="100%" height="100%" filter={`url(#grain-tf-${member.name.replace(/\s/g,"")})`}/>
+                    </svg>
+
                     {/* Crisp Golden Top Accent Hairline */}
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent z-20" />
 
@@ -324,6 +339,15 @@ export default function Team() {
                   {/* CARD BACK FACE (DARK PANEL + GOLD OUTLINE)              */}
                   {/* =================================================== */}
                   <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.1] bg-[#0B0E12] shadow-[0_20px_50px_rgba(0,0,0,0.5)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300">
+                    {/* Sandstone grain texture */}
+                    <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-10" aria-hidden>
+                      <filter id={`grain-tb-${member.name.replace(/\s/g,"")}`}>
+                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+                        <feColorMatrix type="saturate" values="0" in="noise"/>
+                      </filter>
+                      <rect width="100%" height="100%" filter={`url(#grain-tb-${member.name.replace(/\s/g,"")})`}/>
+                    </svg>
+
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent z-20" />
 
                     {/* Top Back Header */}

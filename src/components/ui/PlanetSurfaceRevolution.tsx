@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 
-// 36 meridians (10° step) — half the DOM mutations, visually indistinguishable at globe scale
-const MERIDIAN_COUNT = 36;
+// 72 meridians (5° step) — matches horizontal latitude spacing for square grid cells
+const MERIDIAN_COUNT = 72;
 const MERIDIAN_STEP = 360 / MERIDIAN_COUNT;
 
 export default function PlanetSurfaceRevolution() {

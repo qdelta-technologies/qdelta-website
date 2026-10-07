@@ -90,55 +90,53 @@ function Stars() {
 function TestimonialCard({ t }: { t: TestimonialItem }) {
   return (
     <article
-      className="group relative flex w-[290px] sm:w-[320px] shrink-0 flex-col overflow-hidden rounded-2xl border border-white/[0.07]
+      className="group relative flex w-[300px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-white/[0.07]
         bg-[#0B0E13]
-        p-5 sm:p-6
+        p-4 sm:p-5
         shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]
         transition-all duration-300
         hover:border-[#E5B528]/25
         hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_20px_-8px_rgba(229,181,40,0.15)]"
     >
+      {/* Sandstone grain texture */}
+      <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay" aria-hidden>
+        <filter id={`grain-t-${t.name.replace(/\s/g,"")}`}>
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+          <feColorMatrix type="saturate" values="0" in="noise"/>
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#grain-t-${t.name.replace(/\s/g,"")})`}/>
+      </svg>
+
       {/* Top gold hairline */}
-      <div
-        className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/35 to-transparent"
-        aria-hidden
-      />
+      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/35 to-transparent" aria-hidden />
 
       {/* Stars */}
-      <div className="mb-4">
+      <div className="mb-2.5">
         <Stars />
       </div>
 
       {/* Quote */}
-      <div className="relative flex-1">
-        <span
-          className="pointer-events-none absolute -top-3 -left-0.5 select-none font-serif text-[64px] leading-none text-[#E5B528] opacity-[0.10]"
-          aria-hidden
-        >
-          &ldquo;
-        </span>
-        <p className="relative z-10 font-epilogue text-[13px] sm:text-[13.5px] leading-relaxed text-white/75 font-normal">
-          {t.quote}
-        </p>
-      </div>
+      <p className="font-epilogue text-[12px] sm:text-[12.5px] leading-relaxed text-white/70 font-normal mb-3">
+        {t.quote}
+      </p>
 
-      {/* Author */}
-      <div className="mt-5 flex items-center gap-3 border-t border-white/[0.07] pt-4">
+      {/* Author — inline row */}
+      <div className="flex items-center gap-2.5 pt-3 border-t border-white/[0.07]">
         <div
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E5B528]/25 bg-[#E5B528]/[0.08] font-epilogue text-[10px] font-bold text-[#E5B528]"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#E5B528]/25 bg-[#E5B528]/[0.08] font-epilogue text-[9px] font-bold text-[#E5B528]"
           aria-hidden
         >
           {getInitials(t.name)}
         </div>
-        <div>
-          <p className="font-excon text-sm font-bold text-white leading-tight">{t.name}</p>
-          <p className="font-epilogue text-[11px] text-zinc-500 mt-0.5">{t.role}</p>
+        <div className="min-w-0">
+          <p className="font-excon text-[12px] font-bold text-white leading-tight truncate">{t.name}</p>
+          <p className="font-epilogue text-[10px] text-zinc-500 truncate">{t.role}</p>
         </div>
       </div>
 
       {/* Hover glow */}
       <div
-        className="pointer-events-none absolute bottom-0 right-0 h-28 w-28 rounded-full blur-[40px] opacity-0 transition-opacity duration-500 group-hover:opacity-[0.07]"
+        className="pointer-events-none absolute bottom-0 right-0 h-20 w-20 rounded-full blur-[30px] opacity-0 transition-opacity duration-500 group-hover:opacity-[0.07]"
         style={{ background: "#E5B528" }}
         aria-hidden
       />

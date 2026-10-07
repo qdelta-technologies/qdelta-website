@@ -17,63 +17,57 @@ interface ServiceItem {
 const SERVICES: ServiceItem[] = [
   {
     number: "01",
-    titleLine1: "Landing Pages &",
-    titleLine2: "Digital Sales Experiences",
+    titleLine1: "High-Converting",
+    titleLine2: "Landing Pages",
     tagline: "Turn attention into action.",
     description:
-      "Conversion-focused digital experiences built to present your offer clearly and guide visitors towards enquiries, bookings or purchases.",
-    tags: [
-      "Landing Pages",
-      "Sales Pages",
-      "Lead Generation",
-      "Checkout Integrations",
-      "Digital Products",
-    ],
+      "Focused landing pages designed to communicate your offer clearly and drive enquiries, bookings or sales.",
+    tags: ["Landing Pages", "Sales Pages", "Conversion UX", "Checkout Integration"],
   },
   {
     number: "02",
-    titleLine1: "Premium Websites &",
-    titleLine2: "Brand Experiences",
-    tagline: "Make your digital presence feel like your brand.",
+    titleLine1: "Premium Interactive",
+    titleLine2: "Websites",
+    tagline: "Make your brand impossible to ignore.",
     description:
-      "Custom websites combining premium UI/UX, storytelling and thoughtful interactions to communicate your business and create a stronger online presence.",
-    tags: [
-      "Custom UI/UX",
-      "Multi-page Websites",
-      "Brand Storytelling",
-      "Responsive Development",
-      "Premium Interactions",
-    ],
+      "Premium websites combining strong visual design, storytelling, motion and interaction to create a memorable digital presence.",
+    tags: ["Custom UI/UX", "Brand Storytelling", "Motion Design", "Interactive Experiences"],
   },
   {
     number: "03",
-    titleLine1: "Motion, Interactive &",
-    titleLine2: "3D Experiences",
-    tagline: "Make the experience worth remembering.",
+    titleLine1: "E-commerce &",
+    titleLine2: "Online Stores",
+    tagline: "Turn products into experiences.",
     description:
-      "Purposeful animation, scroll interactions and selected 3D experiences that add depth and personality while keeping the website clear and usable.",
-    tags: [
-      "Scroll Animation",
-      "Micro-interactions",
-      "Motion Design",
-      "Interactive Experiences",
-      "3D",
-    ],
+      "Premium online stores built to present products beautifully and create a smooth journey from discovery to purchase.",
+    tags: ["Premium Storefronts", "Product Pages", "Shopify", "Checkout"],
   },
   {
     number: "04",
-    titleLine1: "Premium",
-    titleLine2: "E-commerce Websites",
-    tagline: "Turn products into experiences.",
+    titleLine1: "Lead Capture",
+    titleLine2: "Systems",
+    tagline: "Turn visitors into opportunities.",
     description:
-      "Premium online stores combining brand storytelling, product presentation and reliable commerce functionality to create a better journey from discovery to purchase.",
-    tags: [
-      "Premium Storefronts",
-      "Product Experiences",
-      "Shopify",
-      "Collections",
-      "Checkout",
-    ],
+      "Structured lead capture experiences designed to collect enquiries and connect prospects with your business.",
+    tags: ["Lead Forms", "Lead Magnets", "CRM Integration", "Booking Flows"],
+  },
+  {
+    number: "05",
+    titleLine1: "Full Stack Web &",
+    titleLine2: "App Development",
+    tagline: "From idea to working product.",
+    description:
+      "Custom web applications and digital products built around your business requirements and user needs.",
+    tags: ["Web Applications", "MVP Development", "Dashboards", "Custom Systems"],
+  },
+  {
+    number: "06",
+    titleLine1: "AI Automation &",
+    titleLine2: "Chatbots",
+    tagline: "Make everyday work smarter.",
+    description:
+      "Practical AI-powered tools and automations designed to reduce repetitive work and improve customer interactions.",
+    tags: ["AI Chatbots", "Workflow Automation", "AI Integrations", "Smart Assistants"],
   },
 ];
 
@@ -100,19 +94,21 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
       <motion.div
         style={{ scale, transformOrigin: "top center", willChange: "transform" }}
         className="group relative w-full rounded-2xl sm:rounded-[22px] overflow-hidden flex flex-col justify-between min-h-[220px] sm:min-h-[300px] md:min-h-[320px] p-5 sm:p-9 md:p-10
-          bg-[#0B0E13]
-          border border-white/[0.07]
-          shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_0_1px_rgba(229,181,40,0.07),inset_0_1px_0_rgba(255,255,255,0.05)]"
+          bg-[#0D0F13]
+          border border-white/[0.08]
+          shadow-[0_8px_28px_-4px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(0,0,0,0.35)]"
       >
-        {/* Ambient gold glow — top-right corner */}
-        <div
-          className="pointer-events-none absolute top-0 right-0 w-48 h-48 rounded-full blur-[50px] opacity-[0.14]"
-          style={{ background: "radial-gradient(circle, #E5B528 0%, transparent 70%)" }}
+        {/* Sandstone grain texture — inline SVG turbulence */}
+        <svg
+          className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay"
           aria-hidden
-        />
-
-        {/* Top gold hairline */}
-        <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent" aria-hidden />
+        >
+          <filter id={`grain-${index}`}>
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+            <feColorMatrix type="saturate" values="0" in="noise"/>
+          </filter>
+          <rect width="100%" height="100%" filter={`url(#grain-${index})`}/>
+        </svg>
 
         {/* Card headline */}
         <div className="relative z-10 pb-3 sm:pb-5">
