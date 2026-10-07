@@ -86,9 +86,11 @@ export default function SectionAtmosphere({
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
-    // Initialize slowly moving golden particles
-    const stars = Array.from({ length: particleCount }, () => ({
+    // Initialize slowly moving golden particles — fewer on mobile
+    const effectiveCount = isMobile ? Math.ceil(particleCount * 0.3) : particleCount;
+    const stars = Array.from({ length: effectiveCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       size: Math.random() * 1.5 + 0.4,
@@ -159,7 +161,7 @@ export default function SectionAtmosphere({
       });
     };
 
-    if (!prefersReducedMotion) {
+    if (!prefersReducedMotion && !isMobile) {
       window.addEventListener("mousemove", handleMouseMove, { passive: true });
     }
 
@@ -173,7 +175,7 @@ export default function SectionAtmosphere({
       } else {
         window.removeEventListener("resize", syncCanvasSize);
       }
-      if (!prefersReducedMotion) {
+      if (!prefersReducedMotion && !isMobile) {
         window.removeEventListener("mousemove", handleMouseMove);
       }
       observer.disconnect();

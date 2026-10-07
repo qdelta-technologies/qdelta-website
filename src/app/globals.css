@@ -71,9 +71,6 @@ canvas {
   will-change: transform;
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
 
 /* ================= CONTINUOUS NON-STOP MARQUEE ================= */
 @keyframes marqueeContinuous {
@@ -111,6 +108,25 @@ canvas {
   .animate-marquee-continuous,
   .animate-marquee-reverse {
     animation: none;
+  }
+}
+
+/* ===== MOBILE PERFORMANCE OPTIMIZATIONS ===== */
+@media (hover: none) and (pointer: coarse) {
+  /* Hide GPU-intensive feTurbulence grain filters on touch devices */
+  svg:has(feTurbulence) {
+    display: none !important;
+  }
+
+  /* Reduce backdrop blur cost on mobile */
+  .navbar-frame-glass {
+    backdrop-filter: blur(8px) !important;
+  }
+
+  /* Promote sections to their own compositing layers for smoother scroll */
+  section {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 }
 

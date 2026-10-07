@@ -1,14 +1,11 @@
 const TRUST_ITEMS = [
-  "Landing Pages",
-  "Web Design",
-  "Development",
-  "Brand Systems",
-  "UX Strategy",
-  "Design Systems",
-  "Webflow & Next.js",
-  "Interactive 3D",
-  "Next.js",
-  "Conversion",
+  "High Converting Landing Pages",
+  "Web Design & Development",
+  "Branding & Strategy",
+  "Premium Animated Websites",
+  "UI/UX",
+  "Lead Capture Systems",
+  "AI Automation & Chatbots",
 ];
 
 // Duplicate items twice to guarantee smooth, seamless loop on all screen widths

@@ -21,6 +21,9 @@ export default function PlanetSurfaceRevolution() {
 
     let animId: number;
     let isVisible = true;
+    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    // On mobile animate every 3rd meridian (24 instead of 72) to cut GPU load
+    const MERIDIAN_STRIDE = isMobile ? 3 : 1;
     // Fluid, majestic planetary rotation: ~54 seconds per full 360° revolution
     const ROTATION_SPEED = 0.07; // degrees per frame at 60fps (~86s per revolution)
 
@@ -53,7 +56,7 @@ export default function PlanetSurfaceRevolution() {
         const shadowPaths = shadowGroupRef.current.children;
         const highlightPaths = highlightGroupRef.current.children;
 
-        for (let i = 0; i < MERIDIAN_COUNT; i++) {
+        for (let i = 0; i < MERIDIAN_COUNT; i += MERIDIAN_STRIDE) {
           const coreEl = corePaths[i] as SVGPathElement | undefined;
           const shadowEl = shadowPaths[i] as SVGPathElement | undefined;
           const highlightEl = highlightPaths[i] as SVGPathElement | undefined;

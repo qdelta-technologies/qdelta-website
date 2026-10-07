@@ -66,6 +66,10 @@ function HeroTypewriterHeadline({
   onTypingDone,
 }: HeroTypewriterHeadlineProps) {
   const [displayedCount, setDisplayedCount] = useState(0);
+  const isMobile = typeof window !== "undefined"
+    ? window.matchMedia("(hover: none) and (pointer: coarse)").matches
+    : false;
+  const skipFloat = shouldReduceMotion || isMobile;
   const [isTypingDone, setIsTypingDone] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const completedRef = useRef(false);
@@ -155,18 +159,15 @@ function HeroTypewriterHeadline({
       <div aria-hidden="true" className="flex flex-col items-center gap-1 sm:gap-2">
         <div className="relative inline-block mx-auto px-1 sm:px-2">
           <motion.div
-            initial={{ opacity: 0, y: -6, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: -6 }}
             animate={
               isTypingDone
-                ? shouldReduceMotion
-                  ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                  : { opacity: 1, y: [0, -3, 0], filter: "blur(0px)" }
-                : { opacity: 0, y: -6, filter: "blur(4px)" }
+                ? { opacity: 1, y: skipFloat ? 0 : [0, -3, 0] }
+                : { opacity: 0, y: -6 }
             }
             transition={{
               opacity: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.4 },
-              filter: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.4 },
-              y: isTypingDone && !shouldReduceMotion
+              y: isTypingDone && !skipFloat
                 ? { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }
                 : { duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.4 },
             }}
@@ -196,18 +197,15 @@ function HeroTypewriterHeadline({
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: -6, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: -6 }}
             animate={
               isTypingDone
-                ? shouldReduceMotion
-                  ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                  : { opacity: 1, y: [0, -3, 0], filter: "blur(0px)" }
-                : { opacity: 0, y: -6, filter: "blur(4px)" }
+                ? { opacity: 1, y: skipFloat ? 0 : [0, -3, 0] }
+                : { opacity: 0, y: -6 }
             }
             transition={{
               opacity: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.55 },
-              filter: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.55 },
-              y: isTypingDone && !shouldReduceMotion
+              y: isTypingDone && !skipFloat
                 ? { duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1.15 }
                 : { duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.55 },
             }}
@@ -257,18 +255,15 @@ function HeroTypewriterHeadline({
           </StackedLine>
 
           <motion.div
-            initial={{ opacity: 0, y: 6, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: 6 }}
             animate={
               isTypingDone
-                ? shouldReduceMotion
-                  ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                  : { opacity: 1, y: [0, 3, 0], filter: "blur(0px)" }
-                : { opacity: 0, y: 6, filter: "blur(4px)" }
+                ? { opacity: 1, y: skipFloat ? 0 : [0, 3, 0] }
+                : { opacity: 0, y: 6 }
             }
             transition={{
               opacity: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.55 },
-              filter: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.55 },
-              y: isTypingDone && !shouldReduceMotion
+              y: isTypingDone && !skipFloat
                 ? { duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1.15 }
                 : { duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.55 },
             }}
