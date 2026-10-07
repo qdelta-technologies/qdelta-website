@@ -312,8 +312,8 @@ canvas {
 
 @media (max-width: 679px) {
   .navbar-frame-glass {
-    --nav-h1: 52px;
-    --nav-h2: 68px;
+    --nav-h1: 43px;
+    --nav-h2: 56px;
     --nav-notch-flat: 80px;
     --nav-notch-chamfer: 22px;
     --nav-notch-total: 102px;

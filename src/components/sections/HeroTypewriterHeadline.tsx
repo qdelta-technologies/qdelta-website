@@ -182,7 +182,7 @@ function HeroTypewriterHeadline({
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="shrink-0 text-[#E5B528] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
               style={{ transform: "rotate(170deg)" }}
             >
               <path
@@ -219,7 +219,7 @@ function HeroTypewriterHeadline({
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="shrink-0 text-[#E5B528] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
               style={{ transform: "rotate(170deg) scaleX(-1)" }}
             >
               <path
@@ -232,7 +232,7 @@ function HeroTypewriterHeadline({
             </svg>
             <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] shrink-0 animate-pulse" />
-              <span className="whitespace-nowrap font-medium text-white">Development & Conversion</span>
+              <span className="whitespace-nowrap font-medium text-white">Development & Growth</span>
             </div>
           </motion.div>
 
@@ -276,7 +276,7 @@ function HeroTypewriterHeadline({
           >
             <div className="relative flex items-center gap-2 rounded-full border-[1.5px] border-white/35 bg-black/60 px-3.5 py-1 sm:py-1.5 text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_4px_18px_rgba(0,0,0,0.65)] backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.85)] shrink-0 animate-pulse" />
-              <span className="whitespace-nowrap font-medium text-white">Development & Conversion</span>
+              <span className="whitespace-nowrap font-medium text-white">Development & Growth</span>
             </div>
             <svg
               width="27"
@@ -284,7 +284,7 @@ function HeroTypewriterHeadline({
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="shrink-0 text-[#E5B528] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
               style={{ transform: "rotate(-10deg)" }}
             >
               <path

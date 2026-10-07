@@ -53,7 +53,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
       <div
-        className="relative pointer-events-auto w-full max-w-full select-none h-[68px] min-[680px]:h-[78px]"
+        className="relative pointer-events-auto w-full max-w-full select-none h-[56px] min-[680px]:h-[78px]"
       >
         {/* ======================================================== */}
         {/* 1. ARCHITECTURAL GLASS FRAME & BORDERS (PURE CSS ZERO-SHIFT) */}
@@ -70,10 +70,10 @@ export default function Navbar() {
           <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-[#E5B528]/30 via-white/25 to-[#E5B528]/30" />
 
           {/* Left Wing Bottom Border */}
-          <div className="absolute left-0 top-[52px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px] bg-white/[0.12]" />
+          <div className="absolute left-0 top-[43px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px]" style={{ background: "linear-gradient(to right, rgba(229,181,40,0.15), rgba(229,181,40,0.7))" }} />
 
           {/* Right Wing Bottom Border */}
-          <div className="absolute right-0 top-[52px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px] bg-white/[0.12]" />
+          <div className="absolute right-0 top-[43px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px]" style={{ background: "linear-gradient(to left, rgba(229,181,40,0.15), rgba(229,181,40,0.7))" }} />
 
           {/* Center Keystone Notch (Desktop >= 680px: width 260px, height 78px) */}
           <svg
@@ -112,11 +112,11 @@ export default function Navbar() {
             />
           </svg>
 
-          {/* Center Keystone Notch (Mobile < 680px: width 204px, height 68px) */}
+          {/* Center Keystone Notch (Mobile < 680px: width 204px, height 56px) */}
           <svg
             width="204"
-            height="68"
-            viewBox="0 0 204 68"
+            height="56"
+            viewBox="0 0 204 56"
             fill="none"
             className="block min-[680px]:hidden absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none overflow-visible"
           >
@@ -131,7 +131,7 @@ export default function Navbar() {
             </defs>
             {/* Structural bottom border */}
             <path
-              d="M 0 52 L 22 68 L 182 68 L 204 52"
+              d="M 0 43 L 22 56 L 182 56 L 204 43"
               stroke="rgba(255, 255, 255, 0.15)"
               strokeWidth="1"
               vectorEffect="non-scaling-stroke"
@@ -139,7 +139,7 @@ export default function Navbar() {
             />
             {/* Golden Keystone Accent */}
             <path
-              d="M 0 52 L 22 68 L 182 68 L 204 52"
+              d="M 0 43 L 22 56 L 182 56 L 204 43"
               stroke="url(#navbar-gold-notch-mobile)"
               strokeWidth="1.6"
               strokeLinecap="round"
@@ -156,7 +156,7 @@ export default function Navbar() {
         <div className="relative z-10 w-full h-full">
           {/* ----------------- ZONE 1: LEFT (NAV LINKS) ----------------- */}
           <div
-            className="absolute left-0 top-0 flex items-center pl-6 sm:pl-10 md:pl-12 lg:pl-16 pr-4 h-[52px] min-[680px]:h-[60px]"
+            className="absolute left-0 top-0 flex items-center pl-6 sm:pl-10 md:pl-12 lg:pl-16 pr-4 h-[43px] min-[680px]:h-[60px]"
           >
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-5 sm:gap-6 lg:gap-7" aria-label="Main Navigation">
@@ -188,7 +188,7 @@ export default function Navbar() {
 
           {/* ----------------- ZONE 2: CENTER (QDELTA LOGO BLOCK) ----------------- */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 top-0 flex items-center justify-center h-[68px] min-[680px]:h-[78px]"
+            className="absolute left-1/2 -translate-x-1/2 top-0 flex items-center justify-center h-[56px] min-[680px]:h-[78px]"
           >
             <Link
               href="/"
@@ -208,7 +208,7 @@ export default function Navbar() {
 
           {/* ----------------- ZONE 3: RIGHT (MAIN CTA BUTTON & MOBILE MENU) ----------------- */}
           <div
-            className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pr-12 lg:pr-16 pl-4 h-[52px] min-[680px]:h-[60px]"
+            className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pr-12 lg:pr-16 pl-4 h-[43px] min-[680px]:h-[60px]"
           >
             {/* Desktop-only CTA (xl+); hidden on mobile & tablet */}
             <div className="hidden xl:block shrink-0">
@@ -230,14 +230,18 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="flex items-center justify-center w-8.5 h-8.5 rounded-[6px] bg-white/[0.04] border border-white/12 text-zinc-300 hover:text-white hover:border-[#E5B528]/40 transition-colors focus:outline-none cursor-pointer"
+                className="flex items-center justify-center text-[#E5B528] hover:text-[#F0C034] transition-colors focus:outline-none cursor-pointer"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={mobileMenuOpen}
               >
                 {mobileMenuOpen ? (
-                  <X className="w-4 h-4 stroke-[2]" />
+                  <X className="w-5 h-5 stroke-[1.5]" />
                 ) : (
-                  <Menu className="w-4 h-4 stroke-[2]" />
+                  <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden>
+                    <line x1="0" y1="1" x2="20" y2="1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <line x1="8" y1="7" x2="20" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <line x1="0" y1="13" x2="20" y2="13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
                 )}
               </button>
             </div>
