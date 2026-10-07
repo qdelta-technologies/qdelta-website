@@ -44,10 +44,31 @@ export default function InteractiveDotGrid() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    // Skip heavy physics simulation on touch/mobile devices (no mouse interaction)
-    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // On touch devices: draw a simple static dot grid once — no physics loop needed
+    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    if (isMobile) {
+      const cssW = canvas.parentElement?.clientWidth || window.innerWidth;
+      const cssH = canvas.parentElement?.clientHeight || 700;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = cssW * dpr;
+      canvas.height = cssH * dpr;
+      canvas.style.width = `${cssW}px`;
+      canvas.style.height = `${cssH}px`;
+      ctx.scale(dpr, dpr);
+      const SPACING = 30;
+      for (let y = 0; y < cssH + SPACING; y += SPACING) {
+        for (let x = 0; x < cssW + SPACING; x += SPACING) {
+          ctx.beginPath();
+          ctx.arc(x, y, 0.85, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(229,181,40,0.22)";
+          ctx.fill();
+        }
+      }
+      return;
+    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
