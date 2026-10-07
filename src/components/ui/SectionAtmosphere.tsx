@@ -37,6 +37,8 @@ export default function SectionAtmosphere({
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
+    // On mobile: skip floating particle canvas entirely — static grid is enough
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
