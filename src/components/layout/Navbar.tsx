@@ -8,16 +8,17 @@ import { motion, AnimatePresence } from "motion/react";
 import ChamferButton from "@/components/ui/ChamferButton";
 
 const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Projects", href: "#projects" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "#services", sectionId: "services" },
+  { label: "Process", href: "#process", sectionId: "process" },
+  { label: "Projects", href: "#projects", sectionId: "projects" },
+  { label: "Team", href: "#team", sectionId: "team" },
+  { label: "Contact", href: "#contact", sectionId: "contact" },
 ];
 
 export default function Navbar() {
   const [isPastHero, setIsPastHero] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Monitor scroll state past hero (rAF-coalesced — avoids setState every scroll tick)
@@ -48,6 +49,27 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
+  }, []);
+
+  // Active section tracking via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((l) => l.sectionId);
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
   }, []);
 
   return (
@@ -160,23 +182,18 @@ export default function Navbar() {
             <nav className="hidden lg:flex items-center gap-5 sm:gap-6 lg:gap-7" aria-label="Main Navigation">
               {NAV_LINKS.map((link, idx) => {
                 const isHovered = hoveredIndex === idx;
+                const isActive = activeSection === link.sectionId;
                 return (
                   <Link
                     key={link.label}
                     href={link.href}
                     onMouseEnter={() => setHoveredIndex(idx)}
                     onMouseLeave={() => setHoveredIndex(null)}
-                    className="relative py-1.5 text-[13px] lg:text-[13.5px] font-epilogue font-medium text-zinc-300 hover:text-white transition-colors duration-200 tracking-wide"
+                    className={`relative py-1.5 text-[13px] lg:text-[13.5px] font-epilogue font-medium transition-colors duration-200 tracking-wide ${
+                      isActive ? "text-[#E5B528]" : "text-zinc-300 hover:text-white"
+                    }`}
                   >
                     <span>{link.label}</span>
-                    {/* Subtle warm gold indicator dot on hover */}
-                    {isHovered && (
-                      <motion.span
-                        layoutId="nav-dot-indicator"
-                        className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#E5B528] shadow-[0_0_6px_rgba(229, 181, 40,0.9)]"
-                        transition={{ type: "spring", stiffness: 450, damping: 30 }}
-                      />
-                    )}
                   </Link>
                 );
               })}
