@@ -173,10 +173,16 @@ export default function Services() {
       <SectionAtmosphere variant="left" gridOpacity={0.2} />
 
       {/* ================= SECTION INTRO ================= */}
-      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55 }}
+        className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10"
+      >
         {/* Editorial Section Identifier */}
         <div className="mb-4 select-none">
-          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-500">
+          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
             Our Services
           </span>
         </div>
@@ -195,7 +201,7 @@ export default function Services() {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ================= STACKED CARDS SCROLL TRACK ================= */}
       <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 relative space-y-10 sm:space-y-14 md:space-y-16 pb-10 sm:pb-14">

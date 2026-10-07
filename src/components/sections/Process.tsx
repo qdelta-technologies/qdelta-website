@@ -166,9 +166,15 @@ const STEP_REVEAL_DELAY = 0.06;
           {/* ======================================================= */}
           {/* SECTION HEADER                                          */}
           {/* ======================================================= */}
-          <div className="flex flex-col items-center text-center mb-6 lg:mb-8 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center text-center mb-6 lg:mb-8 max-w-3xl"
+          >
             <div className="mb-3 flex flex-col items-center gap-1 select-none">
-              <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-500">
+              <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
                 How We Work
               </span>
               <span className="hidden lg:inline font-epilogue text-xs tracking-[0.15em] uppercase font-semibold text-zinc-500 transition-colors duration-300">
@@ -183,7 +189,7 @@ const STEP_REVEAL_DELAY = 0.06;
             <p className="mt-2 text-xs sm:text-sm md:text-base font-epilogue text-zinc-400 font-normal leading-relaxed text-balance max-w-2xl">
               A structured workflow with clear milestones that keeps everything on track and turns ideas into high-performing digital experiences.
             </p>
-          </div>
+          </motion.div>
 
           {/* ======================================================= */}
           {/* DESKTOP VIEW: HORIZONTAL ALTERNATING PROCESS RAIL       */}

@@ -192,14 +192,14 @@ export default function SectionAtmosphere({
         className="pointer-events-none absolute inset-x-0 top-0 h-64 select-none transition-transform duration-700 ease-out will-change-transform"
         style={{
           background:
-            "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(229, 181, 40, 0.08) 0%, rgba(229, 181, 40, 0.02) 55%, transparent 85%)",
+            "radial-gradient(ellipse 75% 100% at 50% 0%, rgba(229, 181, 40, 0.18) 0%, rgba(229, 181, 40, 0.05) 55%, transparent 85%)",
           transform: "translate3d(var(--atmos-x-sm, 0px), 0, 0)",
         }}
       />
 
       {/* 2. Top-Center Volumetric Golden Halo (matching WhyQDelta reference) */}
       <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-[30rem] w-[52rem] rounded-full bg-radial from-[#E5B528]/[0.065] via-[#E5B528]/[0.015] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
+        className="pointer-events-none absolute -top-32 left-1/2 h-[30rem] w-[52rem] rounded-full bg-radial from-[#E5B528]/[0.14] via-[#E5B528]/[0.035] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
         style={{
           transform: "translate3d(calc(-50% + var(--atmos-x, 0px)), var(--atmos-y, 0px), 0)",
         }}
@@ -208,7 +208,7 @@ export default function SectionAtmosphere({
       {/* ================= 1. AMBIENT WARM GOLDEN HALOS WITH MICRO-PARALLAX ================= */}
       {variant === "center" && (
         <div
-          className="absolute top-1/2 right-[-10%] h-[26rem] w-[38rem] rounded-full bg-radial from-[#E5B528]/[0.035] via-transparent to-transparent blur-[120px] transition-transform duration-700 ease-out will-change-transform"
+          className="absolute top-1/2 right-[-10%] h-[26rem] w-[38rem] rounded-full bg-radial from-[#E5B528]/[0.08] via-transparent to-transparent blur-[120px] transition-transform duration-700 ease-out will-change-transform"
           style={{
             transform: "translate3d(var(--atmos-x-sm, 0px), var(--atmos-y-sm, 0px), 0)",
           }}
@@ -218,7 +218,7 @@ export default function SectionAtmosphere({
       {variant === "left" && (
         <>
           <div
-            className="absolute top-1/4 left-[-15%] h-[34rem] w-[48rem] rounded-full bg-radial from-[#E5B528]/[0.06] via-[#E5B528]/[0.012] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
+            className="absolute top-1/4 left-[-15%] h-[34rem] w-[48rem] rounded-full bg-radial from-[#E5B528]/[0.13] via-[#E5B528]/[0.03] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
             style={{
               transform: "translate3d(var(--atmos-x, 0px), var(--atmos-y, 0px), 0)",
             }}
@@ -235,7 +235,7 @@ export default function SectionAtmosphere({
       {variant === "right" && (
         <>
           <div
-            className="absolute top-1/3 right-[-15%] h-[34rem] w-[50rem] rounded-full bg-radial from-[#E5B528]/[0.06] via-[#E5B528]/[0.012] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
+            className="absolute top-1/3 right-[-15%] h-[34rem] w-[50rem] rounded-full bg-radial from-[#E5B528]/[0.13] via-[#E5B528]/[0.03] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
             style={{
               transform: "translate3d(var(--atmos-x, 0px), var(--atmos-y, 0px), 0)",
             }}
@@ -252,7 +252,7 @@ export default function SectionAtmosphere({
       {variant === "dual" && (
         <>
           <div
-            className="absolute -top-24 left-1/4 h-[30rem] w-[46rem] rounded-full bg-radial from-[#E5B528]/[0.055] via-[#E5B528]/[0.012] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
+            className="absolute -top-24 left-1/4 h-[30rem] w-[46rem] rounded-full bg-radial from-[#E5B528]/[0.12] via-[#E5B528]/[0.03] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
             style={{
               transform: "translate3d(var(--atmos-x, 0px), var(--atmos-y-sm, 0px), 0)",
             }}
@@ -268,7 +268,7 @@ export default function SectionAtmosphere({
 
       {variant === "top" && (
         <div
-          className="absolute -top-28 left-1/2 h-[34rem] w-[60rem] rounded-full bg-radial from-[#E5B528]/[0.065] via-[#E5B528]/[0.015] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
+          className="absolute -top-28 left-1/2 h-[34rem] w-[60rem] rounded-full bg-radial from-[#E5B528]/[0.14] via-[#E5B528]/[0.035] to-transparent blur-[140px] transition-transform duration-700 ease-out will-change-transform"
           style={{
             transform: "translate3d(calc(-50% + var(--atmos-x-lg, 0px)), var(--atmos-y, 0px), 0)",
           }}

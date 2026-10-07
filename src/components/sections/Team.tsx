@@ -214,7 +214,7 @@ export default function Team() {
         >
           {/* Editorial Section Identifier */}
           <div className="mb-4 select-none text-center">
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-500">
+            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
               Our Team
             </span>
           </div>

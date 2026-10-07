@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface TestimonialItem {
@@ -187,10 +188,16 @@ export default function Testimonials() {
       <SectionAtmosphere variant="dual" particleCount={28} gridOpacity={0.15} />
 
       {/* ─── Section Header ─── */}
-      <div className="relative z-10 mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55 }}
+        className="relative z-10 mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14"
+      >
         <div className="flex flex-col items-center text-center">
           <div className="mb-3 select-none">
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-500">
+            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
               Testimonials
             </span>
           </div>
@@ -201,7 +208,7 @@ export default function Testimonials() {
             Trusted by businesses that wanted more than just a website.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* ─── Dual Marquee ─── */}
       <div className="relative z-10 flex flex-col gap-4" aria-label="Client testimonials">

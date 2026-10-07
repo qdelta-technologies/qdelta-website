@@ -441,10 +441,16 @@ export default function Portfolio() {
       {/* ======================================================= */}
       {/* SECTION INTRO HEADER                                    */}
       {/* ======================================================= */}
-      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55 }}
+        className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10"
+      >
         {/* Editorial Section Identifier */}
         <div className="mb-4 select-none">
-          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-zinc-500">
+          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
             Our Portfolio
           </span>
         </div>
@@ -463,7 +469,7 @@ export default function Portfolio() {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ======================================================= */}
       {/* STACKED FOLDER ARCHIVE TRACK                            */}
