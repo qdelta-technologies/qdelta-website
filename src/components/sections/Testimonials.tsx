@@ -211,18 +211,6 @@ export default function Testimonials() {
       {/* ─── Dual Marquee ─── */}
       <div className="relative z-10 flex flex-col gap-4" aria-label="Client testimonials">
 
-        {/* Left & right edge fade masks */}
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 sm:w-32"
-          style={{ background: "linear-gradient(to right, #06070A 0%, transparent 100%)" }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 sm:w-32"
-          style={{ background: "linear-gradient(to left, #06070A 0%, transparent 100%)" }}
-          aria-hidden
-        />
-
         {/* Row 1 — scrolls left */}
         <MarqueeRow items={TESTIMONIALS} />
 

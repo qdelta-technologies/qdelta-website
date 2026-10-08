@@ -10,7 +10,7 @@ const MOBILE_STEPS = [
   { id: "04", label: "Website Structure" },
   { id: "05", label: "UX Focused Design" },
   { id: "06", label: "Prototype" },
-  { id: "07", label: "Development" },
+  { id: "07", label: "Build & Deploy" },
   { id: "08", label: "Testing & Refinement" },
   { id: "09", label: "Launch & Support" },
   { id: "10", label: "Maintenance" },
