@@ -15,6 +15,8 @@ interface ServicePillConfig {
   scale?: number;
   /** When true, no settled tilt or idle wobble (level pill). */
   level?: boolean;
+  /** Small accent dot color before the label — adds a touch of variety to the otherwise all-white pills. */
+  accentColor: string;
 }
 
 // 8 Core capability pills unpacked from the QDelta Service Kit
@@ -31,6 +33,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 0.85,
     floatDuration: 4.4,
     scale: 0.98,
+    accentColor: "#E5B528",
   },
   // 2. Web Design - Unpacks outward toward upper-left
   {
@@ -43,6 +46,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 0.97,
     floatDuration: 4.8,
     scale: 1.0,
+    accentColor: "#38BDF8",
   },
   // 3. UI/UX - Unpacks toward upper-right
   {
@@ -55,6 +59,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 1.09,
     floatDuration: 4.2,
     scale: 1.05,
+    accentColor: "#F472B6",
   },
   // 4. Strategy - Emerges from inside the cavity, settles near the aperture
   {
@@ -67,6 +72,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 1.21,
     floatDuration: 5.1,
     scale: 0.96,
+    accentColor: "#A78BFA",
   },
   // 5. Landing Pages - Unpacks laterally toward mid-left
   {
@@ -79,6 +85,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 1.33,
     floatDuration: 4.6,
     scale: 0.98,
+    accentColor: "#FB923C",
   },
   // 6. Branding - Unpacks laterally toward mid-right
   {
@@ -91,6 +98,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 1.45,
     floatDuration: 4.7,
     scale: 0.98,
+    accentColor: "#34D399",
   },
   // 7. Development - Unpacks downward-left alongside the lower flank
   {
@@ -103,6 +111,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 1.57,
     floatDuration: 5.3,
     scale: 0.95,
+    accentColor: "#6366F1",
   },
   // 8. E-commerce - Unpacks downward-right alongside the lower flank
   {
@@ -115,6 +124,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 1.69,
     floatDuration: 4.9,
     scale: 0.92,
+    accentColor: "#F87171",
   },
 ];
 
@@ -634,10 +644,15 @@ export default function OpenBoxServicePills() {
                   scale: 1.06,
                   transition: { duration: 0.2, ease: "easeOut" },
                 }}
-                className={`group relative inline-flex items-center justify-center rounded-full bg-[#FAFAFC] py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)] ${
+                className={`group relative inline-flex items-center gap-1.5 justify-center rounded-full bg-[#FAFAFC] py-1 sm:py-1.5 shadow-[0_4px_14px_rgba(0,0,0,0.10),0_1px_3px_rgba(0,0,0,0.05)] border border-black/[0.09] cursor-default transition-all duration-200 hover:bg-white hover:border-black/25 hover:shadow-[0_8px_20px_rgba(0,0,0,0.18)] ${
                   pill.level ? "px-3.5 sm:px-4" : "px-3 sm:px-3.5"
                 }`}
               >
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ background: pill.accentColor }}
+                  aria-hidden
+                />
                 <span className="font-epilogue font-bold text-[11px] sm:text-xs text-zinc-900 tracking-tight whitespace-nowrap">
                   {pill.label}
                 </span>

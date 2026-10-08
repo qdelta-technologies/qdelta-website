@@ -111,16 +111,16 @@ canvas {
   }
 }
 
-/* ===== MOBILE PERFORMANCE OPTIMIZATIONS ===== */
-@media (hover: none) and (pointer: coarse) {
-  /* Hide GPU-intensive feTurbulence grain filters on touch devices */
-  svg:has(feTurbulence) {
-    display: none !important;
-  }
-
-  /* Reduce backdrop blur cost on mobile */
+/* ===== MOBILE PERFORMANCE OPTIMIZATIONS =====
+   Width-based, not pointer/hover capability — "(hover: none) and
+   (pointer: coarse)" is reported inconsistently across mobile browsers
+   and in-app webviews, which meant these mobile safety nets silently
+   never applied on some real phones. */
+@media (max-width: 767px) {
+  /* Reduce backdrop blur cost on mobile — a fixed, always-blurred navbar
+     recomposites on every scroll frame, a well-known scroll-jank source. */
   .navbar-frame-glass {
-    backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(6px) !important;
   }
 
   /* Promote sections to their own compositing layers for smoother scroll */

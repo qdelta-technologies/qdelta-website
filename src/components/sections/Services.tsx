@@ -98,18 +98,6 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           border border-[#E5B528]/40
           shadow-[0_8px_28px_-4px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(0,0,0,0.35)]"
       >
-        {/* Sandstone grain texture — inline SVG turbulence */}
-        <svg
-          className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay"
-          aria-hidden
-        >
-          <filter id={`grain-${index}`}>
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-            <feColorMatrix type="saturate" values="0" in="noise"/>
-          </filter>
-          <rect width="100%" height="100%" filter={`url(#grain-${index})`}/>
-        </svg>
-
         {/* Card headline */}
         <div className="relative z-10 pb-3 sm:pb-5">
           <h3 className="text-xl min-[480px]:text-2xl sm:text-4xl md:text-[42px] font-excon font-bold tracking-tight leading-[1.1] text-white">

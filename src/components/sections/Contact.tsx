@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Check } from "lucide-react";
+import { Check, ArrowUpRight } from "lucide-react";
 import ChamferButton from "@/components/ui/ChamferButton";
 
 import OpenBoxServicePills from "@/components/ui/OpenBoxServicePills";
@@ -78,7 +78,11 @@ export default function Contact() {
 
             {/* Top Eyebrow — Editorial Style in Dark Charcoal */}
             <div className="relative z-10">
-              <div className="select-none">
+              <div className="inline-flex items-center gap-2 select-none">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#06070A]/50 opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#06070A]" />
+                </span>
                 <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-[#06070A]/80 font-bold">
                   Get In Touch
                 </span>
@@ -106,12 +110,13 @@ export default function Contact() {
                       nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
                     }
                   }}
-                  className="group inline-flex items-center justify-center rounded-full bg-[#06070A] text-white px-5 sm:px-6 py-2 sm:py-2.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-white/20 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none"
+                  className="group inline-flex items-center gap-1.5 justify-center rounded-full bg-[#06070A] text-white pl-5 sm:pl-6 pr-4 sm:pr-5 py-2 sm:py-2.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-[#E5B528]/40 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none"
                   aria-label="Book a 15-min call with QDelta"
                 >
                   <span className="font-epilogue text-xs sm:text-[13px] font-semibold text-white tracking-tight whitespace-nowrap">
                     Book a 15-min call
                   </span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[#E5B528] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
               </div>
             </div>
@@ -122,8 +127,12 @@ export default function Contact() {
             </div>
 
             {/* Subtle Editorial Baseline Mark */}
-            <div className="relative z-10 pt-4 mt-auto border-t border-black/10 text-[11px] font-epilogue uppercase tracking-widest text-[#06070A]/60 font-semibold">
+            <div className="relative z-10 pt-4 mt-auto border-t border-black/10 flex items-center justify-between text-[11px] font-epilogue uppercase tracking-widest text-[#06070A]/60 font-semibold">
               <span>QDelta Technologies</span>
+              <span className="inline-flex items-center gap-1.5 normal-case tracking-normal font-medium text-[#06070A]/70">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 shadow-[0_0_6px_rgba(5,150,105,0.6)]" />
+                Available for projects
+              </span>
             </div>
           </div>
 

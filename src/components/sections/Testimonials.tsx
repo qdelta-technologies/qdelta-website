@@ -98,15 +98,6 @@ function TestimonialCard({ t }: { t: TestimonialItem }) {
         hover:border-[#C9981E]
         hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_24px_-6px_rgba(229,181,40,0.45)]"
     >
-      {/* Sandstone grain texture */}
-      <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.1] mix-blend-overlay" aria-hidden>
-        <filter id={`grain-t-${t.name.replace(/\s/g,"")}`}>
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-          <feColorMatrix type="saturate" values="0" in="noise"/>
-        </filter>
-        <rect width="100%" height="100%" filter={`url(#grain-t-${t.name.replace(/\s/g,"")})`}/>
-      </svg>
-
       {/* Top highlight hairline */}
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#06070A]/20 to-transparent" aria-hidden />
 

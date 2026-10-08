@@ -162,15 +162,6 @@ export default function Packages() {
               mobileTab === "signature" ? "hidden md:flex" : "flex"
             }`}
           >
-            {/* Sandstone grain texture */}
-            <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay" aria-hidden>
-              <filter id="grain-pkg-signature">
-                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-                <feColorMatrix type="saturate" values="0" in="noise"/>
-              </filter>
-              <rect width="100%" height="100%" filter="url(#grain-pkg-signature)"/>
-            </svg>
-
             {/* Top Golden Hairline */}
             <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/45 to-transparent pointer-events-none" />
 
@@ -251,15 +242,6 @@ export default function Packages() {
               mobileTab === "digital" ? "hidden md:flex" : "flex"
             }`}
           >
-            {/* Sandstone grain texture */}
-            <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay" aria-hidden>
-              <filter id="grain-pkg-digital">
-                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-                <feColorMatrix type="saturate" values="0" in="noise"/>
-              </filter>
-              <rect width="100%" height="100%" filter="url(#grain-pkg-digital)"/>
-            </svg>
-
             {/* Top Cyan Hairline */}
             <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-sky-400/45 to-transparent pointer-events-none" />
 
@@ -342,14 +324,6 @@ export default function Packages() {
           transition={{ duration: 0.6 }}
           className="w-full rounded-3xl sm:rounded-[32px] border border-white/[0.09] bg-[#090b10] shadow-[0_20px_60px_rgba(0,0,0,0.85)] relative overflow-hidden"
         >
-          {/* Sandstone grain texture */}
-          <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay" aria-hidden>
-            <filter id="grain-pkg-compare">
-              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-              <feColorMatrix type="saturate" values="0" in="noise"/>
-            </filter>
-            <rect width="100%" height="100%" filter="url(#grain-pkg-compare)"/>
-          </svg>
 
           {/* Top Subtle Dual Accent Hairline */}
           <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/35 via-sky-400/25 to-transparent pointer-events-none" />

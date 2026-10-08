@@ -23,9 +23,19 @@ function GitHubIcon({ className = "h-5 w-5" }: { className?: string }) {
 }
 
 function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
+  const gradientId = React.useId().replace(/:/g, "");
   return (
     <svg className={`shrink-0 ${className}`} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+      <defs>
+        <radialGradient id={gradientId} cx="30%" cy="107%" r="150%">
+          <stop offset="0%" stopColor="#FEDA75" />
+          <stop offset="15%" stopColor="#FA7E1E" />
+          <stop offset="45%" stopColor="#D62976" />
+          <stop offset="70%" stopColor="#962FBF" />
+          <stop offset="100%" stopColor="#4F5BD5" />
+        </radialGradient>
+      </defs>
+      <path fill={`url(#${gradientId})`} d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
     </svg>
   );
 }
@@ -97,14 +107,6 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
       className="relative flex overflow-hidden rounded-2xl border border-white/[0.1] backdrop-blur-sm"
       style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)" }}
     >
-      {/* Sandstone grain texture */}
-      <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-0" aria-hidden>
-        <filter id={`grain-tm-${member.name.replace(/\s/g,"")}`}>
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-          <feColorMatrix type="saturate" values="0" in="noise"/>
-        </filter>
-        <rect width="100%" height="100%" filter={`url(#grain-tm-${member.name.replace(/\s/g,"")})`}/>
-      </svg>
 
       {/* Gold top hairline */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent z-10" aria-hidden />
@@ -271,14 +273,6 @@ export default function Team() {
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
                   <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#E5B528]/35 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
-                    {/* Sandstone grain texture */}
-                    <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-10" aria-hidden>
-                      <filter id={`grain-tf-${member.name.replace(/\s/g,"")}`}>
-                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-                        <feColorMatrix type="saturate" values="0" in="noise"/>
-                      </filter>
-                      <rect width="100%" height="100%" filter={`url(#grain-tf-${member.name.replace(/\s/g,"")})`}/>
-                    </svg>
 
                     {/* Crisp Golden Top Accent Hairline */}
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent z-20" />
@@ -339,14 +333,6 @@ export default function Team() {
                   {/* CARD BACK FACE (DARK PANEL + GOLD OUTLINE)              */}
                   {/* =================================================== */}
                   <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.1] bg-[#0B0E12] shadow-[0_20px_50px_rgba(0,0,0,0.5)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300">
-                    {/* Sandstone grain texture */}
-                    <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay z-10" aria-hidden>
-                      <filter id={`grain-tb-${member.name.replace(/\s/g,"")}`}>
-                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
-                        <feColorMatrix type="saturate" values="0" in="noise"/>
-                      </filter>
-                      <rect width="100%" height="100%" filter={`url(#grain-tb-${member.name.replace(/\s/g,"")})`}/>
-                    </svg>
 
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent z-20" />
 
