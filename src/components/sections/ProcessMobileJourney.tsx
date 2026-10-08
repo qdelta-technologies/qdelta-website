@@ -10,17 +10,20 @@ const MOBILE_STEPS = [
   { id: "04", label: "Website Structure" },
   { id: "05", label: "UX Focused Design" },
   { id: "06", label: "Prototype" },
-  { id: "07", label: "Website Development" },
+  { id: "07", label: "Development" },
   { id: "08", label: "Testing & Refinement" },
-  { id: "09", label: "Launch" },
-  { id: "10", label: "Ongoing Support" },
+  { id: "09", label: "Launch & Support" },
+  { id: "10", label: "Maintenance" },
 ] as const;
 
 const STEP_COUNT = MOBILE_STEPS.length;
 const ROW_HEIGHT = 68;
 const VB_W = 100;
 const VB_H = STEP_COUNT * ROW_HEIGHT;
-const PATH_SWING = 18;
+// Base bend width plus a gentle per-bend variance so the road reads as an
+// organic winding mountain road rather than a uniform mechanical zigzag.
+const PATH_SWING_BASE = 17;
+const PATH_SWING_VARIANCE = 7;
 
 const MOBILE_EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -29,7 +32,13 @@ function nodeCenterY(index: number) {
 }
 
 function nodeCenterX(index: number) {
-  return 50 + (index % 2 === 0 ? -PATH_SWING : PATH_SWING);
+  const amplitude = PATH_SWING_BASE + PATH_SWING_VARIANCE * Math.abs(Math.sin(index * 0.9));
+  const x = 50 + (index % 2 === 0 ? -amplitude : amplitude);
+  // Rounded to 2dp: Math.sin can differ in its last bit between the server's
+  // and browser's JS engine, which was producing a long float tail that
+  // sometimes differed by a hair between SSR and client — a hydration
+  // mismatch. Rounding absorbs that noise well before it's visible.
+  return Math.round(x * 100) / 100;
 }
 
 function buildWindingPath() {
@@ -89,6 +98,17 @@ export default function ProcessMobileJourney() {
       className="relative w-full max-w-sm sm:max-w-md mx-auto mb-8 select-none px-0 sm:px-1"
       style={{ minHeight: VB_H }}
     >
+      {/* Clean local backdrop — dims the section's grid behind the road so the
+          asphalt reads clearly instead of competing with background texture */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[32px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 100% at 50% 0%, rgba(8,9,12,0.55) 0%, rgba(8,9,12,0.3) 55%, transparent 100%)",
+        }}
+        aria-hidden
+      />
+
       <svg
         className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
         viewBox={`0 0 ${VB_W} ${VB_H}`}
@@ -96,52 +116,55 @@ export default function ProcessMobileJourney() {
         aria-hidden
       >
         <defs>
-          <linearGradient id="process-road-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#E5B528" stopOpacity="0.7" />
-            <stop offset="40%" stopColor="#E5B528" stopOpacity="0.25" />
-            <stop offset="60%" stopColor="#E5B528" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#E5B528" stopOpacity="0.7" />
+          <linearGradient id="process-road-edge" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#E5B528" stopOpacity="0.5" />
+            <stop offset="40%" stopColor="#E5B528" stopOpacity="0.14" />
+            <stop offset="60%" stopColor="#E5B528" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#E5B528" stopOpacity="0.5" />
           </linearGradient>
-          <filter id="process-road-glow" x="-50%" y="-5%" width="200%" height="110%">
-            <feGaussianBlur stdDeviation="1.8" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="node-glow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          <filter id="process-road-shadow" x="-30%" y="-5%" width="160%" height="110%">
+            <feDropShadow dx="0" dy="1.2" stdDeviation="1.4" floodColor="#000000" floodOpacity="0.55" />
           </filter>
         </defs>
 
-        {/* Soft road bed */}
+        {/* Faint golden rim — ties the road to the brand accent without being neon */}
         <path
           d={ROAD_PATH}
           fill="none"
-          stroke="rgba(229, 181, 40, 0.06)"
-          strokeWidth="12"
+          stroke="url(#process-road-edge)"
+          strokeWidth="9.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
 
-        {/* Animated glowing line */}
+        {/* Asphalt road bed */}
         <motion.path
           d={ROAD_PATH}
           fill="none"
-          stroke="url(#process-road-grad)"
-          strokeWidth="1"
+          stroke="#15171C"
+          strokeWidth="7.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeDasharray="3 6"
-          filter="url(#process-road-glow)"
+          filter="url(#process-road-shadow)"
           initial={shouldReduceMotion ? false : { pathLength: 0, opacity: 0 }}
           whileInView={shouldReduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 1.6, ease: MOBILE_EASE }}
+          style={{ pathLength: shouldReduceMotion ? 1 : undefined }}
+        />
+
+        {/* Painted centre line — the road-trip detail */}
+        <motion.path
+          d={ROAD_PATH}
+          fill="none"
+          stroke="rgba(245, 238, 220, 0.8)"
+          strokeWidth="0.7"
+          strokeLinecap="round"
+          strokeDasharray="2.4 3.2"
+          initial={shouldReduceMotion ? false : { pathLength: 0, opacity: 0 }}
+          whileInView={shouldReduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 1.6, ease: MOBILE_EASE, delay: 0.1 }}
           style={{ pathLength: shouldReduceMotion ? 1 : undefined }}
         />
       </svg>

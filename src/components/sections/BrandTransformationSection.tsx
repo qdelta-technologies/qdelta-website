@@ -459,7 +459,6 @@ export default function BrandTransformationSection() {
             </svg>
 
             <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-[#E5B528]/45 to-transparent" />
-            <div className="pointer-events-none absolute bottom-0 right-0 w-56 h-56 rounded-full blur-[70px] opacity-[0.07]" style={{ background: "#E5B528" }} />
 
             {/* Stats row */}
             <div className="grid grid-cols-3 border-b border-white/[0.08]">

@@ -79,7 +79,7 @@ function Stars() {
   return (
     <div className="flex gap-0.5" aria-label="5 star rating">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} className="w-3 h-3 fill-[#E5B528]" viewBox="0 0 20 20" aria-hidden>
+        <svg key={i} className="w-3 h-3 fill-[#06070A]" viewBox="0 0 20 20" aria-hidden>
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -90,16 +90,16 @@ function Stars() {
 function TestimonialCard({ t }: { t: TestimonialItem }) {
   return (
     <article
-      className="group relative flex w-[300px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-white/[0.07]
-        bg-[#0B0E13]
+      className="group relative flex w-[300px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-[#C9981E]/60
+        bg-gradient-to-b from-[#EEC832] via-[#E5B528] to-[#D4A322]
         p-4 sm:p-5
-        shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]
+        shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.25)]
         transition-all duration-300
-        hover:border-[#E5B528]/25
-        hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_20px_-8px_rgba(229,181,40,0.15)]"
+        hover:border-[#C9981E]
+        hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_24px_-6px_rgba(229,181,40,0.45)]"
     >
       {/* Sandstone grain texture */}
-      <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.13] mix-blend-overlay" aria-hidden>
+      <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.1] mix-blend-overlay" aria-hidden>
         <filter id={`grain-t-${t.name.replace(/\s/g,"")}`}>
           <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
           <feColorMatrix type="saturate" values="0" in="noise"/>
@@ -107,8 +107,8 @@ function TestimonialCard({ t }: { t: TestimonialItem }) {
         <rect width="100%" height="100%" filter={`url(#grain-t-${t.name.replace(/\s/g,"")})`}/>
       </svg>
 
-      {/* Top gold hairline */}
-      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/35 to-transparent" aria-hidden />
+      {/* Top highlight hairline */}
+      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#06070A]/20 to-transparent" aria-hidden />
 
       {/* Stars */}
       <div className="mb-2.5">
@@ -116,28 +116,28 @@ function TestimonialCard({ t }: { t: TestimonialItem }) {
       </div>
 
       {/* Quote */}
-      <p className="font-epilogue text-[12px] sm:text-[12.5px] leading-relaxed text-white/70 font-normal mb-3">
+      <p className="font-epilogue text-[12px] sm:text-[12.5px] leading-relaxed text-[#06070A]/75 font-normal mb-3">
         {t.quote}
       </p>
 
       {/* Author — inline row */}
-      <div className="flex items-center gap-2.5 pt-3 border-t border-white/[0.07]">
+      <div className="flex items-center gap-2.5 pt-3 border-t border-[#06070A]/15">
         <div
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#E5B528]/25 bg-[#E5B528]/[0.08] font-epilogue text-[9px] font-bold text-[#E5B528]"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#06070A]/25 bg-[#06070A]/10 font-epilogue text-[9px] font-bold text-[#06070A]"
           aria-hidden
         >
           {getInitials(t.name)}
         </div>
         <div className="min-w-0">
-          <p className="font-excon text-[12px] font-bold text-white leading-tight truncate">{t.name}</p>
-          <p className="font-epilogue text-[10px] text-zinc-500 truncate">{t.role}</p>
+          <p className="font-excon text-[12px] font-bold text-[#06070A] leading-tight truncate">{t.name}</p>
+          <p className="font-epilogue text-[10px] text-[#06070A]/60 truncate">{t.role}</p>
         </div>
       </div>
 
-      {/* Hover glow */}
+      {/* Hover sheen */}
       <div
-        className="pointer-events-none absolute bottom-0 right-0 h-20 w-20 rounded-full blur-[30px] opacity-0 transition-opacity duration-500 group-hover:opacity-[0.07]"
-        style={{ background: "#E5B528" }}
+        className="pointer-events-none absolute bottom-0 right-0 h-20 w-20 rounded-full blur-[30px] opacity-0 transition-opacity duration-500 group-hover:opacity-[0.2]"
+        style={{ background: "#FFFFFF" }}
         aria-hidden
       />
     </article>
