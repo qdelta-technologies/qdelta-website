@@ -47,29 +47,11 @@ export default function InteractiveDotGrid() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // On touch devices: draw a simple static dot grid once — no physics loop needed
-    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-    if (isMobile) {
-      const cssW = canvas.parentElement?.clientWidth || window.innerWidth;
-      const cssH = canvas.parentElement?.clientHeight || 700;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = cssW * dpr;
-      canvas.height = cssH * dpr;
-      canvas.style.width = `${cssW}px`;
-      canvas.style.height = `${cssH}px`;
-      ctx.scale(dpr, dpr);
-      const SPACING = 30;
-      for (let y = 0; y < cssH + SPACING; y += SPACING) {
-        for (let x = 0; x < cssW + SPACING; x += SPACING) {
-          ctx.beginPath();
-          ctx.arc(x, y, 0.85, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(229,181,40,0.22)";
-          ctx.fill();
-        }
-      }
-      return;
-    }
-
+    // Mobile used to get a draw-once static grid instead of this animated system
+    // (perf guard), but that made the background feel dead on phones. It now runs
+    // the same animated system as desktop — just with lower particle counts, a
+    // capped DPR, and no cursor-repel physics (touch only drives gentle parallax)
+    // — so it stays smooth while still moving.
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -226,7 +208,9 @@ export default function InteractiveDotGrid() {
 
       if (rect.width === 0 || rect.height === 0) return;
 
-      setupCrispCanvas(canvas, ctx, rect.width, rect.height);
+      const isMobileInit = rect.width < 640;
+      // Cap DPR at 2 on mobile — retina sharpness past that isn't worth the fill-rate cost
+      setupCrispCanvas(canvas, ctx, rect.width, rect.height, isMobileInit ? 2 : 3);
 
       const W = rect.width;
       const H = rect.height;
@@ -236,7 +220,6 @@ export default function InteractiveDotGrid() {
       cachedH = H;
 
       // Increase spacing on mobile to reduce dot count (~30% fewer dots)
-      const isMobileInit = W < 640;
       const effectiveSpacing = isMobileInit ? 28 : SPACING;
 
       buildSunLineLookup(W, H);
@@ -271,7 +254,8 @@ export default function InteractiveDotGrid() {
 
       // ── LAYER 1 (FAR): Sparse celestial dust ──
       farParticles = [];
-      const farCount = Math.floor(Math.max(20, Math.min(45, (W * H) / 28000)));
+      const farCountBase = Math.floor(Math.max(20, Math.min(45, (W * H) / 28000)));
+      const farCount = isMobileInit ? Math.ceil(farCountBase * 0.5) : farCountBase;
       for (let i = 0; i < farCount; i++) {
         const x = Math.random() * W;
         const sunLineY = getSunLineY(x, W, H);
@@ -292,7 +276,8 @@ export default function InteractiveDotGrid() {
 
       // ── LAYER 3 (NEAR): Golden atmospheric motes ──
       nearMotes = [];
-      const nearCount = Math.floor(Math.max(80, Math.min(150, W / 11)));
+      const nearCountBase = Math.floor(Math.max(80, Math.min(150, W / 11)));
+      const nearCount = isMobileInit ? Math.ceil(nearCountBase * 0.5) : nearCountBase;
       for (let i = 0; i < nearCount; i++) {
         const x = Math.random() * W;
         const sunLineY = getSunLineY(x, W, H);

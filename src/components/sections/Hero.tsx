@@ -19,7 +19,7 @@ export default function Hero() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
+    if (window.innerWidth < 768) return;
 
     const heroEl = heroSectionRef.current;
     if (!heroEl) return;

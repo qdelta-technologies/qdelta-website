@@ -37,8 +37,6 @@ export default function SectionAtmosphere({
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
-    // On mobile: skip floating particle canvas entirely — static grid is enough
-    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -53,7 +51,7 @@ export default function SectionAtmosphere({
       if (!canvas || !container) return;
       const cssW = container.clientWidth || window.innerWidth;
       const cssH = container.clientHeight || 800;
-      setupCrispCanvas(canvas, ctx, cssW, cssH);
+      setupCrispCanvas(canvas, ctx, cssW, cssH, window.innerWidth < 768 ? 2 : 3);
       width = cssW;
       height = cssH;
     };
@@ -88,7 +86,7 @@ export default function SectionAtmosphere({
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const isMobile = window.innerWidth < 768;
 
     // Initialize slowly moving golden particles — fewer on mobile
     const effectiveCount = isMobile ? Math.ceil(particleCount * 0.3) : particleCount;

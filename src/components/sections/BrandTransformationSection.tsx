@@ -128,9 +128,17 @@ export default function BrandTransformationSection() {
   const progressDotRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { amount: 0.2, margin: "100px 0px -10% 0px" });
 
-  const isMobile = typeof window !== "undefined"
-    ? window.matchMedia("(hover: none) and (pointer: coarse)").matches
-    : false;
+  // Computed in an effect (not during render) so the server-rendered markup
+  // always matches the client's first paint — reading `window` during render
+  // caused a hydration mismatch, which meant React left the server's
+  // preload="metadata" stuck in place on phones instead of patching it to
+  // preload="none", and could leave mobile autoplay logic in the wrong state.
+  // Width-based rather than pointer/hover capability, since that media query
+  // is reported inconsistently across mobile browsers/webviews.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const isPlayingRef = useRef(false);
