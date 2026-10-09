@@ -123,10 +123,32 @@ canvas {
     backdrop-filter: blur(6px) !important;
   }
 
-  /* Promote sections to their own compositing layers for smoother scroll */
-  section {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+  /* (Giving every section its own GPU layer used to be here. With sections up to 2600px tall that
+     meant a dozen huge textures in memory, which made scrolling worse, so it is gone.) */
+
+  /* The full-screen film grain uses mix-blend-mode: the browser must re-blend the whole screen
+     with everything under it on every scroll frame. Off on phones and tablets. */
+  body::after {
+    display: none;
+  }
+
+  /* Big blur() glows are one of the most expensive things a phone GPU can draw, and every glow here is already a
+     soft radial gradient, so on phones they are drawn without the extra blur filter. */
+  [class*=" blur-"],
+  [class^="blur-"],
+  [class*=":blur-"] {
+    filter: none !important;
+  }
+  [class*="will-change"] {
+    will-change: auto !important;
+  }
+
+  /* Frosted glass (backdrop blur) re-renders everything behind it on every scroll frame. Phones get the
+     translucent background without the blur; the navbar keeps its light 6px blur above. */
+  [class*="backdrop-blur"]:not(.navbar-frame-glass),
+  .glass-dark-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 
