@@ -291,7 +291,7 @@ export default function Team() {
                         fill
                         className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 380px"
-                        priority={idx === 0}
+                        priority={false}
                       />
                     </div>
 

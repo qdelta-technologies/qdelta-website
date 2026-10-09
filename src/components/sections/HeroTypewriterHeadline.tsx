@@ -77,7 +77,9 @@ function HeroTypewriterHeadline({
   useEffect(() => {
     if (shouldReduceMotion === null) return;
 
-    if (shouldReduceMotion) {
+    // Phones show the finished headline straight away: the typing runs on JavaScript timers, which are slow on a phone,
+    // and the subtitle and buttons wait for it to finish.
+    if (shouldReduceMotion || window.innerWidth < 768) {
       setDisplayedCount(TOTAL);
       setIsTypingDone(true);
       setShowCursor(false);

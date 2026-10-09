@@ -123,12 +123,70 @@ canvas {
     backdrop-filter: blur(6px) !important;
   }
 
-  /* Promote sections to their own compositing layers for smoother scroll */
-  section {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+  /* (Giving every section its own GPU layer used to be here. With sections up to 2600px tall that
+     meant a dozen huge textures in memory, which made scrolling worse, so it is gone.) */
+
+  /* The full-screen film grain uses mix-blend-mode: the browser must re-blend the whole screen
+     with everything under it on every scroll frame. Off on phones and tablets. */
+  body::after {
+    display: none;
+  }
+
+  /* Sections near the bottom of the page are not laid out or painted until they get close to the screen. */
+  #testimonials,
+  #team,
+  #contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+
+  /* Big blur() glows are one of the most expensive things a phone GPU can draw, and every glow here is already a
+     soft radial gradient, so on phones they are drawn without the extra blur filter. */
+  [class*=" blur-"],
+  [class^="blur-"],
+  [class*=":blur-"] {
+    filter: none !important;
+  }
+  [class*="will-change"],
+  [style*="will-change"] {
+    will-change: auto !important;
+  }
+
+  /* Frosted glass (backdrop blur) re-renders everything behind it on every scroll frame. Phones get the
+     translucent background without the blur; the navbar keeps its light 6px blur above. */
+  /* Tailwind's backdrop-blur-* utilities read this variable, so emptying it removes the blur ('initial' = no value). */
+  [class*="backdrop-blur"]:not(.navbar-frame-glass) {
+    --tw-backdrop-blur: initial !important;
+  }
+  [class*="backdrop-blur"]:not(.navbar-frame-glass),
+  .glass-dark-card {
+    backdrop-filter: none !important;
+  }
+
+  /* Decorative blend-mode layers (film grain and the like) force the whole area under them to be re-blended. */
+  [class*="mix-blend"] {
+    display: none !important;
   }
 }
+
+/* Idle float of the Contact service pills (compositor-driven, no JavaScript) */
+@keyframes pillFloat {
+  from { transform: translateY(-2px) rotate(-0.6deg); }
+  to { transform: translateY(2.5px) rotate(0.6deg); }
+}
+@keyframes pillFloatLevel {
+  from { transform: translateY(-2px); }
+  to { transform: translateY(2.5px); }
+}
+.pill-float { animation: pillFloat 4s ease-in-out infinite alternate; will-change: transform; }
+.pill-float-level { animation: pillFloatLevel 4s ease-in-out infinite alternate; will-change: transform; }
+
+/* Pulse ring around the active step of the desktop process rail (CSS, so it stops when the rail is hidden) */
+@keyframes processPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0; }
+  50% { transform: scale(1.45); opacity: 0.55; }
+}
+.process-pulse { animation: processPulse 3s ease-in-out infinite; }
 
 /* Testimonial marquee cards — brand gold on dark section */
 .testimonial-card-3d {

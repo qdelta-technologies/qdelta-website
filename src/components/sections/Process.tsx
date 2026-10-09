@@ -8,7 +8,8 @@ import {
   Rocket,
   TrendingUp,
 } from "lucide-react";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { motion, useMotionValueEvent, useReducedMotion } from "motion/react";
+import { useSectionProgress } from "@/utils/useSectionProgress";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 import ProcessMobileJourney from "@/components/sections/ProcessMobileJourney";
 
@@ -80,10 +81,7 @@ export default function Process() {
 
   const [activeStep, setActiveStep] = useState<number>(0);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const scrollYProgress = useSectionProgress(containerRef, 1024);
 
 const STEP_TRANSITION = { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const };
 const STEP_REVEAL_DELAY = 0.06;
@@ -353,17 +351,9 @@ const STEP_REVEAL_DELAY = 0.06;
                       {/* Row 2 — node centered on shared rail */}
                       <div className="relative z-20 flex items-center justify-center py-0">
                         {isActive && (
-                          <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: [0.9, 1.45, 0.9], opacity: [0, 0.55, 0] }}
-                            transition={{
-                              repeat: Infinity,
-                              duration: 2.8,
-                              ease: "easeInOut",
-                              repeatDelay: 0.2,
-                              delay: STEP_REVEAL_DELAY + 0.08,
-                            }}
-                            className="pointer-events-none absolute h-12 w-12 rounded-full bg-[#E5B528]/18 blur-[6px]"
+                          <div
+                            aria-hidden
+                            className="process-pulse pointer-events-none absolute h-12 w-12 rounded-full bg-[#E5B528]/18 blur-[6px]"
                           />
                         )}
                         <motion.div

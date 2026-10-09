@@ -603,40 +603,17 @@ export default function OpenBoxServicePills() {
               !isOpen && !shouldReduceMotion ? "pointer-events-none" : "pointer-events-auto"
             }`}
           >
-            {/* INNER MOTION WRAPPER: Restrained idle floating (2-3px max) once settled */}
-            <motion.div
-              animate={
+            {/* INNER WRAPPER: restrained idle floating (2-3px max) once settled. Plain CSS animation: it runs off the
+                main thread, where the old JS loop for seven pills kept the page busy on every frame. */}
+            <div
+              className={isOpen && !shouldReduceMotion ? (pill.level ? "pill-float-level" : "pill-float") : undefined}
+              style={
                 isOpen && !shouldReduceMotion
                   ? {
-                      y: [-2, 2.5, -2],
-                      rotate: pill.level ? 0 : [-0.6, 0.6, -0.6],
+                      animationDuration: `${pill.floatDuration * FLOAT_IDLE_SCALE}s`,
+                      animationDelay: `${pillDelay + PILL_MOVE_DURATION}s`,
                     }
-                  : { y: 0, rotate: 0 }
-              }
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : {
-                      y: {
-                        repeat: Infinity,
-                        repeatType: "mirror",
-                        duration: pill.floatDuration * FLOAT_IDLE_SCALE,
-                        ease: "easeInOut",
-                        delay: pillDelay + PILL_MOVE_DURATION,
-                      },
-                      ...(pill.level
-                        ? {}
-                        : {
-                            rotate: {
-                              repeat: Infinity,
-                              repeatType: "mirror",
-                              duration:
-                                pill.floatDuration * FLOAT_IDLE_SCALE * 1.15,
-                              ease: "easeInOut",
-                              delay: pillDelay + PILL_MOVE_DURATION,
-                            },
-                          }),
-                    }
+                  : undefined
               }
             >
               <motion.div
@@ -657,7 +634,7 @@ export default function OpenBoxServicePills() {
                   {pill.label}
                 </span>
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
         );
       })}

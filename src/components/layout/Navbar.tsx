@@ -26,12 +26,17 @@ export default function Navbar() {
     let rafId = 0;
     let lastPastHero = false;
 
+    // Where the hero ends is measured once (and again when the page size changes), so the scroll handler
+    // only compares numbers. Reading getBoundingClientRect on every scroll frame forces layout each time.
+    let heroEnd = 480;
+    const measureHero = () => {
+      const heroEl = document.getElementById("hero");
+      heroEnd = heroEl ? heroEl.getBoundingClientRect().bottom + window.scrollY : 480 + 80;
+    };
+
     const measure = () => {
       rafId = 0;
-      const heroEl = document.getElementById("hero");
-      const nextPastHero = heroEl
-        ? heroEl.getBoundingClientRect().bottom <= 80
-        : window.scrollY > 480;
+      const nextPastHero = window.scrollY >= heroEnd - 80;
       if (nextPastHero !== lastPastHero) {
         lastPastHero = nextPastHero;
         setIsPastHero(nextPastHero);
@@ -43,10 +48,17 @@ export default function Navbar() {
       rafId = requestAnimationFrame(measure);
     };
 
+    measureHero();
+    const resizeObserver = new ResizeObserver(() => {
+      measureHero();
+      measure();
+    });
+    resizeObserver.observe(document.body);
     window.addEventListener("scroll", handleScroll, { passive: true });
     measure();
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      resizeObserver.disconnect();
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);

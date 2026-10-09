@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import { Sparkles } from "lucide-react";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useTransform, type MotionValue } from "motion/react";
+import { useSectionProgress } from "@/utils/useSectionProgress";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface ServiceItem {
@@ -142,10 +143,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
 
 export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const scrollYProgress = useSectionProgress(containerRef, 1024);
 
   return (
     <section

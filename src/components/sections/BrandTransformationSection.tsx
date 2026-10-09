@@ -140,6 +140,12 @@ export default function BrandTransformationSection() {
     setIsMobile(window.innerWidth < 768);
   }, []);
 
+  // The 7MB video gets no source at all until it is needed: on desktop once the section is near the screen,
+  // on a phone only when the visitor taps play. (A server-rendered preload="metadata" made phones start
+  // downloading it on page load, before this code could switch it off.)
+  const [wantVideo, setWantVideo] = useState(false);
+  const playWhenReady = useRef(false);
+
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const isPlayingRef = useRef(false);
   const isInViewRef = useRef(false);
@@ -214,21 +220,40 @@ export default function BrandTransformationSection() {
     }
   }, []);
 
+  // As soon as the video has its source, start it if somebody asked for it
+  useEffect(() => {
+    if (wantVideo && playWhenReady.current) {
+      playWhenReady.current = false;
+      handlePlay();
+    }
+  }, [wantVideo, handlePlay]);
+
   // Autoplay when in view (desktop only); pause when out of view
   useEffect(() => {
     if (isInView && !isMobile) {
-      handlePlay();
+      if (wantVideo) handlePlay();
+      else {
+        playWhenReady.current = true;
+        setWantVideo(true);
+      }
       setIsPlaying(true);
     } else if (!isInView) {
       handlePause();
       setIsPlaying(false);
     }
-  }, [isInView, isMobile, handlePlay, handlePause]);
+  }, [isInView, isMobile, wantVideo, handlePlay, handlePause]);
 
   const togglePlayPause = (e: React.MouseEvent) => {
     e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
+    if (!wantVideo) {
+      // first tap on a phone: give the video its source now, and it starts as soon as it is attached
+      playWhenReady.current = true;
+      setWantVideo(true);
+      setIsPlaying(true);
+      return;
+    }
     if (video.paused) {
       video.playbackRate = VIDEO_PLAYBACK_RATE;
       video.play();
@@ -243,6 +268,12 @@ export default function BrandTransformationSection() {
     e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
+    if (!wantVideo) {
+      playWhenReady.current = true;
+      setWantVideo(true);
+      setIsPlaying(true);
+      return;
+    }
     video.currentTime = 0;
     if (progressFillRef.current) progressFillRef.current.style.width = "0%";
     if (progressDotRef.current) progressDotRef.current.style.left = "0%";
@@ -315,11 +346,12 @@ export default function BrandTransformationSection() {
             >
               <video
                 ref={videoRef}
-                src="/section-video-3d-muted.mp4"
+                src={wantVideo ? "/section-video-3d-muted.mp4" : undefined}
+                poster="/section-video-poster.jpg"
                 muted
                 loop
                 playsInline
-                preload={isMobile ? "none" : "metadata"}
+                preload="none"
                 disablePictureInPicture
                 onLoadedMetadata={(e) => {
                   e.currentTarget.playbackRate = VIDEO_PLAYBACK_RATE;
