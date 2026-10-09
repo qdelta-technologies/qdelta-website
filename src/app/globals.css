@@ -132,6 +132,14 @@ canvas {
     display: none;
   }
 
+  /* Sections near the bottom of the page are not laid out or painted until they get close to the screen. */
+  #testimonials,
+  #team,
+  #contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+
   /* Big blur() glows are one of the most expensive things a phone GPU can draw, and every glow here is already a
      soft radial gradient, so on phones they are drawn without the extra blur filter. */
   [class*=" blur-"],
@@ -139,7 +147,8 @@ canvas {
   [class*=":blur-"] {
     filter: none !important;
   }
-  [class*="will-change"] {
+  [class*="will-change"],
+  [style*="will-change"] {
     will-change: auto !important;
   }
 

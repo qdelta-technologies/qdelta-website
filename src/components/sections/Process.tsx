@@ -8,7 +8,8 @@ import {
   Rocket,
   TrendingUp,
 } from "lucide-react";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { motion, useMotionValueEvent, useReducedMotion } from "motion/react";
+import { useSectionProgress } from "@/utils/useSectionProgress";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 import ProcessMobileJourney from "@/components/sections/ProcessMobileJourney";
 
@@ -80,10 +81,7 @@ export default function Process() {
 
   const [activeStep, setActiveStep] = useState<number>(0);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const scrollYProgress = useSectionProgress(containerRef, 1024);
 
 const STEP_TRANSITION = { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const };
 const STEP_REVEAL_DELAY = 0.06;

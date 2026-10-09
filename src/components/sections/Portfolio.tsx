@@ -4,7 +4,8 @@ import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, X, ExternalLink, Plus } from "lucide-react";
-import { motion, useScroll, useTransform, AnimatePresence, type MotionValue } from "motion/react";
+import { motion, useTransform, AnimatePresence, type MotionValue } from "motion/react";
+import { useSectionProgress } from "@/utils/useSectionProgress";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface ProjectItem {
@@ -435,10 +436,7 @@ export default function Portfolio() {
   const [activeModalProject, setActiveModalProject] = useState<ProjectItem | null>(null);
 
   // Layered Scroll Stacking Progress
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  const scrollYProgress = useSectionProgress(containerRef, 1024);
 
   return (
     <section
