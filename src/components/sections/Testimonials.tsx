@@ -80,7 +80,7 @@ function Stars() {
 function TestimonialCard({ t }: { t: TestimonialItem }) {
   return (
     <article
-      className="group relative flex w-[220px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-[#C9981E]/60
+      className="group relative flex w-[220px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-md border border-[#C9981E]/60
         bg-gradient-to-b from-[#EEC832] via-[#E5B528] to-[#D4A322]
         p-3 sm:p-5
         shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.25)]

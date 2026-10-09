@@ -101,9 +101,6 @@ export default function Footer() {
         {/* Top Glowing Golden Horizon Accent Hairline */}
         <div className="absolute top-0 inset-x-12 sm:inset-x-20 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/35 to-transparent pointer-events-none" />
 
-        {/* Ambient Warm Golden Backlight */}
-        <div className="pointer-events-none absolute -bottom-10 left-1/2 -translate-x-1/2 w-[38rem] h-[16rem] rounded-full bg-[#E5B528]/[0.035] blur-[140px]" />
-
         {/* ================= UPPER SECTION: 4-COLUMN COMPOSITION ================= */}
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
           {/* LEFT SIDE: Brand & Socials */}

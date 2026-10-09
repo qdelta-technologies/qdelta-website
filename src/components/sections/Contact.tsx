@@ -61,7 +61,7 @@ export default function Contact() {
         {/* ======================================================= */}
         {/* ART-DIRECTED SPLIT SHOWCASE CONTAINER                   */}
         {/* ======================================================= */}
-        <div className="relative w-full rounded-xl sm:rounded-2xl md:rounded-[20px] overflow-hidden border border-[#E5B528]/20 shadow-[0_24px_80px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <div className="relative w-full rounded-md overflow-hidden border border-[#E5B528]/20 shadow-[0_24px_80px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           {/* ===================================================== */}
           {/* LEFT SIDE: VIBRANT BRAND GOLD PANEL (45%)             */}
@@ -142,9 +142,6 @@ export default function Contact() {
           <div className="relative lg:col-span-7 bg-[#0B0E12]/93 backdrop-blur-md p-5 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
             {/* Crisp Golden Top Accent Hairline */}
             <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent pointer-events-none" />
-
-            {/* Ambient Warm Golden Backlight */}
-            <div className="pointer-events-none absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#E5B528]/[0.035] blur-[100px]" />
 
             <AnimatePresence mode="wait">
               {submitted ? (

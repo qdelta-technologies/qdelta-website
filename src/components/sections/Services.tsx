@@ -94,7 +94,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
     >
       <motion.div
         style={{ scale, transformOrigin: "top center", willChange: "transform" }}
-        className="group relative w-full rounded-2xl sm:rounded-[22px] overflow-hidden flex flex-col justify-between min-h-[220px] sm:min-h-[300px] md:min-h-[320px] p-5 sm:p-9 md:p-10
+        className="group relative w-full rounded-md overflow-hidden flex flex-col justify-between min-h-[220px] sm:min-h-[300px] md:min-h-[320px] p-5 sm:p-9 md:p-10
           bg-[#0D0F13]
           border border-[#E5B528]/40
           shadow-[0_8px_28px_-4px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(0,0,0,0.35)]"

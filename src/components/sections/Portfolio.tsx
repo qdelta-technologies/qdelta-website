@@ -83,7 +83,7 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
     name: "SLN Transportation",
     oneLiner:
       "A professional, trust-focused website highlighting safe student transportation, specialized care, and reliable services.",
-    image: "/images/projects/sln.jpg",
+    image: "/images/projects/sln-transportation.webp",
     link: "https://slntransportation.com/",
     highlights: ["Service Website", "Responsive Design", "Trust-Focused UI", "Enquiry Experience"],
     theme: GOLD_THEME,
@@ -94,7 +94,7 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
     name: "British Connects",
     oneLiner:
       "An education consultancy website presenting study abroad opportunities, scholarship guidance, and student support services.",
-    image: "/images/projects/britishconnects.jpg",
+    image: "/images/projects/britishconnects.webp",
     link: "https://infanyt.wixsite.com/british-connects",
     highlights: ["Education Website", "Service Showcase", "Responsive UI", "Lead Generation"],
     theme: DARK_THEME,
@@ -105,7 +105,7 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
     name: "Pretty Good PDF",
     oneLiner:
       "A clean, user-friendly web application offering free PDF tools for students and professionals, with a focus on simplicity and privacy.",
-    image: "/images/projects/prettygoodpdf.jpg",
+    image: "/images/projects/prettygoodpdf.webp",
     link: "https://www.prettygoodpdf.site/",
     highlights: ["Web Application", "PDF Tools", "User-Friendly UI", "Browser-Based Processing"],
     theme: GOLD_THEME,
@@ -245,7 +245,7 @@ function ArchiveFolder({
         {/* MAIN FOLDER BODY                                                  */}
         {/* ================================================================= */}
         <div
-          className="relative w-full rounded-b-xl sm:rounded-b-2xl border-l border-r border-b overflow-hidden transition-colors"
+          className="relative w-full rounded-b-md border-l border-r border-b overflow-hidden transition-colors"
           style={{
             backgroundColor: project.theme.folderBg,
             borderColor: project.theme.borderColor,

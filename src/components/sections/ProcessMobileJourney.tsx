@@ -98,17 +98,6 @@ export default function ProcessMobileJourney() {
       className="relative w-full max-w-sm sm:max-w-md mx-auto mb-8 select-none px-0 sm:px-1"
       style={{ minHeight: VB_H }}
     >
-      {/* Clean local backdrop — dims the section's grid behind the road so the
-          asphalt reads clearly instead of competing with background texture */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-[32px]"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 100% at 50% 0%, rgba(8,9,12,0.55) 0%, rgba(8,9,12,0.3) 55%, transparent 100%)",
-        }}
-        aria-hidden
-      />
-
       <svg
         className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
         viewBox={`0 0 ${VB_W} ${VB_H}`}

@@ -104,7 +104,7 @@ const TEAM_MEMBERS: TeamMember[] = [
 function MobileTeamCard({ member }: { member: TeamMember }) {
   return (
     <div
-      className="relative flex overflow-hidden rounded-2xl border border-white/[0.1] backdrop-blur-sm"
+      className="relative flex overflow-hidden rounded-md border border-white/[0.1] backdrop-blur-sm"
       style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)" }}
     >
 
@@ -272,7 +272,7 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.08] hover:border-[#E5B528]/35 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-md overflow-hidden border border-white/[0.08] hover:border-[#E5B528]/35 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
 
                     {/* Crisp Golden Top Accent Hairline */}
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent z-20" />
@@ -332,7 +332,7 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD BACK FACE (DARK PANEL + GOLD OUTLINE)              */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl sm:rounded-[18px] overflow-hidden border border-white/[0.1] bg-[#0B0E12] shadow-[0_20px_50px_rgba(0,0,0,0.5)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-md overflow-hidden border border-white/[0.1] bg-[#0B0E12] shadow-[0_20px_50px_rgba(0,0,0,0.5)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300">
 
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent z-20" />
 
