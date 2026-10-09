@@ -56,16 +56,6 @@ const TESTIMONIALS: TestimonialItem[] = [
   },
 ];
 
-// Row 2 uses a staggered order so both rows feel different
-const ROW2 = [
-  TESTIMONIALS[3],
-  TESTIMONIALS[0],
-  TESTIMONIALS[5],
-  TESTIMONIALS[1],
-  TESTIMONIALS[4],
-  TESTIMONIALS[2],
-];
-
 function getInitials(name: string) {
   return name
     .split(" ")
@@ -90,9 +80,9 @@ function Stars() {
 function TestimonialCard({ t }: { t: TestimonialItem }) {
   return (
     <article
-      className="group relative flex w-[300px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-[#C9981E]/60
+      className="group relative flex w-[220px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-xl border border-[#C9981E]/60
         bg-gradient-to-b from-[#EEC832] via-[#E5B528] to-[#D4A322]
-        p-4 sm:p-5
+        p-3 sm:p-5
         shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.25)]
         transition-all duration-300
         hover:border-[#C9981E]
@@ -102,26 +92,26 @@ function TestimonialCard({ t }: { t: TestimonialItem }) {
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#06070A]/20 to-transparent" aria-hidden />
 
       {/* Stars */}
-      <div className="mb-2.5">
+      <div className="mb-1.5 sm:mb-2.5 scale-90 sm:scale-100 origin-left">
         <Stars />
       </div>
 
       {/* Quote */}
-      <p className="font-epilogue text-[12px] sm:text-[12.5px] leading-relaxed text-[#06070A]/75 font-normal mb-3">
+      <p className="font-epilogue text-[10.5px] sm:text-[12.5px] leading-relaxed text-[#06070A]/75 font-normal mb-2 sm:mb-3">
         {t.quote}
       </p>
 
       {/* Author — inline row */}
-      <div className="flex items-center gap-2.5 pt-3 border-t border-[#06070A]/15">
+      <div className="flex items-center gap-2 sm:gap-2.5 pt-2 sm:pt-3 border-t border-[#06070A]/15">
         <div
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#06070A]/25 bg-[#06070A]/10 font-epilogue text-[9px] font-bold text-[#06070A]"
+          className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full border border-[#06070A]/25 bg-[#06070A]/10 font-epilogue text-[8px] sm:text-[9px] font-bold text-[#06070A]"
           aria-hidden
         >
           {getInitials(t.name)}
         </div>
         <div className="min-w-0">
-          <p className="font-excon text-[12px] font-bold text-[#06070A] leading-tight truncate">{t.name}</p>
-          <p className="font-epilogue text-[10px] text-[#06070A]/60 truncate">{t.role}</p>
+          <p className="font-excon text-[11px] sm:text-[12px] font-bold text-[#06070A] leading-tight truncate">{t.name}</p>
+          <p className="font-epilogue text-[9px] sm:text-[10px] text-[#06070A]/60 truncate">{t.role}</p>
         </div>
       </div>
 
@@ -199,14 +189,9 @@ export default function Testimonials() {
         </div>
       </motion.div>
 
-      {/* ─── Dual Marquee ─── */}
-      <div className="relative z-10 flex flex-col gap-4" aria-label="Client testimonials">
-
-        {/* Row 1 — scrolls left */}
+      {/* ─── Single-line Marquee ─── */}
+      <div className="relative z-10" aria-label="Client testimonials">
         <MarqueeRow items={TESTIMONIALS} />
-
-        {/* Row 2 — scrolls right (staggered card order) */}
-        <MarqueeRow items={ROW2} reverse />
       </div>
     </section>
   );

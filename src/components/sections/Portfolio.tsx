@@ -1,27 +1,20 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, X, ExternalLink, Plus } from "lucide-react";
-import { motion, useScroll, useTransform, AnimatePresence, type MotionValue } from "motion/react";
+import { ArrowUpRight, ExternalLink, Plus } from "lucide-react";
+import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 interface ProjectItem {
   id: string;
   indexNumber: string;
-  tabLabel: string;
   name: string;
-  category: string;
-  date: string;
   oneLiner: string;
-  description: string;
   image: string;
+  link: string;
+  /** Exactly 4 tags per project */
   highlights: string[];
-  outcomes: {
-    label: string;
-    value: string;
-  }[];
   theme: {
     folderBg: string;
     borderColor: string;
@@ -39,138 +32,82 @@ interface ProjectItem {
   };
 }
 
+const DARK_THEME: ProjectItem["theme"] = {
+  folderBg: "#0B0E12",
+  borderColor: "rgba(255, 255, 255, 0.12)",
+  textPrimary: "text-white",
+  textSecondary: "text-zinc-300",
+  textMuted: "text-zinc-400",
+  tabTextColor: "text-zinc-200",
+  frameBg: "bg-[#07090E]",
+  frameBorder: "border-white/[0.12]",
+  tagBg: "bg-white/[0.05]",
+  tagBorder: "border-white/10",
+  tagText: "text-zinc-300",
+  ctaUnderline: "bg-[#E5B528]",
+  dotColor: "#E5B528",
+};
+
+const GOLD_THEME: ProjectItem["theme"] = {
+  folderBg: "#E5B528",
+  borderColor: "rgba(0, 0, 0, 0.18)",
+  textPrimary: "text-[#06070A]",
+  textSecondary: "text-[#06070A]/85",
+  textMuted: "text-[#06070A]/70",
+  tabTextColor: "text-[#06070A]",
+  frameBg: "bg-black/90",
+  frameBorder: "border-black/20",
+  tagBg: "bg-black/10",
+  tagBorder: "border-black/15",
+  tagText: "text-[#06070A] font-semibold",
+  ctaUnderline: "bg-[#06070A]",
+  dotColor: "#06070A",
+};
+
 const ARCHIVE_PROJECTS: ProjectItem[] = [
   {
-    id: "auralroast",
+    id: "globalsafetyacademy",
     indexNumber: "01",
-    tabLabel: "+ PROJECT 01",
-    name: "Aural Roast",
-    category: "Premium Brand Storefront",
-    date: "MAR 24, 2026",
-    oneLiner: "An immersive brand experience built around storytelling, motion and conversion.",
-    description:
-      "A premium product-focused storefront blending sensory brand storytelling, curated catalog discovery and streamlined e-commerce architecture.",
-    image: "/images/projects/auralroast.jpg",
-    highlights: ["Brand Storytelling", "Catalog Architecture", "Micro-Interactions", "Shopify Engine"],
-    outcomes: [
-      { label: "Positioning", value: "Artisanal high-end brand feel" },
-      { label: "Catalog", value: "Immersive discovery flow" },
-      { label: "Checkout", value: "Frictionless purchase UX" },
-    ],
-    theme: {
-      folderBg: "#0B0E12",
-      borderColor: "rgba(255, 255, 255, 0.12)",
-      textPrimary: "text-white",
-      textSecondary: "text-zinc-300",
-      textMuted: "text-zinc-400",
-      tabTextColor: "text-zinc-200",
-      frameBg: "bg-[#07090E]",
-      frameBorder: "border-white/[0.12]",
-      tagBg: "bg-white/[0.05]",
-      tagBorder: "border-white/10",
-      tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#E5B528]",
-      dotColor: "#E5B528",
-    },
-  },
-  {
-    id: "authorrise",
-    indexNumber: "02",
-    tabLabel: "+ PROJECT 02",
-    name: "AuthorRise",
-    category: "Digital Sales Experience",
-    date: "FEB 16, 2026",
-    oneLiner: "A focused landing experience designed to turn attention into action.",
-    description:
-      "A high-converting sales funnel and product landing experience engineered to communicate value instantly, eliminate buyer hesitation and drive purchases.",
-    image: "/images/projects/authorrise.jpg",
-    highlights: ["Sales Copy Structure", "1-Step Checkout", "Lead Capture", "Conversion Architecture"],
-    outcomes: [
-      { label: "Clarity", value: "Clear digital offer structure" },
-      { label: "Conversion", value: "High-intent checkout flow" },
-      { label: "Launch", value: "Turnkey digital sales platform" },
-    ],
-    theme: {
-      folderBg: "#E5B528",
-      borderColor: "rgba(0, 0, 0, 0.18)",
-      textPrimary: "text-[#06070A]",
-      textSecondary: "text-[#06070A]/85",
-      textMuted: "text-[#06070A]/70",
-      tabTextColor: "text-[#06070A]",
-      frameBg: "bg-black/90",
-      frameBorder: "border-black/20",
-      tagBg: "bg-black/10",
-      tagBorder: "border-black/15",
-      tagText: "text-[#06070A] font-semibold",
-      ctaUnderline: "bg-[#06070A]",
-      dotColor: "#06070A",
-    },
-  },
-  {
-    id: "fitcore",
-    indexNumber: "03",
-    tabLabel: "+ PROJECT 03",
-    name: "FitCore Studio",
-    category: "Interactive Brand Website",
-    date: "JAN 28, 2026",
-    oneLiner: "A premium digital experience combining motion, interaction and strong visual identity.",
-    description:
-      "A bespoke multi-section web presence designed to showcase high-ticket training programmes, elevate personal brand authority and convert visitors into clients.",
-    image: "/images/projects/fitcore.jpg",
-    highlights: ["Personal Brand Identity", "Programme Packaging", "Client Onboarding", "Responsive UI"],
-    outcomes: [
-      { label: "Authority", value: "Elevated personal brand credibility" },
-      { label: "Clarity", value: "Clear coaching tiers" },
-      { label: "Enquiries", value: "Optimised booking funnel" },
-    ],
-    theme: {
-      folderBg: "#F5F1E8",
-      borderColor: "rgba(0, 0, 0, 0.14)",
-      textPrimary: "text-zinc-950",
-      textSecondary: "text-zinc-700",
-      textMuted: "text-zinc-500",
-      tabTextColor: "text-zinc-900",
-      frameBg: "bg-zinc-900",
-      frameBorder: "border-black/15",
-      tagBg: "bg-black/[0.05]",
-      tagBorder: "border-black/12",
-      tagText: "text-zinc-900 font-semibold",
-      ctaUnderline: "bg-[#E5B528]",
-      dotColor: "#18181b",
-    },
+    name: "Global Safety Academy",
+    oneLiner:
+      "An animated, storytelling-driven website showcasing professional safety training programs and guiding students toward enrolment.",
+    image: "/images/projects/globalsafetyacademy.webp",
+    link: "https://www.globalsafetyacademy.com/",
+    highlights: ["Animated Website", "Brand Storytelling", "Course Showcase", "Enquiry Experience"],
+    theme: DARK_THEME,
   },
   {
     id: "sln",
-    indexNumber: "04",
-    tabLabel: "+ PROJECT 04",
-    name: "SLN Fleet",
-    category: "Modern Web Platform",
-    date: "JAN 06, 2026",
-    oneLiner: "A reliable, high-clarity digital presence engineered for trust, speed and conversions.",
-    description:
-      "An authoritative service business platform engineered to communicate safety credentials, route logistics and operational reliability for student transportation.",
+    indexNumber: "02",
+    name: "SLN Transportation",
+    oneLiner:
+      "A professional, trust-focused website highlighting safe student transportation, specialized care, and reliable services.",
     image: "/images/projects/sln.jpg",
-    highlights: ["Service Platform", "Trust Architecture", "Route Information", "Instant Enquiry Flow"],
-    outcomes: [
-      { label: "Trust", value: "Institutional credibility" },
-      { label: "Clarity", value: "Clear route pricing model" },
-      { label: "Enquiry", value: "Fast quote request experience" },
-    ],
-    theme: {
-      folderBg: "#080A0F",
-      borderColor: "rgba(229, 181, 40, 0.3)",
-      textPrimary: "text-white",
-      textSecondary: "text-zinc-300",
-      textMuted: "text-zinc-400",
-      tabTextColor: "text-[#E5B528]",
-      frameBg: "bg-[#06070A]",
-      frameBorder: "border-[#E5B528]/25",
-      tagBg: "bg-white/[0.05]",
-      tagBorder: "border-white/10",
-      tagText: "text-zinc-300",
-      ctaUnderline: "bg-[#E5B528]",
-      dotColor: "#E5B528",
-    },
+    link: "https://slntransportation.com/",
+    highlights: ["Service Website", "Responsive Design", "Trust-Focused UI", "Enquiry Experience"],
+    theme: GOLD_THEME,
+  },
+  {
+    id: "britishconnects",
+    indexNumber: "03",
+    name: "British Connects",
+    oneLiner:
+      "An education consultancy website presenting study abroad opportunities, scholarship guidance, and student support services.",
+    image: "/images/projects/britishconnects.jpg",
+    link: "https://infanyt.wixsite.com/british-connects",
+    highlights: ["Education Website", "Service Showcase", "Responsive UI", "Lead Generation"],
+    theme: DARK_THEME,
+  },
+  {
+    id: "prettygoodpdf",
+    indexNumber: "04",
+    name: "Pretty Good PDF",
+    oneLiner:
+      "A clean, user-friendly web application offering free PDF tools for students and professionals, with a focus on simplicity and privacy.",
+    image: "/images/projects/prettygoodpdf.jpg",
+    link: "https://www.prettygoodpdf.site/",
+    highlights: ["Web Application", "PDF Tools", "User-Friendly UI", "Browser-Based Processing"],
+    theme: GOLD_THEME,
   },
 ];
 
@@ -179,7 +116,6 @@ interface ArchiveFolderProps {
   index: number;
   total: number;
   progress: MotionValue<number>;
-  onOpenModal: (project: ProjectItem) => void;
 }
 
 function ArchiveFolder({
@@ -187,7 +123,6 @@ function ArchiveFolder({
   index,
   total,
   progress,
-  onOpenModal,
 }: ArchiveFolderProps) {
   // Stagger scale down as subsequent folders stack on top
   const targetScale = 1 - (total - 1 - index) * 0.02;
@@ -365,8 +300,10 @@ function ArchiveFolder({
 
               {/* CTA Button */}
               <div>
-                <button
-                  onClick={() => onOpenModal(project)}
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`group/btn inline-flex items-center gap-2 font-epilogue text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase transition-all cursor-pointer ${project.theme.textPrimary}`}
                 >
                   <span className="relative">
@@ -376,7 +313,7 @@ function ArchiveFolder({
                   <div className="w-5 h-5 flex items-center justify-center transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1">
                     <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
                   </div>
-                </button>
+                </a>
               </div>
             </div>
 
@@ -384,9 +321,12 @@ function ArchiveFolder({
             {/* RIGHT COLUMN: FRAMED THUMBNAIL                       */}
             {/* ==================================================== */}
             <div className="lg:col-span-6 relative flex items-center justify-center p-3 sm:p-6 lg:p-8">
-              <div
-                onClick={() => onOpenModal(project)}
-                className="group/mockup relative w-full cursor-pointer"
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/mockup relative w-full block cursor-pointer"
+                aria-label={`Open ${project.name} in a new tab`}
               >
                 {/* Browser chrome bar */}
                 <div
@@ -402,7 +342,7 @@ function ArchiveFolder({
                   <div className="flex-1 mx-3 h-4 rounded-sm bg-white/[0.06] border border-white/[0.06]" />
                 </div>
 
-                {/* Image frame */}
+                {/* Image frame — object-contain keeps the thumbnail neat with no cropping or stretching */}
                 <div
                   className={`relative w-full aspect-[16/9] overflow-hidden border-l border-r border-b rounded-b-lg shadow-[0_20px_60px_rgba(0,0,0,0.55)] ${project.theme.frameBg} ${project.theme.frameBorder}`}
                 >
@@ -411,9 +351,8 @@ function ArchiveFolder({
                     alt={`${project.name} preview`}
                     fill
                     sizes="(max-width: 768px) 100vw, 580px"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover/mockup:scale-[1.03]"
+                    className="object-contain transition-transform duration-700 ease-out group-hover/mockup:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
                   {/* Hover badge */}
                   <div className="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white opacity-0 group-hover/mockup:opacity-100 transition-opacity duration-300">
@@ -421,7 +360,7 @@ function ArchiveFolder({
                     <span className="font-epilogue text-[10px] font-semibold uppercase tracking-wider">View</span>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -432,7 +371,6 @@ function ArchiveFolder({
 
 export default function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeModalProject, setActiveModalProject] = useState<ProjectItem | null>(null);
 
   // Layered Scroll Stacking Progress
   const { scrollYProgress } = useScroll({
@@ -494,118 +432,9 @@ export default function Portfolio() {
             index={index}
             total={ARCHIVE_PROJECTS.length}
             progress={scrollYProgress}
-            onOpenModal={(p) => setActiveModalProject(p)}
           />
         ))}
       </div>
-
-      {/* ======================================================= */}
-      {/* CASE STUDY DETAIL MODAL                                 */}
-      {/* ======================================================= */}
-      <AnimatePresence>
-        {activeModalProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 15 }}
-              transition={{ duration: 0.25 }}
-              className="relative w-full max-w-3xl rounded-2xl border border-white/12 bg-[#0B0E12] p-6 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.95)] overflow-hidden max-h-[90vh] overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setActiveModalProject(null)}
-                className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer z-20"
-                aria-label="Close modal"
-              >
-                <X className="h-4 w-4" />
-              </button>
-
-              {/* Modal Body */}
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-epilogue text-xs uppercase tracking-widest text-[#E5B528] font-semibold">
-                    PROJECT {activeModalProject.indexNumber} // {activeModalProject.category}
-                  </span>
-                </div>
-
-                <h3 className="font-excon text-xl sm:text-2xl font-bold text-white">
-                  {activeModalProject.name}
-                </h3>
-                <p className="mt-1 font-epilogue text-sm sm:text-base text-zinc-300">
-                  {activeModalProject.oneLiner}
-                </p>
-
-                {/* High-res showcase visual */}
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mt-6 border border-white/10 shadow-lg">
-                  <Image
-                    src={activeModalProject.image}
-                    alt={activeModalProject.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 800px"
-                  />
-                </div>
-
-                {/* Overview narrative */}
-                <div className="mt-6">
-                  <h4 className="text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-semibold mb-2">
-                    Project Architecture & Strategy
-                  </h4>
-                  <p className="font-epilogue text-sm text-zinc-300 leading-relaxed">
-                    {activeModalProject.description}
-                  </p>
-                </div>
-
-                {/* Capabilities included */}
-                <div className="mt-6 pt-5 border-t border-white/10">
-                  <h4 className="text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-semibold mb-3">
-                    Capabilities Implemented
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {activeModalProject.highlights.map((h) => (
-                      <span
-                        key={h}
-                        className="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-xs font-epilogue text-zinc-200"
-                      >
-                        {h}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Key Outcomes */}
-                <div className="mt-6 pt-5 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-                  {activeModalProject.outcomes.map((o) => (
-                    <div
-                      key={o.label}
-                      className="p-3.5 rounded-xl bg-white/[0.025] border border-white/10"
-                    >
-                      <span className="text-[10px] font-epilogue uppercase tracking-wider text-[#E5B528] font-semibold">
-                        {o.label}
-                      </span>
-                      <p className="mt-1 font-epilogue text-xs font-bold text-white">
-                        {o.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Modal Footer CTA */}
-                <div className="mt-8 flex justify-end">
-                  <Link
-                    href="#contact"
-                    onClick={() => setActiveModalProject(null)}
-                    className="px-7 py-3 rounded-full bg-[#E5B528] text-[#06070A] font-epilogue font-bold text-xs sm:text-sm hover:bg-[#F0C034] transition-colors shadow-md"
-                  >
-                    Discuss a Similar Build
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
