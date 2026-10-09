@@ -351,17 +351,9 @@ const STEP_REVEAL_DELAY = 0.06;
                       {/* Row 2 — node centered on shared rail */}
                       <div className="relative z-20 flex items-center justify-center py-0">
                         {isActive && (
-                          <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: [0.9, 1.45, 0.9], opacity: [0, 0.55, 0] }}
-                            transition={{
-                              repeat: Infinity,
-                              duration: 2.8,
-                              ease: "easeInOut",
-                              repeatDelay: 0.2,
-                              delay: STEP_REVEAL_DELAY + 0.08,
-                            }}
-                            className="pointer-events-none absolute h-12 w-12 rounded-full bg-[#E5B528]/18 blur-[6px]"
+                          <div
+                            aria-hidden
+                            className="process-pulse pointer-events-none absolute h-12 w-12 rounded-full bg-[#E5B528]/18 blur-[6px]"
                           />
                         )}
                         <motion.div

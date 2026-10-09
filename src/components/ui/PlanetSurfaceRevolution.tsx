@@ -21,6 +21,9 @@ export default function PlanetSurfaceRevolution() {
 
     let animId: number;
     let isVisible = true;
+    const isPhone = window.innerWidth < 768;
+    const FRAME_MS = isPhone ? 1000 / 24 : 0; // phones: ~24fps is plenty for a 90-second slow rotation
+    let lastFrame = 0;
     // Fluid, majestic planetary rotation: ~54 seconds per full 360° revolution
     const ROTATION_SPEED = 0.07; // degrees per frame at 60fps (~86s per revolution)
 
@@ -28,6 +31,8 @@ export default function PlanetSurfaceRevolution() {
       ([entry]) => {
         isVisible = entry.isIntersecting;
         if (isVisible) {
+          lastFrame = 0;
+          cancelAnimationFrame(animId);
           animId = requestAnimationFrame(animate);
         } else {
           cancelAnimationFrame(animId);
@@ -36,13 +41,22 @@ export default function PlanetSurfaceRevolution() {
       { threshold: 0 }
     );
 
+    // A plain <g> has no box of its own, so browsers do not report its visibility reliably, and the planet kept animating
+    // (about 200 SVG paths rewritten per frame) while the visitor was far down the page. Watch the <svg> that holds it.
     if (containerRef.current) {
-      observer.observe(containerRef.current);
+      observer.observe(containerRef.current.ownerSVGElement ?? containerRef.current);
     }
 
-    const animate = () => {
+    const animate = (now?: number) => {
+      const t = now ?? performance.now();
+      if (FRAME_MS && t - lastFrame < FRAME_MS - 1) {
+        if (isVisible) animId = requestAnimationFrame(animate);
+        return;
+      }
+      const dt = lastFrame ? Math.min(100, t - lastFrame) : 16.67;
+      lastFrame = t;
       if (!prefersReducedMotion) {
-        rotationAngleRef.current = (rotationAngleRef.current + ROTATION_SPEED) % 360;
+        rotationAngleRef.current = (rotationAngleRef.current + ROTATION_SPEED * (dt / 16.67)) % 360;
       }
 
       const rot = rotationAngleRef.current;

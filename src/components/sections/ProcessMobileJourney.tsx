@@ -137,6 +137,17 @@ export default function ProcessMobileJourney() {
           strokeLinejoin="round"
         />
 
+        {/* Soft shadow under the road: a plain offset stroke (an SVG blur/drop-shadow filter on an animated path is very slow on phones) */}
+        <path
+          d={ROAD_PATH}
+          fill="none"
+          stroke="rgba(0, 0, 0, 0.32)"
+          strokeWidth="8.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          transform="translate(0 1.2)"
+        />
+
         {/* Asphalt road bed */}
         <motion.path
           d={ROAD_PATH}
@@ -145,7 +156,6 @@ export default function ProcessMobileJourney() {
           strokeWidth="7.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          filter="url(#process-road-shadow)"
           initial={shouldReduceMotion ? false : { pathLength: 0, opacity: 0 }}
           whileInView={shouldReduceMotion ? undefined : { pathLength: 1, opacity: 1 }}
           viewport={{ once: true, amount: 0.1 }}
