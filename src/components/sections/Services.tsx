@@ -109,11 +109,6 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           aria-hidden="true"
         />
 
-        {/* 3D Directional Ambient Highlight Sheen */}
-        <div
-          className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full bg-white/[0.12] blur-2xl z-10"
-          aria-hidden="true"
-        />
 
         {/* Subtle Texture Grain Over Radiant Golden Background */}
         <div

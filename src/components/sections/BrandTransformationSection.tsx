@@ -317,8 +317,6 @@ export default function BrandTransformationSection() {
             {/* Crisp Golden Top Accent Hairline */}
             <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/70 to-transparent z-20" />
 
-            {/* Ambient Warm Golden Backlight */}
-            <div className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-[#FAB406]/[0.04] blur-[90px]" />
 
             {/* Video Player Frame */}
             <div
@@ -468,8 +466,6 @@ export default function BrandTransformationSection() {
               {/* Crisp top sheen */}
               <div className="pointer-events-none absolute top-0 inset-x-8 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent z-20" />
 
-              {/* Ambient sheen reflection */}
-              <div className="pointer-events-none absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-white/10 blur-2xl" />
 
               {/* Header micro-tag: Agency Track Record */}
               <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-black/10 select-none">
@@ -479,9 +475,6 @@ export default function BrandTransformationSection() {
                     Proven Track Record
                   </span>
                 </div>
-                <span className="font-epilogue text-[10px] text-black/75 font-bold tracking-wide uppercase">
-                  Data-Backed Results
-                </span>
               </div>
 
               {/* 3 Inset Metric Pods */}

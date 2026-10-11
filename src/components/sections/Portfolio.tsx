@@ -257,12 +257,6 @@ function ArchiveFolder({
             className="pointer-events-none absolute inset-x-4 sm:inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/40 to-transparent z-20"
             aria-hidden="true"
           />
-          {/* Gold ambient glow — top right */}
-          <div
-            className="pointer-events-none absolute top-0 right-0 w-56 h-56 rounded-full blur-[60px] opacity-[0.10]"
-            style={{ background: `radial-gradient(circle, ${project.theme.dotColor} 0%, transparent 70%)` }}
-            aria-hidden
-          />
 
           {/* CAD fine grid */}
           <svg className="pointer-events-none absolute inset-0 w-full h-full opacity-[0.09]" aria-hidden>

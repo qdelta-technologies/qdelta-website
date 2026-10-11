@@ -277,11 +277,6 @@ export default function Team() {
                     {/* Crisp Golden Top Accent Hairline */}
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/75 to-transparent z-20" />
 
-                    {/* Top Ambient Glow behind portrait */}
-                    <div
-                      className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full blur-3xl opacity-25"
-                      style={{ backgroundColor: member.accentColor }}
-                    />
 
                     {/* Member Portrait Image */}
                     <div className="absolute inset-0 w-full h-full">

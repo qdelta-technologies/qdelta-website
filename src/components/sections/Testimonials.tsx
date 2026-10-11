@@ -74,8 +74,6 @@ function TestimonialCard({ t }: { t: TestimonialItem }) {
       {/* Top glass reflection bevel / sheen */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/70 to-transparent z-10" aria-hidden />
 
-      {/* Diagonal ambient glass light streak */}
-      <div className="pointer-events-none absolute -top-16 -left-16 w-44 h-44 rounded-full bg-white/[0.12] blur-xl" aria-hidden />
 
       {/* Stars */}
       <div className="mb-1.5 sm:mb-2.5 lg:mb-3 scale-90 sm:scale-100 lg:scale-105 origin-left relative z-10">
