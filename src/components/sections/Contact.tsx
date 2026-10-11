@@ -1,13 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Check, ArrowUpRight } from "lucide-react";
+import { Check, ArrowUpRight, ShieldCheck, Clock } from "lucide-react";
 import ChamferButton from "@/components/ui/ChamferButton";
 
 import OpenBoxServicePills from "@/components/ui/OpenBoxServicePills";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
+import {
+  evaluateRateLimit,
+  recordSubmission,
+  getActiveCooldownStatus,
+  MAX_SUBMISSIONS_PER_USER,
+} from "@/lib/rateLimit";
 
 const SERVICES = [
   "Landing Page",
@@ -25,9 +31,25 @@ export default function Contact() {
     "Landing Page",
   ]);
   const [brief, setBrief] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [cooldownStatus, setCooldownStatus] = useState<{
+    isCooldown: boolean;
+    minutesRemaining: number;
+    totalSubmissions: number;
+  }>({ isCooldown: false, minutesRemaining: 0, totalSubmissions: 0 });
+
+  // Monitor anti-spam cooldown status periodically
+  useEffect(() => {
+    const refreshStatus = () => {
+      setCooldownStatus(getActiveCooldownStatus());
+    };
+    refreshStatus();
+    const timer = setInterval(refreshStatus, 15000);
+    return () => clearInterval(timer);
+  }, []);
 
   const toggleService = (service: string) => {
     setSelectedServices((prev) =>
@@ -40,8 +62,22 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email.trim() || !mobile.trim()) {
-      setErrorMessage("Both email address and mobile number are required.");
+    // 1. Invisible Honeypot Check: Trap automated bots before they spam FormSubmit or Google Sheets
+    if (honeypot.trim().length > 0) {
+      setSubmitted(true);
+      return;
+    }
+
+    // 2. Validate mandatory fields
+    if (!name.trim() || !email.trim() || !mobile.trim()) {
+      setErrorMessage("Name, email address, and mobile number are mandatory.");
+      return;
+    }
+
+    // 3. Client-side Rate Limit check (30-min gap & max 2 submissions per person)
+    const rateCheck = evaluateRateLimit(email, mobile);
+    if (!rateCheck.allowed) {
+      setErrorMessage(rateCheck.message || "Submission limit reached.");
       return;
     }
 
@@ -55,37 +91,75 @@ export default function Contact() {
         mobile: mobile.trim(),
         services: selectedServices.length > 0 ? selectedServices.join(", ") : "Not specified",
         brief: brief.trim(),
+        _honey: honeypot,
         _subject: `New Project Inquiry from ${name.trim()} - QDelta`,
         _template: "table",
         _captcha: "false",
       };
 
-      const res = await fetch("https://formsubmit.co/ajax/hello@qdelta.in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      let succeeded = false;
+      let failureReason = "";
 
-      const data = await res.json().catch(() => ({}));
+      // Step A: Attempt server-side rate-limited submission
+      try {
+        const serverRes = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
 
-      if (res.ok && (data.success === "true" || data.success === true)) {
+        const serverData = await serverRes.json().catch(() => ({}));
+
+        if (serverRes.ok && (serverData.success === true || serverData.success === "true")) {
+          succeeded = true;
+        } else if (serverRes.status === 429) {
+          // Explicit rate limit triggered on server
+          setErrorMessage(serverData.message || "Rate limit reached. Please wait 30 minutes.");
+          setSubmitting(false);
+          return;
+        } else {
+          failureReason = serverData.message || "";
+        }
+      } catch {
+        // Fallback to direct FormSubmit.co client call if server route network interrupted
+      }
+
+      // Step B: Fallback directly to FormSubmit.co
+      if (!succeeded) {
+        const directRes = await fetch("https://formsubmit.co/ajax/hello@qdelta.in", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const directData = await directRes.json().catch(() => ({}));
+
+        if (directRes.ok && (directData.success === "true" || directData.success === true)) {
+          succeeded = true;
+        } else if (directData.message && directData.message.toLowerCase().includes("activate")) {
+          failureReason =
+            "FormSubmit has sent a one-time activation email to hello@qdelta.in. Please click the confirmation link in your inbox to enable forwarding.";
+        } else {
+          failureReason = directData.message || failureReason;
+        }
+      }
+
+      if (succeeded) {
+        // Save to browser localStorage rate limiting logs
+        recordSubmission(email, mobile);
+        setCooldownStatus(getActiveCooldownStatus());
         setSubmitted(true);
-      } else if (data.message && data.message.toLowerCase().includes("activate")) {
-        // First-time FormSubmit activation message for hello@qdelta.in
-        setErrorMessage(
-          "FormSubmit has sent an activation email to hello@qdelta.in. Please click the confirmation link in your inbox to activate form forwarding."
-        );
       } else {
         setErrorMessage(
-          data.message ||
+          failureReason ||
             "Unable to submit inquiry at the moment. Please try again or reach out directly at hello@qdelta.in."
         );
       }
     } catch (err) {
-      console.error("FormSubmit inquiry submission error:", err);
+      console.error("Form inquiry submission error:", err);
       setErrorMessage(
         "Network connection issue. Please check your internet connection or email us directly at hello@qdelta.in."
       );
@@ -95,6 +169,18 @@ export default function Contact() {
   };
 
   const handleReset = () => {
+    // Check if cooldown is active before resetting
+    const currentStatus = getActiveCooldownStatus();
+    if (currentStatus.isCooldown) {
+      setErrorMessage(
+        `Anti-spam cooldown active: Please wait ${currentStatus.minutesRemaining} more minute${
+          currentStatus.minutesRemaining > 1 ? "s" : ""
+        } before submitting another inquiry (Limit: ${MAX_SUBMISSIONS_PER_USER} per person).`
+      );
+      setSubmitted(false);
+      return;
+    }
+
     setSubmitted(false);
     setSubmitting(false);
     setErrorMessage(null);
@@ -103,6 +189,7 @@ export default function Contact() {
     setMobile("");
     setSelectedServices(["Landing Page"]);
     setBrief("");
+    setHoneypot("");
   };
 
   return (
@@ -204,7 +291,7 @@ export default function Contact() {
                   transition={{ duration: 0.3 }}
                   className="py-10 sm:py-14 flex flex-col items-center justify-center text-center"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5B528]/15 border border-[#E5B528]/40 text-[#E5B528] shadow-[0_0_24px_rgba(229, 181, 40,0.25)]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5B528]/15 border border-[#E5B528]/40 text-[#E5B528] shadow-[0_0_24px_rgba(229,181,40,0.25)]">
                     <Check className="h-7 w-7 stroke-[2.5]" />
                   </div>
 
@@ -219,13 +306,29 @@ export default function Contact() {
                     shortly.
                   </p>
 
-                  <button
-                    type="button"
-                    onClick={handleReset}
-                    className="mt-7 rounded-full bg-[#E5B528] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#F0C034] hover:scale-105 cursor-pointer shadow-md"
-                  >
-                    Send Another Inquiry
-                  </button>
+                  {/* Anti-Spam Rate Limit Notice */}
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#E5B528]/25 bg-[#E5B528]/10 px-3.5 py-1.5 text-[11px] font-epilogue text-[#E5B528]">
+                    <ShieldCheck className="h-3.5 w-3.5 text-[#E5B528]" />
+                    <span>30-min cooldown between submissions (Limit: {MAX_SUBMISSIONS_PER_USER} per person)</span>
+                  </div>
+
+                  {cooldownStatus.totalSubmissions >= MAX_SUBMISSIONS_PER_USER ? (
+                    <p className="mt-6 text-xs font-epilogue text-zinc-400 max-w-xs leading-relaxed">
+                      You have reached the maximum limit of {MAX_SUBMISSIONS_PER_USER} inquiries for this session. For any additional updates, please contact{" "}
+                      <a href="mailto:hello@qdelta.in" className="text-[#E5B528] underline underline-offset-2">
+                        hello@qdelta.in
+                      </a>{" "}
+                      directly.
+                    </p>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={handleReset}
+                      className="mt-6 rounded-full bg-[#E5B528] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#F0C034] hover:scale-105 cursor-pointer shadow-md"
+                    >
+                      Send Another Inquiry
+                    </button>
+                  )}
                 </motion.div>
               ) : (
                 <motion.div
@@ -236,11 +339,19 @@ export default function Contact() {
                 >
                   {/* Form Header */}
                   <div className="mb-4 sm:mb-8">
-                    <h3 className="font-excon text-xl sm:text-2xl md:text-[2rem] font-bold text-white tracking-tight">
-                      Start Your Project
-                    </h3>
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="font-excon text-xl sm:text-2xl md:text-[2rem] font-bold text-white tracking-tight">
+                        Start Your Project
+                      </h3>
+                      {cooldownStatus.isCooldown && (
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-epilogue text-[#E5B528] bg-[#E5B528]/10 border border-[#E5B528]/30 px-3 py-1 rounded-full shrink-0">
+                          <Clock className="w-3 h-3 text-[#E5B528]" />
+                          <span>{cooldownStatus.minutesRemaining}m cooldown</span>
+                        </span>
+                      )}
+                    </div>
                     <p className="mt-1 text-xs sm:text-sm font-epilogue text-zinc-400">
-                      A few details are enough.
+                      A few details are enough. (Max {MAX_SUBMISSIONS_PER_USER} submissions per person)
                     </p>
                   </div>
 
@@ -250,6 +361,18 @@ export default function Contact() {
                     onSubmit={handleSubmit}
                     className="space-y-4 sm:space-y-7"
                   >
+                    {/* Bot Trap: Invisible honeypot field (Catches automated scripts) */}
+                    <div className="hidden" aria-hidden="true">
+                      <input
+                        type="text"
+                        name="_honey"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </div>
+
                     {/* FormSubmit.co Configuration */}
                     <input
                       type="hidden"
@@ -373,6 +496,21 @@ export default function Contact() {
                       />
                     </div>
 
+                    {/* Anti-Spam Active Cooldown Banner */}
+                    {cooldownStatus.isCooldown && !errorMessage && (
+                      <div className="rounded-md border border-[#E5B528]/30 bg-[#E5B528]/10 p-3.5 text-xs font-epilogue text-[#E5B528] flex items-center gap-2.5">
+                        <Clock className="h-4 w-4 shrink-0 text-[#E5B528]" />
+                        <span>
+                          Anti-spam cooldown: Next inquiry submission available in{" "}
+                          <strong>
+                            {cooldownStatus.minutesRemaining} minute
+                            {cooldownStatus.minutesRemaining > 1 ? "s" : ""}
+                          </strong>{" "}
+                          (Limit: {MAX_SUBMISSIONS_PER_USER} per person).
+                        </span>
+                      </div>
+                    )}
+
                     {/* Error Banner */}
                     {errorMessage && (
                       <div className="rounded-md border border-amber-500/40 bg-amber-500/10 p-3.5 text-xs font-epilogue text-amber-200 leading-relaxed">
@@ -386,10 +524,16 @@ export default function Contact() {
                       <ChamferButton
                         type="submit"
                         variant="primary"
-                        disabled={submitting}
+                        disabled={submitting || cooldownStatus.isCooldown}
                         className="w-full text-sm font-bold tracking-wide px-8 py-3"
                       >
-                        <span>{submitting ? "Sending Inquiry..." : "Send Inquiry"}</span>
+                        <span>
+                          {submitting
+                            ? "Sending Inquiry..."
+                            : cooldownStatus.isCooldown
+                            ? `Cooldown Active (${cooldownStatus.minutesRemaining}m left)`
+                            : "Send Inquiry"}
+                        </span>
                         <span
                           className={`relative inline-grid place-items-center shrink-0 w-4 h-4 text-[#06070A] ${
                             submitting
