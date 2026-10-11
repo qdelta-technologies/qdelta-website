@@ -95,15 +95,29 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
     >
       <motion.div
         style={{ scale, transformOrigin: "top center", willChange: "transform" }}
-        className="group relative w-full rounded-md overflow-hidden flex flex-col justify-center
-          py-5 sm:py-6 md:py-7 lg:py-8 px-5 sm:px-7 md:px-9 lg:px-11
-          bg-[#FAB406] text-[#050608]
-          border border-[#D49802]
-          shadow-[0_14px_36px_-6px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.4)]"
+        className="group relative w-full rounded-xl sm:rounded-2xl overflow-hidden flex flex-col justify-center items-center
+          min-h-[190px] sm:min-h-[210px] md:min-h-[230px] lg:min-h-[240px]
+          py-7 sm:py-8 md:py-9 lg:py-10 px-5 sm:px-7 md:px-9 lg:px-12
+          bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608]
+          border-t border-l border-r border-[#EAA808]
+          border-b-[4px] sm:border-b-[5px] border-b-[#B87700]
+          shadow-[0_22px_55px_-10px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.7),inset_0_-2px_4px_rgba(0,0,0,0.15)]"
       >
+        {/* Crisp Top Specular 3D Reflection Hairline */}
+        <div
+          className="pointer-events-none absolute inset-x-4 sm:inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent z-20"
+          aria-hidden="true"
+        />
+
+        {/* 3D Directional Ambient Highlight Sheen */}
+        <div
+          className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full bg-white/[0.12] blur-2xl z-10"
+          aria-hidden="true"
+        />
+
         {/* Subtle Texture Grain Over Radiant Golden Background */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
+          className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-overlay"
           style={{
             backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
             backgroundSize: "8px 8px",
@@ -111,18 +125,18 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
           aria-hidden="true"
         />
 
-        {/* Vertically Centered Responsive Grid — Exact Equal Top & Bottom Spacing */}
-        <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center my-auto">
+        {/* Vertically & Horizontally Centered Responsive Grid */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto my-auto grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 md:gap-8 lg:gap-10 items-center justify-center">
           {/* Left Column: Bold Headline in Pure High-Contrast Jet Black */}
           <div className="md:col-span-5 lg:col-span-5 flex flex-col justify-center">
-            <h3 className="text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-excon font-extrabold tracking-tight leading-[1.08] text-[#050608]">
+            <h3 className="text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-excon font-extrabold tracking-tight leading-[1.08] text-[#050608] drop-shadow-[0_1px_1px_rgba(255,255,255,0.3)]">
               <span className="block text-[#050608]">{service.titleLine1}</span>
               <span className="block text-[#050608] mt-0.5 sm:mt-1">{service.titleLine2}</span>
             </h3>
           </div>
 
           {/* Right Column: Tagline + Description + Feature Pills */}
-          <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-center space-y-2.5 sm:space-y-3 pt-3.5 md:pt-0 border-t border-black/15 md:border-t-0 md:border-l md:border-black/20 md:pl-7 lg:pl-10">
+          <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-center space-y-2.5 sm:space-y-3 pt-3.5 md:pt-0 border-t border-black/15 md:border-t-0 md:border-l md:border-black/20 md:shadow-[-1px_0_0_rgba(255,255,255,0.25)] md:pl-7 lg:pl-10">
             {/* Tagline + Description with Solid Dark Contrast */}
             <div className="space-y-1">
               <div className="flex items-center gap-2">
@@ -136,12 +150,12 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
               </p>
             </div>
 
-            {/* Feature Badges / Pills */}
+            {/* Feature Badges / Pills with 3D tactile bevel */}
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-0.5">
               {service.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-epilogue font-bold text-white bg-[#050608] shadow-[0_2px_4px_rgba(0,0,0,0.2)] tracking-tight transition-transform duration-200 hover:scale-105"
+                  className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-epilogue font-bold text-white bg-[#050608] border-b border-black/80 shadow-[0_3px_6px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.25)] tracking-tight transition-transform duration-200 hover:scale-105 cursor-default select-none"
                 >
                   {tag}
                 </span>
