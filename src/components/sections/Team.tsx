@@ -69,8 +69,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
     instagramUrl: "#",
     portfolioUrl: "#",
-    accentColor: "#E5B528",
-    glowColor: "rgba(229, 181, 40, 0.14)",
+    accentColor: "#FAB406",
+    glowColor: "rgba(250, 180, 6, 0.14)",
   },
   {
     id: "sai-prabath",
@@ -83,8 +83,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
     instagramUrl: "#",
     portfolioUrl: "#",
-    accentColor: "#E5B528",
-    glowColor: "rgba(229, 181, 40, 0.14)",
+    accentColor: "#FAB406",
+    glowColor: "rgba(250, 180, 6, 0.14)",
   },
   {
     id: "fazeel",
@@ -97,8 +97,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/md-fazeel-167816281/",
     instagramUrl: "#",
     portfolioUrl: "#",
-    accentColor: "#E5B528",
-    glowColor: "rgba(229, 181, 40, 0.14)",
+    accentColor: "#FAB406",
+    glowColor: "rgba(250, 180, 6, 0.14)",
   },
 ];
 
@@ -110,7 +110,7 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
     >
 
       {/* Gold top hairline */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/40 to-transparent z-10" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FAB406]/40 to-transparent z-10" aria-hidden />
 
       {/* Full-height photo — left ~38% */}
       <div className="relative w-[38%] shrink-0 min-h-[148px]">
@@ -127,7 +127,7 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
       <div className="flex flex-1 flex-col justify-between px-4 py-4">
         {/* Top: role pill + name + subtitle */}
         <div className="flex flex-col gap-1.5">
-          <span className="inline-flex w-fit items-center rounded-full border border-[#E5B528]/35 bg-[#E5B528]/10 px-2.5 py-0.5 font-epilogue text-[9px] font-extrabold uppercase tracking-[0.18em] text-[#E5B528]">
+          <span className="inline-flex w-fit items-center rounded-full border border-[#FAB406]/35 bg-[#FAB406]/10 px-2.5 py-0.5 font-epilogue text-[9px] font-extrabold uppercase tracking-[0.18em] text-[#FAB406]">
             {member.role}
           </span>
           <h3 className="font-excon text-[24px] font-bold leading-none tracking-tight text-white">
@@ -178,7 +178,7 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
               href={member.portfolioUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto flex items-center gap-1 font-epilogue text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-500 transition-colors hover:text-[#E5B528]"
+              className="ml-auto flex items-center gap-1 font-epilogue text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-500 transition-colors hover:text-[#FAB406]"
             >
               Portfolio
               <ArrowUpRight className="h-3 w-3" />
@@ -205,7 +205,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#E5B528] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#FAB406] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="left" gridOpacity={0.15} />
@@ -226,7 +226,7 @@ export default function Team() {
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-heading font-bold tracking-tight text-white leading-[1.12] text-balance">
-            Meet the people behind <span className="text-[#E5B528]">QDelta</span>.
+            Meet the people behind <span className="text-[#FAB406]">QDelta</span>.
           </h2>
 
           {/* Supporting Text */}
@@ -269,10 +269,10 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-md overflow-hidden border border-white/[0.08] hover:border-[#E5B528]/35 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-md overflow-hidden border border-white/[0.08] hover:border-[#FAB406]/35 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.8)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
 
                     {/* Crisp Golden Top Accent Hairline */}
-                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent z-20" />
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/55 to-transparent z-20" />
 
                     {/* Top Ambient Glow behind portrait */}
                     <div
@@ -305,7 +305,7 @@ export default function Team() {
                     {/* Top Flip Indicator Badge (Clean, No Numbering) */}
                     <div className="absolute top-4 right-4 z-10">
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B0E12]/80 backdrop-blur-md border border-white/10 text-[10px] font-epilogue text-zinc-300 shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
-                        <RefreshCw className="w-3 h-3 text-[#E5B528]" />
+                        <RefreshCw className="w-3 h-3 text-[#FAB406]" />
                         <span className="font-medium">Flip</span>
                       </div>
                     </div>
@@ -316,7 +316,7 @@ export default function Team() {
                         <h3 className="font-excon text-2xl sm:text-[1.6rem] font-bold text-white tracking-tight leading-tight">
                           {member.name}
                         </h3>
-                        <span className="shrink-0 font-epilogue text-xs uppercase tracking-[0.16em] font-semibold text-[#E5B528]">
+                        <span className="shrink-0 font-epilogue text-xs uppercase tracking-[0.16em] font-semibold text-[#FAB406]">
                           {member.role}
                         </span>
                       </div>
@@ -336,7 +336,7 @@ export default function Team() {
                     {/* Top Back Header */}
                     <div className="relative z-10 border-b border-white/[0.1] pb-2.5">
                       <div className="flex items-center justify-end">
-                        <span className="font-epilogue text-xs uppercase tracking-widest font-extrabold text-[#E5B528]">
+                        <span className="font-epilogue text-xs uppercase tracking-widest font-extrabold text-[#FAB406]">
                           {member.role}
                         </span>
                       </div>
@@ -363,7 +363,7 @@ export default function Team() {
                           {member.focus.map((item) => (
                             <span
                               key={item}
-                              className="px-2.5 py-1 rounded-full border border-[#E5B528]/45 bg-[#E5B528]/10 text-zinc-100 font-epilogue text-[11px] font-semibold"
+                              className="px-2.5 py-1 rounded-full border border-[#FAB406]/45 bg-[#FAB406]/10 text-zinc-100 font-epilogue text-[11px] font-semibold"
                             >
                               {item}
                             </span>
@@ -379,11 +379,11 @@ export default function Team() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#E5B528]/50 bg-[#E5B528]/10 text-[#E5B528] text-xs font-epilogue uppercase tracking-wider font-bold shadow-sm hover:bg-[#E5B528]/15 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[#FAB406]/50 bg-[#FAB406]/10 text-[#FAB406] text-xs font-epilogue uppercase tracking-wider font-bold shadow-sm hover:bg-[#FAB406]/15 transition-colors"
                       >
                         <LinkedInIcon className="h-4 w-4 rounded-[2px]" />
                         <span>View LinkedIn</span>
-                        <ArrowUpRight className="w-3 h-3 text-[#E5B528]/80" />
+                        <ArrowUpRight className="w-3 h-3 text-[#FAB406]/80" />
                       </a>
 
                       <span className="text-[10px] font-epilogue uppercase tracking-widest text-zinc-500 font-bold">

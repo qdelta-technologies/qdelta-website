@@ -19,7 +19,7 @@ const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#06070A] text-white selection:bg-[#E5B528] selection:text-[#06070A] flex flex-col justify-between">
+    <div className="relative min-h-screen bg-[#06070A] text-white selection:bg-[#FAB406] selection:text-[#06070A] flex flex-col justify-between">
       <Navbar />
       <main className="flex-1">
         <Hero />

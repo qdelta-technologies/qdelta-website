@@ -14,63 +14,47 @@ interface TestimonialItem {
 
 const TESTIMONIALS: TestimonialItem[] = [
   {
-    id: "t1",
+    id: "gsa",
     quote:
-      "QDelta helped us present our business in a much more professional way. The website feels clearer, stronger and more aligned with the kind of clients we want to attract.",
-    name: "Jessica Jacobsen",
-    role: "Business Consultant",
+      "QDelta handled our website with true professionalism. It captures our brand identity as a dedicated safety engineering academy and feels like a massive upgrade from our old site. Our students and corporate partners find it so much easier to navigate.",
+    name: "Global Safety Academy",
+    role: "Safety Engineering & Training, Nalgonda",
   },
   {
-    id: "t2",
+    id: "wts-nova",
     quote:
-      "We needed more than a good-looking website — we needed something that actually built trust. QDelta delivered an experience that felt thoughtful, modern and business-focused.",
-    name: "Jamie Monica",
-    role: "Brand Founder",
+      "As a social media agency, our standards for digital presentation are high. QDelta built us a clean, interactive website that doesn’t just look incredible — it actually helped us set up structured systems for our client inquiries and onboarding.",
+    name: "WTS Nova",
+    role: "Social Media & Growth Agency",
   },
   {
-    id: "t3",
+    id: "british-connects",
     quote:
-      "The final website gave our brand a stronger digital presence and made our offer easier to understand. The overall quality felt premium from start to finish.",
-    name: "Daniel Thomas",
-    role: "Creative Business Owner",
+      "QDelta developed our website with incredible neatness and attention to detail. The whole browsing experience is smooth, student inquiries have become effortless, and their consultative approach made the entire process easy from day one.",
+    name: "British Connects",
+    role: "Study Abroad & Education Consultancy",
   },
   {
-    id: "t4",
+    id: "sln-transportation",
     quote:
-      "Working with QDelta was a breath of fresh air. They took the time to understand our goals and delivered a website that our customers genuinely compliment.",
-    name: "Marcus Sterling",
-    role: "Tech Co-Founder",
+      "QDelta built a beautiful, dependable website for our school transportation service in Chicago. They understood our exact requirements, delivered seamless and fast turnarounds, and the team’s communication was always prompt and helpful.",
+    name: "SLN Transportation LLC",
+    role: "Student Transportation Services, Chicago, USA",
   },
   {
-    id: "t5",
+    id: "pretty-good-pdf",
     quote:
-      "From strategic positioning to visual execution, QDelta delivered beyond our expectations. Our conversion rate and client inquiries noticeably increased after launch.",
-    name: "Elena Rostova",
-    role: "Product Director",
-  },
-  {
-    id: "t6",
-    quote:
-      "The attention to detail and typographic discipline set QDelta apart. The new platform communicates our enterprise value proposition with complete clarity.",
-    name: "David Vance",
-    role: "Managing Partner",
+      "The QDelta team engineered our PDF web app to run neat, fast, and completely smooth in the browser. Their post-launch support has been top-tier, and they even guided us in building custom internal tools to manage our daily workflows.",
+    name: "Pretty Good PDF",
+    role: "Web Application & Productivity Tools",
   },
 ];
-
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((p) => p[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
 
 function Stars() {
   return (
     <div className="flex gap-0.5" aria-label="5 star rating">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} className="w-3 h-3 fill-[#06070A]" viewBox="0 0 20 20" aria-hidden>
+        <svg key={i} className="w-3 h-3 fill-[#15803D]" viewBox="0 0 20 20" aria-hidden>
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -81,47 +65,37 @@ function Stars() {
 function TestimonialCard({ t }: { t: TestimonialItem }) {
   return (
     <article
-      className="group relative flex w-[220px] sm:w-[360px] shrink-0 flex-col overflow-hidden rounded-md border border-[#C9981E]/60
-        bg-gradient-to-b from-[#EEC832] via-[#E5B528] to-[#D4A322]
-        p-3 sm:p-5
-        shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.25)]
-        transition-all duration-300
-        hover:border-[#C9981E]
-        hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_24px_-6px_rgba(229,181,40,0.45)]"
+      className="relative flex w-[220px] sm:w-[360px] lg:w-[410px] xl:w-[430px] shrink-0 flex-col overflow-hidden rounded-xl border border-[#D49802]/60 sm:border-[#D49802]/80
+        bg-gradient-to-b from-[#FAB406]/95 via-[#FAB406]/90 to-[#FAB406]/82
+        backdrop-blur-md sm:backdrop-blur-lg
+        p-3.5 sm:p-5 lg:p-6
+        shadow-[0_10px_30px_-6px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.55),inset_0_-1px_1px_rgba(0,0,0,0.1)]"
     >
-      {/* Top highlight hairline */}
-      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#06070A]/20 to-transparent" aria-hidden />
+      {/* Top glass reflection bevel / sheen */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/70 to-transparent z-10" aria-hidden />
+
+      {/* Diagonal ambient glass light streak */}
+      <div className="pointer-events-none absolute -top-16 -left-16 w-44 h-44 rounded-full bg-white/[0.12] blur-xl" aria-hidden />
 
       {/* Stars */}
-      <div className="mb-1.5 sm:mb-2.5 scale-90 sm:scale-100 origin-left">
+      <div className="mb-1.5 sm:mb-2.5 lg:mb-3 scale-90 sm:scale-100 lg:scale-105 origin-left relative z-10">
         <Stars />
       </div>
 
       {/* Quote */}
-      <p className="font-epilogue text-[10.5px] sm:text-[12.5px] leading-relaxed text-[#06070A]/90 font-medium mb-2 sm:mb-3">
-        {t.quote}
+      <p className="font-epilogue text-[10.5px] sm:text-[12.5px] lg:text-[13.5px] leading-relaxed text-[#06070A]/95 font-medium mb-2.5 sm:mb-3 lg:mb-4 min-h-[58px] sm:min-h-[64px] lg:min-h-[76px] relative z-10">
+        &ldquo;{t.quote}&rdquo;
       </p>
 
-      {/* Author — inline row */}
-      <div className="flex items-center gap-2 sm:gap-2.5 pt-2 sm:pt-3 border-t border-[#06070A]/20">
-        <div
-          className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full border border-[#06070A]/30 bg-[#06070A]/10 font-epilogue text-[8px] sm:text-[9px] font-bold text-[#06070A]"
-          aria-hidden
-        >
-          {getInitials(t.name)}
-        </div>
-        <div className="min-w-0">
-          <p className="font-excon text-[11px] sm:text-[12px] font-bold text-[#06070A] leading-tight truncate">{t.name}</p>
-          <p className="font-epilogue text-[9px] sm:text-[10px] text-[#06070A]/75 font-medium truncate">{t.role}</p>
-        </div>
+      {/* Author / Company — clean typography without circular logo button */}
+      <div className="pt-2.5 sm:pt-3 lg:pt-3.5 border-t border-[#06070A]/20 relative z-10">
+        <p className="font-excon text-[12px] sm:text-[13px] lg:text-[14px] font-bold text-[#06070A] leading-snug tracking-tight truncate">
+          {t.name}
+        </p>
+        <p className="mt-0.5 font-epilogue text-[9.5px] sm:text-[10.5px] lg:text-[11.5px] text-[#06070A]/80 font-semibold tracking-wide truncate">
+          {t.role}
+        </p>
       </div>
-
-      {/* Hover sheen */}
-      <div
-        className="pointer-events-none absolute bottom-0 right-0 h-20 w-20 rounded-full blur-[30px] opacity-0 transition-opacity duration-500 group-hover:opacity-[0.2]"
-        style={{ background: "#FFFFFF" }}
-        aria-hidden
-      />
     </article>
   );
 }
@@ -157,11 +131,11 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 text-white selection:bg-[#E5B528] selection:text-[#06070A] sm:py-20 md:py-24"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 text-white selection:bg-[#FAB406] selection:text-[#06070A] sm:py-20 md:py-24"
     >
       {/* Top edge accent */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#E5B528]/55 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#FAB406]/55 to-transparent"
         aria-hidden
       />
 

@@ -99,13 +99,13 @@ export default function Navbar() {
           />
 
           {/* Top architectural reference line */}
-          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-[#E5B528]/30 via-white/25 to-[#E5B528]/30" />
+          <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-[#FAB406]/30 via-white/25 to-[#FAB406]/30" />
 
           {/* Left Wing Bottom Border */}
-          <div className="absolute left-0 top-[43px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px]" style={{ background: "linear-gradient(to right, rgba(229,181,40,0.15), rgba(229,181,40,0.7))" }} />
+          <div className="absolute left-0 top-[43px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px]" style={{ background: "linear-gradient(to right, rgba(250,180,6,0.15), rgba(250,180,6,0.7))" }} />
 
           {/* Right Wing Bottom Border */}
-          <div className="absolute right-0 top-[43px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px]" style={{ background: "linear-gradient(to left, rgba(229,181,40,0.15), rgba(229,181,40,0.7))" }} />
+          <div className="absolute right-0 top-[43px] min-[680px]:top-[60px] w-[calc(50%-102px)] min-[680px]:w-[calc(50%-130px)] h-[1px]" style={{ background: "linear-gradient(to left, rgba(250,180,6,0.15), rgba(250,180,6,0.7))" }} />
 
           {/* Center Keystone Notch (Desktop >= 680px: width 260px, height 78px) */}
           <svg
@@ -117,11 +117,11 @@ export default function Navbar() {
           >
             <defs>
               <linearGradient id="navbar-gold-notch-desktop" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#E5B528" stopOpacity="0.2" />
-                <stop offset="20%" stopColor="#E5B528" stopOpacity="0.85" />
+                <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
+                <stop offset="20%" stopColor="#FAB406" stopOpacity="0.85" />
                 <stop offset="50%" stopColor="#FFF4A3" stopOpacity="1" />
-                <stop offset="80%" stopColor="#E5B528" stopOpacity="0.85" />
-                <stop offset="100%" stopColor="#E5B528" stopOpacity="0.2" />
+                <stop offset="80%" stopColor="#FAB406" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
               </linearGradient>
             </defs>
             {/* Structural bottom border */}
@@ -154,11 +154,11 @@ export default function Navbar() {
           >
             <defs>
               <linearGradient id="navbar-gold-notch-mobile" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#E5B528" stopOpacity="0.2" />
-                <stop offset="20%" stopColor="#E5B528" stopOpacity="0.85" />
+                <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
+                <stop offset="20%" stopColor="#FAB406" stopOpacity="0.85" />
                 <stop offset="50%" stopColor="#FFF4A3" stopOpacity="1" />
-                <stop offset="80%" stopColor="#E5B528" stopOpacity="0.85" />
-                <stop offset="100%" stopColor="#E5B528" stopOpacity="0.2" />
+                <stop offset="80%" stopColor="#FAB406" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
               </linearGradient>
             </defs>
             {/* Structural bottom border */}
@@ -200,9 +200,8 @@ export default function Navbar() {
                     key={link.label}
                     href={link.href}
                     onMouseEnter={() => setHoveredIndex(idx)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                    className={`relative py-1.5 text-[13px] lg:text-[13.5px] font-epilogue font-medium transition-colors duration-200 tracking-wide ${
-                      isActive ? "text-[#E5B528]" : "text-zinc-300 hover:text-white"
+                    onMouseLeave={() => setHoveredIndex(null)}                    className={`relative py-1.5 text-[13px] lg:text-[13.5px] font-epilogue font-medium transition-colors duration-200 tracking-wide ${
+                      isActive ? "text-[#FAB406]" : "text-zinc-300 hover:text-white"
                     }`}
                   >
                     <span>{link.label}</span>
@@ -235,7 +234,7 @@ export default function Navbar() {
 
           {/* ----------------- ZONE 3: RIGHT (MAIN CTA BUTTON & MOBILE MENU) ----------------- */}
           <div
-            className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pr-12 lg:pr-16 pl-4 h-[43px] min-[680px]:h-[60px]"
+            className="absolute right-0 top-0 flex items-center justify-end pr-6 sm:pr-10 md:pl-12 lg:pr-16 pl-4 h-[43px] min-[680px]:h-[60px]"
           >
             {/* Desktop-only CTA (xl+); hidden on mobile & tablet */}
             <div className="hidden xl:block shrink-0">
@@ -257,7 +256,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="flex items-center justify-center text-[#E5B528] hover:text-[#F0C034] transition-colors focus:outline-none cursor-pointer"
+                className="flex items-center justify-center text-[#FAB406] hover:text-[#FFC015] transition-colors focus:outline-none cursor-pointer"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
                 aria-expanded={mobileMenuOpen}
               >
@@ -296,7 +295,7 @@ export default function Navbar() {
                     className="px-3 py-2 rounded-[6px] text-xs font-epilogue font-medium text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors flex items-center justify-between"
                   >
                     <span>{link.label}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528]/60" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]/60" />
                   </Link>
                 ))}
               </nav>

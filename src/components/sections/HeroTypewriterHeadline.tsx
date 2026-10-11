@@ -34,7 +34,7 @@ function TypewriterCursor({ active }: { active: boolean }) {
   return (
     <span
       aria-hidden
-      className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#EBBF2E] ml-1.5 rounded-full ${
+      className={`inline-block w-[2.5px] h-[0.78em] align-middle bg-[#FAB406] ml-1.5 rounded-full ${
         active ? "animate-[hero-cursor-blink_1s_ease-in-out_infinite]" : "opacity-0 transition-opacity duration-500"
       }`}
     />
@@ -185,7 +185,7 @@ function HeroTypewriterHeadline({
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 text-[#E5B528] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="shrink-0 text-[#FAB406] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
               style={{ transform: "rotate(170deg)" }}
             >
               <path
@@ -219,7 +219,7 @@ function HeroTypewriterHeadline({
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 text-[#E5B528] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="shrink-0 text-[#FAB406] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
               style={{ transform: "rotate(170deg) scaleX(-1)" }}
             >
               <path
@@ -281,7 +281,7 @@ function HeroTypewriterHeadline({
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="shrink-0 text-[#E5B528] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="shrink-0 text-[#FAB406] drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
               style={{ transform: "rotate(-10deg)" }}
             >
               <path

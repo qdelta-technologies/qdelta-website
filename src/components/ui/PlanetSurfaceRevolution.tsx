@@ -107,10 +107,10 @@ export default function PlanetSurfaceRevolution() {
             const dShadow = `M ${r1(x0 + 0.28)} ${r1(y0)} C ${r1(x1 + 0.28)} ${r1(y1)}, ${r1(x2 + 0.28)} ${r1(y2)}, ${r1(x3 + 0.28)} ${r1(y3)}`;
             const dHighlight = `M ${r1(x0 - 0.25)} ${r1(y0)} C ${r1(x1 - 0.25)} ${r1(y1)}, ${r1(x2 - 0.25)} ${r1(y2)}, ${r1(x3 - 0.25)} ${r1(y3)}`;
 
-            const specular = Math.pow(Math.max(0, cosLon), 1.3);
-            const opCore = Math.max(0.18, specular * 0.54);
-            const opShadow = opCore * 0.30;
-            const opHighlight = opCore * 0.62;
+            const specular = Math.pow(Math.max(0, cosLon), 1.25);
+            const opCore = Math.max(0.24, specular * 0.68);
+            const opShadow = opCore * 0.32;
+            const opHighlight = opCore * 0.45;
 
             // Use Math.round for opacity strings — avoids .toFixed() allocations
             const opCoreS = Math.round(opCore * 1000) / 1000;
@@ -118,11 +118,11 @@ export default function PlanetSurfaceRevolution() {
             const opHighlightS = Math.round(opHighlight * 1000) / 1000;
 
             shadowEl.setAttribute("d", dShadow);
-            shadowEl.setAttribute("stroke", `rgba(110, 65, 0, ${opShadowS})`);
+            shadowEl.setAttribute("stroke", `rgba(15, 6, 0, ${opShadowS})`);
             shadowEl.style.display = "block";
 
             highlightEl.setAttribute("d", dHighlight);
-            highlightEl.setAttribute("stroke", `rgba(255, 250, 230, ${opHighlightS})`);
+            highlightEl.setAttribute("stroke", `rgba(255, 245, 210, ${opHighlightS})`);
             highlightEl.style.display = "block";
 
             coreEl.setAttribute("d", d);
@@ -150,12 +150,12 @@ export default function PlanetSurfaceRevolution() {
   }, []);
 
   const LATITUDES = [
-    { y: 821, crestY: 795, op: 0.60 },
-    { y: 867, crestY: 835, op: 0.52 },
-    { y: 913, crestY: 875, op: 0.46 },
-    { y: 959, crestY: 915, op: 0.40 },
-    { y: 1005, crestY: 955, op: 0.35 },
-    { y: 1051, crestY: 995, op: 0.30 },
+    { y: 821, crestY: 795, op: 0.70 },
+    { y: 867, crestY: 835, op: 0.62 },
+    { y: 913, crestY: 875, op: 0.54 },
+    { y: 959, crestY: 915, op: 0.46 },
+    { y: 1005, crestY: 955, op: 0.40 },
+    { y: 1051, crestY: 995, op: 0.34 },
   ];
 
   return (
@@ -172,7 +172,7 @@ export default function PlanetSurfaceRevolution() {
             {/* Subtle micro depth shadow */}
             <path
               d={`M -50 ${lat.y + 0.45} Q 500 ${lat.crestY + 0.45} 1050 ${lat.y + 0.45}`}
-              stroke="rgba(110, 65, 0, 0.14)"
+              stroke="rgba(15, 6, 0, 0.30)"
               strokeWidth="0.8"
               fill="none"
               vectorEffect="non-scaling-stroke"
@@ -180,7 +180,7 @@ export default function PlanetSurfaceRevolution() {
             {/* Subtle micro top highlight */}
             <path
               d={`M -50 ${lat.y - 0.38} Q 500 ${lat.crestY - 0.38} 1050 ${lat.y - 0.38}`}
-              stroke="rgba(255, 250, 230, 0.35)"
+              stroke="rgba(255, 245, 210, 0.28)"
               strokeWidth="0.75"
               fill="none"
               vectorEffect="non-scaling-stroke"

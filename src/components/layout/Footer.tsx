@@ -99,7 +99,7 @@ export default function Footer() {
       <div className="relative w-full max-w-6xl xl:max-w-7xl mx-auto rounded-xl sm:rounded-2xl md:rounded-[20px] bg-[#0B0E12]/90 backdrop-blur-md text-white border border-white/[0.08] shadow-[0_24px_80px_rgba(0,0,0,0.95)] px-6 py-9 sm:px-10 sm:py-12 md:px-12 md:py-14 overflow-hidden flex flex-col justify-between">
         
         {/* Top Glowing Golden Horizon Accent Hairline */}
-        <div className="absolute top-0 inset-x-12 sm:inset-x-20 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/35 to-transparent pointer-events-none" />
+        <div className="absolute top-0 inset-x-12 sm:inset-x-20 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/35 to-transparent pointer-events-none" />
 
         {/* ================= UPPER SECTION: 4-COLUMN COMPOSITION ================= */}
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
@@ -126,9 +126,9 @@ export default function Footer() {
               <div className="mt-3.5">
                 <a
                   href="mailto:hello@qdelta.in"
-                  className="inline-flex items-center gap-2 text-xs sm:text-[13px] text-zinc-300 hover:text-[#E5B528] transition-colors font-medium group"
+                  className="inline-flex items-center gap-2 text-xs sm:text-[13px] text-zinc-300 hover:text-[#FAB406] transition-colors font-medium group"
                 >
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/25 text-[#E5B528] group-hover:bg-[#E5B528]/20 transition-all">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/25 text-[#FAB406] group-hover:bg-[#FAB406]/20 transition-all">
                     <MailIcon className="w-3 h-3" />
                   </span>
                   <span>hello@qdelta.in</span>
@@ -141,7 +141,7 @@ export default function Footer() {
               <a
                 href="mailto:hello@qdelta.in"
                 aria-label="Email"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <MailIcon className="w-4 h-4" />
               </a>
@@ -151,7 +151,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -161,7 +161,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X / Twitter"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <XTwitterIcon className="w-3.5 h-3.5" />
               </a>
@@ -171,7 +171,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/30 text-[#E5B528] hover:bg-[#E5B528]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <LinkedInIcon className="w-4 h-4" />
               </a>
@@ -183,7 +183,7 @@ export default function Footer() {
             {/* COLUMN 1: Services */}
             <div>
               <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
                   Services
                 </h4>
@@ -193,7 +193,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#E5B528] transition-colors duration-150 inline-block font-normal"
+                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-normal"
                     >
                       {link.label}
                     </Link>
@@ -205,7 +205,7 @@ export default function Footer() {
             {/* COLUMN 2: Quick Links */}
             <div>
               <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
                   Quick Links
                 </h4>
@@ -215,7 +215,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#E5B528] transition-colors duration-150 inline-block font-normal"
+                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-normal"
                     >
                       {link.label}
                     </Link>
@@ -227,7 +227,7 @@ export default function Footer() {
             {/* COLUMN 3: Connect — hidden on mobile */}
             <div className="hidden sm:block col-span-2 sm:col-span-1">
               <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E5B528]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
                 <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
                   Connect
                 </h4>
@@ -240,7 +240,7 @@ export default function Footer() {
                         href={link.href}
                         target={link.href.startsWith("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
-                        className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#E5B528] transition-colors duration-150 inline-block font-normal"
+                        className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-normal"
                       >
                         {link.label}
                       </a>
@@ -249,8 +249,8 @@ export default function Footer() {
                         href={link.href}
                         className={`font-epilogue text-xs sm:text-[13px] transition-colors duration-150 inline-flex items-center gap-1 font-semibold ${
                           link.highlight
-                            ? "text-[#E5B528] hover:text-white"
-                            : "text-zinc-400 hover:text-[#E5B528]"
+                            ? "text-[#FAB406] hover:text-white"
+                            : "text-zinc-400 hover:text-[#FAB406]"
                         }`}
                       >
                         <span>{link.label}</span>

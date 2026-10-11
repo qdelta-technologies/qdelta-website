@@ -538,7 +538,7 @@ export default function InteractiveDotGrid() {
         );
 
         if (dot.glow > 0.04) {
-          ctx.fillStyle = `rgba(229, 181, 40, ${0.55 + dot.glow * 0.45})`;
+          ctx.fillStyle = `rgba(250, 180, 6, ${0.55 + dot.glow * 0.45})`;
         } else {
           ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
         }
@@ -618,7 +618,7 @@ export default function InteractiveDotGrid() {
             0,
             Math.PI * 2
           );
-          ctx.fillStyle = `rgba(255, 210, 80, ${moteOpacity})`;
+          ctx.fillStyle = `rgba(250, 180, 6, ${moteOpacity})`;
           ctx.fill();
         }
       }

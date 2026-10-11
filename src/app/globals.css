@@ -11,8 +11,8 @@
   --font-excon: var(--font-excon-family), "Excon", ui-sans-serif, system-ui, sans-serif;
   --font-space: var(--font-space-family), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-editorial: var(--font-editorial-family), "Instrument Serif", Georgia, serif;
-  --color-gold: #E5B528;
-  --color-gold-hover: #F0C034;
+  --color-gold: #FAB406;
+  --color-gold-hover: #FFC015;
   --color-obsidian: #040406;
   --color-surface: #0b0b10;
   --color-surface-card: #0e0e16;
@@ -103,7 +103,7 @@ canvas {
   display: flex;
   width: max-content;
   flex-wrap: nowrap;
-  animation: marqueeContinuous 30s linear infinite;
+  animation: marqueeContinuous 21s linear infinite;
   will-change: transform;
 }
 
@@ -116,7 +116,7 @@ canvas {
   display: flex;
   width: max-content;
   flex-wrap: nowrap;
-  animation: marqueeContinuousReverse 36s linear infinite;
+  animation: marqueeContinuousReverse 25s linear infinite;
   will-change: transform;
 }
 
@@ -208,12 +208,7 @@ canvas {
 /* Testimonial marquee cards — brand gold on dark section */
 .testimonial-card-3d {
   position: relative;
-  background: linear-gradient(
-    168deg,
-    #ebbc30 0%,
-    #e5b528 48%,
-    #d4a520 100%
-  );
+  background: #FAB406;
   box-shadow:
     0 8px 28px rgba(0, 0, 0, 0.35),
     0 1px 0 rgba(255, 255, 255, 0.35) inset;
@@ -280,23 +275,23 @@ canvas {
   animation: signalDown 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Hero headline gold — flat, slightly brighter than site primary #E5B528 */
+/* Hero headline gold — matched to radiant brand #FAB406 */
 .text-hero-gold {
-  color: #ebbf2e;
+  color: #FAB406;
 }
 
 /* ================= CINEMATIC GOLDEN GRID & RESTRAINED GLASS UTILITIES ================= */
 .bg-qdelta-grid {
   background-image: 
-    linear-gradient(to right, rgba(229, 181, 40, 0.075) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(229, 181, 40, 0.075) 1px, transparent 1px);
+    linear-gradient(to right, rgba(250, 180, 6, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(250, 180, 6, 0.075) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 .bg-qdelta-grid-dense {
   background-image: 
-    linear-gradient(to right, rgba(229, 181, 40, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(229, 181, 40, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(250, 180, 6, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(250, 180, 6, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -309,8 +304,8 @@ canvas {
 }
 
 .glass-dark-card:hover, .glass-dark-card-hover:hover {
-  border-color: rgba(245, 184, 0, 0.28);
-  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.8), 0 0 24px -4px rgba(245, 184, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  border-color: rgba(250, 180, 6, 0.28);
+  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.8), 0 0 24px -4px rgba(250, 180, 6, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
 }
 
 /* ================= NO SCROLLBAR UTILITY ================= */
@@ -341,7 +336,7 @@ canvas {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(229, 181, 40, 0.45);
+  background: rgba(250, 180, 6, 0.45);
 }
 
 /* ================= HARDWARE-ACCELERATED CUSTOM CURSOR ================= */
@@ -371,7 +366,7 @@ canvas {
 
 .cursor-star-inner.cursor-hovering {
   transform: scale(1.25) rotate(45deg) !important;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(229, 181, 40, 0.75)) !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 8px rgba(250, 180, 6, 0.75)) !important;
 }
 
 .cursor-star-inner.cursor-clicking {

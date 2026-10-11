@@ -61,11 +61,11 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="relative z-20 w-full bg-[#080B10] text-white selection:bg-[#E5B528] selection:text-[#06070A] py-16 sm:py-20 lg:py-24 overflow-hidden"
+      className="relative z-20 w-full bg-[#080B10] text-white selection:bg-[#FAB406] selection:text-[#06070A] py-16 sm:py-20 lg:py-24 overflow-hidden"
     >
       {/* Top yellow hairline separator */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-10"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent z-10"
         aria-hidden
       />
 
@@ -99,7 +99,7 @@ export default function Process() {
               className="pointer-events-none absolute left-0 right-0 top-1/2 z-[1] h-[2px] -translate-y-1/2"
               aria-hidden
             >
-              <div className="h-full w-full bg-gradient-to-r from-[#E5B528]/25 via-[#E5B528]/75 to-[#E5B528]/25 shadow-[0_0_10px_rgba(229,181,40,0.45)]" />
+              <div className="h-full w-full bg-gradient-to-r from-[#FAB406]/25 via-[#FAB406]/75 to-[#FAB406]/25 shadow-[0_0_10px_rgba(250,180,6,0.45)]" />
             </div>
 
             {/* 5 columns × 3 rows — middle row = nodes on the rail */}
@@ -109,20 +109,20 @@ export default function Process() {
                 const isAbove = idx % 2 === 0; // Steps 1, 3, 5 above rail; Steps 2, 4 below
 
                 const cardMarkup = (
-                  <div className="group/card relative w-full max-w-[236px] overflow-hidden rounded-xl border border-white/[0.12] hover:border-[#E5B528]/60 bg-[#0B0E12]/92 hover:bg-[#0E1217] p-5 backdrop-blur-md shadow-[0_12px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_16px_40px_rgba(229,181,40,0.16)] transition-all duration-300 hover:-translate-y-1">
+                  <div className="group/card relative w-full max-w-[236px] overflow-hidden rounded-xl border border-white/[0.12] hover:border-[#FAB406]/60 bg-[#0B0E12]/92 hover:bg-[#0E1217] p-5 backdrop-blur-md shadow-[0_12px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_16px_40px_rgba(250,180,6,0.16)] transition-all duration-300 hover:-translate-y-1">
                     {/* Top gold hairline */}
-                    <div className="pointer-events-none absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 group-hover/card:via-[#E5B528]/90 to-transparent transition-all duration-300" />
+                    <div className="pointer-events-none absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/50 group-hover/card:via-[#FAB406]/90 to-transparent transition-all duration-300" />
 
                     <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
-                      <span className="font-epilogue text-xs uppercase tracking-[0.2em] font-bold text-[#E5B528]">
+                      <span className="font-epilogue text-xs uppercase tracking-[0.2em] font-bold text-[#FAB406]">
                         STEP {step.number}
                       </span>
-                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#E5B528]/15 text-[#E5B528] ring-1 ring-[#E5B528]/40 shadow-[0_0_12px_rgba(229,181,40,0.25)] group-hover/card:scale-110 transition-transform duration-300">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#FAB406]/15 text-[#FAB406] ring-1 ring-[#FAB406]/40 shadow-[0_0_12px_rgba(250,180,6,0.25)] group-hover/card:scale-110 transition-transform duration-300">
                         <IconComponent className="h-4 w-4" />
                       </div>
                     </div>
 
-                    <h3 className="mt-3 font-excon text-base font-bold tracking-tight text-white leading-snug group-hover/card:text-[#E5B528] transition-colors duration-200">
+                    <h3 className="mt-3 font-excon text-base font-bold tracking-tight text-white leading-snug group-hover/card:text-[#FAB406] transition-colors duration-200">
                       {step.title}
                     </h3>
 
@@ -142,7 +142,7 @@ export default function Process() {
                       {isAbove ? (
                         <>
                           {cardMarkup}
-                          <div className="mt-0 h-9 w-[2px] shrink-0 bg-gradient-to-b from-[#E5B528]/70 to-[#E5B528]/35" />
+                          <div className="mt-0 h-9 w-[2px] shrink-0 bg-gradient-to-b from-[#FAB406]/70 to-[#FAB406]/35" />
                         </>
                       ) : (
                         <div className="min-h-[1px] flex-1" aria-hidden />
@@ -151,8 +151,8 @@ export default function Process() {
 
                     {/* Row 2 — node centered on shared rail */}
                     <div className="relative z-20 flex items-center justify-center py-0">
-                      <div className="relative flex h-6 w-6 items-center justify-center rounded-full border-2 border-[#E5B528] bg-[#06070A] shadow-[0_0_12px_rgba(229,181,40,0.55)]">
-                        <div className="h-2 w-2 rounded-full bg-[#E5B528] shadow-[0_0_6px_#E5B528]" />
+                      <div className="relative flex h-6 w-6 items-center justify-center rounded-full border-2 border-[#FAB406] bg-[#06070A] shadow-[0_0_12px_rgba(250,180,6,0.55)]">
+                        <div className="h-2 w-2 rounded-full bg-[#FAB406] shadow-[0_0_6px_#FAB406]" />
                       </div>
                     </div>
 
@@ -160,7 +160,7 @@ export default function Process() {
                     <div className="flex flex-col items-center justify-start pt-0">
                       {!isAbove ? (
                         <>
-                          <div className="mb-0 h-9 w-[2px] shrink-0 bg-gradient-to-t from-[#E5B528]/70 to-[#E5B528]/35" />
+                          <div className="mb-0 h-9 w-[2px] shrink-0 bg-gradient-to-t from-[#FAB406]/70 to-[#FAB406]/35" />
                           {cardMarkup}
                         </>
                       ) : (

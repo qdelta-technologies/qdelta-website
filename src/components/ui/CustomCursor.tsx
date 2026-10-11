@@ -141,7 +141,7 @@ export default function CustomCursor() {
       <div className="relative -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
         <div
           ref={starRef}
-          className="cursor-star-inner relative flex items-center justify-center transition-all duration-200 ease-out scale-100 drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] drop-shadow-[0_0_4px_rgba(229, 181, 40,0.35)]"
+          className="cursor-star-inner relative flex items-center justify-center transition-all duration-200 ease-out scale-100 drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] drop-shadow-[0_0_4px_rgba(250, 180, 6,0.35)]"
         >
           {/* Crisp 3D Faceted 4-Pointed Golden Ninja Star */}
           <svg
@@ -155,7 +155,7 @@ export default function CustomCursor() {
             {/* Outer Perimeter Razor Hairline */}
             <polygon
               points="12,1 14.5,9.5 23,12 14.5,14.5 12,23 9.5,14.5 1,12 9.5,9.5"
-              stroke="#E5B528"
+              stroke="#FAB406"
               strokeWidth="0.8"
               strokeLinejoin="round"
               fill="none"
@@ -178,7 +178,7 @@ export default function CustomCursor() {
             {/* 3. East Blade — Lit Top Facet */}
             <polygon
               points="12,12 14.5,9.5 23,12"
-              fill="#E5B528"
+              fill="#FAB406"
             />
 
             {/* 4. East Blade — Deep Shadow Bottom Facet */}
@@ -221,14 +221,14 @@ export default function CustomCursor() {
               cy="12"
               r="2.2"
               fill="#0b0b10"
-              stroke="#E5B528"
+              stroke="#FAB406"
               strokeWidth="0.8"
             />
             <circle
               cx="12"
               cy="12"
               r="1"
-              fill="#E5B528"
+              fill="#FAB406"
             />
           </svg>
         </div>

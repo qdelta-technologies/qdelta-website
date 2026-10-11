@@ -195,9 +195,9 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#E5B528] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#FAB406] selection:text-[#06070A]"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-10" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent z-10" aria-hidden />
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="center" />
 
@@ -205,12 +205,12 @@ export default function Contact() {
         {/* ======================================================= */}
         {/* ART-DIRECTED SPLIT SHOWCASE CONTAINER                   */}
         {/* ======================================================= */}
-        <div className="relative w-full rounded-md overflow-hidden border border-[#E5B528]/20 shadow-[0_24px_80px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <div className="relative w-full rounded-md overflow-hidden border border-[#FAB406]/20 shadow-[0_24px_80px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           {/* ===================================================== */}
           {/* LEFT SIDE: VIBRANT BRAND GOLD PANEL (45%)             */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-5 bg-[#E5B528] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+          <div className="relative lg:col-span-5 bg-[#FAB406] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
             {/* Subtle Texture Grain Over Clean Golden Background */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
@@ -248,13 +248,13 @@ export default function Contact() {
                       nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
                     }
                   }}
-                  className="group inline-flex items-center gap-1.5 justify-center rounded-full bg-[#06070A] text-white pl-5 sm:pl-6 pr-4 sm:pr-5 py-2 sm:py-2.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-[#E5B528]/40 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none"
+                  className="group inline-flex items-center gap-1.5 justify-center rounded-full bg-[#06070A] text-white pl-5 sm:pl-6 pr-4 sm:pr-5 py-2 sm:py-2.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-[#FAB406]/40 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none"
                   aria-label="Book a 15-min call with QDelta"
                 >
                   <span className="font-epilogue text-xs sm:text-[13px] font-semibold text-white tracking-tight whitespace-nowrap">
                     Book a 15-min call
                   </span>
-                  <ArrowUpRight className="h-3.5 w-3.5 text-[#E5B528] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[#FAB406] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function Contact() {
           {/* ===================================================== */}
           <div className="relative lg:col-span-7 bg-[#0B0E12]/93 backdrop-blur-md p-5 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-center overflow-hidden">
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent pointer-events-none" />
+            <div className="absolute top-0 inset-x-12 sm:inset-x-16 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent pointer-events-none" />
 
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -291,7 +291,7 @@ export default function Contact() {
                   transition={{ duration: 0.3 }}
                   className="py-10 sm:py-14 flex flex-col items-center justify-center text-center"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E5B528]/15 border border-[#E5B528]/40 text-[#E5B528] shadow-[0_0_24px_rgba(229,181,40,0.25)]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FAB406]/15 border border-[#FAB406]/40 text-[#FAB406] shadow-[0_0_24px_rgba(250,180,6,0.25)]">
                     <Check className="h-7 w-7 stroke-[2.5]" />
                   </div>
 
@@ -302,20 +302,20 @@ export default function Contact() {
                   <p className="mt-2 text-sm font-epilogue text-zinc-300 max-w-sm leading-relaxed">
                     Thank you, <strong className="text-white">{name}</strong>.
                     We’ve received your project brief and will follow up at{" "}
-                    <span className="text-[#E5B528] font-medium">{email}</span>{" "}
+                    <span className="text-[#FAB406] font-medium">{email}</span>{" "}
                     shortly.
                   </p>
 
                   {/* Anti-Spam Rate Limit Notice */}
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#E5B528]/25 bg-[#E5B528]/10 px-3.5 py-1.5 text-[11px] font-epilogue text-[#E5B528]">
-                    <ShieldCheck className="h-3.5 w-3.5 text-[#E5B528]" />
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#FAB406]/25 bg-[#FAB406]/10 px-3.5 py-1.5 text-[11px] font-epilogue text-[#FAB406]">
+                    <ShieldCheck className="h-3.5 w-3.5 text-[#FAB406]" />
                     <span>30-min cooldown between submissions (Limit: {MAX_SUBMISSIONS_PER_USER} per person)</span>
                   </div>
 
                   {cooldownStatus.totalSubmissions >= MAX_SUBMISSIONS_PER_USER ? (
                     <p className="mt-6 text-xs font-epilogue text-zinc-400 max-w-xs leading-relaxed">
                       You have reached the maximum limit of {MAX_SUBMISSIONS_PER_USER} inquiries for this session. For any additional updates, please contact{" "}
-                      <a href="mailto:hello@qdelta.in" className="text-[#E5B528] underline underline-offset-2">
+                      <a href="mailto:hello@qdelta.in" className="text-[#FAB406] underline underline-offset-2">
                         hello@qdelta.in
                       </a>{" "}
                       directly.
@@ -324,7 +324,7 @@ export default function Contact() {
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="mt-6 rounded-full bg-[#E5B528] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#F0C034] hover:scale-105 cursor-pointer shadow-md"
+                      className="mt-6 rounded-full bg-[#FAB406] px-6 py-2.5 text-xs font-epilogue font-bold text-[#06070A] transition-all hover:bg-[#FFC015] hover:scale-105 cursor-pointer shadow-md"
                     >
                       Send Another Inquiry
                     </button>
@@ -344,8 +344,8 @@ export default function Contact() {
                         Start Your Project
                       </h3>
                       {cooldownStatus.isCooldown && (
-                        <span className="inline-flex items-center gap-1.5 text-[11px] font-epilogue text-[#E5B528] bg-[#E5B528]/10 border border-[#E5B528]/30 px-3 py-1 rounded-full shrink-0">
-                          <Clock className="w-3 h-3 text-[#E5B528]" />
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-epilogue text-[#FAB406] bg-[#FAB406]/10 border border-[#FAB406]/30 px-3 py-1 rounded-full shrink-0">
+                          <Clock className="w-3 h-3 text-[#FAB406]" />
                           <span>{cooldownStatus.minutesRemaining}m cooldown</span>
                         </span>
                       )}
@@ -393,9 +393,9 @@ export default function Contact() {
                       <div className="relative group">
                         <label
                           htmlFor="name"
-                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#FAB406]"
                         >
-                          Name <span className="text-[#E5B528]">*</span>
+                          Name <span className="text-[#FAB406]">*</span>
                         </label>
                         <input
                           id="name"
@@ -405,7 +405,7 @@ export default function Contact() {
                           placeholder="Your name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#FAB406]"
                         />
                       </div>
 
@@ -413,9 +413,9 @@ export default function Contact() {
                       <div className="relative group">
                         <label
                           htmlFor="email"
-                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#FAB406]"
                         >
-                          Email <span className="text-[#E5B528]">*</span>
+                          Email <span className="text-[#FAB406]">*</span>
                         </label>
                         <input
                           id="email"
@@ -425,7 +425,7 @@ export default function Contact() {
                           placeholder="name@company.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#FAB406]"
                         />
                       </div>
 
@@ -433,9 +433,9 @@ export default function Contact() {
                       <div className="relative group sm:col-span-2">
                         <label
                           htmlFor="mobile"
-                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
+                          className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#FAB406]"
                         >
-                          Mobile <span className="text-[#E5B528]">*</span>
+                          Mobile <span className="text-[#FAB406]">*</span>
                         </label>
                         <input
                           id="mobile"
@@ -445,7 +445,7 @@ export default function Contact() {
                           placeholder="+1 000 000 0000"
                           value={mobile}
                           onChange={(e) => setMobile(e.target.value)}
-                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528]"
+                          className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#FAB406]"
                         />
                       </div>
                     </div>
@@ -465,7 +465,7 @@ export default function Contact() {
                               onClick={() => toggleService(service)}
                               className={`px-3.5 py-1.5 rounded-full text-xs font-epilogue tracking-wide transition-all duration-200 cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#E5B528] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(229, 181, 40,0.3)] border border-[#E5B528]"
+                                  ? "bg-[#FAB406] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(250,180,6,0.3)] border border-[#FAB406]"
                                   : "bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-white/25 hover:text-white"
                               }`}
                             >
@@ -480,7 +480,7 @@ export default function Contact() {
                     <div className="relative group">
                       <label
                         htmlFor="brief"
-                        className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
+                        className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#FAB406]"
                       >
                         Project brief
                       </label>
@@ -491,14 +491,14 @@ export default function Contact() {
                         placeholder="Tell us briefly about your project (optional)..."
                         value={brief}
                         onChange={(e) => setBrief(e.target.value)}
-                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528] resize-none"
+                        className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#FAB406] resize-none"
                       />
                     </div>
 
                     {/* Anti-Spam Active Cooldown Banner */}
                     {cooldownStatus.isCooldown && !errorMessage && (
-                      <div className="rounded-md border border-[#E5B528]/30 bg-[#E5B528]/10 p-3.5 text-xs font-epilogue text-[#E5B528] flex items-center gap-2.5">
-                        <Clock className="h-4 w-4 shrink-0 text-[#E5B528]" />
+                      <div className="rounded-md border border-[#FAB406]/30 bg-[#FAB406]/10 p-3.5 text-xs font-epilogue text-[#FAB406] flex items-center gap-2.5">
+                        <Clock className="h-4 w-4 shrink-0 text-[#FAB406]" />
                         <span>
                           Anti-spam cooldown: Next inquiry submission available in{" "}
                           <strong>
@@ -512,8 +512,8 @@ export default function Contact() {
 
                     {/* Error Banner */}
                     {errorMessage && (
-                      <div className="rounded-md border border-amber-500/40 bg-amber-500/10 p-3.5 text-xs font-epilogue text-amber-200 leading-relaxed">
-                        <p className="font-semibold text-amber-300 mb-0.5">Notice:</p>
+                      <div className="rounded-md border border-[#FAB406]/40 bg-[#FAB406]/10 p-3.5 text-xs font-epilogue text-amber-200 leading-relaxed">
+                        <p className="font-semibold text-[#FAB406] mb-0.5">Notice:</p>
                         <p>{errorMessage}</p>
                       </div>
                     )}

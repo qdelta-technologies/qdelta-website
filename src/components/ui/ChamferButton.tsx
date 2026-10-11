@@ -128,9 +128,8 @@ export default function ChamferButton({
               x2="0"
               y2="1"
             >
-              <stop offset="0%" stopColor="#EEC832" />
-              <stop offset="52%" stopColor="#E5B528" />
-              <stop offset="100%" stopColor="#D4A322" />
+              <stop offset="0%" stopColor="#FAB406" />
+              <stop offset="100%" stopColor="#FAB406" />
             </linearGradient>
             <linearGradient
               id={`${gradientId}-fill-hover`}
@@ -139,9 +138,8 @@ export default function ChamferButton({
               x2="0"
               y2="1"
             >
-              <stop offset="0%" stopColor="#F2D040" />
-              <stop offset="52%" stopColor="#F0C034" />
-              <stop offset="100%" stopColor="#E0B028" />
+              <stop offset="0%" stopColor="#FFC015" />
+              <stop offset="100%" stopColor="#FAB406" />
             </linearGradient>
           </defs>
         )}
@@ -152,15 +150,15 @@ export default function ChamferButton({
               ? `url(#${gradientId}-fill)`
               : "rgba(6, 7, 10, 0.65)"
           }
-          stroke={isPrimary ? "#C9981E" : "#E5B528"}
+          stroke={isPrimary ? "#D49802" : "#FAB406"}
           strokeWidth={strokeWidth}
           strokeLinejoin="miter"
           strokeMiterlimit={4}
           vectorEffect="non-scaling-stroke"
           className={`transition-all duration-300 ${
             isPrimary
-              ? "group-hover:stroke-[#D4A322]"
-              : "group-hover:fill-[#E5B528]/[0.08] group-hover:stroke-[#E5B528]"
+              ? "group-hover:stroke-[#B88402]"
+              : "group-hover:fill-[#FAB406]/[0.08] group-hover:stroke-[#FAB406]"
           }`}
         />
         {isPrimary && (
@@ -178,8 +176,8 @@ export default function ChamferButton({
         aria-hidden="true"
         className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${
           isPrimary
-            ? "shadow-[0_0_20px_rgba(229, 181, 40,0.3)] opacity-70 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(229, 181, 40,0.55)]"
-            : "shadow-[0_0_18px_rgba(229, 181, 40,0.15)] opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_24px_rgba(229, 181, 40,0.35)]"
+            ? "shadow-[0_0_20px_rgba(250,180,6,0.35)] opacity-70 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(250,180,6,0.6)]"
+            : "shadow-[0_0_18px_rgba(250,180,6,0.18)] opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_24px_rgba(250,180,6,0.4)]"
         }`}
       />
 

@@ -33,7 +33,7 @@ const PILLS: ServicePillConfig[] = [
     delay: 0.85,
     floatDuration: 4.4,
     scale: 0.98,
-    accentColor: "#E5B528",
+    accentColor: "#FAB406",
   },
   // 2. Web Design - Unpacks outward toward upper-left
   {

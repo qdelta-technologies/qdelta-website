@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, ArrowUpRight } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
@@ -11,7 +11,7 @@ const VIDEO_PLAYBACK_RATE = 1.35;
 const STATS_DATA = [
   { num: 10, suffix: "+", label: "Clients Served", detail: "Across multiple industries" },
   { num: 2,  suffix: "+", label: "Years Experience", detail: "In design & development" },
-  { num: 100, suffix: "%", label: "Custom Built", detail: "No templates, ever" },
+  { num: 100, suffix: "%", label: "Tailored Solutions", detail: "Built around your business goals" },
 ];
 
 function useCountUp(target: number, isInView: boolean, duration = 1200) {
@@ -33,22 +33,22 @@ function useCountUp(target: number, isInView: boolean, duration = 1200) {
   return count;
 }
 
-function StatItem({ num, suffix, label, detail, borderLeft }: { num: number; suffix: string; label: string; detail: string; borderLeft: boolean }) {
+function StatItem({ num, suffix, label, detail }: { num: number; suffix: string; label: string; detail: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
   const count = useCountUp(num, isInView);
   return (
     <div
       ref={ref}
-      className={`flex flex-col items-center text-center px-3 py-5 sm:py-6 ${borderLeft ? "border-l border-white/[0.08]" : ""}`}
+      className="flex flex-col items-center justify-center text-center px-1.5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-black/[0.04] border border-black/[0.06] hover:bg-black/[0.08] transition-colors"
     >
-      <p className="font-excon text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-none">
+      <p className="font-heading font-black text-2xl sm:text-3xl lg:text-[30px] text-[#050608] tracking-tight leading-none">
         {count}{suffix}
       </p>
-      <p className="mt-1.5 font-epilogue text-[11px] sm:text-xs font-semibold text-[#E5B528] leading-tight">
+      <p className="mt-1 font-excon text-[11px] sm:text-xs font-bold text-[#050608] leading-tight tracking-tight">
         {label}
       </p>
-      <p className="mt-0.5 font-epilogue text-[10px] text-zinc-600 leading-snug hidden sm:block">
+      <p className="mt-0.5 font-epilogue text-[10px] text-black/70 font-semibold leading-tight hidden sm:block">
         {detail}
       </p>
     </div>
@@ -287,7 +287,7 @@ export default function BrandTransformationSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative z-20 w-full bg-[#06070A] text-white pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 scroll-mt-20 overflow-hidden selection:bg-[#E5B528] selection:text-[#06070A]"
+      className="relative z-20 w-full bg-[#06070A] text-white pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 scroll-mt-20 overflow-hidden selection:bg-[#FAB406] selection:text-[#06070A]"
       aria-label="About QDelta — Strategic Value & Capability"
     >
       {/* ================= BACKGROUND ATMOSPHERE ================= */}
@@ -307,8 +307,8 @@ export default function BrandTransformationSection() {
 
           {/* Headline (Single line on desktop/tablets, balanced on mobile) */}
           <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-4xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.18] md:whitespace-nowrap">
-            <span className="inline-block">Designed for attention.</span>{" "}
-            <span className="inline-block text-[#E5B528]">Built for action.</span>
+            <span className="inline-block">We Make Brands Look Better.</span>{" "}
+            <span className="inline-block text-[#FAB406]">And Work Better.</span>
           </h2>
 
           {/* Supporting Text */}
@@ -326,13 +326,13 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="rounded-xl sm:rounded-2xl border border-white/[0.09] hover:border-[#E5B528]/30 bg-[#0B0E12]/90 backdrop-blur-md p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
+            className="rounded-xl sm:rounded-2xl border border-[#FAB406] bg-[#0B0E12]/90 backdrop-blur-md p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(250,180,6,0.12)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-20" />
+            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent z-20" />
 
             {/* Ambient Warm Golden Backlight */}
-            <div className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-[#E5B528]/[0.04] blur-[90px]" />
+            <div className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-[#FAB406]/[0.04] blur-[90px]" />
 
             {/* Video Player Frame */}
             <div
@@ -373,11 +373,11 @@ export default function BrandTransformationSection() {
                   type="button"
                   onClick={togglePlayPause}
                   aria-label={isPlaying ? "Pause video" : "Play video"}
-                  className="flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#E5B528]/60 text-white text-xs font-epilogue transition-all shadow-md cursor-pointer select-none"
+                  className="flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#FAB406]/60 text-white text-xs font-epilogue transition-all shadow-md cursor-pointer select-none"
                 >
                   <span
                     className={`w-1.5 h-1.5 rounded-full ${
-                      isPlaying ? "bg-[#E5B528] animate-pulse" : "bg-zinc-500"
+                      isPlaying ? "bg-[#FAB406] animate-pulse" : "bg-zinc-500"
                     }`}
                   />
                   <span className="text-[11px] sm:text-xs font-medium">
@@ -390,7 +390,7 @@ export default function BrandTransformationSection() {
                   type="button"
                   onClick={handleRestart}
                   aria-label="Restart video"
-                  className="p-1.5 sm:p-2 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#E5B528]/60 text-white hover:text-[#E5B528] transition-all shadow-md cursor-pointer"
+                  className="p-1.5 sm:p-2 rounded-full bg-black/75 backdrop-blur-md border border-white/15 hover:border-[#FAB406]/60 text-white hover:text-[#FAB406] transition-all shadow-md cursor-pointer"
                   title="Restart from beginning"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -402,7 +402,7 @@ export default function BrandTransformationSection() {
             <div className="pt-3.5 sm:pt-4 px-1 sm:px-2 flex flex-col gap-2.5 select-none">
               <div className="flex items-center justify-between text-[11px] sm:text-xs font-epilogue">
                 <span className="text-zinc-400 font-medium">From ordinary</span>
-                <span className="text-[#E5B528] font-semibold">
+                <span className="text-[#FAB406] font-semibold">
                   To standout
                 </span>
               </div>
@@ -418,7 +418,7 @@ export default function BrandTransformationSection() {
                   {/* Filled Gold Progress Line */}
                   <div
                     ref={progressFillRef}
-                    className="h-full bg-gradient-to-r from-zinc-600 via-[#E5B528]/70 to-[#E5B528] will-change-[width]"
+                    className="h-full bg-gradient-to-r from-zinc-600 via-[#FAB406]/70 to-[#FAB406] will-change-[width]"
                     style={{ width: "0%" }}
                   />
                 </div>
@@ -427,7 +427,7 @@ export default function BrandTransformationSection() {
                 <div className="absolute left-0 w-2 h-2 -translate-y-1/2 top-1/2 rounded-full border border-zinc-600 bg-[#06070A]" />
 
                 {/* Right Destination Ring ("To standout") */}
-                <div className="absolute right-0 w-2 h-2 -translate-y-1/2 top-1/2 rounded-full border border-[#E5B528]/40 bg-[#06070A]" />
+                <div className="absolute right-0 w-2 h-2 -translate-y-1/2 top-1/2 rounded-full border border-[#FAB406]/40 bg-[#06070A]" />
 
                 {/* Live Traveling Golden Glow Dot */}
                 <div
@@ -435,7 +435,7 @@ export default function BrandTransformationSection() {
                   className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none will-change-[left]"
                   style={{ left: "0%" }}
                 >
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#E5B528] ring-4 ring-[#E5B528]/25 shadow-[0_0_10px_#E5B528]" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FAB406] ring-4 ring-[#FAB406]/25 shadow-[0_0_10px_#FAB406]" />
                 </div>
               </div>
             </div>
@@ -459,59 +459,84 @@ export default function BrandTransformationSection() {
             </div>
           </div>
 
-          {/* Right: Premium stats + differentiators panel */}
+          {/* Right: Modern Bento Grid Cluster */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, delay: 0.15 }}
-            className="relative flex flex-col overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.09] bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.85)] lg:min-h-[420px]"
+            className="flex flex-col gap-3 sm:gap-3.5 lg:min-h-[420px] lg:justify-between"
           >
-            <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-[#E5B528]/45 to-transparent" />
+            {/* Bento Tile 1: Sculpted Top Metrics Banner */}
+            <div className="relative rounded-xl sm:rounded-2xl border border-[#D49802] bg-[#FAB406] p-3.5 sm:p-4 shadow-[0_12px_30px_rgba(250,180,6,0.16)] overflow-hidden group">
+              {/* Crisp top sheen */}
+              <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
 
-            {/* Stats row */}
-            <div className="grid grid-cols-3 border-b border-white/[0.08]">
-              {STATS_DATA.map((stat, idx) => (
-                <StatItem
-                  key={stat.label}
-                  num={stat.num}
-                  suffix={stat.suffix}
-                  label={stat.label}
-                  detail={stat.detail}
-                  borderLeft={idx > 0}
-                />
-              ))}
+              {/* Ambient sheen reflection */}
+              <div className="pointer-events-none absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-white/10 blur-2xl" />
+
+              {/* Header micro-tag: Agency Track Record */}
+              <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-black/10 select-none">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                  <span className="font-excon text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#050608]">
+                    Proven Track Record
+                  </span>
+                </div>
+                <span className="font-epilogue text-[10px] text-black/75 font-bold tracking-wide uppercase">
+                  Data-Backed Results
+                </span>
+              </div>
+
+              {/* 3 Inset Metric Pods */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
+                {STATS_DATA.map((stat) => (
+                  <StatItem
+                    key={stat.label}
+                    num={stat.num}
+                    suffix={stat.suffix}
+                    label={stat.label}
+                    detail={stat.detail}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Differentiators */}
-            <div className="flex flex-col flex-1 divide-y divide-white/[0.06] px-5 sm:px-6">
+            {/* Bento Tile 2: 3 Elevated Differentiator Cards */}
+            <div className="flex flex-col gap-2.5 sm:gap-3 flex-1 lg:justify-between">
               {DIFFERENTIATORS.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-4 py-4 sm:py-5 group/item">
-                  {/* Index dot */}
-                  <div className="mt-0.5 shrink-0 flex h-6 w-6 items-center justify-center rounded-full border border-[#E5B528]/30 bg-[#E5B528]/[0.07]">
-                    <span className="font-excon text-[10px] font-bold text-[#E5B528] leading-none">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
+                <div
+                  key={idx}
+                  className="relative flex items-center justify-between gap-3 sm:gap-4 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-[#D49802] bg-[#FAB406] shadow-[0_6px_20px_rgba(250,180,6,0.12)] hover:bg-[#FFBF14] hover:shadow-[0_10px_28px_rgba(250,180,6,0.22)] hover:-translate-y-0.5 transition-all duration-300 group/item cursor-default overflow-hidden"
+                >
+                  {/* Top hairline sheen */}
+                  <div className="pointer-events-none absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+                  <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
+                    {/* Index squircle badge */}
+                    <div className="shrink-0 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-black text-[#FAB406] shadow-sm group-hover/item:scale-105 transition-transform duration-200">
+                      <span className="font-excon text-[11px] sm:text-xs font-black leading-none">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="min-w-0">
+                      <p className="font-excon text-xs sm:text-sm font-extrabold text-[#050608] tracking-tight leading-snug group-hover/item:text-black">
+                        {item.label}
+                      </p>
+                      <p className="mt-0.5 font-epilogue text-[11px] sm:text-xs text-black/80 font-medium leading-relaxed line-clamp-1 sm:line-clamp-none">
+                        {item.detail}
+                      </p>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <p className="font-excon text-sm sm:text-[15px] font-bold text-white tracking-tight leading-snug group-hover/item:text-[#E5B528] transition-colors duration-200">
-                      {item.label}
-                    </p>
-                    <p className="mt-0.5 font-epilogue text-[12px] sm:text-[13px] text-zinc-500 leading-relaxed">
-                      {item.detail}
-                    </p>
+
+                  {/* Micro hover arrow badge */}
+                  <div className="shrink-0 hidden sm:flex h-6 w-6 items-center justify-center rounded-md bg-black/10 group-hover/item:bg-black group-hover/item:text-[#FAB406] text-[#050608] transition-colors duration-200">
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5" />
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Bottom badge */}
-            <div className="border-t border-white/[0.06] px-5 sm:px-6 py-3.5 flex items-center justify-between">
-              <span className="font-epilogue text-[11px] text-zinc-600 tracking-wider uppercase font-semibold">QDelta Technologies</span>
-              <div className="flex items-center gap-1.5">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#E5B528] animate-pulse" />
-                <span className="font-epilogue text-[11px] text-zinc-500">Available for projects</span>
-              </div>
             </div>
           </motion.div>
         </div>

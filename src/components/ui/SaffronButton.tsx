@@ -21,7 +21,7 @@ export interface SaffronButtonProps {
  * Features:
  * - Fluid capsule geometry with smooth hover feedback
  * - Signature 4-point star SVG badge mark with -14deg -> +18deg micro-rotation easing
- * - QDelta golden-yellow branding (#E5B528) and Satoshi typography
+ * - QDelta golden-yellow branding (#FAB406) and Satoshi typography
  */
 export default function SaffronButton({
   children = "Start a project",
@@ -52,23 +52,23 @@ export default function SaffronButton({
   // Variant classes
   const variantClasses = {
     primary:
-      "bg-[#E5B528] text-[#06070A] border-[1.5px] border-[#E5B528] hover:bg-[#F0C034] hover:border-[#F0C034] shadow-[0_0_18px_rgba(229, 181, 40,0.25)] hover:shadow-[0_0_26px_rgba(229, 181, 40,0.38)]",
+      "bg-[#FAB406] text-[#06070A] border-[1.5px] border-[#D49802] hover:bg-[#FFC015] hover:border-[#FFC015] shadow-[0_0_18px_rgba(250, 180, 6,0.25)] hover:shadow-[0_0_26px_rgba(250, 180, 6,0.38)]",
     outline:
-      "bg-white/[0.04] text-white border-[1.5px] border-white/15 hover:border-[#E5B528] hover:text-[#E5B528] hover:bg-[#E5B528]/[0.06] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
+      "bg-white/[0.04] text-white border-[1.5px] border-white/15 hover:border-[#FAB406] hover:text-[#FAB406] hover:bg-[#FAB406]/[0.06] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
     white:
-      "bg-white text-black border-[1.5px] border-white hover:bg-[#E5B528] hover:border-[#E5B528] shadow-sm hover:shadow-[0_0_22px_rgba(229, 181, 40,0.35)]",
+      "bg-white text-black border-[1.5px] border-white hover:bg-[#FAB406] hover:border-[#FAB406] shadow-sm hover:shadow-[0_0_22px_rgba(250, 180, 6,0.35)]",
   }[variant];
 
   // Star mark color
   const markColorClass = {
     primary: "text-[#06070A]",
-    outline: "text-[#E5B528]",
+    outline: "text-[#FAB406]",
     white: "text-black group-hover:text-black",
   }[variant];
 
   const baseClasses = `
     group inline-flex items-center justify-center font-epilogue font-bold tracking-[-0.01em] rounded-full leading-none whitespace-nowrap cursor-pointer select-none
-    transition-all duration-200 ease-out active:translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5B528]
+    transition-all duration-200 ease-out active:translate-y-[1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FAB406]
     ${sizeClasses}
     ${variantClasses}
     ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : ""}

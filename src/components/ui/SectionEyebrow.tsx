@@ -23,8 +23,8 @@ export default function SectionEyebrow({
   style = ACTIVE_EYEBROW_STYLE,
 }: SectionEyebrowProps) {
   const isDark = textColor?.includes("#06070A");
-  const activeColor = textColor || "text-[#FFC820]";
-  const shadow = isDark ? "" : "drop-shadow-[0_0_12px_rgba(255,200,32,0.3)]";
+  const activeColor = textColor || "text-[#FAB406]";
+  const shadow = isDark ? "" : "drop-shadow-[0_0_12px_rgba(250,180,6,0.35)]";
 
   if (style === "luxury-editorial") {
     return (

@@ -106,10 +106,10 @@ export default function ProcessMobileJourney() {
       >
         <defs>
           <linearGradient id="process-road-edge" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#E5B528" stopOpacity="0.5" />
-            <stop offset="40%" stopColor="#E5B528" stopOpacity="0.14" />
-            <stop offset="60%" stopColor="#E5B528" stopOpacity="0.14" />
-            <stop offset="100%" stopColor="#E5B528" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#FAB406" stopOpacity="0.5" />
+            <stop offset="40%" stopColor="#FAB406" stopOpacity="0.14" />
+            <stop offset="60%" stopColor="#FAB406" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#FAB406" stopOpacity="0.5" />
           </linearGradient>
           <filter id="process-road-shadow" x="-30%" y="-5%" width="160%" height="110%">
             <feDropShadow dx="0" dy="1.2" stdDeviation="1.4" floodColor="#000000" floodOpacity="0.55" />
@@ -198,7 +198,7 @@ export default function ProcessMobileJourney() {
                       variants={pillVariants}
                       className="flex flex-col items-end gap-0.5 max-w-[9rem] sm:max-w-[10rem]"
                     >
-                      <span className="font-epilogue text-[9px] font-bold tabular-nums text-[#E5B528]/70 tracking-[0.15em]">
+                      <span className="font-epilogue text-[9px] font-bold tabular-nums text-[#FAB406]/70 tracking-[0.15em]">
                         {step.id}
                       </span>
                       <span
@@ -209,7 +209,7 @@ export default function ProcessMobileJourney() {
                       {/* Underline accent */}
                       <span
                         className="block h-px w-full mt-0.5 rounded-full"
-                        style={{ background: isFirst || isLast ? 'rgba(229,181,40,0.5)' : 'rgba(255,255,255,0.08)' }}
+                        style={{ background: isFirst || isLast ? 'rgba(250,180,6,0.5)' : 'rgba(255,255,255,0.08)' }}
                       />
                     </motion.div>
                   )}
@@ -227,8 +227,8 @@ export default function ProcessMobileJourney() {
                       <span
                         className="pointer-events-none absolute inset-0 rounded-full"
                         style={{
-                          boxShadow: '0 0 12px 3px rgba(229,181,40,0.25)',
-                          border: '1px solid rgba(229,181,40,0.2)',
+                          boxShadow: '0 0 12px 3px rgba(250,180,6,0.25)',
+                          border: '1px solid rgba(250,180,6,0.2)',
                           borderRadius: '50%',
                         }}
                         aria-hidden
@@ -238,16 +238,16 @@ export default function ProcessMobileJourney() {
                         className="relative flex h-8 w-8 items-center justify-center rounded-full"
                         style={{
                           background: 'rgba(6,7,10,0.95)',
-                          border: '1.5px solid rgba(229,181,40,0.65)',
-                          boxShadow: '0 0 10px rgba(229,181,40,0.3), inset 0 0 6px rgba(229,181,40,0.08)',
+                          border: '1.5px solid rgba(250,180,6,0.65)',
+                          boxShadow: '0 0 10px rgba(250,180,6,0.3), inset 0 0 6px rgba(250,180,6,0.08)',
                         }}
                       >
                         {/* Center dot */}
                         <span
                           className="h-2.5 w-2.5 rounded-full"
                           style={{
-                            background: '#E5B528',
-                            boxShadow: '0 0 8px 2px rgba(229,181,40,0.8)',
+                            background: '#FAB406',
+                            boxShadow: '0 0 8px 2px rgba(250,180,6,0.8)',
                           }}
                         />
                       </span>
@@ -264,7 +264,7 @@ export default function ProcessMobileJourney() {
                       variants={pillVariants}
                       className="flex flex-col items-start gap-0.5 max-w-[9rem] sm:max-w-[10rem]"
                     >
-                      <span className="font-epilogue text-[9px] font-bold tabular-nums text-[#E5B528]/70 tracking-[0.15em]">
+                      <span className="font-epilogue text-[9px] font-bold tabular-nums text-[#FAB406]/70 tracking-[0.15em]">
                         {step.id}
                       </span>
                       <span
@@ -274,7 +274,7 @@ export default function ProcessMobileJourney() {
                       </span>
                       <span
                         className="block h-px w-full mt-0.5 rounded-full"
-                        style={{ background: isFirst || isLast ? 'rgba(229,181,40,0.5)' : 'rgba(255,255,255,0.08)' }}
+                        style={{ background: isFirst || isLast ? 'rgba(250,180,6,0.5)' : 'rgba(255,255,255,0.08)' }}
                       />
                     </motion.div>
                   )}

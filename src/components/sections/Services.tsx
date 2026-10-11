@@ -95,45 +95,57 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
     >
       <motion.div
         style={{ scale, transformOrigin: "top center", willChange: "transform" }}
-        className="group relative w-full rounded-md overflow-hidden flex flex-col justify-between min-h-[220px] sm:min-h-[300px] md:min-h-[320px] p-5 sm:p-9 md:p-10
-          bg-[#0D0F13]
-          border border-[#E5B528]/40
-          shadow-[0_8px_28px_-4px_rgba(0,0,0,0.65),inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(0,0,0,0.35)]"
+        className="group relative w-full rounded-md overflow-hidden flex flex-col justify-center
+          py-5 sm:py-6 md:py-7 lg:py-8 px-5 sm:px-7 md:px-9 lg:px-11
+          bg-[#FAB406] text-[#050608]
+          border border-[#D49802]
+          shadow-[0_14px_36px_-6px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(255,255,255,0.4)]"
       >
-        {/* Card headline */}
-        <div className="relative z-10 pb-3 sm:pb-5">
-          <h3 className="text-xl min-[480px]:text-2xl sm:text-4xl md:text-[42px] font-excon font-bold tracking-tight leading-[1.1] text-white">
-            <span className="block">{service.titleLine1}</span>
-            <span className="block text-white/85 mt-0.5 sm:mt-1">{service.titleLine2}</span>
-          </h3>
-        </div>
+        {/* Subtle Texture Grain Over Radiant Golden Background */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
+          style={{
+            backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+            backgroundSize: "8px 8px",
+          }}
+          aria-hidden="true"
+        />
 
-        {/* Footer: separator + tags + tagline */}
-        <div className="relative z-10 space-y-3 pt-3 sm:pt-5 border-t border-white/[0.07]">
-          {/* Tags */}
-          <div className="flex flex-wrap items-center gap-2">
-            {service.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center px-3 py-1 rounded-full text-[11px] sm:text-xs font-epilogue font-semibold text-zinc-300 bg-white/[0.05] border border-white/[0.1] hover:border-[#E5B528]/40 hover:text-[#E5B528] transition-colors duration-200"
-              >
-                {tag}
-              </span>
-            ))}
+        {/* Vertically Centered Responsive Grid — Exact Equal Top & Bottom Spacing */}
+        <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center my-auto">
+          {/* Left Column: Bold Headline in Pure High-Contrast Jet Black */}
+          <div className="md:col-span-5 lg:col-span-5 flex flex-col justify-center">
+            <h3 className="text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-excon font-extrabold tracking-tight leading-[1.08] text-[#050608]">
+              <span className="block text-[#050608]">{service.titleLine1}</span>
+              <span className="block text-[#050608] mt-0.5 sm:mt-1">{service.titleLine2}</span>
+            </h3>
           </div>
 
-          {/* Tagline + description */}
-          <div className="flex items-start gap-3 max-w-3xl">
-            <div className="mt-1 shrink-0">
-              <Sparkles className="w-4 h-4 text-[#E5B528]" fill="currentColor" />
-            </div>
-            <div className="space-y-0.5">
-              <p className="text-sm sm:text-base font-epilogue font-bold text-[#E5B528] tracking-tight">
-                {service.tagline}
-              </p>
-              <p className="text-[13px] sm:text-[15px] font-epilogue text-zinc-400 leading-relaxed max-w-2xl">
+          {/* Right Column: Tagline + Description + Feature Pills */}
+          <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-center space-y-2.5 sm:space-y-3 pt-3.5 md:pt-0 border-t border-black/15 md:border-t-0 md:border-l md:border-black/20 md:pl-7 lg:pl-10">
+            {/* Tagline + Description with Solid Dark Contrast */}
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#050608] shrink-0" fill="currentColor" />
+                <p className="text-sm sm:text-base font-epilogue font-extrabold text-[#050608] tracking-tight">
+                  {service.tagline}
+                </p>
+              </div>
+              <p className="text-xs sm:text-sm md:text-[14px] font-epilogue font-medium text-[#050608]/90 leading-relaxed max-w-xl">
                 {service.description}
               </p>
+            </div>
+
+            {/* Feature Badges / Pills */}
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-0.5">
+              {service.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-epilogue font-bold text-white bg-[#050608] shadow-[0_2px_4px_rgba(0,0,0,0.2)] tracking-tight transition-transform duration-200 hover:scale-105"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -152,7 +164,7 @@ export default function Services() {
       ref={containerRef}
       className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E5B528]/50 to-transparent z-10" aria-hidden />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent z-10" aria-hidden />
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="left" gridOpacity={0.2} />
 
