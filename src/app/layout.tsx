@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Alata, DM_Sans, Bricolage_Grotesque, Caveat } from "next/font/google";
+import { Alata, DM_Sans, Bricolage_Grotesque, Space_Grotesk, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
 
-const cursive = Caveat({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-cursive-family",
+  weight: ["500", "600", "700"],
+  variable: "--font-space-family",
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["italic", "normal"],
+  variable: "--font-editorial-family",
   display: "swap",
 });
 
@@ -78,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${cursive.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}>
       <head>
         {/* Instant desktop custom cursor activation — zero invisible cursor delay */}
         <script

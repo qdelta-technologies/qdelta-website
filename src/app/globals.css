@@ -9,7 +9,8 @@
   --font-display: var(--font-heading-family), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-epilogue: var(--font-epilogue-family), "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-excon: var(--font-excon-family), "Excon", ui-sans-serif, system-ui, sans-serif;
-  --font-cursive: var(--font-cursive-family), "Caveat", cursive, sans-serif;
+  --font-space: var(--font-space-family), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-editorial-family), "Instrument Serif", Georgia, serif;
   --color-gold: #E5B528;
   --color-gold-hover: #F0C034;
   --color-obsidian: #040406;
@@ -55,10 +56,14 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* Expressive section eyebrow — Caveat cursive */
-.font-cursive {
-  font-family: var(--font-cursive-family), "Caveat", cursive, sans-serif !important;
-  letter-spacing: 0.01em;
+/* Style 1: Architectural Space Grotesk */
+.font-space {
+  font-family: var(--font-space-family), "Space Grotesk", ui-sans-serif, system-ui, sans-serif !important;
+}
+
+/* Style 2: Luxury Editorial Serif */
+.font-editorial {
+  font-family: var(--font-editorial-family), "Instrument Serif", Georgia, serif !important;
 }
 
 /* Ensure all WebGL and 2D canvases are strictly transparent */
