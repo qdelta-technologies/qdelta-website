@@ -39,16 +39,22 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!email.trim() || !mobile.trim()) {
+      setErrorMessage("Both email address and mobile number are required.");
+      return;
+    }
+
     setSubmitting(true);
     setErrorMessage(null);
 
     try {
       const payload = {
-        name,
-        email,
-        mobile: mobile.trim() || "Not provided",
+        name: name.trim(),
+        email: email.trim(),
+        mobile: mobile.trim(),
         services: selectedServices.length > 0 ? selectedServices.join(", ") : "Not specified",
-        brief,
+        brief: brief.trim(),
         _subject: `New Project Inquiry from ${name.trim()} - QDelta`,
         _template: "table",
         _captcha: "false",
@@ -266,7 +272,7 @@ export default function Contact() {
                           htmlFor="name"
                           className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                         >
-                          Name
+                          Name <span className="text-[#E5B528]">*</span>
                         </label>
                         <input
                           id="name"
@@ -286,7 +292,7 @@ export default function Contact() {
                           htmlFor="email"
                           className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                         >
-                          Email
+                          Email <span className="text-[#E5B528]">*</span>
                         </label>
                         <input
                           id="email"
@@ -306,12 +312,13 @@ export default function Contact() {
                           htmlFor="mobile"
                           className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                         >
-                          Mobile (Optional)
+                          Mobile <span className="text-[#E5B528]">*</span>
                         </label>
                         <input
                           id="mobile"
                           name="mobile"
                           type="tel"
+                          required
                           placeholder="+1 000 000 0000"
                           value={mobile}
                           onChange={(e) => setMobile(e.target.value)}
@@ -352,7 +359,7 @@ export default function Contact() {
                         htmlFor="brief"
                         className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                       >
-                        Project brief
+                        Project brief <span className="text-[#E5B528]">*</span>
                       </label>
                       <textarea
                         id="brief"
