@@ -243,15 +243,20 @@ function ArchiveFolder({
         </div>
 
         {/* ================================================================= */}
-        {/* MAIN FOLDER BODY                                                  */}
+        {/* MAIN FOLDER BODY (3D Extruded Slab)                               */}
         {/* ================================================================= */}
         <div
-          className="relative w-full rounded-b-md border-l border-r border-b overflow-hidden transition-colors"
+          className="relative w-full rounded-b-xl border-l border-r border-b-[4px] sm:border-b-[5px] overflow-hidden transition-all shadow-[0_24px_60px_-10px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)]"
           style={{
             backgroundColor: project.theme.folderBg,
             borderColor: project.theme.borderColor,
           }}
         >
+          {/* Top Specular Hairline */}
+          <div
+            className="pointer-events-none absolute inset-x-4 sm:inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/40 to-transparent z-20"
+            aria-hidden="true"
+          />
           {/* Gold ambient glow — top right */}
           <div
             className="pointer-events-none absolute top-0 right-0 w-56 h-56 rounded-full blur-[60px] opacity-[0.10]"
@@ -355,10 +360,10 @@ function ArchiveFolder({
                     className="object-contain transition-transform duration-700 ease-out group-hover/mockup:scale-[1.03]"
                   />
 
-                  {/* Hover badge */}
-                  <div className="absolute bottom-2.5 right-2.5 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white opacity-0 group-hover/mockup:opacity-100 transition-opacity duration-300">
-                    <ExternalLink className="w-3 h-3 text-[#FAB406]" />
-                    <span className="font-epilogue text-[10px] font-semibold uppercase tracking-wider">View</span>
+                  {/* 3D Hover badge */}
+                  <div className="absolute bottom-2.5 right-2.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608] border-t border-l border-r border-[#EAA808] border-b-[2px] border-b-[#B87700] shadow-[0_4px_12px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.7)] opacity-0 group-hover/mockup:opacity-100 transition-opacity duration-300">
+                    <ExternalLink className="w-3 h-3 text-[#050608]" />
+                    <span className="font-epilogue text-[10px] font-bold uppercase tracking-wider drop-shadow-[0_1px_1px_rgba(255,255,255,0.35)]">View</span>
                   </div>
                 </div>
               </a>

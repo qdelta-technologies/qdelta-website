@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import YellowDotWaves from "@/components/ui/YellowDotWaves";
+import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 function MailIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -86,20 +87,97 @@ const COMPANY_LINKS = [
 const CONNECT_LINKS = [
   { label: "Start a Project", href: "#contact", highlight: true },
   { label: "hello@qdelta.in", href: "mailto:hello@qdelta.in", external: true },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/qdelta-technologies", external: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/qdelta/home/", external: true },
   { label: "Instagram", href: "https://instagram.com", external: true },
 ];
 
 export default function Footer() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [size, setSize] = React.useState({ w: 0, h: 0 });
+
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+    const update = () => {
+      if (containerRef.current) {
+        const w = containerRef.current.offsetWidth;
+        const h = containerRef.current.offsetHeight;
+        if (w > 0 && h > 0) {
+          setSize({ w, h });
+        }
+      }
+    };
+
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  const w = size.w || 1200;
+  const h = size.h || 420;
+  const isMobile = size.w > 0 && size.w < 640;
+  const cut = isMobile ? 22 : 34;
+  const strokeWidth = 1.5;
+  const inset = strokeWidth / 2;
+
+  // Exact 8-point chamfered path (matching the chamfered button geometry)
+  const pathD = `
+    M ${cut} ${inset}
+    L ${w - cut} ${inset}
+    L ${w - inset} ${cut}
+    L ${w - inset} ${h - cut}
+    L ${w - cut} ${h - inset}
+    L ${cut} ${h - inset}
+    L ${inset} ${h - cut}
+    L ${inset} ${cut}
+    Z
+  `;
+
+  // Hardware-accelerated CSS polygon clip-path for pixel-accurate hit testing and clipping
+  const clipPathStyle = `polygon(
+    ${cut}px 0px,
+    calc(100% - ${cut}px) 0px,
+    100% ${cut}px,
+    100% calc(100% - ${cut}px),
+    calc(100% - ${cut}px) 100%,
+    ${cut}px 100%,
+    0px calc(100% - ${cut}px),
+    0px ${cut}px
+  )`;
+
   return (
-    <footer className="w-full bg-[#06070A] pb-8 sm:pb-12 pt-2 px-4 sm:px-6 lg:px-8 relative z-20 overflow-hidden">
+    <footer className="w-full bg-[#06070A] pb-8 sm:pb-12 pt-6 px-4 sm:px-6 lg:px-8 relative z-20 overflow-hidden">
+      {/* ================= SECTION BACKGROUND ATMOSPHERE (GRID & PARTICLES) ================= */}
+      <SectionAtmosphere variant="center" gridOpacity={0.2} edgeVignette={false} />
+
       {/* ======================================================= */}
-      {/* FLOATING ROUNDED FOOTER CONTAINER (GRAPHITE & GOLD)     */}
+      {/* CHAMFERED OCTAGON FOOTER CONTAINER (GRAPHITE & GOLD)    */}
       {/* ======================================================= */}
-      <div className="relative w-full max-w-6xl xl:max-w-7xl mx-auto rounded-xl sm:rounded-2xl md:rounded-[20px] bg-[#0B0E12]/90 backdrop-blur-md text-white border border-white/[0.08] shadow-[0_24px_80px_rgba(0,0,0,0.95)] px-6 py-9 sm:px-10 sm:py-12 md:px-12 md:py-14 overflow-hidden flex flex-col justify-between">
-        
-        {/* Top Glowing Golden Horizon Accent Hairline */}
-        <div className="absolute top-0 inset-x-12 sm:inset-x-20 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/35 to-transparent pointer-events-none" />
+      <div className="relative z-10 w-full max-w-6xl xl:max-w-7xl mx-auto drop-shadow-[0_24px_70px_rgba(0,0,0,0.95)]">
+        <div
+          ref={containerRef}
+          className="relative w-full bg-[#0B0E12]/95 backdrop-blur-md text-white px-6 py-9 sm:px-10 sm:py-12 md:px-12 md:py-14 overflow-hidden flex flex-col justify-between transition-all duration-300"
+          style={{ clipPath: clipPathStyle }}
+        >
+          {/* ================= UNIFORM GREY 8-EDGE PRECISION CHAMFER BORDER ================= */}
+          <svg
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 w-full h-full z-30"
+            width={w}
+            height={h}
+            viewBox={`0 0 ${w} ${h}`}
+            fill="none"
+          >
+            {/* Complete 8-point chamfered perimeter border in uniform clean grey across all sides and corners */}
+            <path
+              d={pathD}
+              stroke="rgba(255, 255, 255, 0.12)"
+              strokeWidth={strokeWidth}
+              strokeLinejoin="miter"
+              strokeMiterlimit={4}
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
 
         {/* ================= UPPER SECTION: 4-COLUMN COMPOSITION ================= */}
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
@@ -167,7 +245,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.linkedin.com/company/qdelta-technologies"
+                href="https://www.linkedin.com/company/qdelta/home/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -275,7 +353,8 @@ export default function Footer() {
         <YellowDotWaves className="absolute bottom-0 inset-x-0 w-full h-8 sm:h-10 pointer-events-none z-20" />
 
       </div>
-    </footer>
+    </div>
+  </footer>
   );
 }
 

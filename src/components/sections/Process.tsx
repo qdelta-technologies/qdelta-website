@@ -109,9 +109,9 @@ export default function Process() {
                 const isAbove = idx % 2 === 0; // Steps 1, 3, 5 above rail; Steps 2, 4 below
 
                 const cardMarkup = (
-                  <div className="group/card relative w-full max-w-[236px] overflow-hidden rounded-xl border border-white/[0.12] hover:border-[#FAB406]/60 bg-[#0B0E12]/92 hover:bg-[#0E1217] p-5 backdrop-blur-md shadow-[0_12px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_16px_40px_rgba(250,180,6,0.16)] transition-all duration-300 hover:-translate-y-1">
+                  <div className="group/card relative w-full max-w-[236px] overflow-hidden rounded-xl border-t border-l border-r border-white/[0.14] border-b-[3.5px] border-b-[#B87700]/70 hover:border-b-[#B87700] bg-[#0B0E12]/92 hover:bg-[#0E1217] p-5 backdrop-blur-md shadow-[0_18px_36px_-6px_rgba(0,0,0,0.7),inset_0_1.2px_0_rgba(255,255,255,0.12)] hover:shadow-[0_22px_45px_rgba(250,180,6,0.16)] transition-all duration-300 hover:-translate-y-1">
                     {/* Top gold hairline */}
-                    <div className="pointer-events-none absolute top-0 inset-x-4 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/50 group-hover/card:via-[#FAB406]/90 to-transparent transition-all duration-300" />
+                    <div className="pointer-events-none absolute top-0 inset-x-4 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/70 group-hover/card:via-[#FAB406] to-transparent transition-all duration-300 z-20" />
 
                     <div className="flex items-center justify-between pb-2.5 border-b border-white/[0.08]">
                       <span className="font-epilogue text-xs uppercase tracking-[0.2em] font-bold text-[#FAB406]">

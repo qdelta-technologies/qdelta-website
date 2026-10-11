@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "motion/react";
 import ChamferButton from "@/components/ui/ChamferButton";
 
 const NAV_LINKS = [
+  { label: "About", href: "#about", sectionId: "about" },
   { label: "Services", href: "#services", sectionId: "services" },
   { label: "Process", href: "#process", sectionId: "process" },
   { label: "Projects", href: "#projects", sectionId: "projects" },
@@ -26,8 +27,6 @@ export default function Navbar() {
     let rafId = 0;
     let lastPastHero = false;
 
-    // Where the hero ends is measured once (and again when the page size changes), so the scroll handler
-    // only compares numbers. Reading getBoundingClientRect on every scroll frame forces layout each time.
     let heroEnd = 480;
     const measureHero = () => {
       const heroEl = document.getElementById("hero");
@@ -63,26 +62,121 @@ export default function Navbar() {
     };
   }, []);
 
-  // Active section tracking via IntersectionObserver
+  // Precise Active Section Scroll-Spy
   useEffect(() => {
-    const sectionIds = NAV_LINKS.map((l) => l.sectionId);
-    const observers: IntersectionObserver[] = [];
+    const handleScrollSpy = () => {
+      const scrollPos = window.scrollY;
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
-        },
-        { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
+      // 1. Unconditional Hero Check:
+      // When user is anywhere at or near Hero (top of page), NO nav link must be active.
+      if (scrollPos < 350) {
+        setActiveSection(null);
+        return;
+      }
 
-    return () => observers.forEach((obs) => obs.disconnect());
+      // Check boundary of About section (the very first navigation item).
+      // If the scroll position has not yet reached About, the user is still in the Hero / TrustBar zone.
+      const aboutEl = document.getElementById("about");
+      if (aboutEl) {
+        const aboutTop = aboutEl.getBoundingClientRect().top + scrollPos;
+        if (aboutTop > 300 && scrollPos < aboutTop - 180) {
+          setActiveSection(null);
+          return;
+        }
+      } else {
+        // If about section hasn't mounted yet and scroll is under 600, stay null
+        if (scrollPos < 600) {
+          setActiveSection(null);
+          return;
+        }
+      }
+
+      // Check if scrolled near the bottom of page (highlight Contact)
+      const isAtBottom =
+        window.innerHeight + scrollPos >=
+        document.documentElement.scrollHeight - 60;
+      if (isAtBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // 2. Track sections in DOM order from bottom to top
+      const sections = NAV_LINKS.map((l) => l.sectionId);
+      const navOffset = 180;
+      let found: string | null = null;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const sectionDocTop = el.getBoundingClientRect().top + scrollPos;
+          // Must be a valid rendered section with height and position below hero
+          if (sectionDocTop > 300 && el.offsetHeight > 50) {
+            if (scrollPos >= sectionDocTop - navOffset) {
+              found = sectionId;
+              break;
+            }
+          }
+        }
+      }
+
+      setActiveSection(found);
+    };
+
+    let rafId = 0;
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        handleScrollSpy();
+        rafId = 0;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Run immediately on mount
+    handleScrollSpy();
+
+    // Also run a short delayed check after dynamic components hydrate
+    const timeoutId = setTimeout(handleScrollSpy, 150);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(timeoutId);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
+
+  // Smooth scroll handler for nav clicks
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    sectionId: string
+  ) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const navOffset = 70;
+        const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - navOffset,
+          behavior: "smooth",
+        });
+        window.history.pushState(null, "", href);
+        setActiveSection(sectionId);
+      }
+      setMobileMenuOpen(false);
+    }
+  };
+
+  // Center logo click handler -> smooth redirect to hero
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.pushState(null, "", "/");
+    setActiveSection(null);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 pointer-events-none">
@@ -188,20 +282,21 @@ export default function Navbar() {
         <div className="relative z-10 w-full h-full">
           {/* ----------------- ZONE 1: LEFT (NAV LINKS) ----------------- */}
           <div
-            className="absolute left-0 top-0 flex items-center pl-6 sm:pl-10 md:pl-12 lg:pl-16 pr-4 h-[43px] min-[680px]:h-[60px]"
+            className="absolute left-0 top-0 flex items-center pl-5 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14 pr-4 h-[43px] min-[680px]:h-[60px]"
           >
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-5 sm:gap-6 lg:gap-7" aria-label="Main Navigation">
+            <nav className="hidden lg:flex items-center gap-4 sm:gap-4.5 lg:gap-5 xl:gap-6" aria-label="Main Navigation">
               {NAV_LINKS.map((link, idx) => {
-                const isHovered = hoveredIndex === idx;
                 const isActive = activeSection === link.sectionId;
                 return (
                   <Link
                     key={link.label}
                     href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href, link.sectionId)}
                     onMouseEnter={() => setHoveredIndex(idx)}
-                    onMouseLeave={() => setHoveredIndex(null)}                    className={`relative py-1.5 text-[13px] lg:text-[13.5px] font-epilogue font-medium transition-colors duration-200 tracking-wide ${
-                      isActive ? "text-[#FAB406]" : "text-zinc-300 hover:text-white"
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    className={`relative py-1.5 text-[13px] lg:text-[13.5px] font-epilogue font-medium transition-colors duration-200 tracking-wide cursor-pointer ${
+                      isActive ? "text-[#FAB406] font-semibold" : "text-zinc-300 hover:text-white"
                     }`}
                   >
                     <span>{link.label}</span>
@@ -209,7 +304,6 @@ export default function Navbar() {
                 );
               })}
             </nav>
-
           </div>
 
           {/* ----------------- ZONE 2: CENTER (QDELTA LOGO BLOCK) ----------------- */}
@@ -217,8 +311,9 @@ export default function Navbar() {
             className="absolute left-1/2 -translate-x-1/2 top-0 flex items-center justify-center h-[56px] min-[680px]:h-[78px]"
           >
             <Link
-              href="/"
-              className="flex items-center justify-center focus:outline-none"
+              href="#hero"
+              onClick={handleLogoClick}
+              className="flex items-center justify-center focus:outline-none cursor-pointer"
               aria-label="QDelta Technologies Homepage"
             >
               <Image
@@ -226,7 +321,7 @@ export default function Navbar() {
                 alt="QDelta Technologies"
                 width={160}
                 height={48}
-                className="h-7.5 sm:h-8 w-auto object-contain select-none"
+                className="h-7.5 sm:h-8 w-auto object-contain select-none transition-transform duration-200 hover:scale-105 active:scale-95"
                 priority
               />
             </Link>
@@ -287,17 +382,24 @@ export default function Navbar() {
               className="pointer-events-auto absolute top-full left-0 right-0 mt-2 rounded-[8px] bg-[#080A0E]/96 border border-white/12 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] backdrop-blur-md xl:hidden z-50"
             >
               <nav className="flex flex-col gap-1">
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="px-3 py-2 rounded-[6px] text-xs font-epilogue font-medium text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors flex items-center justify-between"
-                  >
-                    <span>{link.label}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]/60" />
-                  </Link>
-                ))}
+                {NAV_LINKS.map((link) => {
+                  const isActive = activeSection === link.sectionId;
+                  return (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href, link.sectionId)}
+                      className={`px-3 py-2 rounded-[6px] text-xs font-epilogue font-medium transition-colors flex items-center justify-between ${
+                        isActive
+                          ? "text-[#FAB406] bg-[#FAB406]/10 font-bold"
+                          : "text-zinc-300 hover:text-white hover:bg-white/[0.06]"
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${isActive ? "bg-[#FAB406]" : "bg-white/20"}`} />
+                    </Link>
+                  );
+                })}
               </nav>
             </motion.div>
           )}

@@ -205,12 +205,15 @@ export default function Contact() {
         {/* ======================================================= */}
         {/* ART-DIRECTED SPLIT SHOWCASE CONTAINER                   */}
         {/* ======================================================= */}
-        <div className="relative w-full rounded-md overflow-hidden border border-[#FAB406]/20 shadow-[0_24px_80px_rgba(0,0,0,0.85)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        <div className="relative w-full rounded-xl sm:rounded-2xl overflow-hidden border-t border-l border-r border-[#FAB406]/35 border-b-[4px] sm:border-b-[5px] border-b-[#B87700] shadow-[0_28px_80px_-10px_rgba(0,0,0,0.9)] grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           {/* ===================================================== */}
           {/* LEFT SIDE: VIBRANT BRAND GOLD PANEL (45%)             */}
           {/* ===================================================== */}
-          <div className="relative lg:col-span-5 bg-[#FAB406] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
+          <div className="relative lg:col-span-5 bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#06070A] p-7 sm:p-9 md:p-11 lg:p-12 flex flex-col justify-between overflow-hidden select-none min-h-[460px] sm:min-h-[520px] lg:min-h-[600px] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.7),inset_0_-2px_4px_rgba(0,0,0,0.15)]">
+            {/* Crisp Top Specular 3D Reflection Hairline */}
+            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-12 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent z-20" aria-hidden="true" />
+
             {/* Subtle Texture Grain Over Clean Golden Background */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay"
@@ -248,7 +251,7 @@ export default function Contact() {
                       nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
                     }
                   }}
-                  className="group inline-flex items-center gap-1.5 justify-center rounded-full bg-[#06070A] text-white pl-5 sm:pl-6 pr-4 sm:pr-5 py-2 sm:py-2.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.5)] border border-white/10 hover:border-[#FAB406]/40 transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 cursor-pointer select-none"
+                  className="group inline-flex items-center gap-1.5 justify-center rounded-full bg-[#06070A] text-white pl-5 sm:pl-6 pr-4 sm:pr-5 py-2 sm:py-2.5 border-t border-l border-r border-white/20 border-b-[3px] border-b-black shadow-[0_12px_28px_-6px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.6)] hover:border-[#FAB406]/50 transition-all duration-300 ease-out active:translate-y-[2px] active:border-b-[1px] cursor-pointer select-none"
                   aria-label="Book a 15-min call with QDelta"
                 >
                   <span className="font-epilogue text-xs sm:text-[13px] font-semibold text-white tracking-tight whitespace-nowrap">
@@ -465,7 +468,7 @@ export default function Contact() {
                               onClick={() => toggleService(service)}
                               className={`px-3.5 py-1.5 rounded-full text-xs font-epilogue tracking-wide transition-all duration-200 cursor-pointer ${
                                 isSelected
-                                  ? "bg-[#FAB406] text-[#06070A] font-semibold shadow-[0_0_12px_rgba(250,180,6,0.3)] border border-[#FAB406]"
+                                  ? "bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608] font-bold border-t border-l border-r border-[#EAA808] border-b-[2.5px] border-b-[#B87700] shadow-[0_4px_12px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.65)] active:translate-y-[1px] active:border-b-[1px]"
                                   : "bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-white/25 hover:text-white"
                               }`}
                             >

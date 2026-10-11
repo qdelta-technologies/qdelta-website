@@ -52,11 +52,11 @@ export default function SaffronButton({
   // Variant classes
   const variantClasses = {
     primary:
-      "bg-[#FAB406] text-[#06070A] border-[1.5px] border-[#D49802] hover:bg-[#FFC015] hover:border-[#FFC015] shadow-[0_0_18px_rgba(250, 180, 6,0.25)] hover:shadow-[0_0_26px_rgba(250, 180, 6,0.38)]",
+      "bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608] border-t border-l border-r border-[#EAA808] border-b-[3px] border-b-[#B87700] shadow-[0_8px_20px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-1px_2px_rgba(0,0,0,0.15)] hover:from-[#FFCD38] hover:via-[#FFBA14] hover:to-[#EEA900] active:translate-y-[2px] active:border-b-[1px]",
     outline:
-      "bg-white/[0.04] text-white border-[1.5px] border-white/15 hover:border-[#FAB406] hover:text-[#FAB406] hover:bg-[#FAB406]/[0.06] backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
+      "bg-white/[0.04] text-white border-t border-l border-r border-white/20 border-b-[2.5px] border-b-white/30 hover:border-[#FAB406] hover:border-b-[#B87700] hover:text-[#FAB406] hover:bg-[#FAB406]/[0.06] backdrop-blur-md shadow-[0_6px_18px_rgba(0,0,0,0.4)] active:translate-y-[1px]",
     white:
-      "bg-white text-black border-[1.5px] border-white hover:bg-[#FAB406] hover:border-[#FAB406] shadow-sm hover:shadow-[0_0_22px_rgba(250, 180, 6,0.35)]",
+      "bg-gradient-to-b from-white via-[#F4F4F6] to-[#E2E4E8] text-black border-t border-l border-r border-white border-b-[3px] border-b-[#8A909A] shadow-[0_8px_20px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,1)] hover:bg-[#FAB406] hover:border-[#FAB406] hover:border-b-[#B87700] active:translate-y-[2px] active:border-b-[1px]",
   }[variant];
 
   // Star mark color

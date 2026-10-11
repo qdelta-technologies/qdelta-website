@@ -128,7 +128,7 @@ export default function Packages() {
               onClick={() => setMobileTab("digital")}
               className={`px-4 py-1.5 rounded-full text-xs font-excon uppercase tracking-wider font-semibold transition-all ${
                 mobileTab === "digital"
-                  ? "bg-[#FAB406] text-black shadow-sm"
+                  ? "bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608] border-t border-l border-r border-[#EAA808] border-b-[2.5px] border-b-[#B87700] shadow-[0_4px_12px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.7)]"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -138,7 +138,7 @@ export default function Packages() {
               onClick={() => setMobileTab("signature")}
               className={`px-4 py-1.5 rounded-full text-xs font-excon uppercase tracking-wider font-semibold transition-all ${
                 mobileTab === "signature"
-                  ? "bg-sky-400 text-black shadow-sm"
+                  ? "bg-gradient-to-b from-sky-300 via-sky-400 to-sky-500 text-[#050608] border-t border-l border-r border-sky-300 border-b-[2.5px] border-b-sky-700 shadow-[0_4px_12px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.7)]"
                   : "text-zinc-400 hover:text-white"
               }`}
             >
@@ -148,22 +148,22 @@ export default function Packages() {
         </motion.div>
 
         {/* ======================================================= */}
-        {/* COMPACT & COOL DUAL PACKAGE CARDS                       */}
+        {/* COMPACT & COOL DUAL PACKAGE CARDS (3D PHYSICAL SLABS)   */}
         {/* Sleek, easy, low vertical footprint                     */}
         {/* ======================================================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full items-stretch mb-10 sm:mb-12">
-          {/* ================= CARD 1: QDELTA DIGITAL ================= */}
+          {/* ================= CARD 1: QDELTA DIGITAL (3D SLAB) ================= */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className={`group relative flex flex-col justify-between rounded-3xl border border-white/[0.09] bg-[#090b11] p-6 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-[#FAB406]/40 hover:shadow-[0_20px_60px_rgba(250,180,6,0.1)] overflow-hidden ${
+            className={`group relative flex flex-col justify-between rounded-3xl border-t border-l border-r border-white/[0.12] border-b-[4px] sm:border-b-[5px] border-b-[#B87700] bg-[#090b11] p-6 sm:p-7 md:p-8 shadow-[0_24px_60px_-10px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)] transition-all duration-300 hover:border-[#FAB406]/60 hover:shadow-[0_26px_70px_rgba(250,180,6,0.18)] overflow-hidden ${
               mobileTab === "signature" ? "hidden md:flex" : "flex"
             }`}
           >
-            {/* Top Golden Hairline */}
-            <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/45 to-transparent pointer-events-none" />
+            {/* Top Golden Specular Hairline */}
+            <div className="absolute top-0 inset-x-8 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/70 to-transparent pointer-events-none z-20" />
 
             <div>
               {/* Header Row: Label & Tagline */}
@@ -224,26 +224,26 @@ export default function Packages() {
 
               <Link
                 href="#contact"
-                className="group/btn inline-flex items-center gap-1.5 rounded-full bg-[#FAB406] py-2.5 px-4 sm:px-5 text-xs font-epilogue font-bold text-black shadow-[0_0_16px_rgba(250,180,6,0.25)] transition-all duration-200 hover:bg-white hover:scale-[1.02]"
+                className="group/btn inline-flex items-center gap-1.5 rounded-full bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608] border-t border-l border-r border-[#EAA808] border-b-[3px] border-b-[#B87700] py-2.5 px-4 sm:px-5 text-xs font-epilogue font-bold shadow-[0_6px_18px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.65)] transition-all duration-200 hover:from-[#FFCD38] hover:via-[#FFBA14] hover:to-[#EEA900] active:translate-y-[2px] active:border-b-[1px]"
               >
-                <span>Explore QDelta Digital</span>
+                <span className="drop-shadow-[0_1px_1px_rgba(255,255,255,0.35)]">Explore QDelta Digital</span>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
               </Link>
             </div>
           </motion.div>
 
-          {/* ================= CARD 2: QDELTA SIGNATURE ================= */}
+          {/* ================= CARD 2: QDELTA SIGNATURE (3D SLAB) ================= */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className={`group relative flex flex-col justify-between rounded-3xl border border-white/[0.09] bg-[#090b11] p-6 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-sky-400/40 hover:shadow-[0_20px_60px_rgba(56,189,248,0.1)] overflow-hidden ${
+            className={`group relative flex flex-col justify-between rounded-3xl border-t border-l border-r border-white/[0.12] border-b-[4px] sm:border-b-[5px] border-b-sky-700 bg-[#090b11] p-6 sm:p-7 md:p-8 shadow-[0_24px_60px_-10px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)] transition-all duration-300 hover:border-sky-400/60 hover:shadow-[0_26px_70px_rgba(56,189,248,0.18)] overflow-hidden ${
               mobileTab === "digital" ? "hidden md:flex" : "flex"
             }`}
           >
-            {/* Top Cyan Hairline */}
-            <div className="absolute top-0 inset-x-8 h-[1px] bg-gradient-to-r from-transparent via-sky-400/45 to-transparent pointer-events-none" />
+            {/* Top Cyan Specular Hairline */}
+            <div className="absolute top-0 inset-x-8 h-[1.5px] bg-gradient-to-r from-transparent via-sky-400/70 to-transparent pointer-events-none z-20" />
 
             <div>
               {/* Header Row: Label & Tagline */}
@@ -304,7 +304,7 @@ export default function Packages() {
 
               <Link
                 href="#contact"
-                className="group/btn inline-flex items-center gap-1.5 rounded-full bg-white py-2.5 px-4 sm:px-5 text-xs font-epilogue font-bold text-black shadow-[0_0_16px_rgba(255,255,255,0.25)] transition-all duration-200 hover:bg-sky-400 hover:scale-[1.02]"
+                className="group/btn inline-flex items-center gap-1.5 rounded-full bg-gradient-to-b from-white via-[#F4F4F6] to-[#E2E4E8] text-[#050608] border-t border-l border-r border-white border-b-[3px] border-b-[#8A909A] py-2.5 px-4 sm:px-5 text-xs font-epilogue font-bold shadow-[0_6px_18px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,1)] transition-all duration-200 hover:from-white hover:to-white hover:border-b-[#737882] active:translate-y-[2px] active:border-b-[1px]"
               >
                 <span>Explore QDelta Signature</span>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
@@ -314,7 +314,7 @@ export default function Packages() {
         </div>
 
         {/* ======================================================= */}
-        {/* SECTION 2 — WHAT BOTH PACKAGES INCLUDE (INTEGRATED)     */}
+        {/* SECTION 2 — WHAT BOTH PACKAGES INCLUDE (3D INTEGRATED)  */}
         {/* Rotary Arc Dial & Deliverables Panel                    */}
         {/* ======================================================= */}
         <motion.div
@@ -322,11 +322,11 @@ export default function Packages() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6 }}
-          className="w-full rounded-3xl sm:rounded-[32px] border border-white/[0.09] bg-[#090b10] shadow-[0_20px_60px_rgba(0,0,0,0.85)] relative overflow-hidden"
+          className="w-full rounded-3xl sm:rounded-[32px] border-t border-l border-r border-white/[0.12] border-b-[5px] border-b-black/90 bg-[#090b10] shadow-[0_26px_70px_-10px_rgba(0,0,0,0.88),inset_0_1.5px_0_rgba(255,255,255,0.12)] relative overflow-hidden"
         >
 
           {/* Top Subtle Dual Accent Hairline */}
-          <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/35 via-sky-400/25 to-transparent pointer-events-none" />
+          <div className="absolute top-0 inset-x-8 sm:inset-x-12 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/50 via-sky-400/35 to-transparent pointer-events-none z-20" />
 
           {/* Integrated Header Row */}
           <div className="p-6 sm:p-8 md:p-10 border-b border-white/[0.08] flex flex-col md:flex-row md:items-center justify-between gap-5">

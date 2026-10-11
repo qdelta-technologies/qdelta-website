@@ -101,10 +101,10 @@ export default function ChamferButton({
     hover:scale-[1.02] active:scale-[0.99] active:translate-y-px focus-visible:outline-none
     ${
       isPrimary
-        ? "drop-shadow-[0_2px_0_rgba(0,0,0,0.22)] drop-shadow-[0_8px_16px_rgba(0,0,0,0.28)] group-active:drop-shadow-[0_1px_0_rgba(0,0,0,0.2)]"
-        : ""
+        ? "drop-shadow-[0_3px_0_#B87700] drop-shadow-[0_8px_18px_rgba(0,0,0,0.45)] active:translate-y-[2px] active:drop-shadow-[0_1px_0_#B87700] active:drop-shadow-[0_4px_8px_rgba(0,0,0,0.35)] font-bold"
+        : "drop-shadow-[0_2px_0_rgba(255,255,255,0.12)] active:translate-y-[1px]"
     }
-    ${isPrimary ? "text-[#06070A]" : "text-[#F5F5F7] hover:text-white"}
+    ${isPrimary ? "text-[#050608]" : "text-[#F5F5F7] hover:text-white"}
     ${className}
   `.trim();
 
@@ -128,8 +128,9 @@ export default function ChamferButton({
               x2="0"
               y2="1"
             >
-              <stop offset="0%" stopColor="#FAB406" />
-              <stop offset="100%" stopColor="#FAB406" />
+              <stop offset="0%" stopColor="#FFC220" />
+              <stop offset="48%" stopColor="#FAB406" />
+              <stop offset="100%" stopColor="#EAA400" />
             </linearGradient>
             <linearGradient
               id={`${gradientId}-fill-hover`}
@@ -138,8 +139,9 @@ export default function ChamferButton({
               x2="0"
               y2="1"
             >
-              <stop offset="0%" stopColor="#FFC015" />
-              <stop offset="100%" stopColor="#FAB406" />
+              <stop offset="0%" stopColor="#FFCD38" />
+              <stop offset="48%" stopColor="#FFBA14" />
+              <stop offset="100%" stopColor="#EEA900" />
             </linearGradient>
           </defs>
         )}
@@ -148,16 +150,16 @@ export default function ChamferButton({
           fill={
             isPrimary
               ? `url(#${gradientId}-fill)`
-              : "rgba(6, 7, 10, 0.65)"
+              : "rgba(6, 7, 10, 0.75)"
           }
-          stroke={isPrimary ? "#D49802" : "#FAB406"}
+          stroke={isPrimary ? "#EAA808" : "#FAB406"}
           strokeWidth={strokeWidth}
           strokeLinejoin="miter"
           strokeMiterlimit={4}
           vectorEffect="non-scaling-stroke"
           className={`transition-all duration-300 ${
             isPrimary
-              ? "group-hover:stroke-[#B88402]"
+              ? "group-hover:stroke-[#B87700]"
               : "group-hover:fill-[#FAB406]/[0.08] group-hover:stroke-[#FAB406]"
           }`}
         />
@@ -171,18 +173,26 @@ export default function ChamferButton({
         )}
       </svg>
 
+      {/* Crisp Top Specular 3D Reflection Hairline */}
+      {isPrimary && (
+        <div
+          className="pointer-events-none absolute inset-x-3.5 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent z-20"
+          aria-hidden="true"
+        />
+      )}
+
       {/* Ambient Glow */}
       <div
         aria-hidden="true"
         className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${
           isPrimary
-            ? "shadow-[0_0_20px_rgba(250,180,6,0.35)] opacity-70 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(250,180,6,0.6)]"
+            ? "shadow-[0_0_20px_rgba(250,180,6,0.35)] opacity-60 group-hover:opacity-100 group-hover:shadow-[0_0_32px_rgba(250,180,6,0.6)]"
             : "shadow-[0_0_18px_rgba(250,180,6,0.18)] opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_24px_rgba(250,180,6,0.4)]"
         }`}
       />
 
       {/* Button Content */}
-      <span className="relative z-10 flex items-center justify-center gap-2">
+      <span className={`relative z-10 flex items-center justify-center gap-2 ${isPrimary ? "drop-shadow-[0_1px_1px_rgba(255,255,255,0.35)]" : ""}`}>
         {children}
       </span>
     </>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 import { RotateCcw, ArrowUpRight } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
@@ -40,15 +41,15 @@ function StatItem({ num, suffix, label, detail }: { num: number; suffix: string;
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center justify-center text-center px-1.5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-black/[0.04] border border-black/[0.06] hover:bg-black/[0.08] transition-colors"
+      className="flex flex-col items-center justify-center text-center px-1.5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-black/[0.06] border border-black/[0.12] shadow-[inset_0_1px_2px_rgba(0,0,0,0.12)] hover:bg-black/[0.09] transition-colors"
     >
-      <p className="font-heading font-black text-2xl sm:text-3xl lg:text-[30px] text-[#050608] tracking-tight leading-none">
+      <p className="font-heading font-black text-2xl sm:text-3xl lg:text-[30px] text-[#050608] tracking-tight leading-none drop-shadow-[0_1px_1px_rgba(255,255,255,0.35)]">
         {count}{suffix}
       </p>
       <p className="mt-1 font-excon text-[11px] sm:text-xs font-bold text-[#050608] leading-tight tracking-tight">
         {label}
       </p>
-      <p className="mt-0.5 font-epilogue text-[10px] text-black/70 font-semibold leading-tight hidden sm:block">
+      <p className="mt-0.5 font-epilogue text-[10px] text-black/75 font-semibold leading-tight hidden sm:block">
         {detail}
       </p>
     </div>
@@ -61,64 +62,47 @@ const DIFFERENTIATORS = [
   { label: "Built to convert", detail: "Design that looks great and drives real results." },
 ];
 
-/* ─── Brand logos — monochrome placeholders, swap with real assets later ─── */
-const LOGOS = [
+/* ─── Real Client Brand Logos (Silver Chrome Style) ─── */
+const CLIENT_LOGOS = [
   {
-    key: "google",
-    label: "Google",
-    node: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-label="Google" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12.545 10.239v3.821h5.445c-.712 2.315-2.647 3.972-5.445 3.972a6.033 6.033 0 1 1 0-12.064c1.498 0 2.866.549 3.921 1.453l2.814-2.814A9.969 9.969 0 0 0 12.545 2C7.021 2 2.543 6.477 2.543 12s4.478 10 10.002 10c8.396 0 10.249-7.85 9.426-11.748l-9.426-.013z"/>
-      </svg>
-    ),
+    key: "globalsafetyacademy",
+    label: "Global Safety Academy",
+    src: "/images/clients/globalsafetyacademy-silver.png",
+    width: 331,
+    height: 285,
+    className: "h-7 sm:h-8 md:h-9 w-auto max-w-[130px] sm:max-w-[150px]",
   },
   {
-    key: "microsoft",
-    label: "Microsoft",
-    node: (
-      <svg viewBox="0 0 21 21" className="h-5 w-5" fill="currentColor" aria-label="Microsoft" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 0h10v10H0z" opacity=".9"/>
-        <path d="M11 0h10v10H11z" opacity=".6"/>
-        <path d="M0 11h10v10H0z" opacity=".6"/>
-        <path d="M11 11h10v10H11z" opacity=".9"/>
-      </svg>
-    ),
+    key: "wtsnova",
+    label: "WTS Nova",
+    src: "/images/clients/wtsnova-silver.png",
+    width: 739,
+    height: 585,
+    className: "h-7 sm:h-8 md:h-9 w-auto max-w-[120px] sm:max-w-[140px]",
   },
   {
-    key: "slack",
-    label: "Slack",
-    node: (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-label="Slack" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.27 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.833 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.833 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.833 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.833zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.311zm10.122 2.521a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.523 2.521h-2.522V8.834zm-1.268 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.164 0a2.528 2.528 0 0 1 2.523 2.522v6.312zm-2.523 10.122a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.164 24a2.527 2.527 0 0 1-2.52-2.523v-2.522h2.52zm0-1.268a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.523 2.523h-6.313z"/>
-      </svg>
-    ),
+    key: "prettygoodpdf",
+    label: "Pretty Good PDF",
+    src: "/images/clients/prettygoodpdf-silver.png",
+    width: 904,
+    height: 197,
+    className: "h-5 sm:h-6 md:h-7 w-auto max-w-[150px] sm:max-w-[170px]",
   },
   {
-    key: "notion",
-    label: "Notion",
-    node: (
-      <span className="font-excon text-[15px] font-black tracking-tight leading-none select-none" aria-label="Notion">
-        Notion
-      </span>
-    ),
+    key: "slntransportation",
+    label: "SLN Transportation",
+    src: "/images/clients/slntransportation-silver.png",
+    width: 969,
+    height: 224,
+    className: "h-5 sm:h-6 md:h-7 w-auto max-w-[170px] sm:max-w-[190px]",
   },
   {
-    key: "aws",
-    label: "AWS",
-    node: (
-      <span className="font-excon text-[15px] font-black tracking-tight leading-none select-none" aria-label="AWS">
-        aws
-      </span>
-    ),
-  },
-  {
-    key: "zapier",
-    label: "Zapier",
-    node: (
-      <span className="font-excon text-[15px] font-black tracking-tight leading-none select-none" aria-label="Zapier">
-        zapier
-      </span>
-    ),
+    key: "infospark",
+    label: "Infospark Solutions",
+    src: "/images/clients/infospark-silver.png",
+    width: 592,
+    height: 315,
+    className: "h-6 sm:h-7 md:h-8 w-auto max-w-[130px] sm:max-w-[150px]",
   },
 ];
 
@@ -326,10 +310,10 @@ export default function BrandTransformationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="rounded-xl sm:rounded-2xl border border-[#FAB406] bg-[#0B0E12]/90 backdrop-blur-md p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(250,180,6,0.12)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
+            className="rounded-xl sm:rounded-2xl border-t border-l border-r border-[#FAB406]/70 border-b-[4px] sm:border-b-[5px] border-b-[#B87700] bg-[#0B0E12]/92 backdrop-blur-md p-3 sm:p-4 shadow-[0_24px_55px_-10px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.15)] relative overflow-hidden flex flex-col justify-between transition-all duration-300 group lg:min-h-[420px]"
           >
             {/* Crisp Golden Top Accent Hairline */}
-            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1px] bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent z-20" />
+            <div className="pointer-events-none absolute top-0 inset-x-8 sm:inset-x-14 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/70 to-transparent z-20" />
 
             {/* Ambient Warm Golden Backlight */}
             <div className="pointer-events-none absolute -top-12 -right-12 w-64 h-64 rounded-full bg-[#FAB406]/[0.04] blur-[90px]" />
@@ -443,16 +427,26 @@ export default function BrandTransformationSection() {
 
           {/* Trust bar — between video and stats on mobile; hidden on desktop (shown below grid) */}
           <div className="lg:hidden w-full py-2">
-            <p className="text-center font-epilogue text-[10px] tracking-[0.22em] uppercase text-zinc-600 font-semibold mb-4 select-none">
+            <p className="text-center font-epilogue text-[10px] tracking-[0.22em] uppercase text-zinc-500 font-semibold mb-4 select-none">
               Trusted by innovative teams
             </p>
             <div className="relative w-full overflow-hidden">
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-10 z-10 bg-gradient-to-r from-[#06070A] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-10 z-10 bg-gradient-to-l from-[#06070A] to-transparent" />
-              <div className="flex items-center justify-center flex-wrap gap-x-7 gap-y-3 py-1">
-                {LOGOS.map(({ key, node }) => (
-                  <div key={key} className="text-zinc-500 hover:text-zinc-300 transition-colors duration-300">
-                    {node}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-8 z-10 bg-gradient-to-r from-[#06070A] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-[#06070A] to-transparent" />
+              <div className="flex items-center justify-center flex-wrap gap-x-8 gap-y-4 py-1">
+                {CLIENT_LOGOS.map((logo) => (
+                  <div
+                    key={logo.key}
+                    className="opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-105 flex items-center justify-center"
+                    title={logo.label}
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.label}
+                      width={logo.width}
+                      height={logo.height}
+                      className={`${logo.className} object-contain transition-all`}
+                    />
                   </div>
                 ))}
               </div>
@@ -467,10 +461,10 @@ export default function BrandTransformationSection() {
             transition={{ duration: 0.55, delay: 0.15 }}
             className="flex flex-col gap-3 sm:gap-3.5 lg:min-h-[420px] lg:justify-between"
           >
-            {/* Bento Tile 1: Sculpted Top Metrics Banner */}
-            <div className="relative rounded-xl sm:rounded-2xl border border-[#D49802] bg-[#FAB406] p-3.5 sm:p-4 shadow-[0_12px_30px_rgba(250,180,6,0.16)] overflow-hidden group">
+            {/* Bento Tile 1: Sculpted Top Metrics Banner (3D Physical Extrusion) */}
+            <div className="relative rounded-xl sm:rounded-2xl border-t border-l border-r border-[#EAA808] border-b-[4px] sm:border-b-[5px] border-b-[#B87700] bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608] p-3.5 sm:p-4 shadow-[0_22px_50px_-10px_rgba(0,0,0,0.75),0_10px_20px_-5px_rgba(0,0,0,0.4),inset_0_1.5px_0_rgba(255,255,255,0.7),inset_0_-2px_4px_rgba(0,0,0,0.15)] overflow-hidden group">
               {/* Crisp top sheen */}
-              <div className="pointer-events-none absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+              <div className="pointer-events-none absolute top-0 inset-x-8 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent z-20" />
 
               {/* Ambient sheen reflection */}
               <div className="pointer-events-none absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-white/10 blur-2xl" />
@@ -502,15 +496,15 @@ export default function BrandTransformationSection() {
               </div>
             </div>
 
-            {/* Bento Tile 2: 3 Elevated Differentiator Cards */}
+            {/* Bento Tile 2: 3 Elevated Differentiator Cards (3D Physical Extrusion) */}
             <div className="flex flex-col gap-2.5 sm:gap-3 flex-1 lg:justify-between">
               {DIFFERENTIATORS.map((item, idx) => (
                 <div
                   key={idx}
-                  className="relative flex items-center justify-between gap-3 sm:gap-4 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-[#D49802] bg-[#FAB406] shadow-[0_6px_20px_rgba(250,180,6,0.12)] hover:bg-[#FFBF14] hover:shadow-[0_10px_28px_rgba(250,180,6,0.22)] hover:-translate-y-0.5 transition-all duration-300 group/item cursor-default overflow-hidden"
+                  className="relative flex items-center justify-between gap-3 sm:gap-4 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border-t border-l border-r border-[#EAA808] border-b-[3.5px] border-b-[#B87700] bg-gradient-to-b from-[#FFC220] via-[#FAB406] to-[#EAA400] text-[#050608] shadow-[0_14px_30px_-6px_rgba(0,0,0,0.6),0_6px_12px_-3px_rgba(0,0,0,0.35),inset_0_1.2px_0_rgba(255,255,255,0.65),inset_0_-1.5px_3px_rgba(0,0,0,0.12)] hover:from-[#FFCD38] hover:via-[#FFBA14] hover:to-[#EEA900] hover:shadow-[0_18px_36px_-6px_rgba(0,0,0,0.7)] hover:-translate-y-0.5 active:translate-y-0 active:border-b-[2px] transition-all duration-300 group/item cursor-default overflow-hidden"
                 >
                   {/* Top hairline sheen */}
-                  <div className="pointer-events-none absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                  <div className="pointer-events-none absolute top-0 inset-x-6 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent z-10" />
 
                   <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
                     {/* Index squircle badge */}
@@ -522,10 +516,10 @@ export default function BrandTransformationSection() {
 
                     {/* Content */}
                     <div className="min-w-0">
-                      <p className="font-excon text-xs sm:text-sm font-extrabold text-[#050608] tracking-tight leading-snug group-hover/item:text-black">
+                      <p className="font-excon text-xs sm:text-sm font-extrabold text-[#050608] tracking-tight leading-snug group-hover/item:text-black drop-shadow-[0_1px_1px_rgba(255,255,255,0.3)]">
                         {item.label}
                       </p>
-                      <p className="mt-0.5 font-epilogue text-[11px] sm:text-xs text-black/80 font-medium leading-relaxed line-clamp-1 sm:line-clamp-none">
+                      <p className="mt-0.5 font-epilogue text-[11px] sm:text-xs text-black/85 font-semibold leading-relaxed line-clamp-1 sm:line-clamp-none">
                         {item.detail}
                       </p>
                     </div>
@@ -544,16 +538,26 @@ export default function BrandTransformationSection() {
         {/* Trust bar — desktop only, below the 2-col grid */}
         <div className="hidden lg:block w-full mt-8">
           <div className="w-full h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent mb-7" />
-          <p className="text-center font-epilogue text-[10px] tracking-[0.22em] uppercase text-zinc-600 font-semibold mb-5 select-none">
+          <p className="text-center font-epilogue text-[10px] tracking-[0.22em] uppercase text-zinc-500 font-semibold mb-5 select-none">
             Trusted by innovative teams
           </p>
           <div className="relative w-full overflow-hidden">
             <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-[#06070A] to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-[#06070A] to-transparent" />
-            <div className="flex items-center justify-center gap-10">
-              {LOGOS.map(({ key, node }) => (
-                <div key={key} className="text-zinc-500 hover:text-zinc-300 transition-colors duration-300">
-                  {node}
+            <div className="flex items-center justify-center gap-8 sm:gap-10 lg:gap-12 xl:gap-14">
+              {CLIENT_LOGOS.map((logo) => (
+                <div
+                  key={logo.key}
+                  className="opacity-65 hover:opacity-100 transition-all duration-300 hover:scale-105 hover:brightness-110 flex items-center justify-center"
+                  title={logo.label}
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.label}
+                    width={logo.width}
+                    height={logo.height}
+                    className={`${logo.className} object-contain`}
+                  />
                 </div>
               ))}
             </div>
