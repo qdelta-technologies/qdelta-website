@@ -90,7 +90,7 @@ export default function Packages() {
   return (
     <section
       id="packages"
-      className="relative z-20 w-full bg-[#040406] text-white selection:bg-[#FAB406] selection:text-black py-20 sm:py-28 md:py-32 border-t border-white/[0.08] overflow-hidden"
+      className="relative z-20 w-full bg-[#040406] text-white selection:bg-[#FAB406] selection:text-black py-12 sm:py-16 md:py-18 border-t border-white/[0.08] overflow-hidden"
     >
       {/* Ambient Lighting Accents */}
       <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[42rem] w-[65rem] rounded-full bg-gradient-to-b from-[#FAB406]/[0.045] via-sky-500/[0.02] to-transparent blur-[160px]" />
@@ -114,7 +114,10 @@ export default function Packages() {
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[3.2rem] font-heading font-extrabold tracking-tight text-white leading-[1.08] text-balance max-w-3xl">
-            Two Ways to Work With <span className="text-[#FAB406]">QDelta</span>
+            Two Ways to Work With{" "}
+            <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
+              QDelta
+            </span>
           </h2>
 
           {/* Supporting Text */}

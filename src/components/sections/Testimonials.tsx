@@ -131,7 +131,7 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 text-white selection:bg-[#FAB406] selection:text-[#06070A] sm:py-20 md:py-24"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-12 text-white selection:bg-[#FAB406] selection:text-[#06070A] sm:py-16 md:py-18"
     >
       {/* Top edge accent */}
       <div
@@ -153,7 +153,10 @@ export default function Testimonials() {
           {/* Unified Section Eyebrow */}
           <SectionEyebrow>Testimonials</SectionEyebrow>
           <h2 className="font-heading text-2xl sm:text-3xl md:text-[40px] lg:text-[44px] font-bold tracking-tight text-white leading-[1.1]">
-            Inspiring Client Experiences
+            Inspiring{" "}
+            <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
+              Client Experiences
+            </span>
           </h2>
           <p className="mt-3 font-epilogue text-sm sm:text-base text-zinc-400 max-w-lg">
             Trusted by businesses that wanted more than just a website.

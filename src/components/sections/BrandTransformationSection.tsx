@@ -271,7 +271,7 @@ export default function BrandTransformationSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative z-20 w-full bg-[#06070A] text-white pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 scroll-mt-20 overflow-hidden selection:bg-[#FAB406] selection:text-[#06070A]"
+      className="relative z-20 w-full bg-[#06070A] text-white pt-12 pb-14 sm:pt-14 sm:pb-16 md:pt-16 md:pb-18 scroll-mt-20 overflow-hidden selection:bg-[#FAB406] selection:text-[#06070A]"
       aria-label="About QDelta — Strategic Value & Capability"
     >
       {/* ================= BACKGROUND ATMOSPHERE ================= */}
@@ -291,8 +291,10 @@ export default function BrandTransformationSection() {
 
           {/* Headline (Single line on desktop/tablets, balanced on mobile) */}
           <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-4xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.18] md:whitespace-nowrap">
-            <span className="inline-block">We Make Brands Look Better.</span>{" "}
-            <span className="inline-block text-[#FAB406]">And Work Better.</span>
+            <span>Turning Ideas into</span>{" "}
+            <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
+              Digital Experiences.
+            </span>
           </h2>
 
           {/* Supporting Text */}

@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import YellowDotWaves from "@/components/ui/YellowDotWaves";
-import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 
 function MailIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -68,27 +67,37 @@ function GitHubIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+function PhoneIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
 const SERVICES_LINKS = [
   { label: "Landing Pages", href: "#services" },
-  { label: "Premium Websites", href: "#services" },
-  { label: "E-commerce", href: "#services" },
-  { label: "Interactive / 3D", href: "#services" },
-  { label: "Design Systems", href: "#services" },
+  { label: "Interactive Websites", href: "#services" },
+  { label: "E-commerce Stores", href: "#services" },
+  { label: "Lead Capture Systems", href: "#services" },
+  { label: "Web & App Development", href: "#services" },
 ];
 
-const COMPANY_LINKS = [
-  { label: "Why QDelta", href: "#why-qdelta" },
-  { label: "Our Work", href: "#projects" },
-  { label: "Our Process", href: "#process" },
-  { label: "Our Team", href: "#team" },
+const QUICK_LINKS = [
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Process", href: "#process" },
+  { label: "Projects", href: "#projects" },
+  { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
-];
-
-const CONNECT_LINKS = [
-  { label: "Start a Project", href: "#contact", highlight: true },
-  { label: "hello@qdelta.in", href: "mailto:hello@qdelta.in", external: true },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/qdelta/home/", external: true },
-  { label: "Instagram", href: "https://instagram.com", external: true },
 ];
 
 export default function Footer() {
@@ -147,8 +156,23 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-[#06070A] pb-8 sm:pb-12 pt-6 px-4 sm:px-6 lg:px-8 relative z-20 overflow-hidden">
-      {/* ================= SECTION BACKGROUND ATMOSPHERE (GRID & PARTICLES) ================= */}
-      <SectionAtmosphere variant="center" gridOpacity={0.2} edgeVignette={false} />
+      {/* ================= VISIBLE ARCHITECTURAL GRID IN FOOTER BACKGROUND (NO GRADIENT) ================= */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(250, 180, 6, 0.08) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(250, 180, 6, 0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: "40px 40px",
+            backgroundPosition: "center top",
+          }}
+        />
+      </div>
 
       {/* ======================================================= */}
       {/* CHAMFERED OCTAGON FOOTER CONTAINER (GRAPHITE & GOLD)    */}
@@ -156,7 +180,7 @@ export default function Footer() {
       <div className="relative z-10 w-full max-w-6xl xl:max-w-7xl mx-auto drop-shadow-[0_24px_70px_rgba(0,0,0,0.95)]">
         <div
           ref={containerRef}
-          className="relative w-full bg-[#0B0E12]/95 backdrop-blur-md text-white px-6 py-9 sm:px-10 sm:py-12 md:px-12 md:py-14 overflow-hidden flex flex-col justify-between transition-all duration-300"
+          className="relative w-full bg-[#0B0E12] text-white px-6 py-9 sm:px-10 sm:py-12 md:px-12 md:py-14 overflow-hidden flex flex-col justify-between transition-all duration-300"
           style={{ clipPath: clipPathStyle }}
         >
           {/* ================= UNIFORM GREY 8-EDGE PRECISION CHAMFER BORDER ================= */}
@@ -181,7 +205,7 @@ export default function Footer() {
 
         {/* ================= UPPER SECTION: 4-COLUMN COMPOSITION ================= */}
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
-          {/* LEFT SIDE: Brand & Socials */}
+          {/* LEFT SIDE: Brand & Direct Contacts */}
           <div className="lg:col-span-5 max-w-sm flex flex-col justify-between">
             <div>
               {/* Brand Logo (Matching Header) */}
@@ -195,13 +219,13 @@ export default function Footer() {
                 />
               </Link>
 
-              {/* Short Description */}
+              {/* Authoritative Brand Tagline */}
               <p className="mt-3.5 text-xs sm:text-sm font-epilogue text-zinc-400 leading-relaxed font-normal">
-                Websites that speak for your brand and work for your business.
+                Turning ideas into high-impact digital experiences. Designed with purpose, built for performance, and engineered to grow your business.
               </p>
 
-              {/* Direct Contact Email */}
-              <div className="mt-3.5">
+              {/* Direct Contacts Block */}
+              <div className="mt-4 space-y-2">
                 <a
                   href="mailto:hello@qdelta.in"
                   className="inline-flex items-center gap-2 text-xs sm:text-[13px] text-zinc-300 hover:text-[#FAB406] transition-colors font-medium group"
@@ -211,35 +235,51 @@ export default function Footer() {
                   </span>
                   <span>hello@qdelta.in</span>
                 </a>
+
+                <div className="flex items-center">
+                  <a
+                    href="mailto:qdelta.agency@gmail.com"
+                    className="inline-flex items-center gap-2 text-xs sm:text-[13px] text-zinc-300 hover:text-[#FAB406] transition-colors font-medium group"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/25 text-[#FAB406] group-hover:bg-[#FAB406]/20 transition-all">
+                      <MailIcon className="w-3 h-3" />
+                    </span>
+                    <span>qdelta.agency@gmail.com</span>
+                  </a>
+                </div>
+
+                <div className="flex items-center">
+                  <a
+                    href="tel:+917815895689"
+                    className="inline-flex items-center gap-2 text-xs sm:text-[13px] text-zinc-300 hover:text-[#FAB406] transition-colors font-medium group"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/25 text-[#FAB406] group-hover:bg-[#FAB406]/20 transition-all">
+                      <PhoneIcon className="w-3 h-3" />
+                    </span>
+                    <span>+91 78158 95689</span>
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Social Icons — brand-colored */}
+            {/* Social & Contact Icons — brand-colored buttons */}
             <div className="flex items-center gap-2.5 mt-5 sm:mt-7">
               <a
-                href="mailto:hello@qdelta.in"
-                aria-label="Email"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
-              >
-                <MailIcon className="w-4 h-4" />
-              </a>
-
-              <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/qdelta.in?srtk=c2l2djJwazQ2b3Uy"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/25 hover:border-[#FAB406] hover:scale-105 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
 
               <a
-                href="https://x.com"
+                href="https://x.com/qdelta_agency"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X / Twitter"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/25 hover:border-[#FAB406] hover:scale-105 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <XTwitterIcon className="w-3.5 h-3.5" />
               </a>
@@ -249,104 +289,138 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/20 transition-all duration-200 cursor-pointer shadow-sm"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/25 hover:border-[#FAB406] hover:scale-105 transition-all duration-200 cursor-pointer shadow-sm"
               >
                 <LinkedInIcon className="w-4 h-4" />
+              </a>
+
+              <a
+                href="mailto:hello@qdelta.in"
+                aria-label="Email"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/25 hover:border-[#FAB406] hover:scale-105 transition-all duration-200 cursor-pointer shadow-sm"
+              >
+                <MailIcon className="w-4 h-4" />
+              </a>
+
+              <a
+                href="tel:+917815895689"
+                aria-label="Call"
+                className="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/30 text-[#FAB406] hover:bg-[#FAB406]/25 hover:border-[#FAB406] hover:scale-105 transition-all duration-200 cursor-pointer shadow-sm"
+              >
+                <PhoneIcon className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
-          {/* RIGHT SIDE: 3 Minimal Link Columns */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-7 sm:gap-9">
+          {/* RIGHT SIDE: 3 Structured Columns */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-9">
             {/* COLUMN 1: Services */}
             <div>
-              <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
-                <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] shadow-[0_0_8px_rgba(250,180,6,0.6)]" />
+                <h4 className="font-epilogue font-bold text-xs uppercase tracking-widest text-white/90">
                   Services
                 </h4>
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {SERVICES_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-normal"
+                      className="group flex items-center gap-2 font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-white transition-all duration-200"
                     >
-                      {link.label}
+                      <span className="w-1 h-1 rounded-full bg-zinc-600 group-hover:bg-[#FAB406] group-hover:scale-125 transition-all duration-200 opacity-60 group-hover:opacity-100" />
+                      <span className="transition-transform duration-200 group-hover:translate-x-1 group-hover:text-[#FAB406]">
+                        {link.label}
+                      </span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* COLUMN 2: Quick Links */}
+            {/* COLUMN 2: Quick Links (Exact Nav Links) */}
             <div>
-              <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
-                <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] shadow-[0_0_8px_rgba(250,180,6,0.6)]" />
+                <h4 className="font-epilogue font-bold text-xs uppercase tracking-widest text-white/90">
                   Quick Links
                 </h4>
               </div>
-              <ul className="space-y-2">
-                {COMPANY_LINKS.map((link) => (
+              <ul className="space-y-2.5">
+                {QUICK_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-normal"
+                      className="group flex items-center gap-2 font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-white transition-all duration-200"
                     >
-                      {link.label}
+                      <span className="w-1 h-1 rounded-full bg-zinc-600 group-hover:bg-[#FAB406] group-hover:scale-125 transition-all duration-200 opacity-60 group-hover:opacity-100" />
+                      <span className="transition-transform duration-200 group-hover:translate-x-1 group-hover:text-[#FAB406]">
+                        {link.label}
+                      </span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* COLUMN 3: Connect — hidden on mobile */}
-            <div className="hidden sm:block col-span-2 sm:col-span-1">
-              <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
-                <h4 className="font-epilogue font-bold text-xs uppercase tracking-wider text-white">
-                  Connect
-                </h4>
+            {/* COLUMN 3: Work With Us & Enterprise Trust */}
+            <div className="col-span-2 sm:col-span-1 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] shadow-[0_0_8px_rgba(250,180,6,0.6)]" />
+                  <h4 className="font-epilogue font-bold text-xs uppercase tracking-widest text-white/90">
+                    Work With Us
+                  </h4>
+                </div>
+
+                <p className="font-epilogue text-xs sm:text-[13px] text-zinc-400 leading-relaxed font-normal">
+                  Have a project or vision? We engineer bespoke digital systems that drive measurable growth.
+                </p>
+
+                {/* Primary Action Button */}
+                <div className="mt-3.5">
+                  <Link
+                    href="#contact"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#FAB406] text-[#0B0E12] font-epilogue font-semibold text-xs hover:bg-[#FAB406]/90 transition-all duration-200 shadow-sm group"
+                  >
+                    <span>Start a Project</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
+
+                {/* Live Availability Status */}
+                <div className="mt-4 flex items-center gap-2 text-[11px] sm:text-xs font-epilogue text-zinc-400">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span className="text-zinc-300 font-medium">Available for new projects</span>
+                </div>
               </div>
-              <ul className="space-y-2">
-                {CONNECT_LINKS.map((link) => (
-                  <li key={link.label}>
-                    {link.external ? (
-                      <a
-                        href={link.href}
-                        target={link.href.startsWith("http") ? "_blank" : undefined}
-                        rel="noopener noreferrer"
-                        className="font-epilogue text-xs sm:text-[13px] text-zinc-400 hover:text-[#FAB406] transition-colors duration-150 inline-block font-normal"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className={`font-epilogue text-xs sm:text-[13px] transition-colors duration-150 inline-flex items-center gap-1 font-semibold ${
-                          link.highlight
-                            ? "text-[#FAB406] hover:text-white"
-                            : "text-zinc-400 hover:text-[#FAB406]"
-                        }`}
-                      >
-                        <span>{link.label}</span>
-                        {link.highlight && <ArrowUpRight className="w-3.5 h-3.5" />}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
+
+              {/* MSME Ministry Official Logo */}
+              <div className="mt-4 pt-1">
+                <Image
+                  src="/images/msme-logo-dark.png"
+                  alt="Ministry of MSME, Govt. of India"
+                  width={260}
+                  height={114}
+                  className="h-11 sm:h-12 w-auto object-contain opacity-85 hover:opacity-100 transition-opacity"
+                />
+              </div>
             </div>
           </div>
         </div>
 
         {/* ================= LOWER SECTION: DIVIDER & LEGAL ================= */}
-        <div className="relative z-10 pt-5 sm:pt-7 border-t border-white/[0.08] text-xs font-epilogue text-zinc-500">
-          <p className="text-center sm:text-left">
-            © 2026 QDelta Technologies. All rights reserved.
-          </p>
+        <div className="relative z-10 pt-5 sm:pt-6 border-t border-white/[0.08] text-xs font-epilogue text-zinc-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <p>© 2026 QDelta Technologies. All rights reserved.</p>
+            <p className="text-zinc-500 text-[11px] sm:text-xs">
+              Understand the business. Design with purpose. Build for results.
+            </p>
+          </div>
         </div>
 
         {/* ================= BOTTOM BORDER YELLOW DOT WAVE & GRASS ACCENT ================= */}

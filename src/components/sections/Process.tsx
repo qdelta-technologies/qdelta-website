@@ -61,7 +61,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="relative z-20 w-full bg-[#080B10] text-white selection:bg-[#FAB406] selection:text-[#06070A] py-16 sm:py-20 lg:py-24 overflow-hidden"
+      className="relative z-20 w-full bg-[#080B10] text-white selection:bg-[#FAB406] selection:text-[#06070A] py-12 sm:py-16 md:py-18 overflow-hidden"
     >
       {/* Top yellow hairline separator */}
       <div
@@ -81,7 +81,10 @@ export default function Process() {
           <SectionEyebrow>How We Work</SectionEyebrow>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-heading font-bold tracking-tight text-white leading-[1.14] text-balance">
-            Every project starts with a clear process.
+            Every project starts with a{" "}
+            <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
+              clear process.
+            </span>
           </h2>
 
           <p className="mt-3 text-xs sm:text-sm md:text-base font-epilogue text-zinc-300 font-normal leading-relaxed text-balance max-w-2xl">

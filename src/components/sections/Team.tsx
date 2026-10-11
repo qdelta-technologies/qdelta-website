@@ -205,7 +205,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-16 sm:py-20 md:py-24 text-white selection:bg-[#FAB406] selection:text-[#06070A]"
+      className="relative z-20 w-full overflow-hidden bg-[#06070A] py-12 sm:py-16 md:py-18 text-white selection:bg-[#FAB406] selection:text-[#06070A]"
     >
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
       <SectionAtmosphere variant="left" gridOpacity={0.15} />
@@ -226,7 +226,10 @@ export default function Team() {
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-heading font-bold tracking-tight text-white leading-[1.12] text-balance">
-            Meet the people behind <span className="text-[#FAB406]">QDelta</span>
+            Meet the people behind{" "}
+            <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
+              QDelta
+            </span>
           </h2>
 
           {/* Supporting Text */}

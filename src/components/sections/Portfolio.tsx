@@ -385,7 +385,7 @@ export default function Portfolio() {
     <section
       id="projects"
       ref={containerRef}
-      className="relative z-20 w-full bg-[#040406] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
+      className="relative z-20 w-full bg-[#040406] text-white py-12 sm:py-16 md:py-18 scroll-mt-12 overflow-visible"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent z-10" aria-hidden />
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
@@ -408,7 +408,10 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
           <div className="lg:col-span-7">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-heading font-bold tracking-tight text-white leading-[1.12]">
-              Curated builds. Engineered to convert.
+              Curated builds.{" "}
+              <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
+                Engineered to convert.
+              </span>
             </h2>
           </div>
 
@@ -423,7 +426,7 @@ export default function Portfolio() {
       {/* ======================================================= */}
       {/* STACKED FOLDER ARCHIVE TRACK                            */}
       {/* ======================================================= */}
-      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 relative space-y-8 sm:space-y-10 md:space-y-12 pb-8 sm:pb-12">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 relative space-y-8 sm:space-y-10 md:space-y-12 pb-4 sm:pb-6">
         {ARCHIVE_PROJECTS.map((project, index) => (
           <ArchiveFolder
             key={project.id}

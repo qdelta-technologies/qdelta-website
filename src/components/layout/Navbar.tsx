@@ -339,9 +339,9 @@ export default function Navbar() {
                 cutLarge={10}
                 cutSmall={5}
                 strokeWidth={1.5}
-                className="!px-5 !py-2 text-xs sm:!text-[13px] font-bold"
+                className="!px-4 !py-2 text-xs sm:!text-[12.5px] font-bold whitespace-nowrap"
               >
-                <span>Contact Us</span>
+                <span>Get Free Brochure & Sample Work</span>
                 <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </ChamferButton>
             </div>
@@ -400,6 +400,20 @@ export default function Navbar() {
                     </Link>
                   );
                 })}
+                <div className="pt-2 mt-1.5 border-t border-white/10">
+                  <ChamferButton
+                    href="#contact"
+                    variant="primary"
+                    cutLarge={8}
+                    cutSmall={4}
+                    strokeWidth={1.5}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full justify-center !py-2 text-xs font-bold"
+                  >
+                    <span>Get Free Brochure & Sample Work</span>
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </ChamferButton>
+                </div>
               </nav>
             </motion.div>
           )}

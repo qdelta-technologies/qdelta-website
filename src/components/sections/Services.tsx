@@ -176,7 +176,7 @@ export default function Services() {
     <section
       id="services"
       ref={containerRef}
-      className="relative z-20 w-full bg-[#06070A] text-white py-16 sm:py-20 md:py-24 scroll-mt-12 overflow-visible"
+      className="relative z-20 w-full bg-[#06070A] text-white py-12 sm:py-16 md:py-18 scroll-mt-12 overflow-visible"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FAB406]/50 to-transparent z-10" aria-hidden />
       {/* ================= BACKGROUND ATMOSPHERE (YELLOW GRID, PARTICLES & GOLDEN GLOW) ================= */}
@@ -197,7 +197,10 @@ export default function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
           <div className="lg:col-span-7">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-heading font-bold tracking-tight text-white leading-[1.12]">
-              Digital experiences built around your business.
+              Digital experiences built around your{" "}
+              <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
+                business.
+              </span>
             </h2>
           </div>
 
@@ -210,7 +213,7 @@ export default function Services() {
       </motion.div>
 
       {/* ================= STACKED CARDS SCROLL TRACK ================= */}
-      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 relative space-y-10 sm:space-y-14 md:space-y-16 pb-10 sm:pb-14">
+      <div className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 relative space-y-10 sm:space-y-14 md:space-y-16 pb-6 sm:pb-8">
         {SERVICES.map((service, index) => (
           <StackCard
             key={service.number}
