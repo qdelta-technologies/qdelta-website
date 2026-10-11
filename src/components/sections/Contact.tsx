@@ -476,20 +476,19 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    {/* Project Brief */}
+                    {/* Project Brief (Optional) */}
                     <div className="relative group">
                       <label
                         htmlFor="brief"
                         className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                       >
-                        Project brief <span className="text-[#E5B528]">*</span>
+                        Project brief
                       </label>
                       <textarea
                         id="brief"
                         name="brief"
                         rows={2}
-                        required
-                        placeholder="Tell us briefly about your project..."
+                        placeholder="Tell us briefly about your project (optional)..."
                         value={brief}
                         onChange={(e) => setBrief(e.target.value)}
                         className="w-full bg-transparent border-b border-white/15 pb-2 text-sm sm:text-base font-sans text-white placeholder:text-zinc-600 outline-none transition-all duration-300 focus:border-[#E5B528] resize-none"
