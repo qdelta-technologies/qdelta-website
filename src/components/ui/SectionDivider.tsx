@@ -16,7 +16,7 @@ export default function SectionDivider({
       className={`relative w-full flex items-center justify-center my-0 z-30 pointer-events-none select-none ${className}`}
       aria-hidden="true"
     >
-      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/25 to-transparent" />
+      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#E5B528]/35 to-transparent" />
     </div>
   );
 }

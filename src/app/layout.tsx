@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Alata, DM_Sans, Bricolage_Grotesque } from "next/font/google";
+import { Alata, DM_Sans, Bricolage_Grotesque, Caveat } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
+
+const cursive = Caveat({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-cursive-family",
+  display: "swap",
+});
 
 const alata = Alata({
   subsets: ["latin"],
@@ -71,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${cursive.variable}`}>
       <head>
         {/* Instant desktop custom cursor activation — zero invisible cursor delay */}
         <script

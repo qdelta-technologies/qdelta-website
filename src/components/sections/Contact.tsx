@@ -7,6 +7,7 @@ import ChamferButton from "@/components/ui/ChamferButton";
 
 import OpenBoxServicePills from "@/components/ui/OpenBoxServicePills";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 const SERVICES = [
   "Landing Page",
@@ -25,6 +26,8 @@ export default function Contact() {
   ]);
   const [brief, setBrief] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const toggleService = (service: string) => {
     setSelectedServices((prev) =>
@@ -34,13 +37,61 @@ export default function Contact() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const payload = {
+        name,
+        email,
+        mobile: mobile.trim() || "Not provided",
+        services: selectedServices.length > 0 ? selectedServices.join(", ") : "Not specified",
+        brief,
+        _subject: `New Project Inquiry from ${name.trim()} - QDelta`,
+        _template: "table",
+        _captcha: "false",
+      };
+
+      const res = await fetch("https://formsubmit.co/ajax/hello@qdelta.in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && (data.success === "true" || data.success === true)) {
+        setSubmitted(true);
+      } else if (data.message && data.message.toLowerCase().includes("activate")) {
+        // First-time FormSubmit activation message for hello@qdelta.in
+        setErrorMessage(
+          "FormSubmit has sent an activation email to hello@qdelta.in. Please click the confirmation link in your inbox to activate form forwarding."
+        );
+      } else {
+        setErrorMessage(
+          data.message ||
+            "Unable to submit inquiry at the moment. Please try again or reach out directly at hello@qdelta.in."
+        );
+      }
+    } catch (err) {
+      console.error("FormSubmit inquiry submission error:", err);
+      setErrorMessage(
+        "Network connection issue. Please check your internet connection or email us directly at hello@qdelta.in."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setSubmitting(false);
+    setErrorMessage(null);
     setName("");
     setEmail("");
     setMobile("");
@@ -76,17 +127,11 @@ export default function Contact() {
               }}
             />
 
-            {/* Top Eyebrow — Editorial Style in Dark Charcoal */}
+            {/* Unified Section Eyebrow */}
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 select-none">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#06070A]/50 opacity-75" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#06070A]" />
-                </span>
-                <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-[#06070A]/80 font-bold">
-                  Get In Touch
-                </span>
-              </div>
+              <SectionEyebrow textColor="text-[#06070A]" className="!mb-0">
+                Get In Touch
+              </SectionEyebrow>
             </div>
 
             {/* Upper / Center Editorial Statement */}
@@ -193,7 +238,26 @@ export default function Contact() {
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-7">
+                  <form
+                    action="https://formsubmit.co/hello@qdelta.in"
+                    method="POST"
+                    onSubmit={handleSubmit}
+                    className="space-y-4 sm:space-y-7"
+                  >
+                    {/* FormSubmit.co Configuration */}
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value={`New Project Inquiry from ${name.trim() || "Website Visitor"} - QDelta`}
+                    />
+                    <input type="hidden" name="_template" value="table" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input
+                      type="hidden"
+                      name="services"
+                      value={selectedServices.join(", ")}
+                    />
+
                     {/* Name & Email (Underline Minimal Inputs) */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-7">
                       {/* Name */}
@@ -206,6 +270,7 @@ export default function Contact() {
                         </label>
                         <input
                           id="name"
+                          name="name"
                           type="text"
                           required
                           placeholder="Your name"
@@ -225,6 +290,7 @@ export default function Contact() {
                         </label>
                         <input
                           id="email"
+                          name="email"
                           type="email"
                           required
                           placeholder="name@company.com"
@@ -235,15 +301,16 @@ export default function Contact() {
                       </div>
 
                       {/* Mobile */}
-                      <div className="relative group">
+                      <div className="relative group sm:col-span-2">
                         <label
                           htmlFor="mobile"
                           className="block text-xs font-epilogue uppercase tracking-widest text-zinc-400 font-medium mb-1.5 transition-colors group-focus-within:text-[#E5B528]"
                         >
-                          Mobile
+                          Mobile (Optional)
                         </label>
                         <input
                           id="mobile"
+                          name="mobile"
                           type="tel"
                           placeholder="+1 000 000 0000"
                           value={mobile}
@@ -289,6 +356,7 @@ export default function Contact() {
                       </label>
                       <textarea
                         id="brief"
+                        name="brief"
                         rows={2}
                         required
                         placeholder="Tell us briefly about your project..."
@@ -298,21 +366,56 @@ export default function Contact() {
                       />
                     </div>
 
+                    {/* Error Banner */}
+                    {errorMessage && (
+                      <div className="rounded-md border border-amber-500/40 bg-amber-500/10 p-3.5 text-xs font-epilogue text-amber-200 leading-relaxed">
+                        <p className="font-semibold text-amber-300 mb-0.5">Notice:</p>
+                        <p>{errorMessage}</p>
+                      </div>
+                    )}
+
                     {/* Submit CTA */}
                     <div className="pt-0">
                       <ChamferButton
                         type="submit"
                         variant="primary"
+                        disabled={submitting}
                         className="w-full text-sm font-bold tracking-wide px-8 py-3"
                       >
-                        <span>Send Inquiry</span>
+                        <span>{submitting ? "Sending Inquiry..." : "Send Inquiry"}</span>
                         <span
-                          className="relative inline-grid place-items-center shrink-0 w-4 h-4 text-[#06070A] -rotate-[14deg] transition-transform duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:rotate-[18deg]"
+                          className={`relative inline-grid place-items-center shrink-0 w-4 h-4 text-[#06070A] ${
+                            submitting
+                              ? "animate-spin"
+                              : "-rotate-[14deg] transition-transform duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:rotate-[18deg]"
+                          }`}
                           aria-hidden="true"
                         >
-                          <svg viewBox="0 0 392.94 418.13" className="w-full h-full fill-current block">
-                            <path d="M243.7,418.13C198.37,312.3,118.14,268.5,0,294.73,135.19,238.54,203.38,148.99,149.24,0c49.45,103.91,130.68,145.05,243.7,123.4-127.69,63.18-168.91,165.26-149.24,294.73Z" />
-                          </svg>
+                          {submitting ? (
+                            <svg
+                              className="w-4 h-4 animate-spin text-[#06070A]"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
+                            </svg>
+                          ) : (
+                            <svg viewBox="0 0 392.94 418.13" className="w-full h-full fill-current block">
+                              <path d="M243.7,418.13C198.37,312.3,118.14,268.5,0,294.73,135.19,238.54,203.38,148.99,149.24,0c49.45,103.91,130.68,145.05,243.7,123.4-127.69,63.18-168.91,165.26-149.24,294.73Z" />
+                            </svg>
+                          )}
                         </span>
                       </ChamferButton>
                     </div>

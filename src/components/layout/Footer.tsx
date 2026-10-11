@@ -85,9 +85,9 @@ const COMPANY_LINKS = [
 
 const CONNECT_LINKS = [
   { label: "Start a Project", href: "#contact", highlight: true },
+  { label: "hello@qdelta.in", href: "mailto:hello@qdelta.in", external: true },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/qdelta-technologies", external: true },
   { label: "Instagram", href: "https://instagram.com", external: true },
-  { label: "Email", href: "mailto:hello@qdelta.in", external: true },
 ];
 
 export default function Footer() {
@@ -121,6 +121,19 @@ export default function Footer() {
               <p className="mt-3.5 text-xs sm:text-sm font-epilogue text-zinc-400 leading-relaxed font-normal">
                 Websites that speak for your brand and work for your business.
               </p>
+
+              {/* Direct Contact Email */}
+              <div className="mt-3.5">
+                <a
+                  href="mailto:hello@qdelta.in"
+                  className="inline-flex items-center gap-2 text-xs sm:text-[13px] text-zinc-300 hover:text-[#E5B528] transition-colors font-medium group"
+                >
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#E5B528]/10 border border-[#E5B528]/25 text-[#E5B528] group-hover:bg-[#E5B528]/20 transition-all">
+                    <MailIcon className="w-3 h-3" />
+                  </span>
+                  <span>hello@qdelta.in</span>
+                </a>
+              </div>
             </div>
 
             {/* Social Icons — brand-colored */}

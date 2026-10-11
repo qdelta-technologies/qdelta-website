@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight, RefreshCw } from "lucide-react";
 import { motion } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 function LinkedInIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -220,12 +221,8 @@ export default function Team() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center text-center mb-10 sm:mb-12 max-w-3xl"
         >
-          {/* Editorial Section Identifier */}
-          <div className="mb-4 select-none text-center">
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
-              Our Team
-            </span>
-          </div>
+          {/* Unified Section Eyebrow */}
+          <SectionEyebrow>Our Team</SectionEyebrow>
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-heading font-bold tracking-tight text-white leading-[1.12] text-balance">

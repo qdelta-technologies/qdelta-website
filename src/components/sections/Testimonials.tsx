@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 interface TestimonialItem {
   id: string;
@@ -97,21 +98,21 @@ function TestimonialCard({ t }: { t: TestimonialItem }) {
       </div>
 
       {/* Quote */}
-      <p className="font-epilogue text-[10.5px] sm:text-[12.5px] leading-relaxed text-[#06070A]/75 font-normal mb-2 sm:mb-3">
+      <p className="font-epilogue text-[10.5px] sm:text-[12.5px] leading-relaxed text-[#06070A]/90 font-medium mb-2 sm:mb-3">
         {t.quote}
       </p>
 
       {/* Author — inline row */}
-      <div className="flex items-center gap-2 sm:gap-2.5 pt-2 sm:pt-3 border-t border-[#06070A]/15">
+      <div className="flex items-center gap-2 sm:gap-2.5 pt-2 sm:pt-3 border-t border-[#06070A]/20">
         <div
-          className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full border border-[#06070A]/25 bg-[#06070A]/10 font-epilogue text-[8px] sm:text-[9px] font-bold text-[#06070A]"
+          className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full border border-[#06070A]/30 bg-[#06070A]/10 font-epilogue text-[8px] sm:text-[9px] font-bold text-[#06070A]"
           aria-hidden
         >
           {getInitials(t.name)}
         </div>
         <div className="min-w-0">
           <p className="font-excon text-[11px] sm:text-[12px] font-bold text-[#06070A] leading-tight truncate">{t.name}</p>
-          <p className="font-epilogue text-[9px] sm:text-[10px] text-[#06070A]/60 truncate">{t.role}</p>
+          <p className="font-epilogue text-[9px] sm:text-[10px] text-[#06070A]/75 font-medium truncate">{t.role}</p>
         </div>
       </div>
 
@@ -175,11 +176,8 @@ export default function Testimonials() {
         className="relative z-10 mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14"
       >
         <div className="flex flex-col items-center text-center">
-          <div className="mb-3 select-none">
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
-              Testimonials
-            </span>
-          </div>
+          {/* Unified Section Eyebrow */}
+          <SectionEyebrow>Testimonials</SectionEyebrow>
           <h2 className="font-heading text-2xl sm:text-3xl md:text-[40px] lg:text-[44px] font-bold tracking-tight text-white leading-[1.1]">
             Inspiring Client Experiences
           </h2>

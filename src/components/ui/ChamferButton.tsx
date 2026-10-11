@@ -14,6 +14,7 @@ export interface ChamferButtonProps {
   strokeWidth?: number;
   ariaLabel?: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 /**
@@ -38,6 +39,7 @@ export default function ChamferButton({
   strokeWidth = 1.6,
   ariaLabel,
   type = "button",
+  disabled = false,
 }: ChamferButtonProps) {
   const containerRef = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
@@ -207,8 +209,9 @@ export default function ChamferButton({
     <button
       ref={containerRef}
       type={type}
+      disabled={disabled}
       aria-label={ariaLabel}
-      className={baseClasses}
+      className={`${baseClasses} ${disabled ? "!opacity-60 !cursor-not-allowed pointer-events-none" : ""}`}
       style={{ clipPath: clipPathStyle }}
       onClick={onClick}
     >

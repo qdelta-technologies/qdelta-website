@@ -108,9 +108,9 @@ export default function PlanetSurfaceRevolution() {
             const dHighlight = `M ${r1(x0 - 0.25)} ${r1(y0)} C ${r1(x1 - 0.25)} ${r1(y1)}, ${r1(x2 - 0.25)} ${r1(y2)}, ${r1(x3 - 0.25)} ${r1(y3)}`;
 
             const specular = Math.pow(Math.max(0, cosLon), 1.3);
-            const opCore = Math.max(0.16, specular * 0.48);
-            const opShadow = opCore * 0.58;
-            const opHighlight = opCore * 0.52;
+            const opCore = Math.max(0.18, specular * 0.54);
+            const opShadow = opCore * 0.30;
+            const opHighlight = opCore * 0.62;
 
             // Use Math.round for opacity strings — avoids .toFixed() allocations
             const opCoreS = Math.round(opCore * 1000) / 1000;
@@ -150,11 +150,11 @@ export default function PlanetSurfaceRevolution() {
   }, []);
 
   const LATITUDES = [
-    { y: 821, crestY: 795, op: 0.52 },
-    { y: 867, crestY: 835, op: 0.46 },
-    { y: 913, crestY: 875, op: 0.42 },
-    { y: 959, crestY: 915, op: 0.38 },
-    { y: 1005, crestY: 955, op: 0.34 },
+    { y: 821, crestY: 795, op: 0.60 },
+    { y: 867, crestY: 835, op: 0.52 },
+    { y: 913, crestY: 875, op: 0.46 },
+    { y: 959, crestY: 915, op: 0.40 },
+    { y: 1005, crestY: 955, op: 0.35 },
     { y: 1051, crestY: 995, op: 0.30 },
   ];
 
@@ -172,16 +172,16 @@ export default function PlanetSurfaceRevolution() {
             {/* Subtle micro depth shadow */}
             <path
               d={`M -50 ${lat.y + 0.45} Q 500 ${lat.crestY + 0.45} 1050 ${lat.y + 0.45}`}
-              stroke="rgba(110, 65, 0, 0.28)"
-              strokeWidth="0.9"
+              stroke="rgba(110, 65, 0, 0.14)"
+              strokeWidth="0.8"
               fill="none"
               vectorEffect="non-scaling-stroke"
             />
             {/* Subtle micro top highlight */}
             <path
               d={`M -50 ${lat.y - 0.38} Q 500 ${lat.crestY - 0.38} 1050 ${lat.y - 0.38}`}
-              stroke="rgba(255, 250, 230, 0.26)"
-              strokeWidth="0.72"
+              stroke="rgba(255, 250, 230, 0.35)"
+              strokeWidth="0.75"
               fill="none"
               vectorEffect="non-scaling-stroke"
             />

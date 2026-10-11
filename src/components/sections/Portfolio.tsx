@@ -6,6 +6,7 @@ import { ArrowUpRight, ExternalLink, Plus } from "lucide-react";
 import { motion, useTransform, type MotionValue } from "motion/react";
 import { useSectionProgress } from "@/utils/useSectionProgress";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 interface ProjectItem {
   id: string;
@@ -396,12 +397,8 @@ export default function Portfolio() {
         transition={{ duration: 0.55 }}
         className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10"
       >
-        {/* Editorial Section Identifier */}
-        <div className="mb-4 select-none">
-          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
-            Our Portfolio
-          </span>
-        </div>
+        {/* Unified Section Eyebrow */}
+        <SectionEyebrow>Our Portfolio</SectionEyebrow>
 
         {/* Headline & Subtitle Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">

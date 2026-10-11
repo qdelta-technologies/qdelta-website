@@ -9,11 +9,17 @@
   --font-display: var(--font-heading-family), "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-epilogue: var(--font-epilogue-family), "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-excon: var(--font-excon-family), "Excon", ui-sans-serif, system-ui, sans-serif;
+  --font-cursive: var(--font-cursive-family), "Caveat", cursive, sans-serif;
   --color-gold: #E5B528;
   --color-gold-hover: #F0C034;
   --color-obsidian: #040406;
   --color-surface: #0b0b10;
   --color-surface-card: #0e0e16;
+  --color-zinc-200: #eceef4;
+  --color-zinc-300: #d6d8e2;
+  --color-zinc-400: #b5b8c6;
+  --color-zinc-500: #9094a2;
+  --color-zinc-600: #6e7180;
 }
 
 html,
@@ -47,6 +53,12 @@ body {
 .font-alata {
   font-family: var(--font-alata-family), "Alata", sans-serif !important;
   letter-spacing: 0.02em;
+}
+
+/* Expressive section eyebrow — Caveat cursive */
+.font-cursive {
+  font-family: var(--font-cursive-family), "Caveat", cursive, sans-serif !important;
+  letter-spacing: 0.01em;
 }
 
 /* Ensure all WebGL and 2D canvases are strictly transparent */
@@ -284,16 +296,16 @@ canvas {
 }
 
 .glass-dark-card {
-  background: rgba(11, 14, 18, 0.72);
+  background: rgba(11, 14, 18, 0.78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
 .glass-dark-card:hover, .glass-dark-card-hover:hover {
-  border-color: rgba(245, 184, 0, 0.22);
-  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.8), 0 0 24px -4px rgba(245, 184, 0, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(245, 184, 0, 0.28);
+  box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.8), 0 0 24px -4px rgba(245, 184, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
 }
 
 /* ================= NO SCROLLBAR UTILITY ================= */
@@ -372,7 +384,7 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
-  opacity: 0.055;
+  opacity: 0.024;
   mix-blend-mode: overlay;
 }
 

@@ -5,6 +5,7 @@ import { Sparkles } from "lucide-react";
 import { motion, useTransform, type MotionValue } from "motion/react";
 import { useSectionProgress } from "@/utils/useSectionProgress";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 interface ServiceItem {
   number: string;
@@ -103,7 +104,7 @@ function StackCard({ service, index, total, progress }: StackCardProps) {
         <div className="relative z-10 pb-3 sm:pb-5">
           <h3 className="text-xl min-[480px]:text-2xl sm:text-4xl md:text-[42px] font-excon font-bold tracking-tight leading-[1.1] text-white">
             <span className="block">{service.titleLine1}</span>
-            <span className="block text-white/70 mt-0.5 sm:mt-1">{service.titleLine2}</span>
+            <span className="block text-white/85 mt-0.5 sm:mt-1">{service.titleLine2}</span>
           </h3>
         </div>
 
@@ -163,12 +164,8 @@ export default function Services() {
         transition={{ duration: 0.55 }}
         className="mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 relative z-10"
       >
-        {/* Editorial Section Identifier */}
-        <div className="mb-4 select-none">
-          <span className="font-epilogue text-xs tracking-[0.2em] uppercase font-semibold text-[#E5B528]/75">
-            Our Services
-          </span>
-        </div>
+        {/* Unified Section Eyebrow */}
+        <SectionEyebrow>Our Services</SectionEyebrow>
 
         {/* Headline & Supporting Text in Editorial Two-Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">

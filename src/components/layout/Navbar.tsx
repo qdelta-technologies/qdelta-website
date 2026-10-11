@@ -241,7 +241,7 @@ export default function Navbar() {
             <div className="hidden xl:block shrink-0">
               <ChamferButton
                 href="#contact"
-                variant="outline"
+                variant="primary"
                 cutLarge={10}
                 cutSmall={5}
                 strokeWidth={1.5}

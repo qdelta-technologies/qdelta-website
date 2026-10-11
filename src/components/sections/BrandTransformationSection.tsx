@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import { RotateCcw } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 const VIDEO_PLAYBACK_RATE = 1.35;
 
@@ -301,14 +302,8 @@ export default function BrandTransformationSection() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-4xl xl:max-w-5xl mb-8 sm:mb-10 md:mb-12"
         >
-          {/* Eyebrow with flanking golden lines */}
-          <div className="flex items-center gap-3.5 mb-3.5 sm:mb-4 select-none justify-center">
-            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-r from-transparent to-zinc-500/60" />
-            <span className="font-epilogue text-xs tracking-[0.2em] uppercase text-zinc-400 font-semibold">
-              ABOUT QDELTA
-            </span>
-            <div className="w-8 sm:w-14 h-[1px] bg-gradient-to-l from-transparent to-zinc-500/60" />
-          </div>
+          {/* Unified Section Eyebrow */}
+          <SectionEyebrow>About QDelta</SectionEyebrow>
 
           {/* Headline (Single line on desktop/tablets, balanced on mobile) */}
           <h2 className="font-heading font-bold text-xl sm:text-2xl md:text-4xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.18] md:whitespace-nowrap">
