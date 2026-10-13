@@ -180,16 +180,16 @@ export default function InteractiveDotGrid() {
     let lookupW = 0;
     let lookupH = 0;
 
-    const buildSunLineLookup = (W: number, H: number) => {
+    const buildSunLineLookup = (W: number, H: number, spacing: number) => {
       lookupW = W;
       lookupH = H;
-      lookupSpacing = SPACING;
-      const extraCols = 2;
-      const colsNeeded = Math.ceil(W / SPACING) + extraCols * 2;
+      lookupSpacing = spacing;
+      const extraCols = 4;
+      const colsNeeded = Math.ceil(W / spacing) + extraCols * 2;
       const halfCols = (colsNeeded - 1) / 2;
       sunLineLookup = [];
       for (let c = 0; c < colsNeeded; c++) {
-        const x = W / 2 + (c - halfCols) * SPACING;
+        const x = W / 2 + (c - halfCols) * spacing;
         sunLineLookup[c] = getSunLineY(x, W, H);
       }
     };
@@ -197,8 +197,34 @@ export default function InteractiveDotGrid() {
     // Cached rect for touch/mouse coordinate offset (updated on resize, not every event)
     let cachedRect = { left: 0, top: 0, width: 0, height: 0 };
     const updateCachedRect = () => {
-      const r = canvas.getBoundingClientRect();
-      cachedRect = { left: r.left, top: r.top, width: r.width, height: r.height };
+      const hero = (canvas.closest("#hero") || canvas.parentElement) as HTMLElement | null;
+      const hRect = hero ? hero.getBoundingClientRect() : null;
+      const cRect = canvas.getBoundingClientRect();
+
+      const screenW = typeof window !== "undefined" ? window.innerWidth : 0;
+
+      // Reliable width calculation: guarantees full viewport/hero span even on initial cold load
+      const width = Math.max(
+        hero?.clientWidth || 0,
+        hRect?.width || 0,
+        cRect.width || 0,
+        screenW,
+        320
+      );
+
+      const height = Math.max(
+        hero?.clientHeight || 0,
+        hRect?.height || 0,
+        cRect.height || 0,
+        620
+      );
+
+      cachedRect = {
+        left: hRect ? hRect.left : cRect.left,
+        top: hRect ? hRect.top : cRect.top,
+        width,
+        height,
+      };
     };
 
     const initSystem = () => {
@@ -222,11 +248,11 @@ export default function InteractiveDotGrid() {
       // Increase spacing on mobile to reduce dot count (~30% fewer dots)
       const effectiveSpacing = isMobileInit ? 28 : SPACING;
 
-      buildSunLineLookup(W, H);
+      buildSunLineLookup(W, H, effectiveSpacing);
 
       // ── LAYER 2 (MID): Dense Grid — full edge-to-edge coverage down to the golden rim ──
       gridDots = [];
-      const extraCols = 2;
+      const extraCols = 4;
       const colsNeeded = Math.ceil(W / effectiveSpacing) + extraCols * 2;
       const halfCols = (colsNeeded - 1) / 2;
 
@@ -324,18 +350,33 @@ export default function InteractiveDotGrid() {
     const timerId = setTimeout(() => {
       initSystem();
     }, 120);
+    const timerId2 = setTimeout(() => {
+      initSystem();
+    }, 450);
+
+    const heroSection = (canvas.closest("#hero") || canvas.parentElement) as HTMLElement | null;
+    const horizonSvg = (canvas.closest("#hero")?.querySelector(".hero-horizon") ||
+      document.querySelector(".hero-horizon")) as SVGElement | null;
 
     let resizeObserver: ResizeObserver | null = null;
     if (typeof ResizeObserver !== "undefined") {
       resizeObserver = new ResizeObserver(() => {
         initSystem();
       });
-      resizeObserver.observe(canvas);
-      const horizonSvg = (canvas.closest("#hero")?.querySelector(".hero-horizon") ||
-        document.querySelector(".hero-horizon")) as SVGElement | null;
+      if (heroSection) {
+        resizeObserver.observe(heroSection);
+      } else {
+        resizeObserver.observe(canvas);
+      }
       if (horizonSvg) {
         resizeObserver.observe(horizonSvg);
       }
+    }
+
+    if (typeof document !== "undefined" && document.fonts) {
+      document.fonts.ready.then(() => {
+        initSystem();
+      }).catch(() => {});
     }
 
     // ── Event listeners ──
@@ -404,6 +445,9 @@ export default function InteractiveDotGrid() {
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("touchend", handleTouchEnd);
     window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
+    window.addEventListener("pageshow", handleResize);
+    window.addEventListener("focus", handleResize);
     // Keep cachedRect accurate on scroll so bounds check stays correct
     const onScrollWhileVisible = () => {
       if (isVisible) updateCachedRect(); // reading the canvas position forces layout, so only while it is on screen
@@ -634,6 +678,7 @@ export default function InteractiveDotGrid() {
       cancelAnimationFrame(animationFrameId);
       cancelAnimationFrame(rafId);
       clearTimeout(timerId);
+      if (timerId2) clearTimeout(timerId2);
       observer.disconnect();
       if (resizeObserver) {
         resizeObserver.disconnect();
@@ -643,6 +688,9 @@ export default function InteractiveDotGrid() {
       window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
+      window.removeEventListener("pageshow", handleResize);
+      window.removeEventListener("focus", handleResize);
       window.removeEventListener("scroll", onScrollWhileVisible);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };

@@ -272,11 +272,10 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD FRONT FACE                                     */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl overflow-hidden border-t border-l border-r border-white/[0.12] border-b-[4px] border-b-[#B87700]/70 hover:border-b-[#B87700] hover:border-[#FAB406]/45 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_22px_50px_-10px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)] flex flex-col justify-end p-5 sm:p-6 transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(0deg)] rounded-xl overflow-hidden border-t border-l border-r border-white/[0.12] border-b-[4px] border-b-[#B87700]/70 hover:border-b-[#B87700] hover:border-[#FAB406]/45 bg-[#0B0E12]/90 backdrop-blur-md shadow-[0_22px_50px_-10px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)] flex flex-col justify-end transition-all duration-300">
 
                     {/* Crisp Golden Top Accent Hairline */}
                     <div className="pointer-events-none absolute top-0 inset-x-6 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/75 to-transparent z-20" />
-
 
                     {/* Member Portrait Image */}
                     <div className="absolute inset-0 w-full h-full">
@@ -290,16 +289,6 @@ export default function Team() {
                       />
                     </div>
 
-                    {/* Minimal subtle bottom scrim — keeps portraits bright, natural and clean */}
-                    <div
-                      className="pointer-events-none absolute inset-x-0 bottom-0 h-[20%] sm:h-[18%]"
-                      style={{
-                        background:
-                          "linear-gradient(to top, rgba(6, 7, 10, 0.45) 0%, rgba(6, 7, 10, 0.12) 50%, transparent 100%)",
-                      }}
-                      aria-hidden
-                    />
-
                     {/* Top Flip Indicator Badge (Clean, No Numbering) */}
                     <div className="absolute top-4 right-4 z-10">
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B0E12]/80 backdrop-blur-md border border-white/10 text-[10px] font-epilogue text-zinc-300 shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
@@ -308,19 +297,23 @@ export default function Team() {
                       </div>
                     </div>
 
-                    {/* Front Info at Bottom */}
-                    <div className="relative z-10 [text-shadow:0_2px_10px_rgba(0,0,0,0.85),0_1px_3px_rgba(0,0,0,0.95)]">
-                      <div className="flex items-baseline justify-between gap-2">
-                        <h3 className="font-excon text-2xl sm:text-[1.6rem] font-bold text-white tracking-tight leading-tight">
+                    {/* Dedicated Clean Bottom Info Bar */}
+                    <div className="relative z-10 w-full bg-[#0B0E12]/95 backdrop-blur-md border-t border-[#FAB406] px-4.5 sm:px-5 py-3.5 sm:py-4">
+                      <div className="relative z-10 flex items-center justify-between gap-3">
+                        {/* Left: Name */}
+                        <h3 className="font-excon text-xl sm:text-[1.4rem] font-bold text-white tracking-tight leading-none shrink-0">
                           {member.name}
                         </h3>
-                        <span className="shrink-0 font-epilogue text-xs uppercase tracking-[0.16em] font-bold text-[#FAB406]">
-                          {member.role}
-                        </span>
+
+                        {/* Right: Role with Golden Dot */}
+                        <div className="flex items-center gap-1.5 font-epilogue text-xs sm:text-[12.5px] font-medium text-zinc-300 text-right min-w-0">
+                          <span
+                            className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FAB406] shrink-0 shadow-[0_0_6px_rgba(250,180,6,0.7)]"
+                            aria-hidden
+                          />
+                          <span className="truncate">{member.subtitle}</span>
+                        </div>
                       </div>
-                      <p className="mt-0.5 text-xs font-epilogue text-zinc-100 font-medium">
-                        {member.subtitle}
-                      </p>
                     </div>
                   </div>
 

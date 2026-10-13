@@ -12,8 +12,14 @@ export function setupCrispCanvas(
 
   canvas.width = Math.round(w * dpr);
   canvas.height = Math.round(h * dpr);
-  canvas.style.width = `${w}px`;
-  canvas.style.height = `${h}px`;
+
+  // Responsive preservation: If the canvas is intended to stretch with w-full / h-full,
+  // do not lock it into a fixed pixel width that prevents it from responding to container growth.
+  const isWidthFull = canvas.classList.contains("w-full") || canvas.style.width === "100%";
+  const isHeightFull = canvas.classList.contains("h-full") || canvas.style.height === "100%";
+
+  canvas.style.width = isWidthFull ? "100%" : `${w}px`;
+  canvas.style.height = isHeightFull ? "100%" : `${h}px`;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
   return dpr;
