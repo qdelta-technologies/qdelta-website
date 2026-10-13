@@ -108,9 +108,9 @@ export default function PlanetSurfaceRevolution() {
             const dHighlight = `M ${r1(x0 - 0.25)} ${r1(y0)} C ${r1(x1 - 0.25)} ${r1(y1)}, ${r1(x2 - 0.25)} ${r1(y2)}, ${r1(x3 - 0.25)} ${r1(y3)}`;
 
             const specular = Math.pow(Math.max(0, cosLon), 1.25);
-            const opCore = Math.max(0.24, specular * 0.68);
-            const opShadow = opCore * 0.32;
-            const opHighlight = opCore * 0.45;
+            const opCore = Math.max(0.30, specular * 0.75);
+            const opShadow = opCore * 0.45;
+            const opHighlight = opCore * 0.65;
 
             // Use Math.round for opacity strings — avoids .toFixed() allocations
             const opCoreS = Math.round(opCore * 1000) / 1000;
@@ -118,11 +118,11 @@ export default function PlanetSurfaceRevolution() {
             const opHighlightS = Math.round(opHighlight * 1000) / 1000;
 
             shadowEl.setAttribute("d", dShadow);
-            shadowEl.setAttribute("stroke", `rgba(15, 6, 0, ${opShadowS})`);
+            shadowEl.setAttribute("stroke", `rgba(90, 48, 0, ${opShadowS})`);
             shadowEl.style.display = "block";
 
             highlightEl.setAttribute("d", dHighlight);
-            highlightEl.setAttribute("stroke", `rgba(255, 245, 210, ${opHighlightS})`);
+            highlightEl.setAttribute("stroke", `rgba(255, 255, 255, ${opHighlightS})`);
             highlightEl.style.display = "block";
 
             coreEl.setAttribute("d", d);
@@ -171,17 +171,17 @@ export default function PlanetSurfaceRevolution() {
           <g key={`lat-${idx}`}>
             {/* Subtle micro depth shadow */}
             <path
-              d={`M -50 ${lat.y + 0.45} Q 500 ${lat.crestY + 0.45} 1050 ${lat.y + 0.45}`}
-              stroke="rgba(15, 6, 0, 0.30)"
-              strokeWidth="0.8"
+              d={`M -50 ${lat.y + 0.5} Q 500 ${lat.crestY + 0.5} 1050 ${lat.y + 0.5}`}
+              stroke="rgba(90, 48, 0, 0.40)"
+              strokeWidth="0.9"
               fill="none"
               vectorEffect="non-scaling-stroke"
             />
             {/* Subtle micro top highlight */}
             <path
-              d={`M -50 ${lat.y - 0.38} Q 500 ${lat.crestY - 0.38} 1050 ${lat.y - 0.38}`}
-              stroke="rgba(255, 245, 210, 0.28)"
-              strokeWidth="0.75"
+              d={`M -50 ${lat.y - 0.4} Q 500 ${lat.crestY - 0.4} 1050 ${lat.y - 0.4}`}
+              stroke="rgba(255, 255, 255, 0.45)"
+              strokeWidth="0.8"
               fill="none"
               vectorEffect="non-scaling-stroke"
             />
@@ -190,7 +190,7 @@ export default function PlanetSurfaceRevolution() {
               d={`M -50 ${lat.y} Q 500 ${lat.crestY} 1050 ${lat.y}`}
               stroke="#FAB406"
               strokeOpacity={lat.op}
-              strokeWidth="1.2"
+              strokeWidth="1.25"
               fill="none"
               vectorEffect="non-scaling-stroke"
             />

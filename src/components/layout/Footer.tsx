@@ -211,10 +211,10 @@ export default function Footer() {
               {/* Brand Logo (Matching Header) */}
               <Link href="/" className="inline-block focus:outline-none group">
                 <Image
-                  src="/images/qdelta-logo.png"
+                  src="/images/qdelta-logo-v5.png"
                   alt="QDelta Technologies"
                   width={160}
-                  height={52}
+                  height={60}
                   className="h-8 sm:h-9 w-auto object-contain transition-opacity duration-200 group-hover:opacity-90"
                 />
               </Link>

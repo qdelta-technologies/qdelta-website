@@ -317,11 +317,11 @@ export default function Navbar() {
               aria-label="QDelta Technologies Homepage"
             >
               <Image
-                src="/images/qdelta-logo.png"
+                src="/images/qdelta-logo-v5.png"
                 alt="QDelta Technologies"
                 width={160}
-                height={48}
-                className="h-7.5 sm:h-8 w-auto object-contain select-none transition-transform duration-200 hover:scale-105 active:scale-95"
+                height={60}
+                className="h-[34px] sm:h-[40px] w-auto object-contain select-none"
                 priority
               />
             </Link>
