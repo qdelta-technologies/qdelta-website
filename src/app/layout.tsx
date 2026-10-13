@@ -74,9 +74,12 @@ export const metadata: Metadata = {
   description:
     "We build websites that speak for your brand and work for your business. Conversion-focused landing pages and flagship digital experiences.",
   icons: {
-    icon: "/images/qdelta-icon.png",
-    shortcut: "/favicon.ico",
-    apple: "/images/qdelta-icon.png",
+    icon: [
+      { url: "/images/qdelta-icon.png?v=3" },
+      { url: "/favicon.ico?v=3" },
+    ],
+    shortcut: "/favicon.ico?v=3",
+    apple: "/images/qdelta-icon.png?v=3",
   },
 };
 
