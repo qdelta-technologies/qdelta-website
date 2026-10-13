@@ -211,7 +211,7 @@ export default function Footer() {
               {/* Brand Logo (Matching Header) */}
               <Link href="/" className="inline-block focus:outline-none group">
                 <Image
-                  src="/images/qdelta-logo-v5.png"
+                  src="/images/qdelta-logo-v6.png"
                   alt="QDelta Technologies"
                   width={160}
                   height={60}

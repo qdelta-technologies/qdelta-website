@@ -317,7 +317,7 @@ export default function Navbar() {
               aria-label="QDelta Technologies Homepage"
             >
               <Image
-                src="/images/qdelta-logo-v5.png"
+                src="/images/qdelta-logo-v6.png"
                 alt="QDelta Technologies"
                 width={160}
                 height={60}
