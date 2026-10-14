@@ -29,22 +29,8 @@ const QUICK_PROMPTS = [
   "How can I book a founder call?",
 ];
 
-const API_ENDPOINT = "https://qdelta-ai.qdelta-work.workers.dev/chat";
-const API_SECRET = "9eeaee6d55e9bd8ad5054f9cbefaac7a1ca74797482509590ec4049a837e9536";
-
-const CLIENT_SYSTEM_PROMPT = `You are QDelta AI, the official digital consultant for QDelta (https://www.qdelta.in).
-Core Knowledge:
-- Official Email: hello@qdelta.in (This is the ONLY official email address for all inquiries, briefs, and client communication).
-- Mission: High-performance web engineering and modern luxury digital agency.
-- Founders: Qais (Brand Strategy & Creative), Sai Prabath (Engineering & Performance), Fazeel (Systems & Delivery).
-- Services: High-Converting Landing Pages, Luxury Brand Websites, Interactive 3D WebGL Experiences, Premium E-commerce Stores.
-- Booking & Inquiries: Book a 1-on-1 discovery call at https://www.qdelta.in/#contact or email directly at hello@qdelta.in.
-
-CRITICAL MANDATORY RULES:
-- The ONLY official email address is hello@qdelta.in. Never output any other email.
-- BE EXTREMELY MINIMAL: Answer in strictly 1 to 2 short sentences (maximum 30 words).
-- NEVER output long lists, bullet points, or essays.
-- Conclude with a brief invitation to book a call or email hello@qdelta.in.`;
+// The worker secret and the system prompt live on the server (src/app/api/chat/route.ts)
+const API_ENDPOINT = "/api/chat";
 
 export default function QDeltaAIChatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -142,20 +128,15 @@ export default function QDeltaAIChatbot() {
     const startTime = performance.now();
 
     try {
-      // Prepend system prompt to enforce ultra-concise, minimal, rapid responses
-      const payloadMessages = [
-        { role: "system", content: CLIENT_SYSTEM_PROMPT },
-        ...newMessages.map((m) => ({
-          role: m.role,
-          content: m.content,
-        })),
-      ];
+      const payloadMessages = newMessages.map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
 
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${API_SECRET}`,
         },
         body: JSON.stringify({
           messages: payloadMessages,
