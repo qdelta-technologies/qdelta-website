@@ -84,20 +84,22 @@ function PhoneIcon({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 const SERVICES_LINKS = [
-  { label: "Landing Pages", href: "#services" },
-  { label: "Interactive Websites", href: "#services" },
-  { label: "E-commerce Stores", href: "#services" },
-  { label: "Lead Capture Systems", href: "#services" },
-  { label: "Web & App Development", href: "#services" },
+  { label: "Landing Pages", href: "/services/high-converting-landing-pages" },
+  { label: "Business Websites", href: "/services/business-website-design" },
+  { label: "Portfolio & Author Sites", href: "/services/portfolio-and-author-websites" },
+  { label: "E-commerce Stores", href: "/services/ecommerce-website-design" },
+  { label: "Web & App Development", href: "/services/web-app-development" },
+  { label: "AI Chatbots", href: "/services/ai-chatbot-for-business" },
 ];
 
 const QUICK_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Projects", href: "#projects" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "Process", href: "/#process" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Team", href: "/#team" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Footer() {

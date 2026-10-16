@@ -266,7 +266,7 @@ export default function Hero() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mt-4 sm:mt-5 max-w-xl sm:max-w-2xl mx-auto text-pretty text-sm sm:text-base md:text-[17px] leading-relaxed text-zinc-300 font-epilogue font-normal px-4 sm:px-0"
         >
-          We build websites that make your brand stand out, connect with your audience, and help your business grow.
+          QDelta is a web design agency building high-converting landing pages and premium websites that make your brand stand out, connect with your audience, and help your business grow.
         </motion.p>
 
         {/* Action Buttons (Revealed after subheadline with a soft stagger) */}

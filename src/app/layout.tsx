@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Alata, DM_Sans, Bricolage_Grotesque, Space_Grotesk, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -69,10 +69,49 @@ const satoshi = localFont({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#06070A",
+};
+
+const SITE_URL = "https://www.qdelta.in";
+const SITE_DESCRIPTION =
+  "QDelta Technologies is a web design agency that builds fast, conversion-focused websites for businesses, creators and brands. Two packages: QDelta Digital and QDelta Signature.";
+
 export const metadata: Metadata = {
-  title: "QDelta Technologies | Built to Speak. Designed to Work.",
-  description:
-    "We build websites that speak for your brand and work for your business. Conversion-focused landing pages and flagship digital experiences.",
+  metadataBase: new URL(SITE_URL),
+  title: "QDelta Technologies - Web Design Agency",
+  description: SITE_DESCRIPTION,
+  applicationName: "QDelta Technologies",
+  keywords: [
+    "web design agency",
+    "website development",
+    "landing page design",
+    "business website",
+    "portfolio website",
+    "QDelta",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "QDelta Technologies",
+    title: "QDelta Technologies - Web Design Agency",
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@qdelta_agency",
+    title: "QDelta Technologies - Web Design Agency",
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   icons: {
     icon: [
       { url: "/images/qdelta-icon.png?v=3" },
@@ -91,6 +130,66 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${SITE_URL}/#organization`,
+                  name: "QDelta Technologies",
+                  alternateName: "QDelta",
+                  url: SITE_URL,
+                  logo: `${SITE_URL}/images/qdelta-icon.png`,
+                  email: "qdelta.agency@gmail.com",
+                  description: SITE_DESCRIPTION,
+                  sameAs: [
+                    "https://www.instagram.com/qdelta.in",
+                    "https://x.com/qdelta_agency",
+                    "https://www.linkedin.com/company/qdelta/",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${SITE_URL}/#website`,
+                  url: SITE_URL,
+                  name: "QDelta Technologies",
+                  inLanguage: "en",
+                  publisher: { "@id": `${SITE_URL}/#organization` },
+                },
+                {
+                  "@type": "ProfessionalService",
+                  "@id": `${SITE_URL}/#service`,
+                  name: "QDelta Technologies",
+                  url: SITE_URL,
+                  image: `${SITE_URL}/images/qdelta-landscape.jpg`,
+                  description: SITE_DESCRIPTION,
+                  parent: { "@id": `${SITE_URL}/#organization` },
+                  makesOffer: [
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "QDelta Digital",
+                        serviceType: "Conversion-focused website and landing page design",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "QDelta Signature",
+                        serviceType: "Flagship custom website design and development",
+                      },
+                    },
+                  ],
+                },
+              ],
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
         {/* Instant desktop custom cursor activation — zero invisible cursor delay */}
         <script
           dangerouslySetInnerHTML={{

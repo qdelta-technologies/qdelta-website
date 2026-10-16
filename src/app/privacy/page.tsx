@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | QDelta Technologies",
+  alternates: { canonical: "/privacy" },
   description: "Privacy Policy and client data protection practices of QDelta Technologies.",
 };
 

@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | QDelta Technologies",
+  alternates: { canonical: "/terms" },
   description: "Terms and Conditions for digital agency design, development, and engineering services provided by QDelta.",
 };
 

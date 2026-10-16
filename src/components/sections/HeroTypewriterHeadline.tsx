@@ -156,7 +156,7 @@ function HeroTypewriterHeadline({
     <h1
       className="relative z-10 flex flex-col items-center text-center font-alata font-bold tracking-tight text-white text-2xl min-[400px]:text-3xl sm:text-4xl md:text-[40px] lg:text-[46px] xl:text-[52px] 2xl:text-[56px] leading-[1.18] sm:leading-[1.14]"
     >
-      <span className="sr-only">Designed to be remembered. Built to perform.</span>
+      <span className="sr-only">QDelta, a web design agency for high-converting landing pages and websites: designed to be remembered, built to perform.</span>
 
       <div aria-hidden="true" className="flex flex-col items-center gap-1 sm:gap-2">
         <div className="relative inline-block mx-auto px-1 sm:px-2">

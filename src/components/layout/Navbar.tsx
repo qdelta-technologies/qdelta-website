@@ -164,6 +164,9 @@ export default function Navbar() {
         });
         window.history.pushState(null, "", href);
         setActiveSection(sectionId);
+      } else {
+        // Not on the home page (e.g. a service page): go to the section on the home page.
+        window.location.assign(`/${href}`);
       }
       setMobileMenuOpen(false);
     }

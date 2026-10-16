@@ -16,6 +16,7 @@ const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const Team = dynamic(() => import("@/components/sections/Team"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
+const HomeFaq = dynamic(() => import("@/components/sections/HomeFaq"));
 
 export default function Home() {
   return (
@@ -36,6 +37,8 @@ export default function Home() {
         <Testimonials />
         <SectionDivider />
         <Team />
+        <SectionDivider />
+        <HomeFaq />
         <SectionDivider />
         <Contact />
       </main>
