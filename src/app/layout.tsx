@@ -3,6 +3,8 @@ import { Alata, DM_Sans, Bricolage_Grotesque, Space_Grotesk, Instrument_Serif } 
 import localFont from "next/font/local";
 import "./globals.css";
 import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
+import GoogleAnalytics from "@/components/ui/GoogleAnalytics";
+import CookieConsent from "@/components/ui/CookieConsent";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -222,6 +224,8 @@ export default function RootLayout({
       <body className="font-sans bg-[#040406] text-[#f4f4f5] antialiased selection:bg-[#FAB406] selection:text-black">
         <CustomCursorRoot />
         {children}
+        <GoogleAnalytics />
+        <CookieConsent />
       </body>
     </html>
   );

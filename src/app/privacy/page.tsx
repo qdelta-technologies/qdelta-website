@@ -91,10 +91,22 @@ export default function PrivacyPage() {
               </p>
             </section>
 
+            <section className="rounded-3xl border border-white/10 bg-[#0e0e14]/90 p-6 sm:p-8 backdrop-blur-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FAB406]/15 font-mono text-xs font-bold text-[#FAB406]">
+                  04
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-white font-sans">Cookies & Analytics</h2>
+              </div>
+              <p className="text-sm leading-relaxed text-zinc-400 mb-3">
+                With your permission, we use Google Analytics to understand how visitors use our website, such as which pages are viewed and how people arrive. This helps us improve the site. Analytics is switched off until you click Accept on the cookie banner, and you can decline. We do not use advertising cookies. You can clear this choice at any time by clearing your browser&apos;s site data for this website.
+              </p>
+            </section>
+
             <section className="rounded-3xl border border-[#FAB406]/30 bg-gradient-to-br from-[#FAB406]/10 via-[#0e0e14] to-[#0e0e14] p-6 sm:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FAB406]/20 font-mono text-xs font-bold text-[#FAB406]">
-                  04
+                  05
                 </span>
                 <h2 className="text-lg sm:text-xl font-bold text-white font-sans">Contact Legal & Compliance</h2>
               </div>
