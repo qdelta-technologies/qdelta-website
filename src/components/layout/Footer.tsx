@@ -419,9 +419,6 @@ export default function Footer() {
         <div className="relative z-10 pt-5 sm:pt-6 border-t border-white/[0.08] text-xs font-epilogue text-zinc-500">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <p>© 2026 QDelta Technologies. All rights reserved.</p>
-            <p className="text-zinc-500 text-[11px] sm:text-xs">
-              Understand the business. Design with purpose. Build for results.
-            </p>
           </div>
         </div>
 
