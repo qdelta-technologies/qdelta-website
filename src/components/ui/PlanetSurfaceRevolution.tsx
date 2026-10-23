@@ -126,7 +126,7 @@ export default function PlanetSurfaceRevolution() {
             highlightEl.style.display = "block";
 
             coreEl.setAttribute("d", d);
-            coreEl.setAttribute("stroke", `rgba(250, 180, 6, ${opCoreS})`);
+            coreEl.setAttribute("stroke", `rgba(235, 158, 0, ${opCoreS})`);
             coreEl.style.display = "block";
           } else {
             coreEl.style.display = "none";
@@ -188,7 +188,7 @@ export default function PlanetSurfaceRevolution() {
             {/* Core golden line */}
             <path
               d={`M -50 ${lat.y} Q 500 ${lat.crestY} 1050 ${lat.y}`}
-              stroke="#FAB406"
+              stroke="#EB9E00"
               strokeOpacity={lat.op}
               strokeWidth="1.25"
               fill="none"

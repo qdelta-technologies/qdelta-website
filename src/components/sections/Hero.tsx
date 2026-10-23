@@ -133,39 +133,39 @@ export default function Hero() {
 
             {/* Core radiant laser beam gradient with crisp pinpoint center */}
             <linearGradient id="horizon-beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.4" />
-              <stop offset="25%" stopColor="#FFC220" stopOpacity="0.9" />
-              <stop offset="46%" stopColor="#FFF1BE" stopOpacity="0.98" />
+              <stop offset="0%" stopColor="#DF9400" stopOpacity="0.4" />
+              <stop offset="25%" stopColor="#EB9E00" stopOpacity="0.9" />
+              <stop offset="46%" stopColor="#FFE08A" stopOpacity="0.98" />
               <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
-              <stop offset="54%" stopColor="#FFF1BE" stopOpacity="0.98" />
-              <stop offset="75%" stopColor="#FFC220" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.4" />
+              <stop offset="54%" stopColor="#FFE08A" stopOpacity="0.98" />
+              <stop offset="75%" stopColor="#EB9E00" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#DF9400" stopOpacity="0.4" />
             </linearGradient>
 
             {/* Atmospheric corona gradient: luminous gold hugging the top outline */}
             <linearGradient id="horizon-corona-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="0" />
-              <stop offset="18%" stopColor="#FFC220" stopOpacity="0.4" />
-              <stop offset="50%" stopColor="#FFCD38" stopOpacity="0.8" />
-              <stop offset="82%" stopColor="#FFC220" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#FAB406" stopOpacity="0" />
+              <stop offset="0%" stopColor="#DF9400" stopOpacity="0" />
+              <stop offset="18%" stopColor="#EB9E00" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#F2A600" stopOpacity="0.8" />
+              <stop offset="82%" stopColor="#EB9E00" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#DF9400" stopOpacity="0" />
             </linearGradient>
 
             {/* Tight, refined outer halo gradient in pure liquid gold */}
             <linearGradient id="horizon-halo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="0.2" />
-              <stop offset="25%" stopColor="#FFC220" stopOpacity="0.75" />
-              <stop offset="50%" stopColor="#FFDE6A" stopOpacity="0.9" />
-              <stop offset="75%" stopColor="#FFC220" stopOpacity="0.75" />
-              <stop offset="100%" stopColor="#FAB406" stopOpacity="0.2" />
+              <stop offset="0%" stopColor="#DF9400" stopOpacity="0.2" />
+              <stop offset="25%" stopColor="#EB9E00" stopOpacity="0.75" />
+              <stop offset="50%" stopColor="#F5B21A" stopOpacity="0.9" />
+              <stop offset="75%" stopColor="#EB9E00" stopOpacity="0.75" />
+              <stop offset="100%" stopColor="#DF9400" stopOpacity="0.2" />
             </linearGradient>
 
-            {/* Liquid Gold Surface: Matched to the exact brand yellow text color (#FAB406) */}
+            {/* Liquid Gold Surface: Slightly deeper yellow tone */}
             <linearGradient id="horizon-underglow" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FAB406" stopOpacity="1" />
-              <stop offset="35%" stopColor="#FAB406" stopOpacity="0.96" />
-              <stop offset="70%" stopColor="#EAA400" stopOpacity="0.92" />
-              <stop offset="100%" stopColor="#B87700" stopOpacity="0.88" />
+              <stop offset="0%" stopColor="#EB9E00" stopOpacity="1" />
+              <stop offset="35%" stopColor="#DF9400" stopOpacity="0.96" />
+              <stop offset="70%" stopColor="#C98000" stopOpacity="0.92" />
+              <stop offset="100%" stopColor="#9C6000" stopOpacity="0.88" />
             </linearGradient>
 
             {/* Specular Top Rim Reflection: Crisp white-gold metallic light catch */}
@@ -245,7 +245,7 @@ export default function Hero() {
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
             style={{
-              filter: "drop-shadow(0 -1px 4px rgba(250, 180, 6, 0.60)) drop-shadow(0 -3px 9px rgba(250, 180, 6, 0.30))",
+              filter: "drop-shadow(0 -1px 4px rgba(235, 158, 0, 0.60)) drop-shadow(0 -3px 9px rgba(235, 158, 0, 0.30))",
             }}
             className="transition-all duration-300 ease-out"
           />
@@ -266,7 +266,7 @@ export default function Hero() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mt-4 sm:mt-5 max-w-xl sm:max-w-2xl mx-auto text-pretty text-sm sm:text-base md:text-[17px] leading-relaxed text-zinc-300 font-epilogue font-normal px-4 sm:px-0"
         >
-          QDelta is a web design agency building high-converting landing pages and premium websites that make your brand stand out, connect with your audience, and help your business grow.
+          We Bring Design, Technology, AI and Strategy together to help businesses strengthen their online presence, connect with the right audience, and grow their business.
         </motion.p>
 
         {/* Action Buttons (Revealed after subheadline with a soft stagger) */}

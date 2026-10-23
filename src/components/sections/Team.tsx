@@ -125,11 +125,8 @@ function MobileTeamCard({ member }: { member: TeamMember }) {
 
       {/* Info panel — right side */}
       <div className="flex flex-1 flex-col justify-between px-4 py-4">
-        {/* Top: role pill + name + subtitle */}
-        <div className="flex flex-col gap-1.5">
-          <span className="inline-flex w-fit items-center rounded-full border border-[#FAB406]/35 bg-[#FAB406]/10 px-2.5 py-0.5 font-epilogue text-[9px] font-extrabold uppercase tracking-[0.18em] text-[#FAB406]">
-            {member.role}
-          </span>
+        {/* Top: name + subtitle */}
+        <div className="flex flex-col gap-1">
           <h3 className="font-excon text-[24px] font-bold leading-none tracking-tight text-white">
             {member.name}
           </h3>
@@ -281,7 +278,7 @@ export default function Team() {
                     <div className="absolute inset-0 w-full h-full">
                       <Image
                         src={member.image}
-                        alt={`${member.name} — ${member.role}`}
+                        alt={`${member.name} — ${member.subtitle}`}
                         fill
                         className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 380px"
@@ -327,12 +324,7 @@ export default function Team() {
 
                     {/* Top Back Header */}
                     <div className="relative z-10">
-                      <div className="flex items-center justify-between">
-                        {/* High-contrast solid yellow role badge */}
-                        <span className="inline-flex items-center px-3 py-1 rounded-md bg-[#FAB406] border border-[#FAB406] font-epilogue text-[10.5px] uppercase tracking-[0.18em] font-black text-[#06070A] shadow-[0_2px_8px_rgba(250,180,6,0.35)]">
-                          {member.role}
-                        </span>
-
+                      <div className="flex items-center justify-end">
                         <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#06070A] border border-black/20 text-[10.5px] font-epilogue text-white font-bold shadow-sm">
                           <RefreshCw className="w-3 h-3 text-[#FAB406]" />
                           <span>Flip</span>

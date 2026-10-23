@@ -34,12 +34,8 @@ export const HOME_FAQS: FaqItem[] = [
     a: "A high-converting landing page is a focused page built around one offer and one action. It states the offer clearly, removes distractions, builds trust and makes the next step (call, enquiry, booking or purchase) obvious, so more of the people who visit actually act.",
   },
   {
-    q: "What packages does QDelta offer?",
-    a: "We offer two packages. QDelta Digital is for focused, conversion-led pages and sites. QDelta Signature is a flagship, fully custom website with premium design, motion and interaction. We recommend the right one after understanding your business.",
-  },
-  {
-    q: "How is QDelta different from other web design agencies?",
-    a: "We start with your business, not a template. We work out who the page is for and what it should achieve before design starts, then build in modern Next.js for speed and search visibility. We only show honest work: no invented testimonials or made-up numbers.",
+    q: "What are the add-on services?",
+    a: "We offer various add-on services including SEO, AEO/GEO, CMS integration, WhatsApp agents, email automation, AI chatbots, and more.",
   },
   {
     q: "Will my website show up on Google?",
