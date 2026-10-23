@@ -240,13 +240,13 @@ export default function Footer() {
 
                 <div className="flex items-center">
                   <a
-                    href="mailto:qdelta.agency@gmail.com"
+                    href="mailto:qdelta.in@gmail.com"
                     className="inline-flex items-center gap-2 text-xs sm:text-[13px] text-zinc-300 hover:text-[#FAB406] transition-colors font-medium group"
                   >
                     <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FAB406]/10 border border-[#FAB406]/25 text-[#FAB406] group-hover:bg-[#FAB406]/20 transition-all">
                       <MailIcon className="w-3 h-3" />
                     </span>
-                    <span>qdelta.agency@gmail.com</span>
+                    <span>qdelta.in@gmail.com</span>
                   </a>
                 </div>
 

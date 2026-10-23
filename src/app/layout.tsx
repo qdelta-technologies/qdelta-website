@@ -145,7 +145,7 @@ export default function RootLayout({
                   alternateName: "QDelta",
                   url: SITE_URL,
                   logo: `${SITE_URL}/images/qdelta-icon.png`,
-                  email: "qdelta.agency@gmail.com",
+                  email: "qdelta.in@gmail.com",
                   description: SITE_DESCRIPTION,
                   sameAs: [
                     "https://www.instagram.com/qdelta.in",
