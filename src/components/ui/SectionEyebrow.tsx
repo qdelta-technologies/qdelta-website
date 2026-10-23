@@ -1,15 +1,14 @@
 import React from "react";
 
-export type EyebrowStyle = "mono-technical" | "geometric-minimal" | "cyber-precision" | "luxury-editorial";
+export type EyebrowStyle = "geometric-minimal" | "cyber-precision" | "luxury-editorial";
 
 /**
  * Global Eyebrow Style Selection:
- * - "mono-technical"   : Surgical Engineering Monospace (JetBrains Mono) — tech/developer agency style
- * - "geometric-minimal": Sleek Minimalist Geometric Sans (Satoshi) — Apple/Linear agency style
- * - "cyber-precision"  : Architectural wide-tracked Space Grotesk
- * - "luxury-editorial" : Elegant italic Instrument Serif
+ * - "geometric-minimal" : Sleek, ultra-clean Geometric Sans (Satoshi) — modern minimalist agency style
+ * - "cyber-precision"   : Architectural wide-tracked Space Grotesk
+ * - "luxury-editorial"  : Elegant italic Instrument Serif
  */
-export const ACTIVE_EYEBROW_STYLE: EyebrowStyle = "mono-technical";
+export const ACTIVE_EYEBROW_STYLE: EyebrowStyle = "geometric-minimal";
 
 interface SectionEyebrowProps {
   children: React.ReactNode;
@@ -52,24 +51,11 @@ export default function SectionEyebrow({
     );
   }
 
-  if (style === "geometric-minimal") {
-    return (
-      <div className={`mb-3 sm:mb-3.5 select-none ${className}`}>
-        <span
-          className={`font-satoshi uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[11px] sm:text-xs font-semibold ${activeColor} ${shadow} inline-block leading-tight`}
-        >
-          {children}
-        </span>
-      </div>
-    );
-  }
-
-  // Style 2: Surgical Engineering Monospace — JetBrains Mono
+  // Style 1: Minimalist Geometric Sans — Satoshi
   return (
     <div className={`mb-3 sm:mb-3.5 select-none ${className}`}>
       <span
-        style={{ fontFamily: 'var(--font-mono-family), "JetBrains Mono", ui-monospace, monospace' }}
-        className={`uppercase tracking-[0.22em] sm:tracking-[0.26em] text-[11px] sm:text-xs font-medium ${activeColor} ${shadow} inline-block leading-tight`}
+        className={`font-satoshi uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[11px] sm:text-xs font-semibold ${activeColor} ${shadow} inline-block leading-tight`}
       >
         {children}
       </span>

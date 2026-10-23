@@ -7,17 +7,17 @@ import JsonLd from "@/components/seo/JsonLd";
 import { SERVICE_PAGES, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Web Design & Development Services | QDelta Technologies",
+  title: "Our Services - AI-Powered Web Design, Development & Automation",
   description:
-    "Web design agency services from QDelta: high-converting landing pages, business websites, portfolio and author websites, e-commerce, web apps and AI chatbots.",
+    "QDelta Technologies services: high-converting landing pages, premium websites, e-commerce stores, web apps, AI chatbots and business automation — powered by AI and built for growth.",
   alternates: { canonical: "/services" },
   openGraph: {
     type: "website",
     url: `${SITE_URL}/services`,
     siteName: "QDelta Technologies",
-    title: "Web Design & Development Services | QDelta Technologies",
+    title: "Our Services | QDelta - AI Solutions Company",
     description:
-      "High-converting landing pages, business websites, portfolios, e-commerce, web apps and AI chatbots.",
+      "High-converting landing pages, premium websites, e-commerce, web apps, AI chatbots and business automation.",
     locale: "en_US",
   },
 };
@@ -53,11 +53,11 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <p className="font-mono text-xs uppercase tracking-widest text-[#FAB406] mb-4">QDelta Technologies</p>
           <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1] text-balance">
-            Web design and development services
+            Our Services
           </h1>
           <p className="mt-5 max-w-2xl text-base sm:text-lg text-zinc-300 leading-relaxed">
-            QDelta is a web design agency that builds high-converting landing pages, premium websites, online stores,
-            web apps and AI tools. Pick what you need, or tell us your goal and we will recommend it.
+            We combine AI, design and technology to build high-converting landing pages, premium websites, online stores,
+            web apps, AI chatbots and business automations. Pick what you need, or tell us your goal and we&apos;ll recommend the right approach.
           </p>
 
           <ul className="mt-10 grid gap-4 sm:grid-cols-2">

@@ -1,17 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Alata, DM_Sans, Bricolage_Grotesque, Space_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Alata, DM_Sans, Bricolage_Grotesque, Space_Grotesk, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
 import GoogleAnalytics from "@/components/ui/GoogleAnalytics";
 import CookieConsent from "@/components/ui/CookieConsent";
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-mono-family",
-  display: "swap",
-});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -86,34 +79,51 @@ export const viewport: Viewport = {
 
 const SITE_URL = "https://www.qdelta.in";
 const SITE_DESCRIPTION =
-  "QDelta Technologies is a web design agency that builds fast, conversion-focused websites for businesses, creators and brands. Two packages: QDelta Digital and QDelta Signature.";
+  "QDelta Technologies is an AI solutions company specialising in AI-powered web design, custom web & app development, AI chatbots, business automation and high-converting digital experiences for brands and businesses worldwide.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "QDelta Technologies - Web Design Agency",
+  title: {
+    default: "QDelta - AI Solutions Company | Web Design, Development & Automation",
+    template: "%s | QDelta Technologies",
+  },
   description: SITE_DESCRIPTION,
   applicationName: "QDelta Technologies",
   keywords: [
-    "web design agency",
-    "website development",
-    "landing page design",
-    "business website",
-    "portfolio website",
     "QDelta",
+    "QDelta Technologies",
+    "AI solutions company",
+    "AI-powered web design",
+    "web design agency",
+    "web development company",
+    "AI chatbot development",
+    "business automation",
+    "high-converting landing pages",
+    "custom website development",
+    "e-commerce website design",
+    "full stack web app development",
+    "MVP development",
+    "AI integration services",
+    "digital transformation",
+    "premium website design",
+    "WhatsApp automation",
+    "SEO optimised websites",
+    "brand identity design",
+    "MSME registered company",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: SITE_URL,
     siteName: "QDelta Technologies",
-    title: "QDelta Technologies - Web Design Agency",
+    title: "QDelta - AI Solutions Company | Web Design, Development & Automation",
     description: SITE_DESCRIPTION,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     site: "@qdelta_agency",
-    title: "QDelta Technologies - Web Design Agency",
+    title: "QDelta - AI Solutions Company | Web Design, Development & Automation",
     description: SITE_DESCRIPTION,
   },
   robots: {
@@ -129,6 +139,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico?v=3",
     apple: "/images/qdelta-icon.png?v=3",
   },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -137,7 +148,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${jetbrainsMono.variable} ${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -154,6 +165,17 @@ export default function RootLayout({
                   logo: `${SITE_URL}/images/qdelta-icon.png`,
                   email: "qdelta.in@gmail.com",
                   description: SITE_DESCRIPTION,
+                  foundingDate: "2025",
+                  knowsAbout: [
+                    "Artificial Intelligence",
+                    "Web Design",
+                    "Web Development",
+                    "AI Chatbots",
+                    "Business Automation",
+                    "E-commerce Development",
+                    "Search Engine Optimisation",
+                    "Digital Transformation",
+                  ],
                   sameAs: [
                     "https://www.instagram.com/qdelta.in",
                     "https://x.com/qdelta_agency",
@@ -165,6 +187,7 @@ export default function RootLayout({
                   "@id": `${SITE_URL}/#website`,
                   url: SITE_URL,
                   name: "QDelta Technologies",
+                  alternateName: "QDelta - AI Solutions Company",
                   inLanguage: "en",
                   publisher: { "@id": `${SITE_URL}/#organization` },
                 },
@@ -176,7 +199,25 @@ export default function RootLayout({
                   image: `${SITE_URL}/images/qdelta-landscape.jpg`,
                   description: SITE_DESCRIPTION,
                   parent: { "@id": `${SITE_URL}/#organization` },
+                  areaServed: "Worldwide",
+                  serviceType: "AI Solutions, Web Design & Development, Business Automation",
                   makesOffer: [
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "AI-Powered Web Design & Development",
+                        serviceType: "High-converting landing pages, premium websites, e-commerce stores and web applications",
+                      },
+                    },
+                    {
+                      "@type": "Offer",
+                      itemOffered: {
+                        "@type": "Service",
+                        name: "AI Chatbots & Business Automation",
+                        serviceType: "Custom AI chatbots, WhatsApp automation, workflow automation and AI integrations",
+                      },
+                    },
                     {
                       "@type": "Offer",
                       itemOffered: {
@@ -190,7 +231,7 @@ export default function RootLayout({
                       itemOffered: {
                         "@type": "Service",
                         name: "QDelta Signature",
-                        serviceType: "Flagship custom website design and development",
+                        serviceType: "Flagship custom website design and development with premium motion and interaction",
                       },
                     },
                   ],

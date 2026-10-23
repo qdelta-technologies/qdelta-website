@@ -365,39 +365,29 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* COLUMN 3: Work With Us & Enterprise Trust */}
-            <div className="col-span-2 sm:col-span-1 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] shadow-[0_0_8px_rgba(250,180,6,0.6)]" />
-                  <h4 className="font-epilogue font-bold text-xs uppercase tracking-widest text-white/90">
-                    Work With Us
-                  </h4>
-                </div>
-
-                <p className="font-epilogue text-xs sm:text-[13px] text-zinc-400 leading-relaxed font-normal">
-                  Have a project or vision? We engineer bespoke digital systems that drive measurable growth.
-                </p>
-
-                {/* Live Availability Status */}
-                <div className="mt-3.5 flex items-center gap-2 text-[11px] sm:text-xs font-epilogue text-zinc-400">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                  </span>
-                  <span className="text-zinc-300 font-medium">Available for new projects</span>
-                </div>
+            {/* COLUMN 3: Enterprise Trust & Status */}
+            <div className="col-span-2 sm:col-span-1 flex flex-col gap-4">
+              {/* Live Availability Status */}
+              <div className="flex items-center gap-2 text-[11px] sm:text-xs font-epilogue text-zinc-400">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="text-zinc-300 font-medium">Available for new projects</span>
               </div>
 
               {/* MSME Ministry Official Logo */}
-              <div className="mt-4 pt-1">
+              <div className="pt-0.5">
                 <Image
                   src="/images/msme-logo-dark.png"
-                  alt="Ministry of MSME, Govt. of India"
+                  alt="MSME Registered Enterprise, Govt. of India"
                   width={260}
                   height={114}
-                  className="h-11 sm:h-12 w-auto object-contain opacity-85 hover:opacity-100 transition-opacity"
+                  className="h-10 sm:h-11 w-auto object-contain opacity-85 hover:opacity-100 transition-opacity"
                 />
+                <p className="mt-1.5 text-[11px] sm:text-xs font-epilogue text-zinc-400 font-medium">
+                  MSME Registered Enterprise
+                </p>
               </div>
             </div>
           </div>
@@ -407,6 +397,20 @@ export default function Footer() {
         <div className="relative z-10 pt-5 sm:pt-6 border-t border-white/[0.08] text-xs font-epilogue text-zinc-500">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <p>© 2026 QDelta Technologies. All rights reserved.</p>
+            <div className="flex items-center justify-center gap-2.5">
+              <Link
+                href="/privacy"
+                className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-zinc-400 hover:text-[#FAB406] hover:border-[#FAB406]/40 hover:bg-[#FAB406]/5 transition-all text-[11px] sm:text-xs"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms"
+                className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-zinc-400 hover:text-[#FAB406] hover:border-[#FAB406]/40 hover:bg-[#FAB406]/5 transition-all text-[11px] sm:text-xs"
+              >
+                Terms &amp; Conditions
+              </Link>
+            </div>
           </div>
         </div>
 

@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-export const alt = "QDelta Technologies - Web Design Agency";
+export const alt = "QDelta Technologies - AI Solutions Company | Web Design, Development & Automation";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -27,9 +27,9 @@ export default async function OpenGraphImage() {
         <img src={iconSrc} width={220} height={220} alt="" style={{ borderRadius: 40 }} />
         <div style={{ display: "flex", flexDirection: "column", marginLeft: 70 }}>
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.05 }}>QDelta Technologies</div>
-          <div style={{ marginTop: 22, fontSize: 38, color: "#FAB406" }}>Web Design Agency</div>
+          <div style={{ marginTop: 22, fontSize: 38, color: "#FAB406" }}>AI Solutions Company</div>
           <div style={{ marginTop: 18, fontSize: 28, color: "#a1a1aa" }}>
-            High-converting landing pages and premium websites
+            AI-Powered Web Design · Development · Chatbots · Automation
           </div>
         </div>
       </div>
