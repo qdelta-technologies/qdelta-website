@@ -205,9 +205,9 @@ export default function Footer() {
           </svg>
 
         {/* ================= UPPER SECTION: 4-COLUMN COMPOSITION ================= */}
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-10 sm:mb-14">
           {/* LEFT SIDE: Brand & Direct Contacts */}
-          <div className="lg:col-span-5 max-w-sm flex flex-col justify-between">
+          <div className="lg:col-span-5 xl:col-span-4 max-w-sm flex flex-col justify-between">
             <div>
               {/* Brand Logo (Matching Header) */}
               <Link href="/" className="inline-block focus:outline-none group">
@@ -314,7 +314,7 @@ export default function Footer() {
           </div>
 
           {/* RIGHT SIDE: 3 Structured Columns */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-9">
+          <div className="lg:col-span-7 xl:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[1fr_1fr_1.35fr] gap-6 sm:gap-8 lg:gap-8">
             {/* COLUMN 1: Services */}
             <div>
               <div className="flex items-center gap-2 mb-4">
@@ -366,7 +366,7 @@ export default function Footer() {
             </div>
 
             {/* COLUMN 3: Enterprise Trust & Status */}
-            <div className="col-span-2 sm:col-span-1 flex flex-col gap-4">
+            <div className="col-span-2 sm:col-span-1 flex flex-col gap-4 sm:gap-4.5">
               {/* Live Availability Status */}
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-epilogue text-zinc-400">
                 <span className="relative flex h-2 w-2">
@@ -389,28 +389,33 @@ export default function Footer() {
                   MSME Registered Enterprise
                 </p>
               </div>
+
+              {/* Subtle architectural divider */}
+              <div className="w-full h-px bg-white/[0.08] my-1" />
+
+              {/* Legal Links (Privacy Policy & Terms) */}
+              <div className="flex flex-row items-center gap-2">
+                <Link
+                  href="/privacy"
+                  className="inline-flex items-center justify-center px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-zinc-400 hover:text-[#FAB406] hover:border-[#FAB406]/40 hover:bg-[#FAB406]/5 transition-all text-[11px] sm:text-xs whitespace-nowrap font-medium"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="inline-flex items-center justify-center px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-zinc-400 hover:text-[#FAB406] hover:border-[#FAB406]/40 hover:bg-[#FAB406]/5 transition-all text-[11px] sm:text-xs whitespace-nowrap font-medium"
+                >
+                  Terms &amp; Conditions
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ================= LOWER SECTION: DIVIDER & LEGAL ================= */}
+        {/* ================= LOWER SECTION: DIVIDER & COPYRIGHT ================= */}
         <div className="relative z-10 pt-5 sm:pt-6 border-t border-white/[0.08] text-xs font-epilogue text-zinc-500">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-end text-center sm:text-right">
             <p>© 2026 QDelta Technologies. All rights reserved.</p>
-            <div className="flex items-center justify-center gap-2.5">
-              <Link
-                href="/privacy"
-                className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-zinc-400 hover:text-[#FAB406] hover:border-[#FAB406]/40 hover:bg-[#FAB406]/5 transition-all text-[11px] sm:text-xs"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-zinc-400 hover:text-[#FAB406] hover:border-[#FAB406]/40 hover:bg-[#FAB406]/5 transition-all text-[11px] sm:text-xs"
-              >
-                Terms &amp; Conditions
-              </Link>
-            </div>
           </div>
         </div>
 

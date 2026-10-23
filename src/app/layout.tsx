@@ -133,12 +133,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/qdelta-icon.png?v=3" },
-      { url: "/favicon.ico?v=3" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/images/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/images/icon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/images/icon-192.png", sizes: "192x192", type: "image/png" },
     ],
-    shortcut: "/favicon.ico?v=3",
-    apple: "/images/qdelta-icon.png?v=3",
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
+  manifest: "/manifest.webmanifest",
   category: "technology",
 };
 

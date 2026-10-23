@@ -27,23 +27,27 @@ export interface ServicePage {
 export const HOME_FAQS: FaqItem[] = [
   {
     q: "What does QDelta do?",
-    a: "QDelta Technologies is a digital solutions company that combines design, technology and AI to help businesses grow online. We build high-converting landing pages, premium websites, e-commerce stores, web apps, AI chatbots and business automations — all designed to turn visitors into enquiries, bookings or sales.",
+    a: "QDelta Technologies is a web development and digital solutions agency specializing in conversion-focused landing pages, premium animated and interactive websites, online stores, and full-stack web and app development. We also provide AI agents and business automation solutions to help businesses strengthen their online presence, connect with customers, and streamline their operations.",
   },
   {
     q: "What is a high-converting landing page?",
-    a: "A high-converting landing page is a focused page built around one offer and one action. It states the offer clearly, removes distractions, builds trust and makes the next step (call, enquiry, booking or purchase) obvious, so more of the people who visit actually act.",
+    a: "A high-converting landing page is a webpage designed to turn visitors into customers by encouraging them to take action, such as buying a product, booking a service, or making an enquiry.",
   },
   {
     q: "What are the add-on services?",
-    a: "We offer various add-on services including SEO, AEO/GEO, CMS integration, WhatsApp agents, email automation, AI chatbots, and more.",
+    a: "We offer a range of add-on services, including SEO, AEO/GEO, CMS integration, additional pages, advanced animations, payment and booking integrations, and lead capture systems. We also provide WhatsApp AI agents, chatbots, email automation, website maintenance, and technical support. All add-ons are tailored to your business needs and priced based on your requirements.",
   },
   {
     q: "Will my website show up on Google?",
-    a: "Every site we build includes technical SEO foundations: clean page structure, titles and descriptions, structured data, fast loading and mobile-first layout. No one can honestly promise a #1 ranking, because rankings also depend on competition, content and time, but we make sure the foundations are right.",
+    a: "Yes, we build websites with basic SEO features that help Google find and understand your website. However, appearing in search results and getting higher rankings depends on Google and may take time.",
   },
   {
     q: "How do I start a project with QDelta?",
-    a: "Send us a short brief using the contact form on this page, or message us on WhatsApp. We will reply, ask a few questions about your business and goals, and recommend the right approach.",
+    a: "Simply contact us and tell us about your business and what you need. We'll discuss your ideas, understand your requirements, and share a proposal with pricing and timelines. Once you approve everything and make the advance payment, we'll start working on your project.",
+  },
+  {
+    q: "What additional benefits are included with QDelta's services?",
+    a: "Every website comes with 30 days of free maintenance and technical support after launch. We also provide assistance with website setup, deployment, and basic guidance to help you get started smoothly. Our team is here to help you make the most of your new website.",
   },
 ];
 

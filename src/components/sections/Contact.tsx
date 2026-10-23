@@ -19,7 +19,7 @@ const SERVICES = [
   "Landing Page",
   "Premium Website",
   "E-commerce",
-  "Interactive / 3D",
+  "AI Agents",
   "Other",
 ];
 
