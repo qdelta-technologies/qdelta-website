@@ -79,12 +79,12 @@ export const viewport: Viewport = {
 
 const SITE_URL = "https://www.qdelta.in";
 const SITE_DESCRIPTION =
-  "QDelta Technologies is an AI solutions company specialising in AI-powered web design, custom web & app development, AI chatbots, business automation and high-converting digital experiences for brands and businesses worldwide.";
+  "QDelta Technologies is a digital solutions company specialising in web design, custom web & app development, AI chatbots, business automation and high-converting digital experiences for brands and businesses worldwide.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "QDelta - AI Solutions Company | Web Design, Development & Automation",
+    default: "QDelta - Digital Solutions | Web Development",
     template: "%s | QDelta Technologies",
   },
   description: SITE_DESCRIPTION,
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   keywords: [
     "QDelta",
     "QDelta Technologies",
-    "AI solutions company",
+    "digital solutions company",
     "AI-powered web design",
     "web design agency",
     "web development company",
@@ -116,14 +116,14 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "QDelta Technologies",
-    title: "QDelta - AI Solutions Company | Web Design, Development & Automation",
+    title: "QDelta - Digital Solutions | Web Development",
     description: SITE_DESCRIPTION,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     site: "@qdelta_agency",
-    title: "QDelta - AI Solutions Company | Web Design, Development & Automation",
+    title: "QDelta - Digital Solutions | Web Development",
     description: SITE_DESCRIPTION,
   },
   robots: {
@@ -187,7 +187,7 @@ export default function RootLayout({
                   "@id": `${SITE_URL}/#website`,
                   url: SITE_URL,
                   name: "QDelta Technologies",
-                  alternateName: "QDelta - AI Solutions Company",
+                  alternateName: "QDelta - Digital Solutions",
                   inLanguage: "en",
                   publisher: { "@id": `${SITE_URL}/#organization` },
                 },

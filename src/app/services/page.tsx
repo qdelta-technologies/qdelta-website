@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     url: `${SITE_URL}/services`,
     siteName: "QDelta Technologies",
-    title: "Our Services | QDelta - AI Solutions Company",
+    title: "Our Services | QDelta - Digital Solutions",
     description:
       "High-converting landing pages, premium websites, e-commerce, web apps, AI chatbots and business automation.",
     locale: "en_US",

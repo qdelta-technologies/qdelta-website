@@ -27,7 +27,7 @@ export interface ServicePage {
 export const HOME_FAQS: FaqItem[] = [
   {
     q: "What does QDelta do?",
-    a: "QDelta Technologies is an AI solutions company that combines artificial intelligence, design and technology to help businesses grow online. We build high-converting landing pages, premium websites, e-commerce stores, web apps, AI chatbots and business automations — all designed to turn visitors into enquiries, bookings or sales.",
+    a: "QDelta Technologies is a digital solutions company that combines design, technology and AI to help businesses grow online. We build high-converting landing pages, premium websites, e-commerce stores, web apps, AI chatbots and business automations — all designed to turn visitors into enquiries, bookings or sales.",
   },
   {
     q: "What is a high-converting landing page?",
