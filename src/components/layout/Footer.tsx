@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import YellowDotWaves from "@/components/ui/YellowDotWaves";
 
 function MailIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -380,19 +379,8 @@ export default function Footer() {
                   Have a project or vision? We engineer bespoke digital systems that drive measurable growth.
                 </p>
 
-                {/* Primary Action Button */}
-                <div className="mt-3.5">
-                  <Link
-                    href="#contact"
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[#FAB406] text-[#0B0E12] font-epilogue font-semibold text-xs hover:bg-[#FAB406]/90 transition-all duration-200 shadow-sm group"
-                  >
-                    <span>Start a Project</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-
                 {/* Live Availability Status */}
-                <div className="mt-4 flex items-center gap-2 text-[11px] sm:text-xs font-epilogue text-zinc-400">
+                <div className="mt-3.5 flex items-center gap-2 text-[11px] sm:text-xs font-epilogue text-zinc-400">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
