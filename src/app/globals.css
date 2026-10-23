@@ -50,6 +50,10 @@ body {
   letter-spacing: 0.02em;
 }
 
+.font-satoshi {
+  font-family: var(--font-satoshi), "Satoshi", ui-sans-serif, system-ui, sans-serif !important;
+}
+
 /* Hero headline only — Alata display */
 .font-alata {
   font-family: var(--font-alata-family), "Alata", sans-serif !important;
