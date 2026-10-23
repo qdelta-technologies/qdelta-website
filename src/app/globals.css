@@ -10,6 +10,7 @@
   --font-epilogue: var(--font-epilogue-family), "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-excon: var(--font-excon-family), "Excon", ui-sans-serif, system-ui, sans-serif;
   --font-space: var(--font-space-family), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-family), "JetBrains Mono", ui-monospace, monospace;
   --font-editorial: var(--font-editorial-family), "Instrument Serif", Georgia, serif;
   --color-gold: #FAB406;
   --color-gold-hover: #FFC015;

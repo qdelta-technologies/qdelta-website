@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Alata, DM_Sans, Bricolage_Grotesque, Space_Grotesk, Instrument_Serif } from "next/font/google";
+import { Alata, DM_Sans, Bricolage_Grotesque, Space_Grotesk, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import CustomCursorRoot from "@/components/ui/CustomCursorRoot";
 import GoogleAnalytics from "@/components/ui/GoogleAnalytics";
 import CookieConsent from "@/components/ui/CookieConsent";
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono-family",
+  display: "swap",
+});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -130,7 +137,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${jetbrainsMono.variable} ${satoshi.variable} ${epilogue.variable} ${alata.variable} ${excon.variable} ${heading.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable}`}>
       <head>
         <script
           type="application/ld+json"
