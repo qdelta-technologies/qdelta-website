@@ -315,54 +315,80 @@ export default function Team() {
                   </div>
 
                   {/* =================================================== */}
-                  {/* CARD BACK FACE (HIGH-CONTRAST OFF-WHITE + YELLOW)   */}
+                  {/* CARD BACK FACE (DARK TRANSLUCENT GRAIN / SANDSTONE) */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden border-t border-l border-r border-[#CBD5E1] border-b-[4px] border-b-[#FAB406] bg-[#F8F9FA] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.65),0_10px_20px_-5px_rgba(0,0,0,0.35),inset_0_1.5px_0_rgba(255,255,255,0.95)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300 text-[#06070A]">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden border-t border-l border-r border-white/[0.12] border-b-[4px] border-b-[#B87700]/80 bg-[#0B0E14]/95 backdrop-blur-xl shadow-[0_24px_50px_-12px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300 text-white">
+
+                    {/* Authentic Sandstone / Sandpaper Grain Texture (tactile depth) */}
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay z-0"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='sandstone-noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23sandstone-noise)'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "180px 180px",
+                      }}
+                      aria-hidden
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-screen z-0"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='sandstone-noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23sandstone-noise)'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "180px 180px",
+                      }}
+                      aria-hidden
+                    />
+
+                    {/* Ambient subtle lighting gradient across the slab */}
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-black/50 z-0"
+                      aria-hidden
+                    />
 
                     {/* Golden top hairline accent */}
-                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-[#FAB406] to-transparent z-20" />
+                    <div className="pointer-events-none absolute top-0 inset-x-6 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/75 to-transparent z-20" />
 
                     {/* Top Back Header */}
                     <div className="relative z-10">
                       <div className="flex items-center justify-end">
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#06070A] border border-black/20 text-[10.5px] font-epilogue text-white font-bold shadow-sm">
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[10px] font-epilogue text-zinc-300 font-medium shadow-sm">
                           <RefreshCw className="w-3 h-3 text-[#FAB406]" />
                           <span>Flip</span>
                         </div>
                       </div>
 
-                      <h3 className="mt-2.5 font-excon text-2xl sm:text-[1.7rem] font-black text-[#06070A] tracking-tight leading-tight">
+                      <h3 className="mt-2.5 font-excon text-2xl sm:text-[1.7rem] font-bold text-white tracking-tight leading-tight">
                         {member.name}
                       </h3>
-                      <p className="text-xs font-epilogue text-[#06070A]/75 font-bold mt-0.5 flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406]" />
+                      <p className="text-xs font-epilogue text-zinc-400 font-semibold mt-1 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] shadow-[0_0_6px_rgba(250,180,6,0.7)]" />
                         {member.subtitle}
                       </p>
 
-                      {/* Yellow Accent Divider Line */}
-                      <div className="mt-3 h-[2px] w-full bg-gradient-to-r from-[#FAB406] via-[#FAB406]/50 to-transparent rounded-full" />
+                      {/* Golden Hairline Divider */}
+                      <div className="mt-3 h-[1px] w-full bg-gradient-to-r from-[#FAB406]/60 via-white/15 to-transparent rounded-full" />
                     </div>
 
                     {/* Middle: Short Bio with Left Yellow Accent Line & Key Focus */}
                     <div className="relative z-10 my-auto py-2">
                       <div className="relative pl-3 border-l-2 border-[#FAB406] py-0.5">
-                        <p className="font-epilogue text-xs sm:text-[13px] text-[#090A0F] leading-relaxed font-semibold">
+                        <p className="font-epilogue text-xs sm:text-[13px] text-zinc-300 leading-relaxed font-normal">
                           {member.bio}
                         </p>
                       </div>
 
                       <div className="mt-3.5">
-                        <div className="mb-2 flex items-center gap-1.5 text-[10.5px] font-epilogue uppercase tracking-[0.18em] text-[#06070A] font-black">
-                          <span className="inline-block w-1.5 h-3 rounded-sm bg-[#FAB406]" />
+                        <div className="mb-2 flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-epilogue uppercase tracking-[0.16em] text-zinc-400 font-bold">
+                          <span className="inline-block w-1.5 h-2.5 rounded-sm bg-[#FAB406]" />
                           <span>Key Responsibilities & Focus</span>
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {member.focus.map((item) => (
                             <span
                               key={item}
-                              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border-2 border-[#FAB406] bg-[#FFFBEB] text-[#06070A] font-epilogue text-[11px] font-extrabold shadow-[0_2px_6px_rgba(250,180,6,0.15)]"
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 text-zinc-200 font-epilogue text-[11px] font-medium shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-colors"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#FAB406] shrink-0" />
+                              <span className="w-1 h-1 rounded-full bg-[#FAB406] shrink-0" />
                               {item}
                             </span>
                           ))}
@@ -371,21 +397,21 @@ export default function Team() {
                     </div>
 
                     {/* Bottom: LinkedIn & Flip Back Action */}
-                    <div className="relative z-10 pt-3 border-t-2 border-zinc-200/80 flex items-center justify-between">
+                    <div className="relative z-10 pt-3 border-t border-white/[0.08] flex items-center justify-between">
                       <a
                         href={member.linkedinUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#FAB406] hover:bg-[#FAB406]/90 border-t border-l border-r border-[#FAB406] border-b-[3px] border-b-[#B87700] text-[#06070A] text-xs font-epilogue uppercase tracking-wider font-black shadow-[0_4px_12px_rgba(250,180,6,0.35)] transition-all active:translate-y-0.5"
+                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#FAB406] hover:bg-[#FFC015] border border-[#FAB406] text-[#06070A] text-xs font-epilogue uppercase tracking-wider font-bold shadow-[0_4px_14px_rgba(250,180,6,0.3)] transition-all active:translate-y-0.5"
                       >
                         <LinkedInIcon className="h-4 w-4 rounded-[2px]" />
                         <span>View LinkedIn</span>
                         <ArrowUpRight className="w-3.5 h-3.5 text-[#06070A] stroke-[2.5]" />
                       </a>
 
-                      <span className="text-[10.5px] font-epilogue uppercase tracking-widest text-[#06070A]/70 font-extrabold flex items-center gap-1">
-                        <RefreshCw className="w-2.5 h-2.5 text-[#B87700]" />
+                      <span className="text-[10px] font-epilogue uppercase tracking-widest text-zinc-400 font-medium flex items-center gap-1">
+                        <RefreshCw className="w-2.5 h-2.5 text-[#FAB406]" />
                         <span>Tap to return</span>
                       </span>
                     </div>
