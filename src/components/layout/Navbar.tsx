@@ -344,7 +344,7 @@ export default function Navbar() {
                 strokeWidth={1.5}
                 className="!px-4 !py-2 text-xs sm:!text-[12.5px] font-bold whitespace-nowrap"
               >
-                <span>Get Free Brochure & Sample Work</span>
+                <span>Download Brochure</span>
                 <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
               </ChamferButton>
             </div>
@@ -413,7 +413,7 @@ export default function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="w-full justify-center !py-2 text-xs font-bold"
                   >
-                    <span>Get Free Brochure & Sample Work</span>
+                    <span>Download Brochure</span>
                     <ChevronRight className="h-3.5 w-3.5" />
                   </ChamferButton>
                 </div>
