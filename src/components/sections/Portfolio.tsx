@@ -111,6 +111,17 @@ const ARCHIVE_PROJECTS: ProjectItem[] = [
     highlights: ["Web Application", "PDF Tools", "User-Friendly UI", "Browser-Based Processing"],
     theme: GOLD_THEME,
   },
+  {
+    id: "wtsnova",
+    indexNumber: "05",
+    name: "WTS Nova",
+    oneLiner:
+      "A modern, professional website showcasing WTS Nova's social media management and marketing services, with engaging visuals, clear messaging, and a seamless way for businesses to connect.",
+    image: "/images/projects/wts-nova.jpg",
+    link: "https://www.wtsnova.com/",
+    highlights: ["Agency Website", "Modern UI/UX", "Service Showcase", "Enquiry Experience"],
+    theme: LIGHT_THEME,
+  },
 ];
 
 interface ArchiveFolderProps {
@@ -402,16 +413,16 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end">
           <div className="lg:col-span-7">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[46px] font-heading font-bold tracking-tight text-white leading-[1.12]">
-              Curated builds.{" "}
+              Explore Our{" "}
               <span className="inline-block px-2 sm:px-2.5 py-0.5 rounded-md sm:rounded-lg bg-[#FAB406]/15 border border-[#FAB406]/35 text-[#FAB406] shadow-[0_0_15px_rgba(250,180,6,0.12)]">
-                Engineered to convert.
+                Work.
               </span>
             </h2>
           </div>
 
           <div className="lg:col-span-5">
             <p className="text-sm sm:text-base md:text-lg font-epilogue text-zinc-400 font-normal leading-relaxed">
-              Explore our project archive. Each build is custom-engineered to solve specific business problems, present clear offers, and elevate digital authority.
+              See What We Create.
             </p>
           </div>
         </div>
