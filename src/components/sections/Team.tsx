@@ -66,9 +66,9 @@ const TEAM_MEMBERS: TeamMember[] = [
     image: "/team/qais-founder-latest.png",
     bio: "I work across AI, strategy, creative direction and business thinking — helping shape how QDelta approaches ideas, solves problems and builds digital experiences that create real value.",
     focus: ["AI Strategy", "Creative Direction", "Business & Product Thinking"],
-    linkedinUrl: "https://www.linkedin.com/in/md-qais-04b772274/",
-    instagramUrl: "#",
-    portfolioUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/md-qais-905039224",
+    instagramUrl: "https://www.instagram.com/mqtech.ai?psln=MWd0MndtZmp3YXJ3Zw==",
+    portfolioUrl: "https://www.qais.qdelta.in",
     accentColor: "#FAB406",
     glowColor: "rgba(250, 180, 6, 0.14)",
   },
@@ -80,9 +80,9 @@ const TEAM_MEMBERS: TeamMember[] = [
     image: "/team/sai-prabhath.png",
     bio: "I build and manage the technical side of our projects, turning ideas and designs into fast, reliable and scalable websites and web applications.",
     focus: ["Full-Stack Development", "Web Applications", "Performance & Architecture"],
-    linkedinUrl: "https://www.linkedin.com/in/sai-prabhath-993b4a22b/",
-    instagramUrl: "#",
-    portfolioUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/sai-prabath-nagireddy/",
+    instagramUrl: "https://www.instagram.com/prabstack.dev/",
+    portfolioUrl: "https://prabath-portfolio-xi.vercel.app/",
     accentColor: "#FAB406",
     glowColor: "rgba(250, 180, 6, 0.14)",
   },
@@ -94,9 +94,9 @@ const TEAM_MEMBERS: TeamMember[] = [
     image: "/team/md-fazeel-portrait.jpg",
     bio: "I work across generative AI and user experience, building smarter workflows and designing digital experiences that are clear, useful and easy to use.",
     focus: ["GenAI Development", "UX Design", "AI Workflows"],
-    linkedinUrl: "https://www.linkedin.com/in/md-fazeel-167816281/",
-    instagramUrl: "#",
-    portfolioUrl: "#",
+    linkedinUrl: "https://www.linkedin.com/in/mohamad-fazeelullaa-5b48022a3",
+    instagramUrl: "https://www.instagram.com/ai.with.fazeel?mdxt=cXh5cWN1cmw1ZDN2",
+    portfolioUrl: "https://professional-porfolio-w4mw.vercel.app/",
     accentColor: "#FAB406",
     glowColor: "rgba(250, 180, 6, 0.14)",
   },
@@ -317,7 +317,7 @@ export default function Team() {
                   {/* =================================================== */}
                   {/* CARD BACK FACE (DARK TRANSLUCENT GRAIN / SANDSTONE) */}
                   {/* =================================================== */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden border-t border-l border-r border-white/[0.12] border-b-[4px] border-b-[#B87700]/80 bg-[#0B0E14]/95 backdrop-blur-xl shadow-[0_24px_50px_-12px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)] px-5 pb-5 pt-4 sm:px-6 sm:pb-6 sm:pt-5 flex flex-col justify-between transition-all duration-300 text-white">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden border-t border-l border-r border-white/[0.12] border-b-[4px] border-b-[#B87700]/80 bg-[#0B0E14]/95 backdrop-blur-xl shadow-[0_24px_50px_-12px_rgba(0,0,0,0.85),0_10px_20px_-5px_rgba(0,0,0,0.5),inset_0_1.5px_0_rgba(255,255,255,0.12)] px-5 py-4 sm:px-6 sm:py-4.5 flex flex-col justify-between transition-all duration-300 text-white">
 
                     {/* Authentic Sandstone / Sandpaper Grain Texture (tactile depth) */}
                     <div
@@ -396,24 +396,48 @@ export default function Team() {
                       </div>
                     </div>
 
-                    {/* Bottom: LinkedIn & Flip Back Action */}
-                    <div className="relative z-10 pt-3 border-t border-white/[0.08] flex items-center justify-between">
-                      <a
-                        href={member.linkedinUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#FAB406] hover:bg-[#FFC015] border border-[#FAB406] text-[#06070A] text-xs font-epilogue uppercase tracking-wider font-bold shadow-[0_4px_14px_rgba(250,180,6,0.3)] transition-all active:translate-y-0.5"
-                      >
-                        <LinkedInIcon className="h-4 w-4 rounded-[2px]" />
-                        <span>View LinkedIn</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-[#06070A] stroke-[2.5]" />
-                      </a>
+                    {/* Bottom: Social Links & Portfolio Action */}
+                    <div className="relative z-10 pt-2.5 border-t border-white/[0.08] flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href={member.linkedinUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`${member.name} on LinkedIn`}
+                          className="inline-flex h-8 items-center gap-1.5 px-3 rounded-lg bg-[#FAB406] hover:bg-[#FFC015] border border-[#FAB406] text-[#06070A] text-xs font-epilogue uppercase tracking-wider font-bold shadow-[0_4px_14px_rgba(250,180,6,0.3)] transition-all active:translate-y-0.5 shrink-0"
+                        >
+                          <LinkedInIcon className="h-3.5 w-3.5 rounded-[2px]" />
+                          <span>LinkedIn</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#06070A] stroke-[2.5]" />
+                        </a>
 
-                      <span className="text-[10px] font-epilogue uppercase tracking-widest text-zinc-400 font-medium flex items-center gap-1">
-                        <RefreshCw className="w-2.5 h-2.5 text-[#FAB406]" />
-                        <span>Tap to return</span>
-                      </span>
+                        {member.instagramUrl && (
+                          <a
+                            href={member.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            aria-label={`${member.name} on Instagram`}
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 bg-white/[0.06] hover:border-pink-500/50 hover:bg-pink-500/15 hover:shadow-[0_0_12px_rgba(214,41,118,0.35)] text-white transition-all active:translate-y-0.5 shrink-0 group/insta"
+                          >
+                            <InstagramIcon className="h-4 w-4 transition-transform group-hover/insta:scale-110" />
+                          </a>
+                        )}
+                      </div>
+
+                      {member.portfolioUrl && (
+                        <a
+                          href={member.portfolioUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex items-center gap-1 font-epilogue text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-400 hover:text-[#FAB406] transition-colors shrink-0 group/portfolio"
+                        >
+                          <span>Portfolio</span>
+                          <ArrowUpRight className="h-3.5 w-3.5 text-zinc-400 group-hover/portfolio:text-[#FAB406] group-hover/portfolio:translate-x-0.5 group-hover/portfolio:-translate-y-0.5 transition-all" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
