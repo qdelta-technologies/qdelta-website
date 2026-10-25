@@ -1,12 +1,19 @@
 import Link from "next/link";
 
+const WHATSAPP_PHONE = "917815895689";
+const PREFILLED_MESSAGE =
+  "Hi QDelta, I would like to inquire about your services and get more information.";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+  PREFILLED_MESSAGE
+)}`;
+
 export default function WhatsAppButton() {
   return (
     <Link
-      href="https://wa.me/?text=Hi%20QDelta,%20I'd%20like%20to%20inquire%20about%20a%20project"
+      href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp"
+      aria-label="Chat on WhatsApp with QDelta"
       className="group fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex h-11 sm:h-12 items-center rounded-full border border-white/15 bg-[#0B0E12]/90 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all duration-300 ease-out hover:border-[#25D366]/50 hover:bg-[#0c140f] hover:shadow-[0_0_24px_rgba(37,211,102,0.35)] hover:pr-4.5 hover:pl-3.5 focus:outline-none"
     >
       {/* WhatsApp Green Icon */}
