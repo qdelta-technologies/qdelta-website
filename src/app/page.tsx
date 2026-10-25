@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import SectionDivider from "@/components/ui/SectionDivider";
 import DeferredOverlays from "@/components/ui/DeferredOverlays";
+import SectionReveal from "@/components/ui/SectionReveal";
 
 // Everything below the first screen is its own chunk. It is still rendered on the server (nothing changes for search
 // engines), but React hydrates each one separately instead of all at once in one long task before the page responds.
@@ -23,24 +24,62 @@ export default function Home() {
     <div className="relative min-h-screen bg-[#06070A] text-white selection:bg-[#FAB406] selection:text-[#06070A] flex flex-col justify-between">
       <Navbar />
       <main className="flex-1">
+        {/* Hero is above the fold — no reveal wrapper needed */}
         <Hero />
-        <TrustBar />
+
+        {/* TrustBar enters fast: it's right below the hero */}
+        <SectionReveal delay={0} amount={0.1} yOffset={16}>
+          <TrustBar />
+        </SectionReveal>
+
         <SectionDivider />
-        <BrandTransformationSection />
+
+        {/* Each section reveals as it scrolls into view — staggered for butter-smooth cascade */}
+        <SectionReveal delay={0} amount={0.08} yOffset={28}>
+          <BrandTransformationSection />
+        </SectionReveal>
+
         <SectionDivider />
-        <Services />
+
+        <SectionReveal delay={0} amount={0.06} yOffset={28}>
+          <Services />
+        </SectionReveal>
+
         <SectionDivider />
-        <Process />
+
+        <SectionReveal delay={0} amount={0.06} yOffset={28}>
+          <Process />
+        </SectionReveal>
+
         <SectionDivider />
-        <Portfolio />
+
+        <SectionReveal delay={0} amount={0.05} yOffset={28}>
+          <Portfolio />
+        </SectionReveal>
+
         <SectionDivider />
-        <Testimonials />
+
+        <SectionReveal delay={0} amount={0.08} yOffset={24}>
+          <Testimonials />
+        </SectionReveal>
+
         <SectionDivider />
-        <Team />
+
+        <SectionReveal delay={0} amount={0.06} yOffset={28}>
+          <Team />
+        </SectionReveal>
+
         <SectionDivider />
-        <HomeFaq />
+
+        <SectionReveal delay={0} amount={0.06} yOffset={20}>
+          <HomeFaq />
+        </SectionReveal>
+
         <SectionDivider />
-        <Contact />
+
+        <SectionReveal delay={0} amount={0.05} yOffset={20}>
+          <Contact />
+        </SectionReveal>
       </main>
       <Footer />
       <DeferredOverlays />

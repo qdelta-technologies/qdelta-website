@@ -103,12 +103,25 @@ export default function SectionAtmosphere({
       pulseSpeed: Math.random() * 0.015 + 0.005,
     }));
 
+    const TARGET_FPS = 30;
+    const FRAME_INTERVAL = 1000 / TARGET_FPS;
+    let lastFrameTime = 0;
+
     const render = () => {
       if (!isVisible) return;
 
+      const now = performance.now();
+      const elapsed = now - lastFrameTime;
+
+      // Throttle to TARGET_FPS — halves GPU load vs uncapped 60fps
+      if (elapsed < FRAME_INTERVAL) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+      lastFrameTime = now - (elapsed % FRAME_INTERVAL);
+
       ctx.clearRect(0, 0, width, height);
 
-      const now = Date.now();
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
         if (!prefersReducedMotion) {

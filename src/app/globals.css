@@ -23,10 +23,21 @@
   --color-zinc-600: #6e7180;
 }
 
+html {
+  /* OS-level smooth scroll — zero JS cost, works with instant keyboard navigation */
+  scroll-behavior: smooth;
+  /* Prevent layout shift during font swap */
+  font-display: swap;
+}
+
 html,
 body {
   font-family: var(--font-satoshi), "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: 0.02em;
+  /* Sub-pixel rendering — sharper text on all screens */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Semantic utilities — font-heading = Bricolage Grotesque (section H2s); font-excon = Excon (card titles); font-epilogue = DM Sans (body/UI) */
@@ -130,6 +141,16 @@ canvas {
   .animate-marquee-reverse {
     animation: none;
   }
+
+  /* Globally disable all animations & transitions for accessibility */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ===== MOBILE PERFORMANCE OPTIMIZATIONS =====
@@ -153,12 +174,14 @@ canvas {
     display: none;
   }
 
-  /* Sections near the bottom of the page are not laid out or painted until they get close to the screen. */
+  /* Sections near the bottom of the page are not laid out or painted until they get close to the screen.
+     Extended to cover more sections for faster initial paint and scroll jank reduction. */
   #testimonials,
   #team,
-  #contact {
+  #contact,
+  #projects {
     content-visibility: auto;
-    contain-intrinsic-size: auto 800px;
+    contain-intrinsic-size: auto 900px;
   }
 
   /* Big blur() glows are one of the most expensive things a phone GPU can draw, and every glow here is already a
@@ -310,6 +333,7 @@ canvas {
 .glass-dark-card:hover, .glass-dark-card-hover:hover {
   border-color: rgba(250, 180, 6, 0.28);
   box-shadow: 0 20px 44px -8px rgba(0, 0, 0, 0.8), 0 0 24px -4px rgba(250, 180, 6, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* ================= NO SCROLLBAR UTILITY ================= */
@@ -394,6 +418,71 @@ body::after {
 
 @media (prefers-reduced-motion: reduce) {
   body::after { display: none; }
+}
+
+/* ================= SCROLL-REVEAL SYSTEM ================= */
+/* GPU-composited fade-up: opacity + transform only (no layout triggers) */
+@keyframes revealFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes revealFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Page-load entrance: hero section fades in gracefully */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger delays for child elements */
+.reveal-stagger-1 { animation-delay: 0.05s; }
+.reveal-stagger-2 { animation-delay: 0.12s; }
+.reveal-stagger-3 { animation-delay: 0.20s; }
+.reveal-stagger-4 { animation-delay: 0.28s; }
+.reveal-stagger-5 { animation-delay: 0.36s; }
+
+/* ================= STICKY CARD GPU COMPOSITING ================= */
+/* Sticky scroll-stacked cards (Services, Portfolio) get their own GPU layer
+   ONLY while sticking — avoids large persistent textures like adding it globally */
+.sticky-compositor {
+  /* Promote to compositor layer only when sticky-positioned */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ================= SMOOTH LINK / BUTTON TRANSITIONS ================= */
+/* All interactive elements get silky-smooth 200ms transitions by default */
+a, button {
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Focus ring: replace browser default with styled golden ring */
+:focus-visible {
+  outline: 2px solid rgba(250, 180, 6, 0.75);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ================= ARCHITECTURAL NAVBAR GLASSMORPHISM FRAME ================= */

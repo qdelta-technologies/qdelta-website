@@ -8,6 +8,7 @@ import {
   Rocket,
   TrendingUp,
 } from "lucide-react";
+import { motion } from "motion/react";
 import SectionAtmosphere from "@/components/ui/SectionAtmosphere";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 import ProcessMobileJourney from "@/components/sections/ProcessMobileJourney";
@@ -76,7 +77,13 @@ export default function Process() {
         {/* ======================================================= */}
         {/* SECTION HEADER                                          */}
         {/* ======================================================= */}
-        <div className="flex flex-col items-center text-center mb-8 lg:mb-12 max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center text-center mb-8 lg:mb-12 max-w-3xl"
+        >
           {/* Unified Section Eyebrow */}
           <SectionEyebrow>How We Work</SectionEyebrow>
 
@@ -90,7 +97,7 @@ export default function Process() {
           <p className="mt-3 text-xs sm:text-sm md:text-base font-epilogue text-zinc-300 font-normal leading-relaxed text-balance max-w-2xl">
             A structured workflow with clear milestones that keeps everything on track and turns ideas into high-performing digital experiences.
           </p>
-        </div>
+        </motion.div>
 
         {/* ======================================================= */}
         {/* DESKTOP VIEW: CLEAN STATIC PROCESS TIMELINE RAIL        */}
@@ -112,7 +119,17 @@ export default function Process() {
                 const isAbove = idx % 2 === 0; // Steps 1, 3, 5 above rail; Steps 2, 4 below
 
                 const cardMarkup = (
-                  <div className="group/card relative w-full max-w-[236px] overflow-hidden rounded-xl border-t border-l border-r border-white/[0.14] border-b-[3.5px] border-b-[#B87700]/70 hover:border-b-[#B87700] bg-[#0B0E12]/92 hover:bg-[#0E1217] p-5 backdrop-blur-md shadow-[0_18px_36px_-6px_rgba(0,0,0,0.7),inset_0_1.2px_0_rgba(255,255,255,0.12)] hover:shadow-[0_22px_45px_rgba(250,180,6,0.16)] transition-all duration-300 hover:-translate-y-1">
+                  <motion.div
+                    initial={{ opacity: 0, y: isAbove ? -16 : 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      duration: 0.55,
+                      delay: idx * 0.1,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="group/card relative w-full max-w-[236px] overflow-hidden rounded-xl border-t border-l border-r border-white/[0.14] border-b-[3.5px] border-b-[#B87700]/70 hover:border-b-[#B87700] bg-[#0B0E12]/92 hover:bg-[#0E1217] p-5 backdrop-blur-md shadow-[0_18px_36px_-6px_rgba(0,0,0,0.7),inset_0_1.2px_0_rgba(255,255,255,0.12)] hover:shadow-[0_22px_45px_rgba(250,180,6,0.16)] transition-all duration-300 hover:-translate-y-1"
+                  >
                     {/* Top gold hairline */}
                     <div className="pointer-events-none absolute top-0 inset-x-4 h-[1.5px] bg-gradient-to-r from-transparent via-[#FAB406]/70 group-hover/card:via-[#FAB406] to-transparent transition-all duration-300 z-20" />
 
@@ -132,7 +149,7 @@ export default function Process() {
                     <p className="mt-1.5 font-epilogue text-[13px] leading-relaxed text-zinc-300 font-normal">
                       {step.description}
                     </p>
-                  </div>
+                  </motion.div>
                 );
 
                 return (
