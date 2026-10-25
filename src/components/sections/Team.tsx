@@ -68,7 +68,7 @@ const TEAM_MEMBERS: TeamMember[] = [
     focus: ["AI Strategy", "Creative Direction", "Business & Product Thinking"],
     linkedinUrl: "https://www.linkedin.com/in/md-qais-905039224",
     instagramUrl: "https://www.instagram.com/mqtech.ai?psln=MWd0MndtZmp3YXJ3Zw==",
-    portfolioUrl: "https://mq-portfolio-main.vercel.app/",
+    portfolioUrl: "https://www.iamqais.in",
     accentColor: "#FAB406",
     glowColor: "rgba(250, 180, 6, 0.14)",
   },

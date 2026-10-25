@@ -242,15 +242,10 @@ export default function Contact() {
 
               {/* Compact Black Booking Callout Pill */}
               <div className="mt-4 sm:mt-5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    const nameInput = document.getElementById("name");
-                    if (nameInput) {
-                      nameInput.focus();
-                      nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
-                    }
-                  }}
+                <a
+                  href="https://superprofile.bio/lf/6add64a7e5bc580007b1f2c4"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-1.5 justify-center rounded-full bg-[#06070A] text-white pl-5 sm:pl-6 pr-4 sm:pr-5 py-2 sm:py-2.5 border-t border-l border-r border-white/20 border-b-[3px] border-b-black shadow-[0_12px_28px_-6px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.6)] hover:border-[#FAB406]/50 transition-all duration-300 ease-out active:translate-y-[2px] active:border-b-[1px] cursor-pointer select-none"
                   aria-label="Get Service Brochure"
                 >
@@ -258,7 +253,7 @@ export default function Contact() {
                     Get Service Brochure
                   </span>
                   <ArrowUpRight className="h-3.5 w-3.5 text-[#FAB406] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </button>
+                </a>
               </div>
             </div>
 

@@ -337,7 +337,9 @@ export default function Navbar() {
             {/* Desktop-only CTA (xl+); hidden on mobile & tablet */}
             <div className="hidden xl:block shrink-0">
               <ChamferButton
-                href="#contact"
+                href="https://superprofile.bio/lf/6add64a7e5bc580007b1f2c4"
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="primary"
                 cutLarge={10}
                 cutSmall={5}
@@ -405,7 +407,9 @@ export default function Navbar() {
                 })}
                 <div className="pt-2 mt-1.5 border-t border-white/10">
                   <ChamferButton
-                    href="#contact"
+                    href="https://superprofile.bio/lf/6add64a7e5bc580007b1f2c4"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     variant="primary"
                     cutLarge={8}
                     cutSmall={4}
