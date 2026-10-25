@@ -5,6 +5,8 @@ import Link from "next/link";
 
 export interface ChamferButtonProps {
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: (e: React.MouseEvent) => void;
   variant?: "primary" | "outline";
   children: React.ReactNode;
@@ -30,6 +32,8 @@ export interface ChamferButtonProps {
  */
 export default function ChamferButton({
   href,
+  target,
+  rel,
   onClick,
   variant = "primary",
   children,
@@ -203,6 +207,8 @@ export default function ChamferButton({
       <Link
         ref={containerRef}
         href={href}
+        target={target}
+        rel={rel}
         aria-label={ariaLabel}
         className={baseClasses}
         style={{ clipPath: clipPathStyle }}
