@@ -406,6 +406,12 @@ export default function Footer() {
                 <p className="mt-1.5 text-[11px] sm:text-xs font-epilogue text-zinc-400 font-medium">
                   MSME Registered Enterprise
                 </p>
+                <p className="mt-1 text-[11px] sm:text-xs font-epilogue text-zinc-500">
+                  Udyam Reg. No. UDYAM-TS-07-0114276
+                </p>
+                <address className="mt-1 text-[11px] sm:text-xs font-epilogue text-zinc-500 not-italic leading-relaxed">
+                  Registered office: 1-18-AS0005, Residential Premises, Ashok Nagar, Miryalguda, Nalgonda, Telangana 508207, India
+                </address>
               </div>
 
               {/* Subtle architectural divider */}
